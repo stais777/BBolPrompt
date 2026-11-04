@@ -1,0 +1,14 @@
+test_export_download_is_authenticated_small_and_UI_values_are_whitelisted (test_local_diagnostics.DiagnosticHTTP.test_export_download_is_authenticated_small_and_UI_values_are_whitelisted) ... ok
+test_attempt_count_is_bounded_and_original_history_is_retained (test_local_diagnostics.LocalDiagnostics.test_attempt_count_is_bounded_and_original_history_is_retained) ... ok
+test_committed_source_and_stored_images_are_independently_hashed (test_local_diagnostics.LocalDiagnostics.test_committed_source_and_stored_images_are_independently_hashed) ... ok
+test_corrupt_stored_image_is_detected_even_if_database_count_is_complete (test_local_diagnostics.LocalDiagnostics.test_corrupt_stored_image_is_detected_even_if_database_count_is_complete) ... ok
+test_failed_sha_attempt_is_available_after_source_is_deleted (test_local_diagnostics.LocalDiagnostics.test_failed_sha_attempt_is_available_after_source_is_deleted) ... ok
+test_initial_report_is_not_a_success_and_excludes_text_media_db_and_keys (test_local_diagnostics.LocalDiagnostics.test_initial_report_is_not_a_success_and_excludes_text_media_db_and_keys) ... ok
+test_missing_stored_image_is_reported_without_leaking_full_path (test_local_diagnostics.LocalDiagnostics.test_missing_stored_image_is_reported_without_leaking_full_path) ... ok
+test_old_import_without_source_digest_does_not_claim_source_readback_comparison (test_local_diagnostics.LocalDiagnostics.test_old_import_without_source_digest_does_not_claim_source_readback_comparison) ... ok
+test_review_cancel_and_commit_error_events_are_preserved (test_local_diagnostics.LocalDiagnostics.test_review_cancel_and_commit_error_events_are_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 6.267s
+
+OK

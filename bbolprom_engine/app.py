@@ -10,6 +10,7 @@ from .analysis import analyze
 from .hwpx import HWPXReader
 from .tags import CATEGORIES
 from .xlsx_export import export_xlsx
+from .version import VERSION
 
 APP_ROOT=Path(__file__).resolve().parent.parent
 
@@ -39,6 +40,8 @@ class Application:
         self.baseline=BaselineStore(self.library,load_dataset(APP_ROOT))
         self.approved=self.baseline.cards()
         self.approved_hashes={c['source_text_sha256'] for c in self.approved}
+        from .local_diagnostics import ImportAudit
+        self.import_audit=ImportAudit(self.library)
 
     def categories(self):
         return self.library.get_setting('categories',[
@@ -108,7 +111,17 @@ class Application:
                 'stats':dict(result['result_stats'],tag_candidates=0,highlight_spans=0),'notice':'태그는 등록 후 명시적 API 분석으로 생성됩니다. 경계가 모호하면 등록 전 카드를 확인하세요.'}
 
     def prepare_baseline(self,path,name):
-        result=self.baseline.prepare(path,name)
+        from .local_diagnostics import safe_error
+        name=Path(str(name).replace('\\','/')).name[:512]
+        attempt=self.import_audit.begin(name,Path(path).stat().st_size)
+        try:
+            result=self.baseline.prepare(path,name,source_checked=lambda file:self.import_audit.update(attempt,'source_checked',file=file))
+        except Exception as exc:
+            self.import_audit.update(attempt,'failed',error=safe_error(exc))
+            raise
+        self.import_audit.update(attempt,'review_ready',stats=result['stats'],
+            image_digests={im['path']:im['digest'] for card in result['cards'] for im in card['images']})
+        result['attempt_id']=attempt
         ticket=uuid.uuid4().hex
         self.pending[ticket]=(Path(path),result)
         return dict(result,ticket=ticket)
@@ -123,6 +136,14 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route=='/api/local-diagnostic':
+            from .local_diagnostics import collect_local_diagnostic
+            folder=self.library.root/'exports';folder.mkdir(exist_ok=True)
+            path=folder/('Bbolprom-Local-'+uuid.uuid4().hex[:12]+'.diagnostic.zip')
+            report=collect_local_diagnostic(self.baseline,path,data.get('ui_observation'))
+            return {'download':'/download/exports/'+path.name,'file':path.name,'bytes':path.stat().st_size,
+                'acceptance':report['acceptance'],'counts':report['counts'],
+                'notice':'진단 ZIP에 원문·이미지·문서XML·DB·API키는 포함하지 않습니다. 자동 전송하지 않습니다.'}
         if route=='/api/ui':
             from .ui import save_preferences
             return {'ui':save_preferences(self.library,data)}
@@ -139,14 +160,21 @@ class Application:
                 'notice':report['notice']}
         if route=='/api/cancel':
             entry=self.pending.pop(data['ticket'],None)
-            if entry:entry[0].unlink(missing_ok=True)
+            if entry:
+                if entry[1].get('attempt_id'):self.import_audit.update(entry[1]['attempt_id'],'cancelled')
+                entry[0].unlink(missing_ok=True)
             return {'cancelled':True}
         if route=='/api/baseline-commit':
             if set(data)!={'ticket'}:raise ValueError('베이스화는 확정 카드의 편집 없이 검토 세션만 등록합니다.')
             ticket=data['ticket']
             if ticket not in self.pending:raise ValueError('검토 세션이 만료됨: 원본을 다시 선택하세요.')
             source,result=self.pending[ticket]
-            status=self.baseline.commit(source,result)
+            try:status=self.baseline.commit(source,result)
+            except Exception as exc:
+                from .local_diagnostics import safe_error
+                if result.get('attempt_id'):self.import_audit.update(result['attempt_id'],'commit_failed',error=safe_error(exc))
+                raise
+            if result.get('attempt_id'):self.import_audit.update(result['attempt_id'],'committed',result=status)
             del self.pending[ticket];source.unlink(missing_ok=True)
             return {'baseline':status,'message':'베이스화 309개 ID를 유지하고 531건의 이미지 참조를 연결했습니다.'}
         if route=='/api/commit':
@@ -316,11 +344,11 @@ def make_server(data,port=0):
             try:
                 if path=='/':
                     page=(Path(__file__).parent/'web'/'index.html').read_text(encoding='utf8')
-                    self.send(200,page.replace('__TOKEN__',app.token).encode(),'text/html; charset=utf-8');return
+                    self.send(200,page.replace('__TOKEN__',app.token).replace('__VERSION__',VERSION).encode(),'text/html; charset=utf-8');return
                 if path in ('/ui.css','/app.js'):
                     body=(Path(__file__).parent/'web'/path[1:]).read_bytes()
                     self.send(200,body,'text/css; charset=utf-8' if path.endswith('.css') else 'text/javascript; charset=utf-8');return
-                if path=='/health':self.send(200,{'ok':True,'version':'0.3.2-baseline','approved_count':len(app.approved)});return
+                if path=='/health':self.send(200,{'ok':True,'version':VERSION,'approved_count':len(app.approved)});return
                 if path=='/api/state':
                     if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
                     self.send(200,app.state());return

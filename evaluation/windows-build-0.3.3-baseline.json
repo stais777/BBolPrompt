@@ -1,0 +1,28 @@
+{
+  "version": "0.3.3-baseline",
+  "artifact": "Bbolprom-Windows-x64-v0.3.3-baseline.zip",
+  "bytes": 15275918,
+  "sha256": "3f81bee4efb9ad52ab995df5b3933214d636b2f3258b6a992187bb86a5ad5621",
+  "application_source_commit": "79981bc",
+  "cross_built": true,
+  "native_windows_executed": false,
+  "windows_runtime_executed": false,
+  "actual_PT_tested": false,
+  "live_API_called": false,
+  "files_hash_verified": 1344,
+  "host_packaged_source_smoke": "passed on Linux/Python3.12",
+  "host_packaged_diagnostic_export": "passed",
+  "integration_tests_passed": 120,
+  "new_diagnostic_tests_passed": 9,
+  "new_diagnostic_browser_checks_passed": 5,
+  "source_prompt_image_XML_DB_or_API_key_in_diagnostic": false,
+  "auto_upload": false,
+  "diagnostics_checks": [
+    "Original file SHA and stage/error history",
+    "309 fixed IDs and text/tag/span integrity",
+    "531 ordered image refs and522 paths",
+    "Readback media MD5/SHA1/SHA256 and original digest comparison",
+    "Missing/corrupt file detection despite complete counts",
+    "Runtime OS/build and bounded UI counts"
+  ]
+}

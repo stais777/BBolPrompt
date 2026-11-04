@@ -138,9 +138,11 @@ class BaselineStore:
                     'source_imports': c.execute('SELECT COUNT(*) FROM baseline_sources').fetchone()[0],
                     'master_sha256': MASTER_SHA, 'manifest_sha256': MANIFEST_SHA}
 
-    def prepare(self, source, name):
+    def prepare(self, source, name, *, source_checked=None):
         source = Path(source)
         sha = file_sha256(source)
+        file_info={'sha256':sha,'name':name,'bytes':source.stat().st_size}
+        if source_checked is not None:source_checked(file_info)
         if sha != SOURCE_SHA:
             raise ValueError('확정 PT.hwpx와 SHA256이 다릅니다. 기존 309개 베이스는 유지됩니다. '
                              '이 경로는 확정 원본의 이미지 연결 전용입니다. 새 문서의 갱신 비교는 아직 지원하지 않습니다.')
@@ -162,7 +164,7 @@ class BaselineStore:
             cards.append({'card_id':card['card_id'], 'source_text':card['source_text'],
                           'source_text_sha256':card['source_text_sha256'], 'tag_count':len(card['tags']),
                           'images':[dict(im, resolved=True, digest=digests[im['path']]) for im in card['expected_images']]})
-        return {'mode': MODE, 'file':{'sha256':sha, 'name':name, 'bytes':source.stat().st_size},
+        return {'mode': MODE, 'file':file_info,
                 'master_sha256':MASTER_SHA, 'manifest_sha256':MANIFEST_SHA, 'cards':cards,
                 'stats':{'cards':309, 'image_references':531, 'unique_image_paths':522,
                          'tags':sum(len(c['tags']) for c in self.records)},

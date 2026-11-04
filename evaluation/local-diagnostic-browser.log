@@ -1,0 +1,18 @@
+Checking: not_imported_export_is_available_and_not_marked_success
+Checking: wrong_file_failure_has_exportable_history
+Checking: review_export_button_does_not_register_or_remove_pending_source
+Checking: committed_export_rechecks_531_links_522_paths_and_all_image_hashes
+Checking: corruption_is_detected_despite_completed_import_count
+{
+  "actual_PT_tested": false,
+  "external_API_called": false,
+  "native_Windows_tested": false,
+  "checks": [
+    "not_imported_export_is_available_and_not_marked_success",
+    "wrong_file_failure_has_exportable_history",
+    "review_export_button_does_not_register_or_remove_pending_source",
+    "committed_export_rechecks_531_links_522_paths_and_all_image_hashes",
+    "corruption_is_detected_despite_completed_import_count"
+  ],
+  "status": "passed"
+}

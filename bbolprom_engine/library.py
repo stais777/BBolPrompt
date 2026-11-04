@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS analysis_references(id TEXT PRIMARY KEY,card_id TEXT 
  created TEXT NOT NULL,status TEXT NOT NULL,mode TEXT NOT NULL,reference_json TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS card_versions(id TEXT PRIMARY KEY,card_id TEXT NOT NULL REFERENCES cards(id),
  created TEXT NOT NULL,reason TEXT NOT NULL,snapshot_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS import_attempts(id TEXT PRIMARY KEY,created TEXT NOT NULL,updated TEXT NOT NULL,
+ mode TEXT NOT NULL,status TEXT NOT NULL,filename TEXT NOT NULL,details_json TEXT NOT NULL);
 '''
 
 def sha_text(text):

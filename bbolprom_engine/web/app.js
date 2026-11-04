@@ -237,3 +237,18 @@ $('editBack').onclick=()=>{$('editCardForm').hidden=false;$('editCardReview').hi
 $('saveCardEdit').onclick=()=>busy(async()=>{if(!cardEdit)return;$('saveCardEdit').disabled=true;try{const {id,text,images,remove_images,expected_sha}=cardEdit;const r=await api('/api/card-edit',{id,text,images,remove_images,expected_sha});$('editCardDialog').close();cardEdit=null;await refresh();msg(r.message)}finally{$('saveCardEdit').disabled=false}});
 $('historyBtn').onclick=()=>busy(async()=>{if(!selected||selected.approved)return;const id=selected.id;const r=await api('/api/card-history',{id});$('historyRows').replaceChildren();if(!r.versions.length)$('historyRows').append(node('p','저장된 수정 이력이 없습니다.'));for(const version of r.versions){const box=node('details');box.append(node('summary',new Date(version.created).toLocaleString()+' · '+version.reason),node('h3','이전 원문'),node('pre',version.source_text),node('p',version.tags.length+'태그 · '+version.images.length+'이미지 연결'));const restore=node('button','이 상태로 복원');restore.onclick=()=>busy(async()=>{restore.disabled=true;try{const done=await api('/api/card-restore',{id,version_id:version.id});$('historyDialog').close();await refresh();msg(done.message)}finally{restore.disabled=false}});box.append(restore);$('historyRows').append(box)}$('historyDialog').showModal()});
 for(const b of document.querySelectorAll('#editCardDialog [data-close],#historyDialog [data-close]'))b.onclick=()=>$(b.dataset.close).close();
+
+async function exportLocalDiagnostic(){
+ const images=[...document.querySelectorAll('#gallery img,#imageBox img')];
+ const observation={displayed_cards:document.querySelectorAll('#gallery article').length,
+  rendered_images:images.length,loaded_images:images.filter(im=>im.complete&&im.naturalWidth>0).length,
+  failed_images:images.filter(im=>im.complete&&im.naturalWidth===0).length,
+  selected_tag_count:selectedTags.length,applied_tag_count:(ui.applied_tags||[]).length,
+  filter_active:!!ui.filter_active,show_hidden:!!ui.show_hidden,scope:$('scope').value};
+ msg('진단 수집 중… 저장 이미지 파일의 해시를 확인하고 있습니다.');
+ const result=await api('/api/local-diagnostic',{ui_observation:observation});download(result.download);
+ msg('진단 ZIP 저장: '+result.file+' · 원문/이미지/API키 미포함. 이 파일을 채팅에 첨부해 주세요.');
+}
+for(const id of ['localDiagnosticBtn','baselineDiagnosticBtn'])$(id).onclick=()=>busy(async()=>{
+ $(id).disabled=true;try{await exportLocalDiagnostic()}finally{$(id).disabled=false}
+});
