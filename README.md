@@ -1,11 +1,15 @@
-# 뽈프롬 PromptManager 0.3 개발판
+# 뽈프롬 PromptManager 0.3.1 진단·API 사례 보완판
 
 인계받은 Alpha v0.2의 결함을 별도 디렉터리에서 수정하고, 실제 사용 가능한 로컬 앱과 Windows x64 배포본을 구현했습니다. **정식 완료판이라는 뜻은 아닙니다.** 실제 PT 전체 재시험·실제 AI 의미 품질·Windows PC 실행은 아직 검증하지 못했습니다.
 
+## 실제 PT 오류와 이번 버전
+
+사용자 PC에서 실제 PT 반입 검토 결과가 **495개**로 확인됐습니다. 초기 갤러리의 309개는 로컬 승인 자료를 미리 표시한 것이며 추출 성공 결과가 아닙니다. 이번 버전은 오류 카드로 이동하는 안내와 **구조 진단 ZIP 저장**, 선택적 **승인 카드 원문→태그→근거 API 사례 참조**를 보완합니다. **495→309 분리 문제가 해결됐다는 버전은 아닙니다.** [변경 내용과 진단 방법](docs/0.3.1-diagnostic.md)을 확인하세요.
+
 ## 다운로드
 
-- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.3.zip)
-- [소스·테스트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Source-v0.3.zip)
+- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.3.1-diagnostic.zip)
+- [소스·테스트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Source-v0.3.1-diagnostic.zip)
 - [검증 결과](docs/VALIDATION.md)
 - [배포 ZIP SHA256](downloads/ARTIFACT_SHA256.json)
 
@@ -13,7 +17,7 @@
 
 ## Windows 사용
 
-`dist/Bbolprom-Windows-x64-v0.3.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 `%LOCALAPPDATA%\Bbolprom`에 저장됩니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
+`dist/Bbolprom-Windows-x64-v0.3.1-diagnostic.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 `%LOCALAPPDATA%\Bbolprom`에 저장됩니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
 
 이 EXE는 실제 PE32+ Windows x64 프로그램으로 교차 빌드했습니다. Windows에서 실행해 확인한 결과는 없습니다. `test_windows.ps1`은 파일 무결성·번들 Python·HWPX/Unicode/SQLite·실제 EXE 시작/HTTP 응답을 점검하는 Windows용 실행 시험입니다. 빌드와 Windows 실행을 구분하십시오. 단일 EXE에 모든 파일을 합친 형식은 아니며 Python을 포함한 폴더형 독립 배포입니다.
 
@@ -33,7 +37,7 @@
 
 - `bbolprom_engine/analysis.py`, `hwpx.py`: 운영 반입. 승인 원문/정답과 대조하여 경계를 강제하지 않습니다.
 - `bbolprom_engine/api.py`, `approved_context.py`, `data/approved_context.json`: 승인 XLSX 출처·행을 보존한 표준 태그와 실제 승인 판단 이력 285행. 관련 일부만 API에 전달하며 이것 자체를 태그 정답으로 반환하지 않습니다.
-- `assets/approved_catalog.json`: **갤러리 표시 전용** 승인 원문·태그·근거. 반입 분리와 API에는 전달하지 않습니다.
+- `assets/approved_catalog.json`: **갤러리 표시 전용** 승인 원문·태그·근거. 반입 분리에는 전달하지 않습니다. API 설정에서 관련 승인 사례 참조를 명시적으로 켠 경우에만 관련 원문·태그·근거를 소수 검색해 API에 제공합니다.
 - `evaluation/compare.py`, `evaluation/reference/`: 평가에서만 원문/카드별 정답을 읽습니다. Windows 배포에는 포함하지 않습니다.
 - CLI `analyze`의 generic/approved_terms와 `tags.py`는 기존 A/B와 비교하기 위한 **규칙 진단**입니다. 의미 판단을 구현했다고 취급하지 않습니다. 앱은 규칙 진단 태그를 자동 등록하지 않습니다. `registry.py`는 이전 Alpha 시험 API 호환용으로만 남겨두었으며 새 앱과 CLI 등록은 `library.py`를 사용합니다.
 
@@ -43,7 +47,7 @@
 
 초기 C~I는 승인 표시명만 있습니다. 확정 문서에는 완전한 분류 정의가 없으므로 만들어낸 정의를 사용자 승인 사실로 넣지 않았습니다. API에 보낼 분류 정의·포함/제외는 사용자가 설정창에서 확정할 수 있습니다. 새 대분류를 API가 만들 수 없으며 재활성화의 자동 복귀 정책을 전역으로 임의 확정하지 않습니다. UI의 재활성화 버튼은 **태그 자동 복귀 없음**이라는 명시적 개별 선택입니다.
 
-전송 범위는 선택한 신규 카드 원문·활성 분류 정의·관련 표준 태그 및 승인 판단 이력 일부입니다. 승인 전체 원문, 실제 이미지 바이트, 평가 정답은 전송하지 않습니다. API 키가 제공되지 않아 이번에는 실제 API를 호출하지 않았습니다. 모의 응답 시험은 의미 품질 측정이 아닙니다.
+전송 범위는 선택한 신규 카드 원문·활성 분류 정의·관련 표준 태그 및 승인 판단 이력 일부입니다. 승인 전체 원문, 실제 이미지 바이트, 평가 전용 정답 파일은 전송하지 않습니다. 관련 승인 사례 참조를 켜면 로컬 승인 카드의 원문 발췌·태그·근거가 최대 3건 추가됩니다. 전체 309카드를 일괄 전송하지 않습니다. API 키가 제공되지 않아 이번에는 실제 API를 호출하지 않았습니다. 모의 응답 시험은 의미 품질 측정이 아닙니다.
 
 ## 개발/시험 재현
 
@@ -56,7 +60,8 @@ python -m unittest discover -s tests -v
 python evaluation/audit_handoff.py --handoff /path/to/extracted/handoff
 python evaluation/structural_regression.py --handoff /path/to/extracted/handoff
 node scripts/browser_smoke.js
-python scripts/build_windows.py
+python scripts/build_windows.py --version 0.3.1-diagnostic
+python scripts/package_source.py --version 0.3.1-diagnostic
 python scripts/verify_windows_bundle.py
 ```
 

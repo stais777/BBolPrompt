@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-11-04T13:51:02.953Z",
+  "run_at": "2026-11-04T14:34:55.544Z",
   "platform": "linux",
   "browser": "Chromium headless",
   "actual_PT_tested": false,
@@ -11,6 +11,10 @@
     },
     {
       "name": "four_views_and_five_themes",
+      "status": "passed"
+    },
+    {
+      "name": "approved_examples_opt_in_setting_persists_without_enabling_API",
       "status": "passed"
     },
     {
@@ -43,6 +47,10 @@
     },
     {
       "name": "HWPX_drag_drop_duplicate_preserves_card_count",
+      "status": "passed"
+    },
+    {
+      "name": "duplicate_approved_source_review_guidance_and_diagnostic",
       "status": "passed"
     },
     {

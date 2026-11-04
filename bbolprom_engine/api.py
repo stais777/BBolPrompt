@@ -16,6 +16,7 @@ import urllib.request
 import urllib.error
 from urllib.parse import urlsplit
 from .approved_context import retrieve_context
+from .approved_examples import prepare_examples_for_request
 
 POLICY_VERSION='API-POLICY-1.0'
 SYSTEM_POLICY='''You are the semantic tagging component of Bbolprompt, API-POLICY-1.0.
@@ -32,6 +33,11 @@ duplicated by existing standards, named consistently, grounded in exact source
 quotes and clearly appropriate to ONE active user-defined category. Otherwise
 keep the candidate unclassified with a reason; never invent a category. Approved
 examples are historical context, not mandatory answers for this new prompt.
+Approved card examples include immutable source excerpts, selected approved tags
+and exact source evidence. Use them to understand prior contextual judgments,
+not as lookup answers. Never copy their tags or evidence into the new card merely
+because wording is similar. Current active user category definitions govern NEW
+classification; historical example categories must not be rewritten/reclassified.
 Return exact source evidence quote(s); NEVER return offsets, rewrite the prompt,
 mutate a DB, or create categories. Missing evidence means empty quotes and an
 unclassified candidate, never a fabricated highlight. Do not drop a meaningful
@@ -146,7 +152,7 @@ def select_evidence_spans(text,quote,*,prefix='',suffix=''):
     return matches
 
 
-def build_request(card_ref,text,categories,tags,context=None):
+def build_request(card_ref,text,categories,tags,context=None,examples=None):
     if not isinstance(card_ref,str) or not card_ref:raise APIValidationError('card_ref required')
     if not isinstance(text,str):raise APIValidationError('Source text must be a string')
     active=[];ids=set()
@@ -166,6 +172,7 @@ def build_request(card_ref,text,categories,tags,context=None):
               for t in merged.values()]
     return {'card_ref':card_ref,'prompt_text':text,'active_categories':active,
             'existing_tags':existing,'approved_normalization_examples':selected['decisions'],
+            'approved_card_examples':prepare_examples_for_request(text,examples),
             'context_provenance':selected['source_sha256'],'policy_version':POLICY_VERSION}
 
 
@@ -325,7 +332,7 @@ def _live_transport(request,config):
         raise APIUnavailable('API connection/timeout/response error; card retained, retry is manual') from None
 
 
-def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None):
+def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None,examples=None):
     """API boundary + engine-format results; no persistence or implicit retries.
 
     transport is test-only injection. A mock response exercises validation, not
@@ -334,7 +341,7 @@ def analyze_card(card_ref,text,categories,tags,context=None,transport=None,confi
     base={'card_ref':card_ref,'source_text':text,'status':'pending','tags':[],
           'unclassified':[],'warnings':[],'usage':{},'mode':'mock' if transport else 'live'}
     try:
-        request=build_request(card_ref,text,categories,tags,context)
+        request=build_request(card_ref,text,categories,tags,context,examples=examples)
         if transport:
             response=transport(copy.deepcopy(request))
         else:

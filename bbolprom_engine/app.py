@@ -13,6 +13,11 @@ from .xlsx_export import export_xlsx
 
 APP_ROOT=Path(__file__).resolve().parent.parent
 
+class ImportReviewError(ValueError):
+    def __init__(self,message,review_card,approved_matches):
+        super().__init__(message)
+        self.details={'review_card':review_card,'unresolved_index':review_card,'approved_matches':approved_matches}
+
 class Application:
     def __init__(self, data):
         self.library=Library(data)
@@ -86,10 +91,12 @@ class Application:
         ticket=uuid.uuid4().hex
         self.pending[ticket]=(Path(path),result)
         plan=self.library.plan(result)
+        persisted_targets=self.library.get_setting('approved_overlay_targets',{})
         for card,row in zip(result['cards'],plan):
             if card['source_text_sha256'] in self.approved_hashes:
                 row['action']='approved_card_image_source_overlay'
                 card['approved_matches']=[{'id':a['id'],'card_id':a['card_id']} for a in self.approved if a['source_text']==card['source_text']]
+                card['approved_target']=persisted_targets.get(card['source_text_sha256'])
         return {'ticket':ticket,'plan':plan,'cards':result['cards'],
                 'stats':dict(result['result_stats'],tag_candidates=0,highlight_spans=0),'notice':'태그는 등록 후 명시적 API 분석으로 생성됩니다. 경계가 모호하면 등록 전 카드를 확인하세요.'}
 
@@ -103,6 +110,17 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route=='/api/diagnostic':
+            if data['ticket'] not in self.pending:raise ValueError('반입 검토 세션이 없습니다. 파일을 다시 선택하세요.')
+            from .diagnostics import collect_structure
+            source,result=self.pending[data['ticket']]
+            folder=self.library.root/'exports';folder.mkdir(exist_ok=True)
+            path=folder/(uuid.uuid4().hex[:12]+'.diagnostic.zip')
+            report=collect_structure(source,result,path)
+            return {'download':'/download/exports/'+path.name,'file':path.name,
+                'source_sha256':report['source']['sha256'],
+                'cards':report['extraction']['card_count'],'image_bytes_included':False,
+                'notice':report['notice']}
         if route=='/api/cancel':
             entry=self.pending.pop(data['ticket'],None)
             if entry:entry[0].unlink(missing_ok=True)
@@ -127,7 +145,10 @@ class Application:
             targets=self.library.get_setting('approved_overlay_targets',{})
             for card in result['cards']:
                 chosen=data.get('approved_targets',{}).get(str(card['engine_card']))
-                self.validate_approved_target(card['source_text'],chosen,targets)
+                try:self.validate_approved_target(card['source_text'],chosen,targets)
+                except ValueError as exc:
+                    matches=[{'id':a['id'],'card_id':a['card_id']} for a in self.approved if a['source_text']==card['source_text']]
+                    raise ImportReviewError(str(exc),card['engine_card'],matches) from None
             ids=self.library.commit_hwpx(source,result)
             self.library.set_setting('approved_overlay_targets',targets)
             del self.pending[ticket];source.unlink(missing_ok=True)
@@ -153,10 +174,11 @@ class Application:
         if route=='/api/settings':
             config=data['api']
             # No credentials in config: key must exist as a process environment binding.
-            allowed={'enabled','consent','endpoint','model','key_env','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million'}
+            allowed={'enabled','consent','endpoint','model','key_env','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples'}
             if set(config)-allowed: raise ValueError('지원하지 않는 API 설정 필드')
             from .api import APIConfig
-            APIConfig(**config) # validate at boundary; live calls only on /analyze
+            if 'use_approved_examples' in config and type(config['use_approved_examples']) is not bool:raise ValueError('승인 사례 참조 설정은 true/false여야 합니다')
+            APIConfig(**{k:v for k,v in config.items() if k!='use_approved_examples'}) # live calls only on /analyze
             self.library.set_setting('api',config);self.api_config=None
             return {'message':'API 설정 저장됨. 키 값은 저장하지 않습니다.'}
         if route=='/api/categories':
@@ -208,7 +230,7 @@ class Application:
             config=self.library.get_setting('api',{})
             if not config.get('enabled') or not config.get('consent'):
                 raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
-            if self.api_config is None:self.api_config=APIConfig(**config)
+            if self.api_config is None:self.api_config=APIConfig(**{k:v for k,v in config.items() if k!='use_approved_examples'})
             from .approved_context import load_approved_context
             context=load_approved_context()
             standards={t['id']:t for t in context['standards']}
@@ -219,7 +241,9 @@ class Application:
                     if existing:continue
                     key='tag-'+hashlib.sha256((str(cat)+'\0'+name).encode()).hexdigest()[:20]
                     standards[key]={'id':key,'name':name,'category_id':cat}
-            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config)
+            from .approved_examples import retrieve_approved_examples
+            examples=retrieve_approved_examples(card['source_text'],enabled=config.get('use_approved_examples',False))
+            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples)
             if result['status'] in ('ok','partial'):
                 self.library.backup();self.library.save_analysis(card['id'],result)
             return result
@@ -251,7 +275,7 @@ def make_server(data,port=0):
                 if path=='/':
                     page=(Path(__file__).parent/'web'/'index.html').read_text(encoding='utf8')
                     self.send(200,page.replace('__TOKEN__',app.token).encode(),'text/html; charset=utf-8');return
-                if path=='/health':self.send(200,{'ok':True,'version':'0.3.0-dev','approved_count':len(app.approved)});return
+                if path=='/health':self.send(200,{'ok':True,'version':'0.3.1-diagnostic','approved_count':len(app.approved)});return
                 if path=='/api/state':
                     if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
                     self.send(200,app.state());return
@@ -309,7 +333,7 @@ def make_server(data,port=0):
                 if path=='/api/shutdown':threading.Thread(target=self.server.shutdown,daemon=True).start()
             except Exception as exc:
                 # API exceptions are sanitized inside api.py; never echo credential/header values.
-                self.send(400,{'error':str(exc) if isinstance(exc,(ValueError,KeyError,OSError)) else type(exc).__name__})
+                self.send(400,dict(error=str(exc) if isinstance(exc,(ValueError,KeyError,OSError)) else type(exc).__name__,**getattr(exc,'details',{})))
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
     server.daemon_threads=True
     server.application=app

@@ -1,0 +1,10 @@
+{
+  "source": "user screenshot and explicit report",
+  "review_extracted_cards": 495,
+  "preloaded_gallery_cards": 309,
+  "issue_corrected": false,
+  "observed_title_only_candidate": true,
+  "observed_ambiguous_approved_target_error": true,
+  "raw_PT_XML_received": false,
+  "no_forced_target_count": true
+}

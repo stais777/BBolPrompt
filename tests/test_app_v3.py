@@ -322,5 +322,96 @@ class LocalHTTPApplication(unittest.TestCase):
             self.assertEqual(status,400);self.assertIn('승인 카드',error['error'])
         self.assertEqual(next(c for c in self.app.approved if c['id']==approved['id'])['tags'],original_tags)
 
+    def test_diagnostic_http_export_keeps_xml_not_images_and_survives_review_cancel(self):
+        from test_diagnostics_v3 import diagnostic_source
+        source=self.root/'local-original.hwpx';originals,excluded=diagnostic_source(source)
+        payload=source.read_bytes();db_before=self.app.library.db.read_bytes()
+        status,review,_=self.request('POST','/api/upload',raw=payload,headers={'X-Filename':'review.hwpx'})
+        self.assertEqual(status,200);ticket=review['ticket']
+        pending_source=self.app.pending[ticket][0]
+        self.assertEqual(pending_source.read_bytes(),payload)
+        self.assertEqual(self.request('POST','/api/diagnostic',{'ticket':ticket},authorized=False)[0],403)
+        status,export,_=self.request('POST','/api/diagnostic',{'ticket':ticket})
+        self.assertEqual(status,200);self.assertFalse(export['image_bytes_included'])
+        self.assertEqual(export['source_sha256'],hashlib.sha256(payload).hexdigest())
+        self.assertEqual(export['cards'],len(review['cards']))
+        self.assertTrue(export['file'].endswith('.diagnostic.zip'))
+        status,download,_=self.request('GET',export['download']);self.assertEqual(status,200)
+        with zipfile.ZipFile(io.BytesIO(download)) as z:
+            self.assertEqual(set(z.namelist()),{'report.json'}|{'source/'+name for name in originals})
+            report=json.loads(z.read('report.json'))
+            self.assertEqual(report['source']['sha256'],hashlib.sha256(payload).hexdigest())
+            self.assertEqual(report['extraction']['card_count'],len(review['cards']))
+            for name,raw in originals.items():self.assertEqual(z.read('source/'+name),raw)
+            uncompressed=b''.join(z.read(name) for name in z.namelist())
+            for raw in excluded.values():self.assertNotIn(raw,uncompressed)
+        self.assertEqual(self.app.library.db.read_bytes(),db_before)
+        self.assertEqual(self.app.library.cards(),[])
+        self.assertEqual(source.read_bytes(),payload)
+        self.assertEqual(pending_source.read_bytes(),payload)
+        self.assertEqual(self.request('POST','/api/cancel',{'ticket':ticket})[0],200)
+        self.assertFalse(pending_source.exists());self.assertNotIn(ticket,self.app.pending)
+        self.assertEqual(self.request('GET',export['download'])[:2],(200,download))
+        self.assertEqual(self.request('POST','/api/diagnostic',{'ticket':ticket})[0],400)
+        self.assertEqual(self.app.library.db.read_bytes(),db_before)
+
+    def test_ambiguous_commit_returns_precise_review_card_and_choices_without_partial_commit(self):
+        counts=Counter(c['source_text'] for c in self.app.approved)
+        approved=next(c for c in self.app.approved if counts[c['source_text']]>1)
+        matches=[{'id':c['id'],'card_id':c['card_id']} for c in self.app.approved if c['source_text']==approved['source_text']]
+        source=source_file(self.root/'two-card-review.hwpx',['첫 번째 신규 카드의 별도 원문입니다.',approved['source_text']],[b'new-card-image',b'approved-overlay-image'])
+        payload=source.read_bytes()
+        status,review,_=self.request('POST','/api/upload',raw=payload,headers={'X-Filename':'two-card-review.hwpx'})
+        self.assertEqual(status,200);self.assertEqual(len(review['cards']),2)
+        status,error,_=self.request('POST','/api/commit',{'ticket':review['ticket']})
+        self.assertEqual(status,400)
+        self.assertEqual(error['review_card'],2);self.assertEqual(error['unresolved_index'],2)
+        self.assertEqual(error['approved_matches'],matches)
+        self.assertEqual(self.app.library.cards(),[])
+        self.assertEqual(self.app.library.get_setting('approved_overlay_targets',{}),{})
+        status,committed,_=self.request('POST','/api/commit',{'ticket':review['ticket'],'approved_targets':{'2':approved['id']}})
+        self.assertEqual(status,200);self.assertEqual(len(committed['ids']),2)
+        status,again,_=self.request('POST','/api/upload',raw=payload,headers={'X-Filename':'two-card-review.hwpx'})
+        self.assertEqual(status,200)
+        self.assertEqual(again['cards'][1]['approved_target'],approved['id'])
+        self.assertEqual(self.request('POST','/api/cancel',{'ticket':again['ticket']})[0],200)
+
+
+    def test_approved_card_examples_are_explicit_opt_in_and_reach_provider_request(self):
+        text='😀 푸른 조명과 카메라 구도, 의상과 장소를 검토한다.'
+        status,manual,_=self.request('POST','/api/manual',{'text':text,'images':[]})
+        self.assertEqual(status,200)
+        cid=manual['id'];requests=[]
+        before=(APP_ROOT/'assets/approved_catalog.json').read_bytes()
+        def provider(request,config):
+            requests.append(copy.deepcopy(request))
+            return json.dumps({'card_ref':request['card_ref'],'policy_version':'API-POLICY-1.0',
+                'tags':[],'unclassified':[],'create_categories':[],'direct_mutations':[]}),{}
+        base={'enabled':True,'consent':True,'endpoint':'https://provider.invalid/chat/completions','model':'mock-model'}
+        with patch('bbolprom_engine.api._live_transport',side_effect=provider):
+            self.assertEqual(self.request('POST','/api/settings',{'api':base})[0],200)
+            with patch('bbolprom_engine.approved_examples.CATALOG_PATH',self.root/'does-not-exist.json'):
+                status,response,_=self.request('POST','/api/analyze',{'id':cid})
+                self.assertEqual(status,200);self.assertEqual(response['status'],'ok')
+            self.assertEqual(requests[-1]['approved_card_examples'],[])
+            enabled={**base,'use_approved_examples':True}
+            self.assertEqual(self.request('POST','/api/settings',{'api':enabled})[0],200)
+            status,response,_=self.request('POST','/api/analyze',{'id':cid})
+            self.assertEqual(status,200);self.assertEqual(response['status'],'ok')
+        examples=requests[-1]['approved_card_examples']
+        self.assertTrue(examples);self.assertLessEqual(len(examples),3)
+        self.assertLessEqual(len(json.dumps(examples,ensure_ascii=False,separators=(',',':'))),12000)
+        self.assertEqual(requests[-1]['prompt_text'],text)
+        for example in examples:
+            self.assertIn('provenance',example);self.assertIn('tag_mappings',example)
+            self.assertNotIn('images',example)
+            for tag in example['tag_mappings']:
+                for span in tag['spans']:
+                    self.assertEqual(example['source_text'][span['start_cp']:span['end_cp']],span['evidence'])
+        self.assertEqual((APP_ROOT/'assets/approved_catalog.json').read_bytes(),before)
+        self.assertEqual(self.user_cards()[0]['source_text'],text)
+        for invalid in ('true',1,None):
+            status,_,_=self.request('POST','/api/settings',{'api':{**base,'use_approved_examples':invalid}})
+            self.assertEqual(status,400)
 
 if __name__=='__main__':unittest.main()

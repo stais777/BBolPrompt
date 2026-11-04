@@ -1,6 +1,6 @@
 {
   "schema": "bbolprom-local-functional-evidence-v1",
-  "recorded_utc": "2026-11-04T13:51:19.047740+00:00",
+  "recorded_utc": "2026-11-04T14:14:17.025682+00:00",
   "executed": [
     {
       "command": "python3 -m unittest discover -s tests -p test_library_v3.py -v",
@@ -19,8 +19,8 @@
     },
     {
       "command": "python3 -m unittest discover -s tests -p test_app_v3.py -v",
-      "tests": 13,
-      "passed": 13,
+      "tests": 15,
+      "passed": 15,
       "exit_code": 0,
       "execution": "socket permission through managed require_escalated; ephemeral localhost HTTP server",
       "scope": [
@@ -36,7 +36,21 @@
         "ambiguous approved prompts require matching explicit target and persist choice",
         "user tag editing exact Unicode multispans and empty evidence",
         "invalid tag edits leave accepted data unchanged",
-        "approved tag edits blocked for visible and overlay IDs"
+        "approved tag edits blocked for visible and overlay IDs",
+        "local diagnostic export leaves DB/source unchanged and survives upload cancellation",
+        "ambiguous card error includes correct second review card and persisted choice"
+      ]
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p test_diagnostics_v3.py -v",
+      "tests": 3,
+      "passed": 3,
+      "exit_code": 0,
+      "scope": [
+        "raw document XML/HPF preserves bytes and source SHA",
+        "BinData/preview/thumbnail byte exclusion",
+        "paragraph/card boundaries and features retained",
+        "source tamper, overwrite, unsafe member path rejected"
       ]
     }
   ],
@@ -51,8 +65,8 @@
   ],
   "final_integrated_suite": {
     "command": "python3 -m unittest discover -s tests -v",
-    "tests": 64,
-    "passed": 64,
+    "tests": 69,
+    "passed": 69,
     "exit_code": 0,
     "log": "evaluation/final-integrated-tests.log"
   }

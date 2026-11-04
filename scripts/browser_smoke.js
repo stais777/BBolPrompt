@@ -34,6 +34,15 @@ async function check(name, fn) { console.log('Checking: '+name); await fn(); res
    for(const view of ['grid','list','compact','text']){await page.selectOption('#view',view);assert.equal(await page.locator('#gallery').getAttribute('class'),view)}
    const colors=new Set();for(const theme of ['dark','light','ocean','forest','plum']){await page.selectOption('#theme',theme);colors.add(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--bg')))}assert.equal(colors.size,5);
   });
+  await check('approved_examples_opt_in_setting_persists_without_enabling_API',async()=>{
+   await page.click('#settingsBtn');assert.equal(await page.locator('#apiExamples').isChecked(),false);
+   await page.locator('#apiExamples').check();await page.click('#saveApi');
+   await page.waitForFunction(()=>state.api.use_approved_examples===true);
+   assert.equal(await page.locator('#apiEnabled').isChecked(),false);assert.equal(await page.locator('#apiConsent').isChecked(),false);
+   await page.locator('[data-close="settingsDialog"]').click();await page.reload();await page.waitForFunction(()=>state.cards.length===309);
+   await page.click('#settingsBtn');assert.equal(await page.locator('#apiExamples').isChecked(),true);
+   await page.locator('[data-close="settingsDialog"]').click();assert.equal(external.length,0);
+  });
   const pair=await page.evaluate(()=>{for(const c of state.cards){const tags=c.tags.filter(t=>(t.spans||[]).length);if(tags.length>1){const names=tags.slice(0,2).map(tagName);return {names,count:state.cards.filter(x=>names.every(n=>x.tags.some(t=>tagName(t)===n))).length,card:c.id}}}});
   await check('substring_candidates_and_selected_tag_AND_filter',async()=>{
    assert(pair);for(const name of pair.names){await page.fill('#query',name.slice(0,2));await page.locator('#suggestions button').filter({hasText:name}).first().waitFor();
@@ -84,6 +93,24 @@ async function check(name, fn) { console.log('Checking: '+name); await fn(); res
    const dt=await page.evaluateHandle(b64=>{const a=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));const d=new DataTransfer();d.items.add(new File([a],'dragged.hwpx',{type:'application/zip'}));return d;},buffer.toString('base64'));
    await page.dispatchEvent('#drop','drop',{dataTransfer:dt});await page.waitForSelector('#reviewDialog[open]');assert.equal(await page.locator('#reviewCards .review-card').count(),2);
    await page.click('#commitBtn');await page.waitForFunction(()=>!document.querySelector('#reviewDialog').open);await page.waitForFunction(n=>state.cards.filter(c=>!c.approved).reduce((s,c)=>s+c.origins.length,0)>n,before);assert.equal(await page.evaluate(()=>state.cards.length),312);
+  });
+  await check('duplicate_approved_source_review_guidance_and_diagnostic',async()=>{
+   const groups=await page.evaluate(()=>{const map=new Map();for(const c of state.cards.filter(c=>c.approved)){const group=map.get(c.source_text)||[];group.push({id:c.id,card_id:c.card_id});map.set(c.source_text,group)}return [...map.entries()].filter(([,cards])=>cards.length>1).slice(0,2).map(([text,cards])=>({text,cards}))});assert.equal(groups.length,2);
+   const fixture=path.join(data,'duplicate-approved.hwpx');const make=spawnSync(process.env.BBOLPROM_PYTHON||'python3',['-c',
+    "import json,sys,zipfile,html,base64; groups=json.load(sys.stdin); texts=[groups[0]['text'],groups[0]['text'],groups[1]['text']]; blocks=''.join('<hp:p><hp:run><hp:t>'+html.escape(t)+'</hp:t><hp:pic binaryItemIDRef=\"image'+str(i)+'\"/></hp:run></hp:p>' for i,t in enumerate(texts,1)); z=zipfile.ZipFile(sys.argv[1],'w',zipfile.ZIP_DEFLATED); z.writestr('Contents/section0.xml','<hp:sec xmlns:hp=\"urn:hancom:hwpml:2011:paragraph\">'+blocks+'</hp:sec>'); png=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aB9kAAAAASUVORK5CYII='); [z.writestr('BinData/image'+str(i)+'.png',png) for i in range(1,4)]; z.close()",fixture],{encoding:'utf8',input:JSON.stringify(groups)});assert.equal(make.status,0,make.stderr);
+   await page.setInputFiles('#hwpx',fixture);await page.waitForSelector('#reviewDialog[open]');assert.equal(await page.locator('#reviewCards .review-card').count(),3);
+   const summary=await page.locator('#reviewSummary').textContent();assert(summary.includes('3 검토 카드'));assert(summary.includes('3 이미지 참조'));assert(summary.includes('승인 309'));assert(summary.includes('등록 전'));
+   assert((await page.locator('#reviewPending').textContent()).includes('3 검토 카드'));
+   let posts=0;const countCommit=request=>{if(request.url()===base+'/api/commit')posts++};page.on('request',countCommit);
+   await page.click('#commitBtn');assert((await page.locator('#reviewErrors').textContent()).includes('검토 카드 #1'));assert.equal(await page.evaluate(()=>document.activeElement.dataset.reviewIndex),'1');assert.equal(posts,0);assert(await page.locator('#review-card-1').evaluate(el=>el.classList.contains('needs-choice')));
+   await page.locator('#review-card-1 .review-target').selectOption(groups[0].cards[0].id);
+   assert.equal(await page.locator('#review-card-2 .review-target').inputValue(),groups[0].cards[0].id);assert.equal(await page.locator('#review-card-3 .review-target').inputValue(),'');assert((await page.locator('#reviewPending').textContent()).includes('1 검토 카드'));
+   await page.click('#jumpUnresolvedBtn');assert.equal(await page.evaluate(()=>document.activeElement.dataset.reviewIndex),'3');assert((await page.locator('#reviewErrors').textContent()).includes('검토 카드 #3'));
+   const downloadPromise=page.waitForEvent('download');await page.click('#diagnosticBtn');const diagnostic=await downloadPromise;const zipPath=await diagnostic.path();
+   const verify=spawnSync(process.env.BBOLPROM_PYTHON||'python3',['-c',"import sys,json,zipfile; z=zipfile.ZipFile(sys.argv[1]); names=z.namelist(); assert z.testzip() is None; assert 'report.json' in names; assert 'source/Contents/section0.xml' in names; assert not any('bindata/' in n.lower() or n.lower().endswith(('.png','.jpg','.bmp')) for n in names); r=json.loads(z.read('report.json')); assert r['extraction']['card_count']==3; assert r['extraction']['image_reference_count']==3; assert r['actual_PT_quality_tested'] is False",zipPath],{encoding:'utf8'});assert.equal(verify.status,0,verify.stderr);
+   assert.equal(posts,0);await page.locator('#review-card-3 .review-target').selectOption(groups[1].cards[0].id);assert(await page.locator('#jumpUnresolvedBtn').isHidden());
+   await page.click('#commitBtn');await page.waitForFunction(()=>!document.querySelector('#reviewDialog').open);await page.waitForFunction(()=>state.cards.length===312);assert.equal(posts,1);page.off('request',countCommit);
+   await page.setInputFiles('#hwpx',fixture);await page.waitForSelector('#reviewDialog[open]');assert(await page.locator('#jumpUnresolvedBtn').isHidden());assert.equal(await page.locator('#review-card-1 .review-target').inputValue(),groups[0].cards[0].id);assert.equal(await page.locator('#review-card-3 .review-target').inputValue(),groups[1].cards[0].id);await page.locator('#reviewDialog [data-close="reviewDialog"]').click();
   });
   for(const [button,label] of [['#backupBtn','backup_download'],['#exportBtn','xlsx_download']])await check(label,async()=>{
    const pending=page.waitForEvent('download');await page.click(button);const download=await pending;const p=await download.path();assert(fs.statSync(p).size>100);assert.equal(fs.readFileSync(p).subarray(0,2).toString(),'PK');const verify=spawnSync(process.env.BBOLPROM_PYTHON||'python3',['-c',

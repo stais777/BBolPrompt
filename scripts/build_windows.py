@@ -5,7 +5,7 @@ The output includes its own Python; users do not install Python.
 This is a cross-build, NOT evidence of execution on Windows.
 """
 from __future__ import annotations
-import argparse, base64, hashlib, json, os, pathlib, shutil, subprocess, urllib.request, zipfile
+import argparse, base64, hashlib, json, os, pathlib, re, shutil, subprocess, urllib.request, zipfile
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DESKTOP = ROOT / 'desktop'
 CACHE = DESKTOP / 'cache'
@@ -36,7 +36,8 @@ def safe_extract(z, folder, prefix=''):
         with z.open(info) as source, destination.open('wb') as target: shutil.copyfileobj(source,target)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');parser.add_argument('--version',default='0.3.1-diagnostic');args=parser.parse_args()
+    if not re.fullmatch(r'[0-9]+(?:\.[0-9]+)*(?:-[a-z]+)?',args.version):raise ValueError('Invalid artifact version')
     CACHE.mkdir(parents=True,exist_ok=True)
     python=artifact('python.3.13.7.nupkg',PYTHON_URL,PYTHON_SHA512,'sha512',args.offline)
     zigwheel=artifact('ziglang.whl',ZIG_URL,ZIG_SHA256,'sha256',args.offline)
@@ -65,11 +66,11 @@ def main():
     shutil.copy2(DESKTOP/'windows_smoke.py',package/'windows_smoke.py')
     smoke=ROOT/'scripts/test_windows.ps1'
     if smoke.exists(): shutil.copy2(smoke,package/'test_windows.ps1')
-    provenance={'cross_built':True,'native_windows_executed':False,'target':'Windows 10/11 x64','python':{'version':'3.13.7','source':PYTHON_URL,'upstream_catalog':PYTHON_CATALOG,'sha512_base64':PYTHON_SHA512,'publisher':'Python Software Foundation'},'compiler':{'version':'Zig 0.13.0','source':ZIG_URL,'sha256':ZIG_SHA256},'command':command,'notes':'Unsigned development build. Windows execution is a separate validation requirement.'}
+    provenance={'version':args.version,'cross_built':True,'native_windows_executed':False,'target':'Windows 10/11 x64','python':{'version':'3.13.7','source':PYTHON_URL,'upstream_catalog':PYTHON_CATALOG,'sha512_base64':PYTHON_SHA512,'publisher':'Python Software Foundation'},'compiler':{'version':'Zig 0.13.0','source':ZIG_URL,'sha256':ZIG_SHA256},'command':command,'notes':'Unsigned development build. Windows execution is a separate validation requirement.'}
     (package/'BUILD_PROVENANCE.json').write_text(json.dumps(provenance,indent=2),encoding='utf-8')
     hashes={str(p.relative_to(package)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(package.rglob('*')) if p.is_file()}
     (package/'SHA256.json').write_text(json.dumps(hashes,indent=2,ensure_ascii=False),encoding='utf-8')
-    destination=ROOT/'dist/Bbolprom-Windows-x64-v0.3.zip'
+    destination=ROOT/f'dist/Bbolprom-Windows-x64-v{args.version}.zip'
     with zipfile.ZipFile(destination,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for p in sorted(package.rglob('*')):
             if p.is_file():z.write(p,p.relative_to(package.parent))

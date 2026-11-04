@@ -4,12 +4,12 @@
 
 - 원본 감사: manifest 120/120 파일의 크기·SHA256 일치. 확정 마스터 SHA256 일치. 승인 309카드·8,471태그 매핑·2,200고유 태그·10,358근거 확인. 실제 구간 모두 원문 slice 일치, 승인 빈 근거 태그17건 보존.
 - 기존 Alpha 원래 시험: 6/6 통과. 기존 시험만으로는 실측 결함이 검출되지 않았음.
-- 수정본 Python 자동시험: **64/64 통과**, skip/expected-failure 없음. 엔진·API 모의 응답 경계·사용자 분류·SQLite·미디어·실제 HTTP 등록/편집/다운로드/보호 검증. `evaluation/final-integrated-tests.log`.
-- 실제 Chromium: **14개 시나리오 통과**, JavaScript 예외0, 외부 요청0. 갤러리309, 보기4·테마5, 태그 AND, 원문 하이라이팅, 이모지, 직접 등록·이미지, 태그 편집, HWPX 파일/DnD 반입·검토·등록, 중복 출처, 백업 ZIP·XLSX 실제 다운로드 및 내부 XML 검증, 재로딩. `evaluation/browser-smoke.json` 및 `.png`.
+- 수정본 Python 자동시험: **80/80 통과**, skip/expected-failure 없음. 엔진·API 모의 응답 경계·사용자 분류·SQLite·미디어·실제 HTTP 등록/편집/다운로드/보호 검증. `evaluation/final-integrated-tests.log`.
+- 실제 Chromium: **16개 시나리오 통과**, JavaScript 예외0, 외부 요청0. 갤러리309, 보기4·테마5, 태그 AND, 원문 하이라이팅, 이모지, 직접 등록·이미지, 태그 편집, HWPX 파일/DnD 반입·검토·등록, 중복 출처, 백업 ZIP·XLSX 실제 다운로드 및 내부 XML 검증, 재로딩. `evaluation/browser-smoke.json` 및 `.png`.
 - CLI 실제 실행: analyze → dry-run(사용자 DB 경로 생성 없음) → commit 및 새 SQLite 확인. `evaluation/cli-smoke.json`.
 - 다문단 합성 회귀: 이전4카드→수정본2카드, 원문+이미지 귀속 완전 일치0/2→2/2.
 - 중첩 표 합성 회귀: 이전3카드/4이미지참조→수정본2카드/2참조, 원문+이미지 귀속 완전 일치2/2.
-- Windows 실제 EXE 교차 빌드, PE32+ AMD64/GUI/UTF-16/longPathAware manifest 및 번들 체크섬 검사. 구체적 결과는 `evaluation/windows-build.json`. Windows용 Python 런타임과 원본 확인용 라이선스를 포함함.
+- Windows 실제 EXE 교차 빌드, PE32+ AMD64/GUI/UTF-16/longPathAware manifest 및 번들 체크섬 검사. 현재 진단판의 구체적 결과는 `evaluation/windows-build-0.3.1-diagnostic.json`, 이전0.3 기록은 `evaluation/windows-build.json`. Windows용 Python 런타임과 원본 확인용 라이선스를 포함함.
 
 ## 실측 A/B와 이번 회귀의 관계
 
@@ -27,3 +27,7 @@
 - 다중 카드 태그 일괄 편집·OS 키체인 직접 연동·업데이트·코드서명·설치 마법사: **미구현**.
 
 기존 승인 309 원문은 296개 고유 원문 해시입니다. 같은 원문이라고 승인 카드를 자동 합치지 않으며, 복수 승인 카드 중 이미지·출처의 대상은 명시적으로 선택합니다. 결과물은 검증 범위를 명시한 개발판이며 정식 완성/Windows 실행 완료로 표현하지 않습니다.
+
+## 0.3.1과 사용자 실제 실패의 구분
+
+사용자 PC에서 실제 PT 반입 검토495개, 기존 갤러리309개가 확인됐습니다. 495개 추출은 실패 사례이며 수정 완료가 아닙니다. 원본 XML을 확보할 수 있도록 구조 진단 ZIP 저장을 추가했고, 관련 승인 카드 원문·태그·근거의 명시적 API 사례 참조를 구현했습니다. 신규 API 사례 테스트와 HTTP 연결은 모의 공급자 검증이며, 위80개 자동시험·16개 Chromium 시나리오는 실제 PT 개선율이나 실제 API 의미 정확도를 나타내지 않습니다. 자세한 변경은 `0.3.1-diagnostic.md`를 참고하세요.

@@ -1,7 +1,15 @@
 {
+  "Bbolprom-Source-v0.3.1-diagnostic.zip": {
+    "bytes": 910200,
+    "sha256": "0d78c961c991f313585df76f67236d2b55236eeb3e638e6e99c64a75a324ac9c"
+  },
   "Bbolprom-Source-v0.3.zip": {
     "bytes": 873004,
     "sha256": "c187b7b84963605b7fff447db24b9422b0afecee9c1b203a533bd7b701a9481d"
+  },
+  "Bbolprom-Windows-x64-v0.3.1-diagnostic.zip": {
+    "bytes": 14798505,
+    "sha256": "55abe5bbea93bead1adf43d02462c80e1f4af710a13102ee20e8aba3fb829e38"
   },
   "Bbolprom-Windows-x64-v0.3.zip": {
     "bytes": 14790112,

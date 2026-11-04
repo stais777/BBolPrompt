@@ -71,4 +71,10 @@ python -m unittest discover -s tests -v
 
 ## 이번 수정본의 최종 회귀 실행
 
-전체 `unittest` 64개를 실제 실행해 모두 통과했다. 그중 사용자 SQLite/해시/백업/XLSX 시험 9개, 실제 localhost HTTP 시험 13개를 포함한다. HTTP 시험에서는 원문 동일 승인카드의 이미지/출처 오버레이, 중복 원문 승인카드의 명시적 귀속, 사용자 태그의 코드포인트 다중 근거와 빈 근거 보존, 잘못된 편집의 무변경 거부, 승인카드 편집 차단도 검증했다. 원격 API 오류 시험은 전송만 모의 처리했으며 실제 API 의미 품질 시험은 아니다. 명령 출력은 `evaluation/final-integrated-tests.log`, 범위는 `evaluation/app-library-functional.json`에 기록했다.
+전체 `unittest` 69개를 실제 실행해 모두 통과했다. 그중 사용자 SQLite/해시/백업/XLSX 시험 9개, 실제 localhost HTTP 시험 15개를 포함한다. HTTP 시험에서는 원문 동일 승인카드의 이미지/출처 오버레이, 중복 원문 승인카드의 명시적 귀속, 사용자 태그의 코드포인트 다중 근거와 빈 근거 보존, 잘못된 편집의 무변경 거부, 승인카드 편집 차단도 검증했다. 원격 API 오류 시험은 전송만 모의 처리했으며 실제 API 의미 품질 시험은 아니다. 명령 출력은 `evaluation/final-integrated-tests.log`, 범위는 `evaluation/app-library-functional.json`에 기록했다.
+
+원문 구조 진단 내보내기도 추가 검증했다. 3개의 직접 진단 시험과 HTTP 시험에서 원본 XML/HPF 및 출처 SHA·카드/문단 특징 보존, BinData·미리보기·썸네일 이미지 바이트 제외, 진단 생성 시 DB·원본 무변경, 업로드 취소 이후에도 진단 ZIP 다운로드 가능을 확인했다. 이는 실제 PT의 잘못된 경계를 분석할 입력 수집 경로이며, PT 분리 성능을 수정하거나 검증한 결과가 아니다. 동일 원문 승인카드의 귀속 오류는 정확한 검토 카드 번호와 선택지를 구조화해 반환하는 것도 확인했다.
+
+## 후속 0.3.1 검증
+
+사용자가 실제 PT 반입 검토495개를 보고했고 초기 갤러리309개와 구분됩니다. 구조 분리 결함은 미해결로 기록했습니다. API의 관련 승인 원문·태그·근거 참조, 진단 ZIP과 오류 위치 안내를 보완한 최종 시험은 자동80/80·Chromium16/16이며 `final-integrated-tests.log`, `browser-smoke.json`, `windows-build-0.3.1-diagnostic.json`에 기록했습니다. 실제 API 의미 품질·실제 PT 개선 측정은 여전히 미실행입니다.
