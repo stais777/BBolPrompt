@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+desktop/cache/
+desktop/tools/
+dist/
+outputs/
+*.sqlite3
+*.bak.zip
+.env
+desktop/*.exe
+desktop/*.pdb

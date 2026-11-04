@@ -1,0 +1,8843 @@
+{
+  "schema": "bbolprom-terms-only-0.2",
+  "source": "approved global distinct-label vocabulary, card associations stripped",
+  "term_count": 2209,
+  "terms": [
+    {
+      "category_column": "H",
+      "tag": "16:9 가로 프레임"
+    },
+    {
+      "category_column": "H",
+      "tag": "2인 구성"
+    },
+    {
+      "category_column": "F",
+      "tag": "2차 검색실 플라스틱 검색 바구니"
+    },
+    {
+      "category_column": "H",
+      "tag": "3인 구성"
+    },
+    {
+      "category_column": "H",
+      "tag": "45도 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "45도 측면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "45도 하이앵글"
+    },
+    {
+      "category_column": "H",
+      "tag": "45도 회전 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "50대 남성 관찰자"
+    },
+    {
+      "category_column": "G",
+      "tag": "50대 남성 착석 관찰"
+    },
+    {
+      "category_column": "H",
+      "tag": "9:16 세로 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "9:16 세로 전신 구도"
+    },
+    {
+      "category_column": "C",
+      "tag": "BDSM"
+    },
+    {
+      "category_column": "E",
+      "tag": "BDSM 의상"
+    },
+    {
+      "category_column": "I",
+      "tag": "CCTV"
+    },
+    {
+      "category_column": "I",
+      "tag": "CCTV 감시화면"
+    },
+    {
+      "category_column": "I",
+      "tag": "CCTV 모니터"
+    },
+    {
+      "category_column": "F",
+      "tag": "CCTV 모니터 배경"
+    },
+    {
+      "category_column": "G",
+      "tag": "DJ"
+    },
+    {
+      "category_column": "F",
+      "tag": "DJ부스"
+    },
+    {
+      "category_column": "I",
+      "tag": "FREE PEGGING 간판"
+    },
+    {
+      "category_column": "I",
+      "tag": "FREE PROSTATE MASSAGE 간판"
+    },
+    {
+      "category_column": "F",
+      "tag": "KTX"
+    },
+    {
+      "category_column": "E",
+      "tag": "mules"
+    },
+    {
+      "category_column": "I",
+      "tag": "mules"
+    },
+    {
+      "category_column": "H",
+      "tag": "PC방 책상 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "PC방 책상 반사광"
+    },
+    {
+      "category_column": "E",
+      "tag": "strap-on"
+    },
+    {
+      "category_column": "D",
+      "tag": "strap-on 구강 준비"
+    },
+    {
+      "category_column": "I",
+      "tag": "strap-on 표면 타액"
+    },
+    {
+      "category_column": "I",
+      "tag": "strap-on 하네스"
+    },
+    {
+      "category_column": "D",
+      "tag": "strap-on에 침 바르기"
+    },
+    {
+      "category_column": "E",
+      "tag": "T팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "UFC 라운드걸 의상"
+    },
+    {
+      "category_column": "F",
+      "tag": "UFC 케이지"
+    },
+    {
+      "category_column": "F",
+      "tag": "VIP 부스"
+    },
+    {
+      "category_column": "G",
+      "tag": "VIP 승객 응대"
+    },
+    {
+      "category_column": "F",
+      "tag": "VIP 전용기 객실 입구"
+    },
+    {
+      "category_column": "F",
+      "tag": "VIP 호텔룸"
+    },
+    {
+      "category_column": "F",
+      "tag": "VR체험관"
+    },
+    {
+      "category_column": "H",
+      "tag": "가까운 거리에서 장난스러운 응시"
+    },
+    {
+      "category_column": "E",
+      "tag": "가는 은색 초커"
+    },
+    {
+      "category_column": "I",
+      "tag": "가는 콧대"
+    },
+    {
+      "category_column": "H",
+      "tag": "가동 플랫폼 위에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "가로 방향 휴대전화"
+    },
+    {
+      "category_column": "F",
+      "tag": "가볍게 파손된 마을"
+    },
+    {
+      "category_column": "G",
+      "tag": "가족 식사 자리"
+    },
+    {
+      "category_column": "I",
+      "tag": "가죽 소파"
+    },
+    {
+      "category_column": "I",
+      "tag": "가죽 좌석"
+    },
+    {
+      "category_column": "H",
+      "tag": "가파른 하이앵글"
+    },
+    {
+      "category_column": "G",
+      "tag": "간호사·환자"
+    },
+    {
+      "category_column": "G",
+      "tag": "감방 내부"
+    },
+    {
+      "category_column": "F",
+      "tag": "감방 밖 복도 콘크리트 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "감방 밖 좁은 복도"
+    },
+    {
+      "category_column": "I",
+      "tag": "감방 철창"
+    },
+    {
+      "category_column": "F",
+      "tag": "감방 콘크리트 바닥"
+    },
+    {
+      "category_column": "G",
+      "tag": "감시 영상 중계"
+    },
+    {
+      "category_column": "H",
+      "tag": "감시영상 질감"
+    },
+    {
+      "category_column": "F",
+      "tag": "감옥 내부"
+    },
+    {
+      "category_column": "I",
+      "tag": "감옥문"
+    },
+    {
+      "category_column": "G",
+      "tag": "감탄"
+    },
+    {
+      "category_column": "C",
+      "tag": "강압"
+    },
+    {
+      "category_column": "G",
+      "tag": "강압"
+    },
+    {
+      "category_column": "G",
+      "tag": "개인 평가"
+    },
+    {
+      "category_column": "F",
+      "tag": "개인병원 프라이빗 진료실"
+    },
+    {
+      "category_column": "E",
+      "tag": "거대한 링 귀걸이"
+    },
+    {
+      "category_column": "F",
+      "tag": "거리 보이는 큰 창"
+    },
+    {
+      "category_column": "F",
+      "tag": "거리가 보이는 창"
+    },
+    {
+      "category_column": "I",
+      "tag": "거울"
+    },
+    {
+      "category_column": "H",
+      "tag": "검사 의자 다리 거치"
+    },
+    {
+      "category_column": "I",
+      "tag": "검사대"
+    },
+    {
+      "category_column": "E",
+      "tag": "검사용 가운"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 T팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 가면"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 가죽 이발사 앞치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 광택 보디스"
+    },
+    {
+      "category_column": "I",
+      "tag": "검정 긴 생머리"
+    },
+    {
+      "category_column": "F",
+      "tag": "검정 대리석 바닥"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 라텍스 오페라 장갑"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 라텍스 코르셋"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 라텍스 하이컷 보디수트"
+    },
+    {
+      "category_column": "I",
+      "tag": "검정 레이어드 긴머리"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 모피 망토"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 미니 블레이저 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 미니스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 반팔 니트탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 반팔 상의"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 보타이"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 브라"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 브라끈"
+    },
+    {
+      "category_column": "F",
+      "tag": "검정 석조 기둥"
+    },
+    {
+      "category_column": "F",
+      "tag": "검정 석조 높은 단상"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 스트랩온 하네스"
+    },
+    {
+      "category_column": "H",
+      "tag": "검정 스트랩온 허리 착용"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 스틸레토 하이힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 스페이드 귀걸이"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 스포츠 브라탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 시스루 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 실크 새틴 이브닝 가운"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 여성 정장 재킷"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 오버사이즈 두꺼운 터틀넥 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 오픈토 mules"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 오픈토 스틸레토"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 짧은 플리츠스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 초미니 쇼츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 카지노 딜러 조끼"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 펜슬스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정 포인티드 하이힐"
+    },
+    {
+      "category_column": "I",
+      "tag": "검정 히메컷"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정·버건디 미니 블레이저 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정·버건디 페티시 코르셋"
+    },
+    {
+      "category_column": "F",
+      "tag": "검정·차콜 대리석 바닥"
+    },
+    {
+      "category_column": "E",
+      "tag": "검정색 레이스 바디콘 드레스"
+    },
+    {
+      "category_column": "I",
+      "tag": "게이밍 의자"
+    },
+    {
+      "category_column": "E",
+      "tag": "게이밍 후드티"
+    },
+    {
+      "category_column": "E",
+      "tag": "게이샤 모자"
+    },
+    {
+      "category_column": "E",
+      "tag": "게이샤 의상"
+    },
+    {
+      "category_column": "C",
+      "tag": "겨드랑이"
+    },
+    {
+      "category_column": "H",
+      "tag": "겨드랑이 노출 포즈"
+    },
+    {
+      "category_column": "H",
+      "tag": "겨드랑이 집중 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "겨드랑이 클로즈업"
+    },
+    {
+      "category_column": "D",
+      "tag": "겨드랑이 핥기 수행"
+    },
+    {
+      "category_column": "F",
+      "tag": "격투기 경기장"
+    },
+    {
+      "category_column": "F",
+      "tag": "격투기 팬타곤"
+    },
+    {
+      "category_column": "E",
+      "tag": "결혼반지"
+    },
+    {
+      "category_column": "F",
+      "tag": "결혼식장"
+    },
+    {
+      "category_column": "F",
+      "tag": "경비실"
+    },
+    {
+      "category_column": "E",
+      "tag": "경찰 패치"
+    },
+    {
+      "category_column": "H",
+      "tag": "고개 기울임"
+    },
+    {
+      "category_column": "H",
+      "tag": "고개 뒤돌아봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "고개 뒤로 젖힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "고개 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "고개만 뒤로 돌려 응시"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 기업 엘리베이터 로비"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 미용실"
+    },
+    {
+      "category_column": "E",
+      "tag": "고급 승무원 제복"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 전용기 실내"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 헤어살롱 야간 영업 후"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 화이트 대리석 브런치 카페"
+    },
+    {
+      "category_column": "F",
+      "tag": "고급 화장실"
+    },
+    {
+      "category_column": "E",
+      "tag": "고딕 페티시 쿠튀르"
+    },
+    {
+      "category_column": "E",
+      "tag": "고양이 눈가면"
+    },
+    {
+      "category_column": "H",
+      "tag": "고위 쇄석위"
+    },
+    {
+      "category_column": "I",
+      "tag": "고위 쇄석위 검사 의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "고층 발코니 난간"
+    },
+    {
+      "category_column": "F",
+      "tag": "고층 집무실"
+    },
+    {
+      "category_column": "I",
+      "tag": "곡선형 은색 단검"
+    },
+    {
+      "category_column": "E",
+      "tag": "골드 벨트"
+    },
+    {
+      "category_column": "H",
+      "tag": "골반 낮게 내리기"
+    },
+    {
+      "category_column": "H",
+      "tag": "골반 바닥 가까이 내림"
+    },
+    {
+      "category_column": "H",
+      "tag": "골반 바닥 바로 위 정지"
+    },
+    {
+      "category_column": "I",
+      "tag": "골반 전면 장착물"
+    },
+    {
+      "category_column": "H",
+      "tag": "골반을 옆으로 뺀 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "골반을 한쪽으로 뺀 자세"
+    },
+    {
+      "category_column": "I",
+      "tag": "골프 시뮬레이터"
+    },
+    {
+      "category_column": "I",
+      "tag": "골프 카트"
+    },
+    {
+      "category_column": "I",
+      "tag": "골프 카트 대시보드"
+    },
+    {
+      "category_column": "H",
+      "tag": "골프 카트 스티어링 대시 높이 로우앵글"
+    },
+    {
+      "category_column": "I",
+      "tag": "골프 카트 시트"
+    },
+    {
+      "category_column": "G",
+      "tag": "공개 굴욕"
+    },
+    {
+      "category_column": "G",
+      "tag": "공공장소"
+    },
+    {
+      "category_column": "F",
+      "tag": "공연장 대기실"
+    },
+    {
+      "category_column": "F",
+      "tag": "공중화장실"
+    },
+    {
+      "category_column": "F",
+      "tag": "공중화장실 칸"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 2차 검색실 벽면 패널"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 대합실"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 라운지"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 보안검색대"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 전용 검사대"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 천장 형광 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 출국 안내 전광판"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 탑승교"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 활주로 배경"
+    },
+    {
+      "category_column": "F",
+      "tag": "공항 활주로 외경"
+    },
+    {
+      "category_column": "I",
+      "tag": "과자 봉지"
+    },
+    {
+      "category_column": "I",
+      "tag": "과자 진열대"
+    },
+    {
+      "category_column": "G",
+      "tag": "관객"
+    },
+    {
+      "category_column": "H",
+      "tag": "관객 실루엣"
+    },
+    {
+      "category_column": "G",
+      "tag": "관객 환호"
+    },
+    {
+      "category_column": "G",
+      "tag": "관객 흥분"
+    },
+    {
+      "category_column": "H",
+      "tag": "관객 희미하게"
+    },
+    {
+      "category_column": "G",
+      "tag": "관음"
+    },
+    {
+      "category_column": "G",
+      "tag": "관음 관심 인지"
+    },
+    {
+      "category_column": "H",
+      "tag": "관중 뒤 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "관중 머리·어깨 하단 실루엣"
+    },
+    {
+      "category_column": "G",
+      "tag": "관중으로 모인 오크 마을 주민"
+    },
+    {
+      "category_column": "G",
+      "tag": "관찰 인지"
+    },
+    {
+      "category_column": "G",
+      "tag": "관찰자 관계"
+    },
+    {
+      "category_column": "H",
+      "tag": "관찰자 그림자 반사"
+    },
+    {
+      "category_column": "H",
+      "tag": "관찰자 시점"
+    },
+    {
+      "category_column": "G",
+      "tag": "교도관 애원"
+    },
+    {
+      "category_column": "G",
+      "tag": "교도관 입실"
+    },
+    {
+      "category_column": "E",
+      "tag": "교정 제복"
+    },
+    {
+      "category_column": "C",
+      "tag": "구강 접촉 준비"
+    },
+    {
+      "category_column": "C",
+      "tag": "구강성교"
+    },
+    {
+      "category_column": "D",
+      "tag": "구강성교 수행"
+    },
+    {
+      "category_column": "D",
+      "tag": "구강성교 암시"
+    },
+    {
+      "category_column": "D",
+      "tag": "구강성교 준비"
+    },
+    {
+      "category_column": "D",
+      "tag": "구강성교 준비·암시"
+    },
+    {
+      "category_column": "H",
+      "tag": "구두 밑창 바닥 방향"
+    },
+    {
+      "category_column": "H",
+      "tag": "구두 밑창 정면 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "구두 윗면 카메라 반대 방향"
+    },
+    {
+      "category_column": "H",
+      "tag": "구두 윗면 카메라 방향"
+    },
+    {
+      "category_column": "G",
+      "tag": "구멍 안 관찰"
+    },
+    {
+      "category_column": "C",
+      "tag": "구속"
+    },
+    {
+      "category_column": "G",
+      "tag": "구속된 오크 왕"
+    },
+    {
+      "category_column": "F",
+      "tag": "구조헬기"
+    },
+    {
+      "category_column": "F",
+      "tag": "국제공항 출국장 보안검색대"
+    },
+    {
+      "category_column": "F",
+      "tag": "국제공항 프라이빗 2차 검색실"
+    },
+    {
+      "category_column": "F",
+      "tag": "군 수송기"
+    },
+    {
+      "category_column": "G",
+      "tag": "군 수송기 탑승"
+    },
+    {
+      "category_column": "E",
+      "tag": "군 수송기 탑승 전술복 세트"
+    },
+    {
+      "category_column": "H",
+      "tag": "군중 아래쪽 후면 실루엣"
+    },
+    {
+      "category_column": "C",
+      "tag": "굴욕"
+    },
+    {
+      "category_column": "G",
+      "tag": "굴욕적 복종"
+    },
+    {
+      "category_column": "E",
+      "tag": "굽높은 구두"
+    },
+    {
+      "category_column": "G",
+      "tag": "권력 역전"
+    },
+    {
+      "category_column": "E",
+      "tag": "귀걸이"
+    },
+    {
+      "category_column": "F",
+      "tag": "그래피티 벽화"
+    },
+    {
+      "category_column": "E",
+      "tag": "그레이 스퀘어넥 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "그레이 스트라이프 가디건"
+    },
+    {
+      "category_column": "E",
+      "tag": "극도로 얇은 슬링샷 비키니"
+    },
+    {
+      "category_column": "C",
+      "tag": "글로리홀"
+    },
+    {
+      "category_column": "I",
+      "tag": "글로리홀 구멍"
+    },
+    {
+      "category_column": "D",
+      "tag": "글로리홀 접근"
+    },
+    {
+      "category_column": "E",
+      "tag": "금목걸이"
+    },
+    {
+      "category_column": "E",
+      "tag": "금색 윙 배지"
+    },
+    {
+      "category_column": "E",
+      "tag": "금색 작은 링 귀걸이"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 관절"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 난간"
+    },
+    {
+      "category_column": "F",
+      "tag": "금속 벽"
+    },
+    {
+      "category_column": "F",
+      "tag": "금속 벽 매립 패널"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 손잡이"
+    },
+    {
+      "category_column": "F",
+      "tag": "금속 연구실 내부"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 장비 트레이"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 장식"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 탐지 게이트"
+    },
+    {
+      "category_column": "I",
+      "tag": "금속 탐지봉"
+    },
+    {
+      "category_column": "G",
+      "tag": "금속탐지 경보"
+    },
+    {
+      "category_column": "I",
+      "tag": "기계 조명"
+    },
+    {
+      "category_column": "I",
+      "tag": "기계식 골반 프레임"
+    },
+    {
+      "category_column": "I",
+      "tag": "기계식 의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "기계식 잠금 관절"
+    },
+    {
+      "category_column": "F",
+      "tag": "기내 화장실"
+    },
+    {
+      "category_column": "G",
+      "tag": "기대"
+    },
+    {
+      "category_column": "F",
+      "tag": "기업 회장 전용 고층 발코니"
+    },
+    {
+      "category_column": "E",
+      "tag": "기장 견장"
+    },
+    {
+      "category_column": "H",
+      "tag": "기장 후방 3/4 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "기장 흰색 셔츠와 검정 넥타이"
+    },
+    {
+      "category_column": "G",
+      "tag": "기절한 오크 경비병 2인"
+    },
+    {
+      "category_column": "F",
+      "tag": "기차역 카페"
+    },
+    {
+      "category_column": "I",
+      "tag": "긴 쌍꺼풀"
+    },
+    {
+      "category_column": "E",
+      "tag": "깊게 열린 블라우스 단추"
+    },
+    {
+      "category_column": "H",
+      "tag": "깊게 쪼그려 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "깊은 V넥"
+    },
+    {
+      "category_column": "E",
+      "tag": "깊은 브이넥"
+    },
+    {
+      "category_column": "E",
+      "tag": "깊은 브이넥 은색 지퍼"
+    },
+    {
+      "category_column": "I",
+      "tag": "깊은 쌍꺼풀"
+    },
+    {
+      "category_column": "H",
+      "tag": "까치발 앉은 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "까치발 자세"
+    },
+    {
+      "category_column": "G",
+      "tag": "꽉 끼는 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "끈 브라"
+    },
+    {
+      "category_column": "E",
+      "tag": "끈 장식 비키니"
+    },
+    {
+      "category_column": "E",
+      "tag": "나막신"
+    },
+    {
+      "category_column": "I",
+      "tag": "나무 칸막이"
+    },
+    {
+      "category_column": "H",
+      "tag": "난간 높이 로우앵글"
+    },
+    {
+      "category_column": "I",
+      "tag": "날카로운 코끝"
+    },
+    {
+      "category_column": "F",
+      "tag": "낡은 화장실"
+    },
+    {
+      "category_column": "G",
+      "tag": "남녀 공간 분리"
+    },
+    {
+      "category_column": "G",
+      "tag": "남녀 근접"
+    },
+    {
+      "category_column": "H",
+      "tag": "남녀 마주봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남녀 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "남녀 사이 넓은 빈 대리석 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "남녀 사이 넓은 빈 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "남녀 사이 작은 간격 확보"
+    },
+    {
+      "category_column": "E",
+      "tag": "남색 경찰 펜슬스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "남색 여성 경찰 제복 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 T팬티"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 가슴 바닥으로 낮춤"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 검사용 가운"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 검정 고급 정장 재킷"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 검정 셔츠와 정장바지"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 검정 티셔츠"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 고객"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 관객"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 관람객 배치"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 관찰자"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 광택 가죽 구두"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 구두"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 굴욕"
+    },
+    {
+      "category_column": "I",
+      "tag": "남성 근육질 대머리"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 기대"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 기장 뒷모습 화면 왼쪽 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 기장 바닥에 누움"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 기장 탑승교로 접근"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 꽉 끼는 셔츠"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 네발기기 중앙 전경"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 놀람"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 높은 리클라이닝 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 높은 테이블 끝에 걸터앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 누운 자세 서술"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 느슨한 실크 넥타이"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 내림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 높게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 높이 거치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 높이 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 다리 사이"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 대기줄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 두 손목 위쪽 철봉에 결박"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒤 여성 배치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒤 오버더숄더"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒤에 섬"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒤통수 흐림 처리"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒷머리·양어깨 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒷머리·어깨 왼쪽 아래 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒷머리·어깨 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒷모습"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 뒷모습 화면 왼쪽"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 드레스셔츠"
+    },
+    {
+      "category_column": "D",
+      "tag": "남성 등 거울에 기대기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 등을 대고 누움"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 마담 올려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리 들어 카메라 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리 여성 다리 사이 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리 왼쪽 아래 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리·표정 여성 뒤에서 보이도록"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리가 여성 다리 사이에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 머리가 여성 다리 아래에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 무릎 굽힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 무릎 깊게 굽히고 넓게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 무릎 꿇음"
+    },
+    {
+      "category_column": "D",
+      "tag": "남성 무릎 어깨 높이"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 문 쪽 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 바닥에 누움"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 바디빌더"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 바로 뒤 여성 배치"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 바지 무릎까지 내림"
+    },
+    {
+      "category_column": "D",
+      "tag": "남성 발 머리 양옆 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 발 양쪽 스토럽에 거치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 벤치 위 스쿼팅 자세"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 복종"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 뷰어는 발에 집중"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 뷰어는 태닝샵 사장"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 브리프"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 비서"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 비서 여성 바로 뒤"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 비서 정장"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 사타구니 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 상체 자동차 하부로 들어감"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 상체 차량 아래"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 상체 허리에서 깊게 앞으로 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 상체만 프레임 안"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 서서 여성 바라봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 수갑 찬 두 손 바닥에 짚음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 수갑 찬 양손 바닥 짚음"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 수동적 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 수동적 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 수리공 바닥에 누움"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 스스로 다리 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 스쿼팅 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 승객 바로 뒤 오버더숄더"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 승객 여행복"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 승객 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 승객 좌석에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 시점 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 신발 밑창 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 신발 발받침에 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 실루엣이 여성 가리지 않음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 아내 올려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 안드로이드 바로 옆"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 안드로이드 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 양다리 벌림"
+    },
+    {
+      "category_column": "D",
+      "tag": "남성 양손 미용 의자 팔걸이 움켜쥠"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 양손 바닥 지지"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 어깨 고위 계급장"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 어두운 정장"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 얼굴"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 얼굴 비노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 얼굴 여성 다리 사이"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 얼굴 카메라 방향"
+    },
+    {
+      "category_column": "C",
+      "tag": "남성 엉덩이"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엉덩이 뒤로 밀어냄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엉덩이 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엉덩이 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엉덩이 위로 든 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엉덩이를 여성 방향으로 향함"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 엎드림"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 여성 마주보고 무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 여성 바라봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 여성 앞 바닥에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 여성에게 등 기댐"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 열린 창문으로 상반신 보임"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 열린 흰 셔츠"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 옆에 섬"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 오버더숄더 왼쪽 아래 전경"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 오크 검정 모피 망토"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 오크 검정 왕관"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 오크 검정 철제 왕관"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 오크 여성 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 운전석 앉음"
+    },
+    {
+      "category_column": "C",
+      "tag": "남성 자위"
+    },
+    {
+      "category_column": "D",
+      "tag": "남성 자위 중"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 전경 중앙 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 전립선 검사대에 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 정비공 작업복"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 정비복"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 정비용 카트에 누움"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 죄수"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 죄수 일부만 보임"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 주방 안에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 중앙 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 중앙 중경에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 중앙구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 측면으로 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 카메라 정면 응시"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 캐주얼 여행복"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 캐주얼 외출복"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 턱시도"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 테이블 아래 무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 테이블 아래 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 투명 T팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 티셔츠"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 팔 축 늘어뜨림"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 편의점 유니폼 조끼"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 피검사자"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 하반신 프레임 밖"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 하얀 삼각팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 하의 탈의"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 하체 일부 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 한 손 운전대 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 한쪽 의자에 착석"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 함장"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 함장 뒷모습 화면 왼쪽 하단"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 행동 인지"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 허리 깊게 굽힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 허리 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 허벅지 잡음"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 혼냄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 약 20~25% 차지"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 약 25% 차지"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 오른쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 최하단 전경 깊은 스쿼트"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 최하단 전경 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 측면에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 화면 하단 중앙 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 환자 뒤 오버더숄더"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 환자 앉아 있음"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 환자 평상복"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 환자가 여성 바라봄"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 회색 운동반바지"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 회색 작업 재킷"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성 회장"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 회장 난간을 바라봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 회장 식탁에 착석"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성 회장 엘리베이터 바깥쪽"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 흰 드레스셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 흰 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 흰 와이셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 흰 운동화"
+    },
+    {
+      "category_column": "E",
+      "tag": "남성 흰색 경찰 간부 제복 셔츠"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성·안드로이드 비서"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성과 부인은 화면 오른쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성들이 배경 유리벽 너머 배치"
+    },
+    {
+      "category_column": "I",
+      "tag": "남성용 소변기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성은 여성 오른쪽에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성은 여성 오른쪽에 위치"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성은 차량보다 여성 몸에만 관심"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성의 등을 누름"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성의 등을 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성의 만족한 표정"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성의 엉덩이 방향 손 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 바닥에 다리 뻗고 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 벤치 위에 쪼그려 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성이 벽에 기대 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성이 시험대 끝에 선 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 안드로이드 왼쪽에 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성이 여성 머리를 물리적으로 강하게 누름"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 여성 앞 바닥에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 여성 얼굴 위에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 여성 허벅지 양쪽 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 여성을 바라보며 누움"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 여성을 올려다봄"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성이 접이식 테이블에 앉아 대기"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 케이지 잡고 허리 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "남성이 테이블 잡고 허리 숙임"
+    },
+    {
+      "category_column": "G",
+      "tag": "남성이 텐트에서 물건 정리"
+    },
+    {
+      "category_column": "G",
+      "tag": "남편"
+    },
+    {
+      "category_column": "H",
+      "tag": "남편 POV"
+    },
+    {
+      "category_column": "E",
+      "tag": "남편 검정 정장"
+    },
+    {
+      "category_column": "H",
+      "tag": "남편 문밖 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "남편 어깨너머 시점"
+    },
+    {
+      "category_column": "G",
+      "tag": "남편 인지"
+    },
+    {
+      "category_column": "E",
+      "tag": "남편 정장"
+    },
+    {
+      "category_column": "G",
+      "tag": "남편 조롱"
+    },
+    {
+      "category_column": "H",
+      "tag": "낮은 아이레벨"
+    },
+    {
+      "category_column": "H",
+      "tag": "낮은 측면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "낮은 카메라 시점"
+    },
+    {
+      "category_column": "I",
+      "tag": "낮은 테이블"
+    },
+    {
+      "category_column": "F",
+      "tag": "낮의 오크 마을"
+    },
+    {
+      "category_column": "F",
+      "tag": "낮의 해수욕장"
+    },
+    {
+      "category_column": "G",
+      "tag": "내기 패배"
+    },
+    {
+      "category_column": "H",
+      "tag": "내려다보는 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "내려다보는 시선"
+    },
+    {
+      "category_column": "I",
+      "tag": "내려진 운전석 창문"
+    },
+    {
+      "category_column": "G",
+      "tag": "내연녀"
+    },
+    {
+      "category_column": "E",
+      "tag": "내추럴 메이크업"
+    },
+    {
+      "category_column": "E",
+      "tag": "내추럴 유광 립"
+    },
+    {
+      "category_column": "F",
+      "tag": "냉회색·청색 분위기"
+    },
+    {
+      "category_column": "E",
+      "tag": "넉넉한 게이샤 의상"
+    },
+    {
+      "category_column": "H",
+      "tag": "넓은 드라이브 스루 창문"
+    },
+    {
+      "category_column": "H",
+      "tag": "넓은 배경"
+    },
+    {
+      "category_column": "H",
+      "tag": "넓은 배경 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "네이비 바디콘 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "네이비 승무원 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "네이비 오픈토 하이힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "네일샵 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "넥타이"
+    },
+    {
+      "category_column": "G",
+      "tag": "노년 회장"
+    },
+    {
+      "category_column": "H",
+      "tag": "노려봄"
+    },
+    {
+      "category_column": "G",
+      "tag": "노인 남성"
+    },
+    {
+      "category_column": "G",
+      "tag": "노인 남성 2명"
+    },
+    {
+      "category_column": "G",
+      "tag": "노인 남성 대기줄"
+    },
+    {
+      "category_column": "I",
+      "tag": "녹색 펠트 블랙잭 테이블"
+    },
+    {
+      "category_column": "G",
+      "tag": "놀란 부인"
+    },
+    {
+      "category_column": "G",
+      "tag": "놀란 신부"
+    },
+    {
+      "category_column": "F",
+      "tag": "높은 검정 석조 단상"
+    },
+    {
+      "category_column": "E",
+      "tag": "높은 옆트임"
+    },
+    {
+      "category_column": "H",
+      "tag": "높은 원형 바의자에 앉음"
+    },
+    {
+      "category_column": "I",
+      "tag": "높은 의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "높은 콧대"
+    },
+    {
+      "category_column": "H",
+      "tag": "눈맞춤"
+    },
+    {
+      "category_column": "I",
+      "tag": "뉴스 데스크"
+    },
+    {
+      "category_column": "F",
+      "tag": "뉴스 배경"
+    },
+    {
+      "category_column": "F",
+      "tag": "뉴스 스튜디오"
+    },
+    {
+      "category_column": "E",
+      "tag": "뉴스 앵커 의상"
+    },
+    {
+      "category_column": "I",
+      "tag": "뉴스 큐시트"
+    },
+    {
+      "category_column": "F",
+      "tag": "뉴스데스크 하부 열린 공간"
+    },
+    {
+      "category_column": "F",
+      "tag": "늦은 오후 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "니트 비니"
+    },
+    {
+      "category_column": "E",
+      "tag": "니트 트레이닝 집업"
+    },
+    {
+      "category_column": "F",
+      "tag": "다다미 바닥"
+    },
+    {
+      "category_column": "I",
+      "tag": "다다미문"
+    },
+    {
+      "category_column": "H",
+      "tag": "다른 손 자신의 골반에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "다른 손 자신의 허벅지"
+    },
+    {
+      "category_column": "H",
+      "tag": "다른 손은 남성 가슴에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "다른 손은 침대 짚음"
+    },
+    {
+      "category_column": "F",
+      "tag": "다른 텐트"
+    },
+    {
+      "category_column": "C",
+      "tag": "다리"
+    },
+    {
+      "category_column": "I",
+      "tag": "다리 고정 스토럽"
+    },
+    {
+      "category_column": "H",
+      "tag": "다리 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "다리로 남성 감쌈"
+    },
+    {
+      "category_column": "H",
+      "tag": "다리를 높이 들어 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "다리를 테이블 위에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "다이나믹 앵글"
+    },
+    {
+      "category_column": "H",
+      "tag": "다이아몬드형 다리 포즈"
+    },
+    {
+      "category_column": "F",
+      "tag": "다크 판타지 석조 홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "당구장"
+    },
+    {
+      "category_column": "G",
+      "tag": "당당한 반응"
+    },
+    {
+      "category_column": "G",
+      "tag": "대가 제공"
+    },
+    {
+      "category_column": "H",
+      "tag": "대각선 프레이밍"
+    },
+    {
+      "category_column": "H",
+      "tag": "대기 의자에 앉음"
+    },
+    {
+      "category_column": "F",
+      "tag": "대기업 회장 건물"
+    },
+    {
+      "category_column": "F",
+      "tag": "대기업 회장 접견실"
+    },
+    {
+      "category_column": "F",
+      "tag": "대기업 회장 집무실"
+    },
+    {
+      "category_column": "F",
+      "tag": "대기업 회장실"
+    },
+    {
+      "category_column": "F",
+      "tag": "대리석 바닥"
+    },
+    {
+      "category_column": "I",
+      "tag": "대리석 책상"
+    },
+    {
+      "category_column": "G",
+      "tag": "대머리"
+    },
+    {
+      "category_column": "G",
+      "tag": "대면 안내"
+    },
+    {
+      "category_column": "F",
+      "tag": "대시보드 반사광"
+    },
+    {
+      "category_column": "H",
+      "tag": "대칭적인 전후 인물 배치"
+    },
+    {
+      "category_column": "F",
+      "tag": "대학교 강의실"
+    },
+    {
+      "category_column": "F",
+      "tag": "대형 채광창"
+    },
+    {
+      "category_column": "I",
+      "tag": "덤벨랙"
+    },
+    {
+      "category_column": "H",
+      "tag": "데스크 아래 남성"
+    },
+    {
+      "category_column": "H",
+      "tag": "데스크 아래 열린 공간"
+    },
+    {
+      "category_column": "F",
+      "tag": "데스크 하부 열린 공간"
+    },
+    {
+      "category_column": "I",
+      "tag": "데이베드"
+    },
+    {
+      "category_column": "H",
+      "tag": "도기스타일 자세"
+    },
+    {
+      "category_column": "F",
+      "tag": "도로 위 스포츠카"
+    },
+    {
+      "category_column": "F",
+      "tag": "도로 한복판"
+    },
+    {
+      "category_column": "G",
+      "tag": "도박 손실"
+    },
+    {
+      "category_column": "I",
+      "tag": "도서 반납대"
+    },
+    {
+      "category_column": "F",
+      "tag": "도서관"
+    },
+    {
+      "category_column": "F",
+      "tag": "도시 거리 보이는 창"
+    },
+    {
+      "category_column": "F",
+      "tag": "도시 스카이라인"
+    },
+    {
+      "category_column": "F",
+      "tag": "도시 야경 창문"
+    },
+    {
+      "category_column": "I",
+      "tag": "도자기 식기"
+    },
+    {
+      "category_column": "I",
+      "tag": "도톰한 입술"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 발을 차창 밖으로 뻗음"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 번째 교도관 왼쪽 철창 뒤 복도 서 있음"
+    },
+    {
+      "category_column": "E",
+      "tag": "두 번째 남성 완전한 남색 교정 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "두 번째 남성 팔각 순찰모"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 손 모음"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 얼굴 가까이 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 얼굴 근접"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 가까운 거리"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 모두 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 모두 전신"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 서로 바라봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 실루엣 분리"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 인물 정면 가까운 상호작용"
+    },
+    {
+      "category_column": "H",
+      "tag": "두 팔 뒷짐"
+    },
+    {
+      "category_column": "H",
+      "tag": "둘째 설정 남성 난간에 양손 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "둘째 설정 여성 양손 모아 정면 서기"
+    },
+    {
+      "category_column": "H",
+      "tag": "뒤꿈치 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "뒤돌아보는 시선"
+    },
+    {
+      "category_column": "H",
+      "tag": "뒤로 쭉 뻗은 다리"
+    },
+    {
+      "category_column": "I",
+      "tag": "뒤쪽 유리창"
+    },
+    {
+      "category_column": "H",
+      "tag": "뒤쪽 헬멧 안드로이드 3인"
+    },
+    {
+      "category_column": "H",
+      "tag": "뒷모습 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "듀티벨트"
+    },
+    {
+      "category_column": "G",
+      "tag": "드라이브 스루 직원"
+    },
+    {
+      "category_column": "F",
+      "tag": "드라이브 스루 창구"
+    },
+    {
+      "category_column": "E",
+      "tag": "등 깊게 파인 백리스 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "등 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "등을 뷰어 쪽으로 보임"
+    },
+    {
+      "category_column": "E",
+      "tag": "등이 깊게 파인 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "등이 깊게 파인 레이스 바디콘 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "등이 깊이 열린 드레스"
+    },
+    {
+      "category_column": "I",
+      "tag": "디스플레이"
+    },
+    {
+      "category_column": "I",
+      "tag": "디지털 눈"
+    },
+    {
+      "category_column": "I",
+      "tag": "딜도"
+    },
+    {
+      "category_column": "H",
+      "tag": "딜러 남성 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "딜러 무릎 넓게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "딜러 배경 녹색 펠트 블랙잭 테이블 가장자리 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "딜러 양손 테이블 위에 짚음"
+    },
+    {
+      "category_column": "H",
+      "tag": "딜러·남성·마담 3단 깊이 배치"
+    },
+    {
+      "category_column": "E",
+      "tag": "딥네이비 비대칭 니트탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "딥레드 원숄더 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "딥브라운 탱키니 세트"
+    },
+    {
+      "category_column": "F",
+      "tag": "따뜻한 벽등"
+    },
+    {
+      "category_column": "F",
+      "tag": "따뜻한 실내 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "따뜻한 저조도 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "따뜻한 펜던트 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "라운드 박스티"
+    },
+    {
+      "category_column": "F",
+      "tag": "라운지 창가"
+    },
+    {
+      "category_column": "E",
+      "tag": "라이트베이지 몸에 붙는 반팔 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "란제리"
+    },
+    {
+      "category_column": "I",
+      "tag": "레그프레스 발판"
+    },
+    {
+      "category_column": "H",
+      "tag": "레그프레스 발판 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "레그프레스 발판 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "레그프레스 시트"
+    },
+    {
+      "category_column": "E",
+      "tag": "레오타드 비키니"
+    },
+    {
+      "category_column": "E",
+      "tag": "레오파드 비키니"
+    },
+    {
+      "category_column": "E",
+      "tag": "레이스 T팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "레이스 란제리"
+    },
+    {
+      "category_column": "E",
+      "tag": "레이스 오프숄더 상의"
+    },
+    {
+      "category_column": "E",
+      "tag": "레이스 장식 바디콘 드레스"
+    },
+    {
+      "category_column": "I",
+      "tag": "로고"
+    },
+    {
+      "category_column": "E",
+      "tag": "로고 맨투맨"
+    },
+    {
+      "category_column": "I",
+      "tag": "로봇 목 관절"
+    },
+    {
+      "category_column": "H",
+      "tag": "로봇 정면으로 서 있음"
+    },
+    {
+      "category_column": "I",
+      "tag": "로봇 팔 관절"
+    },
+    {
+      "category_column": "H",
+      "tag": "로우앵글"
+    },
+    {
+      "category_column": "H",
+      "tag": "로우키 고대비"
+    },
+    {
+      "category_column": "E",
+      "tag": "롱 주름 원피스"
+    },
+    {
+      "category_column": "E",
+      "tag": "롱스커트"
+    },
+    {
+      "category_column": "F",
+      "tag": "루프탑 텐트"
+    },
+    {
+      "category_column": "E",
+      "tag": "리본타이"
+    },
+    {
+      "category_column": "E",
+      "tag": "리브드 니트 탑"
+    },
+    {
+      "category_column": "F",
+      "tag": "리조트 루프톱 카바나"
+    },
+    {
+      "category_column": "F",
+      "tag": "리조트 스파"
+    },
+    {
+      "category_column": "I",
+      "tag": "리클라이닝 이발 의자"
+    },
+    {
+      "category_column": "H",
+      "tag": "리턴대 높이 로우앵글"
+    },
+    {
+      "category_column": "C",
+      "tag": "림잡"
+    },
+    {
+      "category_column": "D",
+      "tag": "림잡 암시"
+    },
+    {
+      "category_column": "E",
+      "tag": "링 귀걸이"
+    },
+    {
+      "category_column": "I",
+      "tag": "링크 펜스 난간"
+    },
+    {
+      "category_column": "F",
+      "tag": "링크 펜스 난간 반사광"
+    },
+    {
+      "category_column": "F",
+      "tag": "마감 후 바 라운지"
+    },
+    {
+      "category_column": "F",
+      "tag": "마감 후 텅 빈 현대식 카페"
+    },
+    {
+      "category_column": "E",
+      "tag": "마담 검정 벨벳 재킷드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "마담 검정 스틸레토"
+    },
+    {
+      "category_column": "E",
+      "tag": "마담 금 체인 목걸이"
+    },
+    {
+      "category_column": "H",
+      "tag": "마담 얼굴 일부 측면만 보임"
+    },
+    {
+      "category_column": "H",
+      "tag": "마담 팔짱 끼고 남성 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "마담 화면 최전경 뒤·측면"
+    },
+    {
+      "category_column": "F",
+      "tag": "마을 바닥의 방치된 원시 무기"
+    },
+    {
+      "category_column": "F",
+      "tag": "마을에 착륙한 우주 캡슐"
+    },
+    {
+      "category_column": "H",
+      "tag": "마주 보는 인물 배치"
+    },
+    {
+      "category_column": "F",
+      "tag": "맑은 물"
+    },
+    {
+      "category_column": "E",
+      "tag": "망사 T팬티"
+    },
+    {
+      "category_column": "G",
+      "tag": "맞은편 남성 상대"
+    },
+    {
+      "category_column": "H",
+      "tag": "맞은편에서 바라보는 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "맞춤형 베스트"
+    },
+    {
+      "category_column": "F",
+      "tag": "매립형 간접조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "매우 얇은 T팬티"
+    },
+    {
+      "category_column": "F",
+      "tag": "매우 어두운 밤"
+    },
+    {
+      "category_column": "F",
+      "tag": "맥도날드 드라이브 스루"
+    },
+    {
+      "category_column": "E",
+      "tag": "맥도날드 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "맨다리"
+    },
+    {
+      "category_column": "E",
+      "tag": "맨발"
+    },
+    {
+      "category_column": "I",
+      "tag": "맨발 피부톤 대비"
+    },
+    {
+      "category_column": "H",
+      "tag": "머리 위로 다리 들기"
+    },
+    {
+      "category_column": "I",
+      "tag": "메뉴판"
+    },
+    {
+      "category_column": "E",
+      "tag": "메리노 베이스레이어"
+    },
+    {
+      "category_column": "F",
+      "tag": "메이크업숍"
+    },
+    {
+      "category_column": "I",
+      "tag": "메이크업숍 대기 의자"
+    },
+    {
+      "category_column": "H",
+      "tag": "메이팅 프레스 자세"
+    },
+    {
+      "category_column": "I",
+      "tag": "면도칼 트레이"
+    },
+    {
+      "category_column": "E",
+      "tag": "명찰"
+    },
+    {
+      "category_column": "H",
+      "tag": "몇 계단 아래에서 보는 로우앵글"
+    },
+    {
+      "category_column": "I",
+      "tag": "모니터"
+    },
+    {
+      "category_column": "F",
+      "tag": "모래 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "모래 바닥에 발을 딛고 서 있음"
+    },
+    {
+      "category_column": "E",
+      "tag": "모브 핑크 유광 립"
+    },
+    {
+      "category_column": "F",
+      "tag": "모터스포츠 VIP 패독 라운지"
+    },
+    {
+      "category_column": "E",
+      "tag": "목걸이"
+    },
+    {
+      "category_column": "G",
+      "tag": "목적 인지"
+    },
+    {
+      "category_column": "F",
+      "tag": "목조 오크 오두막"
+    },
+    {
+      "category_column": "E",
+      "tag": "목폴라 니트"
+    },
+    {
+      "category_column": "G",
+      "tag": "몰래 방문"
+    },
+    {
+      "category_column": "G",
+      "tag": "몸수색"
+    },
+    {
+      "category_column": "F",
+      "tag": "몸수색 구역"
+    },
+    {
+      "category_column": "E",
+      "tag": "몸에 붙는 크롭 니트"
+    },
+    {
+      "category_column": "H",
+      "tag": "무대 위 누운 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "무대 위 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "무력한 남성"
+    },
+    {
+      "category_column": "H",
+      "tag": "무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "무릎 높이 치켜듦"
+    },
+    {
+      "category_column": "H",
+      "tag": "무릎을 굽힘"
+    },
+    {
+      "category_column": "I",
+      "tag": "문"
+    },
+    {
+      "category_column": "H",
+      "tag": "문 밖 뷰어를 정면 응시"
+    },
+    {
+      "category_column": "I",
+      "tag": "문·열쇠구멍 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "문밖 아내의 시점에 가까운 구도"
+    },
+    {
+      "category_column": "I",
+      "tag": "문틀"
+    },
+    {
+      "category_column": "H",
+      "tag": "문틀·문짝으로 액자형 프레이밍"
+    },
+    {
+      "category_column": "I",
+      "tag": "문틈"
+    },
+    {
+      "category_column": "H",
+      "tag": "문틈 관찰 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "문틈 너머 관음 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "문틈 밖 뷰어"
+    },
+    {
+      "category_column": "H",
+      "tag": "뮬 신발을 바닥에 붙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "뮬에 발가락을 넣음"
+    },
+    {
+      "category_column": "E",
+      "tag": "미니스커트"
+    },
+    {
+      "category_column": "H",
+      "tag": "미디엄 와이드 풀바디"
+    },
+    {
+      "category_column": "H",
+      "tag": "미디엄 와이드샷"
+    },
+    {
+      "category_column": "H",
+      "tag": "미디엄 와이드에서 풀바디 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "미디엄 풀샷"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래식 고급 침실"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래형 개인 시험실"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래형 고급 시험실"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래형 내부 공간"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래형 성적 서비스 시설"
+    },
+    {
+      "category_column": "I",
+      "tag": "미래형 시험 장비"
+    },
+    {
+      "category_column": "F",
+      "tag": "미래형 연구실"
+    },
+    {
+      "category_column": "I",
+      "tag": "미래형 의자"
+    },
+    {
+      "category_column": "F",
+      "tag": "미러룸"
+    },
+    {
+      "category_column": "H",
+      "tag": "미소"
+    },
+    {
+      "category_column": "E",
+      "tag": "미용 가위 홀스터"
+    },
+    {
+      "category_column": "I",
+      "tag": "미용 가위 홀스터"
+    },
+    {
+      "category_column": "I",
+      "tag": "미용 거울"
+    },
+    {
+      "category_column": "I",
+      "tag": "미용 의자"
+    },
+    {
+      "category_column": "H",
+      "tag": "미용 의자 양옆 부분 보이도록"
+    },
+    {
+      "category_column": "H",
+      "tag": "미용 의자 착석"
+    },
+    {
+      "category_column": "H",
+      "tag": "미용 의자 팔걸이 노출"
+    },
+    {
+      "category_column": "F",
+      "tag": "미용실"
+    },
+    {
+      "category_column": "G",
+      "tag": "미용실 내부 성적"
+    },
+    {
+      "category_column": "G",
+      "tag": "미행"
+    },
+    {
+      "category_column": "H",
+      "tag": "믹싱 콘솔 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "믹싱 콘솔 반사광"
+    },
+    {
+      "category_column": "E",
+      "tag": "민소매 바디콘 드레스"
+    },
+    {
+      "category_column": "F",
+      "tag": "민트그린 포인트"
+    },
+    {
+      "category_column": "H",
+      "tag": "밀착 착석"
+    },
+    {
+      "category_column": "F",
+      "tag": "밀폐된 방"
+    },
+    {
+      "category_column": "F",
+      "tag": "밀폐된 좁은 방"
+    },
+    {
+      "category_column": "H",
+      "tag": "바 카운터 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "바 카운터 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "바 테이블"
+    },
+    {
+      "category_column": "H",
+      "tag": "바 테이블 쪽 상체 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "바닥 높이 초저각도 로우앵글"
+    },
+    {
+      "category_column": "I",
+      "tag": "바닥 반사"
+    },
+    {
+      "category_column": "I",
+      "tag": "바닥에 떨어진 원시 무기"
+    },
+    {
+      "category_column": "H",
+      "tag": "바닥에 발을 딛지 않음"
+    },
+    {
+      "category_column": "E",
+      "tag": "바디콘 미니드레스"
+    },
+    {
+      "category_column": "I",
+      "tag": "바의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "바이저"
+    },
+    {
+      "category_column": "E",
+      "tag": "바이커 헬멧"
+    },
+    {
+      "category_column": "E",
+      "tag": "바텐더 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "박스형 농구 저지"
+    },
+    {
+      "category_column": "E",
+      "tag": "박스형 티셔츠"
+    },
+    {
+      "category_column": "F",
+      "tag": "반사광"
+    },
+    {
+      "category_column": "F",
+      "tag": "반사광 조명"
+    },
+    {
+      "category_column": "H",
+      "tag": "반쯤 열린 객실 문 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "반쯤 열린 문 너머 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "반쯤 열린 문틈 POV"
+    },
+    {
+      "category_column": "F",
+      "tag": "반쯤 열린 엘리베이터"
+    },
+    {
+      "category_column": "F",
+      "tag": "반쯤 열린 카페 출입문"
+    },
+    {
+      "category_column": "H",
+      "tag": "발 실내창틀 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "발 집중 구도"
+    },
+    {
+      "category_column": "F",
+      "tag": "발 집중 스포트라이트"
+    },
+    {
+      "category_column": "H",
+      "tag": "발 집중 원근 구도"
+    },
+    {
+      "category_column": "F",
+      "tag": "발 집중 조명"
+    },
+    {
+      "category_column": "H",
+      "tag": "발 집중 조명"
+    },
+    {
+      "category_column": "H",
+      "tag": "발 집중 클로즈업"
+    },
+    {
+      "category_column": "C",
+      "tag": "발 페티시"
+    },
+    {
+      "category_column": "C",
+      "tag": "발 항문 자극"
+    },
+    {
+      "category_column": "H",
+      "tag": "발가락 바닥 접촉"
+    },
+    {
+      "category_column": "H",
+      "tag": "발가락 오므림"
+    },
+    {
+      "category_column": "G",
+      "tag": "발각"
+    },
+    {
+      "category_column": "H",
+      "tag": "발꿈치 차창 지지"
+    },
+    {
+      "category_column": "H",
+      "tag": "발끝 모음"
+    },
+    {
+      "category_column": "H",
+      "tag": "발끝 아래로"
+    },
+    {
+      "category_column": "H",
+      "tag": "발끝 카메라 방향"
+    },
+    {
+      "category_column": "H",
+      "tag": "발끝으로 서기"
+    },
+    {
+      "category_column": "C",
+      "tag": "발뒤꿈치"
+    },
+    {
+      "category_column": "C",
+      "tag": "발등"
+    },
+    {
+      "category_column": "I",
+      "tag": "발등·발바닥 피부톤 대비"
+    },
+    {
+      "category_column": "H",
+      "tag": "발등을 바닥에 댐"
+    },
+    {
+      "category_column": "D",
+      "tag": "발로 항문 자극 준비"
+    },
+    {
+      "category_column": "H",
+      "tag": "발만 밝게 노출"
+    },
+    {
+      "category_column": "C",
+      "tag": "발바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 맞댐"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 바닥 접촉"
+    },
+    {
+      "category_column": "C",
+      "tag": "발바닥 선호"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 아치"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 측면 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "발바닥 카메라 방향"
+    },
+    {
+      "category_column": "I",
+      "tag": "발받침대"
+    },
+    {
+      "category_column": "H",
+      "tag": "발받침대 높이 로우앵글"
+    },
+    {
+      "category_column": "H",
+      "tag": "발볼 바닥 지지"
+    },
+    {
+      "category_column": "H",
+      "tag": "발을 데스크 위에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "발을 비비는 동작"
+    },
+    {
+      "category_column": "H",
+      "tag": "발을 테이블 위에 올림"
+    },
+    {
+      "category_column": "I",
+      "tag": "발코니"
+    },
+    {
+      "category_column": "F",
+      "tag": "발코니 석재 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝고 차가운 형광등 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 낮 시간대"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 낮 시간대 서술"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 미용 화장대 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 실내 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 자연광"
+    },
+    {
+      "category_column": "E",
+      "tag": "밝은 하늘색 실크 승무원 제복"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 한낮"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 형광등 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 화장대 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 회색 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 회색 석재 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "밝은 회색 테라조 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "방 안에 남성 앉아 책 읽음"
+    },
+    {
+      "category_column": "D",
+      "tag": "방귀 수행"
+    },
+    {
+      "category_column": "C",
+      "tag": "방귀 페티시"
+    },
+    {
+      "category_column": "G",
+      "tag": "배경 남성"
+    },
+    {
+      "category_column": "G",
+      "tag": "배경 남성 직원"
+    },
+    {
+      "category_column": "H",
+      "tag": "배경 넓게 구성"
+    },
+    {
+      "category_column": "H",
+      "tag": "배경 분리"
+    },
+    {
+      "category_column": "G",
+      "tag": "배경 흑인 인물"
+    },
+    {
+      "category_column": "G",
+      "tag": "배경의 남성 죄수 사슬 구속"
+    },
+    {
+      "category_column": "E",
+      "tag": "배까지 내려오는 깊은 V넥"
+    },
+    {
+      "category_column": "I",
+      "tag": "배낭"
+    },
+    {
+      "category_column": "G",
+      "tag": "배달 공급업자"
+    },
+    {
+      "category_column": "E",
+      "tag": "배달 헬멧"
+    },
+    {
+      "category_column": "G",
+      "tag": "배달기사"
+    },
+    {
+      "category_column": "H",
+      "tag": "배달기사 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "배달기사 뒷모습 포함"
+    },
+    {
+      "category_column": "H",
+      "tag": "배달기사 뒷모습 화면 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "배달기사 사타구니 손 모음"
+    },
+    {
+      "category_column": "E",
+      "tag": "배달기사 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "배달기사 의상"
+    },
+    {
+      "category_column": "H",
+      "tag": "배를 등받이에 댐"
+    },
+    {
+      "category_column": "E",
+      "tag": "배지"
+    },
+    {
+      "category_column": "G",
+      "tag": "백인 남성 두 번째 교도관"
+    },
+    {
+      "category_column": "F",
+      "tag": "백화점"
+    },
+    {
+      "category_column": "F",
+      "tag": "백화점 라운지"
+    },
+    {
+      "category_column": "F",
+      "tag": "백화점 신발매장"
+    },
+    {
+      "category_column": "G",
+      "tag": "백화점 판매직"
+    },
+    {
+      "category_column": "E",
+      "tag": "백화점 판매직 유니폼"
+    },
+    {
+      "category_column": "G",
+      "tag": "밸리댄서"
+    },
+    {
+      "category_column": "F",
+      "tag": "밸리댄서 대기실"
+    },
+    {
+      "category_column": "G",
+      "tag": "밸리댄서 무대 연출"
+    },
+    {
+      "category_column": "E",
+      "tag": "밸리댄서 의상"
+    },
+    {
+      "category_column": "I",
+      "tag": "뱀상 얼굴"
+    },
+    {
+      "category_column": "E",
+      "tag": "버건디 승무원 오프숄더 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "버건디 승무원 필박스 모자"
+    },
+    {
+      "category_column": "I",
+      "tag": "벗어둔 mules"
+    },
+    {
+      "category_column": "I",
+      "tag": "벗어둔 옷"
+    },
+    {
+      "category_column": "E",
+      "tag": "벗어둔 젖은 T팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "베이스볼 저지"
+    },
+    {
+      "category_column": "I",
+      "tag": "벤치"
+    },
+    {
+      "category_column": "H",
+      "tag": "벤치 위 남성"
+    },
+    {
+      "category_column": "F",
+      "tag": "벨벳 부스"
+    },
+    {
+      "category_column": "E",
+      "tag": "벨벳 원피스"
+    },
+    {
+      "category_column": "I",
+      "tag": "벨트"
+    },
+    {
+      "category_column": "I",
+      "tag": "벽걸이 의료 모니터"
+    },
+    {
+      "category_column": "H",
+      "tag": "벽걸이 화장대 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "벽면 매립 조명 패널"
+    },
+    {
+      "category_column": "I",
+      "tag": "벽면 접이식 좌석"
+    },
+    {
+      "category_column": "F",
+      "tag": "벽면 흑백 감시 화면"
+    },
+    {
+      "category_column": "F",
+      "tag": "별빛 관측 돔"
+    },
+    {
+      "category_column": "F",
+      "tag": "병원 내부"
+    },
+    {
+      "category_column": "F",
+      "tag": "병원 복도"
+    },
+    {
+      "category_column": "F",
+      "tag": "병원 접수대"
+    },
+    {
+      "category_column": "E",
+      "tag": "병원용 실내 슬리퍼"
+    },
+    {
+      "category_column": "F",
+      "tag": "보드게임 카페 쿠션 체어"
+    },
+    {
+      "category_column": "I",
+      "tag": "보드게임 테이블"
+    },
+    {
+      "category_column": "F",
+      "tag": "보라색 네온 조명"
+    },
+    {
+      "category_column": "I",
+      "tag": "보라색 태닝 램프"
+    },
+    {
+      "category_column": "I",
+      "tag": "보안검색 트레이"
+    },
+    {
+      "category_column": "G",
+      "tag": "보안요원"
+    },
+    {
+      "category_column": "E",
+      "tag": "보안요원 모자"
+    },
+    {
+      "category_column": "E",
+      "tag": "보안요원 제복"
+    },
+    {
+      "category_column": "G",
+      "tag": "복종"
+    },
+    {
+      "category_column": "I",
+      "tag": "볼링공 리턴대"
+    },
+    {
+      "category_column": "F",
+      "tag": "볼링공 리턴대 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "볼링장 의자"
+    },
+    {
+      "category_column": "F",
+      "tag": "부가티 전시장"
+    },
+    {
+      "category_column": "F",
+      "tag": "부드러운 실내 업무 조명"
+    },
+    {
+      "category_column": "G",
+      "tag": "부부 관계"
+    },
+    {
+      "category_column": "H",
+      "tag": "부분 가림"
+    },
+    {
+      "category_column": "G",
+      "tag": "부인 동석"
+    },
+    {
+      "category_column": "E",
+      "tag": "분홍 블러셔"
+    },
+    {
+      "category_column": "E",
+      "tag": "분홍 아이섀도"
+    },
+    {
+      "category_column": "F",
+      "tag": "불 꺼진 심야 헬스장"
+    },
+    {
+      "category_column": "G",
+      "tag": "불륜"
+    },
+    {
+      "category_column": "G",
+      "tag": "불륜 발각"
+    },
+    {
+      "category_column": "E",
+      "tag": "붉은 실크 셔츠"
+    },
+    {
+      "category_column": "I",
+      "tag": "붐암 스토럽"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 노려봄"
+    },
+    {
+      "category_column": "G",
+      "tag": "뷰어 눈맞춤"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 뒷모습 왼쪽 배치"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 뒷모습 화면 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 뒷모습 화면에 표시"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 뒷모습 흐림 처리"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어 응시"
+    },
+    {
+      "category_column": "G",
+      "tag": "뷰어 인지"
+    },
+    {
+      "category_column": "G",
+      "tag": "뷰어는 로봇을 관찰"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어는 여성 뒤쪽에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "뷰어를 돌아봄"
+    },
+    {
+      "category_column": "E",
+      "tag": "브이넥 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 경량 기능성 티셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 드레이프넥 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 스퀘어넥 리브드 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 오프숄더 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 터틀넥 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "블랙 피티드 크롭 탱크"
+    },
+    {
+      "category_column": "E",
+      "tag": "블루 벨벳 슬립"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서 남성 오른쪽에 서 있음"
+    },
+    {
+      "category_column": "E",
+      "tag": "비서 의상"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서 하체 일부 가림"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서 회장 의자 바로 옆"
+    },
+    {
+      "category_column": "G",
+      "tag": "비서·회장 부부"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서가 남성과 아내 사이에 섬"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서는 남성 오른쪽에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "비서는 회장의 왼쪽"
+    },
+    {
+      "category_column": "F",
+      "tag": "비어 있는 카페 주방"
+    },
+    {
+      "category_column": "F",
+      "tag": "비치 텐트"
+    },
+    {
+      "category_column": "F",
+      "tag": "비행기 통로"
+    },
+    {
+      "category_column": "G",
+      "tag": "빈 상담실"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 T팬티"
+    },
+    {
+      "category_column": "F",
+      "tag": "빨간 슈퍼카 광택 반사광"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 스틸레토 하이힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 승무원 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 실크 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 오픈토 스틸레토 펌프스"
+    },
+    {
+      "category_column": "E",
+      "tag": "빨간 포인티드토 스틸레토 펌프스"
+    },
+    {
+      "category_column": "H",
+      "tag": "빨간 하이힐 양발 바닥 고정"
+    },
+    {
+      "category_column": "I",
+      "tag": "빨대"
+    },
+    {
+      "category_column": "E",
+      "tag": "뾰족구두"
+    },
+    {
+      "category_column": "I",
+      "tag": "뾰족한 코끝"
+    },
+    {
+      "category_column": "F",
+      "tag": "사무실"
+    },
+    {
+      "category_column": "I",
+      "tag": "사원증"
+    },
+    {
+      "category_column": "E",
+      "tag": "사원증 목걸이"
+    },
+    {
+      "category_column": "F",
+      "tag": "사이렌 로고 벽면"
+    },
+    {
+      "category_column": "G",
+      "tag": "사장"
+    },
+    {
+      "category_column": "H",
+      "tag": "사장 뒤쪽 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "사장과 여성 사이 통로 거리 확보"
+    },
+    {
+      "category_column": "G",
+      "tag": "사적 긴장감"
+    },
+    {
+      "category_column": "F",
+      "tag": "산장"
+    },
+    {
+      "category_column": "F",
+      "tag": "산장 다락방"
+    },
+    {
+      "category_column": "H",
+      "tag": "상담 방문객 POV"
+    },
+    {
+      "category_column": "I",
+      "tag": "상담 테이블"
+    },
+    {
+      "category_column": "G",
+      "tag": "상담받으러 온 남성 뷰어"
+    },
+    {
+      "category_column": "I",
+      "tag": "상담실 데스크"
+    },
+    {
+      "category_column": "F",
+      "tag": "상반신 어둡게"
+    },
+    {
+      "category_column": "H",
+      "tag": "상반신 어둡게"
+    },
+    {
+      "category_column": "H",
+      "tag": "상반신 집중"
+    },
+    {
+      "category_column": "H",
+      "tag": "상반신 촬영"
+    },
+    {
+      "category_column": "H",
+      "tag": "상반신·얼굴 어둡게 유지"
+    },
+    {
+      "category_column": "E",
+      "tag": "상의 밑단 매듭"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체 뒤로 살짝 기대기"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체 살짝 뒤로 기대기"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체 상품 진열대로 기울이기"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체 차창으로 살짝 기울임"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체 최대한 수직 유지"
+    },
+    {
+      "category_column": "H",
+      "tag": "상체를 작게 표현하는 원근 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "상품 선택"
+    },
+    {
+      "category_column": "G",
+      "tag": "상호작용"
+    },
+    {
+      "category_column": "F",
+      "tag": "새벽 PC방 구석 자리"
+    },
+    {
+      "category_column": "E",
+      "tag": "새틴 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "새틴 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "새틴 캐미솔"
+    },
+    {
+      "category_column": "H",
+      "tag": "색 대비"
+    },
+    {
+      "category_column": "G",
+      "tag": "서로 마주 보는 평가"
+    },
+    {
+      "category_column": "H",
+      "tag": "서로 팔 길이 거리"
+    },
+    {
+      "category_column": "I",
+      "tag": "서류"
+    },
+    {
+      "category_column": "G",
+      "tag": "서류 검토"
+    },
+    {
+      "category_column": "F",
+      "tag": "서클 스테이지"
+    },
+    {
+      "category_column": "F",
+      "tag": "석재 바닥 그을림 자국"
+    },
+    {
+      "category_column": "F",
+      "tag": "석재·금속 실내"
+    },
+    {
+      "category_column": "E",
+      "tag": "선글라스"
+    },
+    {
+      "category_column": "I",
+      "tag": "선반"
+    },
+    {
+      "category_column": "F",
+      "tag": "설원 리조트 야외 온수풀"
+    },
+    {
+      "category_column": "C",
+      "tag": "성교"
+    },
+    {
+      "category_column": "D",
+      "tag": "성교 준비"
+    },
+    {
+      "category_column": "F",
+      "tag": "성당 지하 감옥"
+    },
+    {
+      "category_column": "F",
+      "tag": "성당 지하 복도"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 남녀"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 남녀 동일 체구"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 남성 기장"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 남성 배달기사 관찰자"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 여성 선임 헤어디자이너 김과 30대 성인 한국 남성 고객"
+    },
+    {
+      "category_column": "G",
+      "tag": "성인 여성·노인 남성"
+    },
+    {
+      "category_column": "I",
+      "tag": "성인 영상 스크린"
+    },
+    {
+      "category_column": "C",
+      "tag": "성인용품"
+    },
+    {
+      "category_column": "I",
+      "tag": "성인용품 배경 소품"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 경험"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 관심 인지"
+    },
+    {
+      "category_column": "C",
+      "tag": "성적 긴장감"
+    },
+    {
+      "category_column": "C",
+      "tag": "성적 대상화"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 방문"
+    },
+    {
+      "category_column": "C",
+      "tag": "성적 분위기"
+    },
+    {
+      "category_column": "C",
+      "tag": "성적 서비스"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 서비스 로봇"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 서비스 휴머노이드"
+    },
+    {
+      "category_column": "G",
+      "tag": "성적 시선"
+    },
+    {
+      "category_column": "C",
+      "tag": "성적 접촉"
+    },
+    {
+      "category_column": "G",
+      "tag": "세 사람의 미묘한 관계"
+    },
+    {
+      "category_column": "E",
+      "tag": "세이지 그린 코튼 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "세이지그린 슬리브리스 골프 폴로"
+    },
+    {
+      "category_column": "E",
+      "tag": "세이지그린 홀터넥 비키니 세트"
+    },
+    {
+      "category_column": "F",
+      "tag": "소등된 아이스링크 대기석"
+    },
+    {
+      "category_column": "F",
+      "tag": "소등된 항공기 퍼스트클래스 객실"
+    },
+    {
+      "category_column": "E",
+      "tag": "소믈리에 유니폼"
+    },
+    {
+      "category_column": "G",
+      "tag": "소방 구조대"
+    },
+    {
+      "category_column": "E",
+      "tag": "소방 구조대 작업복 세트"
+    },
+    {
+      "category_column": "F",
+      "tag": "소방차고"
+    },
+    {
+      "category_column": "C",
+      "tag": "소변 페티시"
+    },
+    {
+      "category_column": "G",
+      "tag": "소변 행위 기대"
+    },
+    {
+      "category_column": "D",
+      "tag": "소변 행위 준비"
+    },
+    {
+      "category_column": "G",
+      "tag": "소송 승소"
+    },
+    {
+      "category_column": "E",
+      "tag": "소프트 글램 메이크업"
+    },
+    {
+      "category_column": "D",
+      "tag": "손가락 항문 삽입"
+    },
+    {
+      "category_column": "G",
+      "tag": "손님 대화"
+    },
+    {
+      "category_column": "G",
+      "tag": "손님 응대"
+    },
+    {
+      "category_column": "I",
+      "tag": "손목 구속구"
+    },
+    {
+      "category_column": "I",
+      "tag": "쇠사슬"
+    },
+    {
+      "category_column": "I",
+      "tag": "쇠사슬 케이지"
+    },
+    {
+      "category_column": "F",
+      "tag": "쇼핑몰"
+    },
+    {
+      "category_column": "F",
+      "tag": "쇼핑몰 안내데스크"
+    },
+    {
+      "category_column": "F",
+      "tag": "쇼핑몰 휴게 라운지"
+    },
+    {
+      "category_column": "I",
+      "tag": "수갑"
+    },
+    {
+      "category_column": "G",
+      "tag": "수갑 채움"
+    },
+    {
+      "category_column": "I",
+      "tag": "수건"
+    },
+    {
+      "category_column": "G",
+      "tag": "수녀"
+    },
+    {
+      "category_column": "E",
+      "tag": "수녀 모자"
+    },
+    {
+      "category_column": "E",
+      "tag": "수녀복"
+    },
+    {
+      "category_column": "G",
+      "tag": "수리공"
+    },
+    {
+      "category_column": "E",
+      "tag": "수리공 작업복"
+    },
+    {
+      "category_column": "G",
+      "tag": "수리공·여성"
+    },
+    {
+      "category_column": "H",
+      "tag": "수리기사 뒷모습 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "수리기사 왼쪽 배치"
+    },
+    {
+      "category_column": "G",
+      "tag": "수리기사의 뒷모습"
+    },
+    {
+      "category_column": "F",
+      "tag": "수상 방갈로"
+    },
+    {
+      "category_column": "F",
+      "tag": "수상비행기 라운지"
+    },
+    {
+      "category_column": "E",
+      "tag": "수술용 장갑"
+    },
+    {
+      "category_column": "I",
+      "tag": "수조"
+    },
+    {
+      "category_column": "H",
+      "tag": "수조 밖 성인 남성"
+    },
+    {
+      "category_column": "H",
+      "tag": "수조 안 성인 여성"
+    },
+    {
+      "category_column": "F",
+      "tag": "수조 유리벽"
+    },
+    {
+      "category_column": "F",
+      "tag": "수족관 내부 수중 공간"
+    },
+    {
+      "category_column": "F",
+      "tag": "수중 굴절광"
+    },
+    {
+      "category_column": "H",
+      "tag": "수중 머리카락 흩날림"
+    },
+    {
+      "category_column": "C",
+      "tag": "수중 페티시"
+    },
+    {
+      "category_column": "I",
+      "tag": "수평형 누움 테이블"
+    },
+    {
+      "category_column": "G",
+      "tag": "순서 대기"
+    },
+    {
+      "category_column": "I",
+      "tag": "슈퍼카"
+    },
+    {
+      "category_column": "G",
+      "tag": "슈퍼카 영업총괄·VIP 고객"
+    },
+    {
+      "category_column": "I",
+      "tag": "스마트폰"
+    },
+    {
+      "category_column": "E",
+      "tag": "스카프"
+    },
+    {
+      "category_column": "I",
+      "tag": "스쿼트랙"
+    },
+    {
+      "category_column": "F",
+      "tag": "스크린 야구장"
+    },
+    {
+      "category_column": "H",
+      "tag": "스크린 역광"
+    },
+    {
+      "category_column": "I",
+      "tag": "스크린에 흐리게 재생되는 성인 영상"
+    },
+    {
+      "category_column": "I",
+      "tag": "스타벅스 라떼"
+    },
+    {
+      "category_column": "F",
+      "tag": "스타벅스 스타일 프랜차이즈 카페"
+    },
+    {
+      "category_column": "I",
+      "tag": "스타벅스 음료컵"
+    },
+    {
+      "category_column": "F",
+      "tag": "스타벅스 카페"
+    },
+    {
+      "category_column": "F",
+      "tag": "스타벅스 카페 홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "스타벅스풍 카페"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온 끝을 남성 엉덩이로 향함"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온 끝을 남성 엉덩이에 맞춤"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온 끝을 남성 입쪽에 맞춤"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온 아래로 늘어짐"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온 전면 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "스트랩온이 앞치마 아래로 보임"
+    },
+    {
+      "category_column": "E",
+      "tag": "스틸레토 힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "스파 슬리퍼 세트"
+    },
+    {
+      "category_column": "E",
+      "tag": "스판 소재 라운드걸 의상"
+    },
+    {
+      "category_column": "E",
+      "tag": "스페이드 귀걸이"
+    },
+    {
+      "category_column": "E",
+      "tag": "스포츠 브라"
+    },
+    {
+      "category_column": "I",
+      "tag": "스포츠카"
+    },
+    {
+      "category_column": "F",
+      "tag": "스포츠카 운전석"
+    },
+    {
+      "category_column": "G",
+      "tag": "스포츠카 차주"
+    },
+    {
+      "category_column": "F",
+      "tag": "스포트라이트"
+    },
+    {
+      "category_column": "I",
+      "tag": "스포트라이트"
+    },
+    {
+      "category_column": "I",
+      "tag": "슬라이딩 유리문"
+    },
+    {
+      "category_column": "E",
+      "tag": "슬리퍼"
+    },
+    {
+      "category_column": "H",
+      "tag": "슬리퍼 밖으로 양 뒤꿈치 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "슬리퍼에서 뒤꿈치 살짝 빠짐"
+    },
+    {
+      "category_column": "H",
+      "tag": "슬리퍼에서 발뒤꿈치 분리"
+    },
+    {
+      "category_column": "E",
+      "tag": "슬림핏 카라 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "슬림핏 하프집업 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "슬림핏 하프집업 플리스"
+    },
+    {
+      "category_column": "E",
+      "tag": "슬링샷 비키니"
+    },
+    {
+      "category_column": "I",
+      "tag": "승객 반사"
+    },
+    {
+      "category_column": "F",
+      "tag": "승마클럽"
+    },
+    {
+      "category_column": "F",
+      "tag": "승마클럽 회원 라운지"
+    },
+    {
+      "category_column": "G",
+      "tag": "승무원"
+    },
+    {
+      "category_column": "E",
+      "tag": "승무원 모자"
+    },
+    {
+      "category_column": "E",
+      "tag": "승무원 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "승무원 제복"
+    },
+    {
+      "category_column": "G",
+      "tag": "승무원·기장"
+    },
+    {
+      "category_column": "G",
+      "tag": "승무원·승객"
+    },
+    {
+      "category_column": "H",
+      "tag": "승무원석에 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "시스루 오프숄더 레이스 니트"
+    },
+    {
+      "category_column": "I",
+      "tag": "시안 인터페이스"
+    },
+    {
+      "category_column": "H",
+      "tag": "시험대 짧은 쪽이 남성을 향함"
+    },
+    {
+      "category_column": "I",
+      "tag": "식물"
+    },
+    {
+      "category_column": "G",
+      "tag": "신발 보여줌"
+    },
+    {
+      "category_column": "F",
+      "tag": "신발매장"
+    },
+    {
+      "category_column": "G",
+      "tag": "신발매장 직원"
+    },
+    {
+      "category_column": "E",
+      "tag": "신발매장 직원 유니폼"
+    },
+    {
+      "category_column": "H",
+      "tag": "신발을 얼굴 높이로 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "신부 남편 전방 배치"
+    },
+    {
+      "category_column": "H",
+      "tag": "신부 후방 배치"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내 공연장"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내 네온 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내 방갈로"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내 스크린 골프"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내 조명 전부 꺼짐"
+    },
+    {
+      "category_column": "F",
+      "tag": "실내외 조명 대비"
+    },
+    {
+      "category_column": "H",
+      "tag": "실루엣"
+    },
+    {
+      "category_column": "E",
+      "tag": "실버 시퀸 크롭 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "실크 스카프"
+    },
+    {
+      "category_column": "E",
+      "tag": "실크 페이스 베일"
+    },
+    {
+      "category_column": "I",
+      "tag": "실험 장비 벤치"
+    },
+    {
+      "category_column": "F",
+      "tag": "심야 녹음실 컨트롤룸"
+    },
+    {
+      "category_column": "F",
+      "tag": "심야 보드게임 카페"
+    },
+    {
+      "category_column": "F",
+      "tag": "심야 프라이빗 골프 카트"
+    },
+    {
+      "category_column": "F",
+      "tag": "심야 한국 편의점 내부"
+    },
+    {
+      "category_column": "I",
+      "tag": "십자가 격자무늬"
+    },
+    {
+      "category_column": "I",
+      "tag": "싱크대"
+    },
+    {
+      "category_column": "H",
+      "tag": "쓰리쿼터 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "쓰리쿼터 뷰"
+    },
+    {
+      "category_column": "H",
+      "tag": "쓰리쿼터 측면 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "아내"
+    },
+    {
+      "category_column": "G",
+      "tag": "아내 관찰"
+    },
+    {
+      "category_column": "H",
+      "tag": "아내 얼굴 비노출"
+    },
+    {
+      "category_column": "E",
+      "tag": "아내 우아한 검정 드레스"
+    },
+    {
+      "category_column": "H",
+      "tag": "아내 팔짱 끼고 남성 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "아내 한 손 문 가장자리 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "아내 화면 최전경 뒤·측면"
+    },
+    {
+      "category_column": "H",
+      "tag": "아내·남성·변호사 3단 깊이 배치"
+    },
+    {
+      "category_column": "G",
+      "tag": "아내가 들어와 현장 목격"
+    },
+    {
+      "category_column": "H",
+      "tag": "아래로 시선"
+    },
+    {
+      "category_column": "I",
+      "tag": "아몬드형 눈"
+    },
+    {
+      "category_column": "H",
+      "tag": "아이레벨"
+    },
+    {
+      "category_column": "F",
+      "tag": "아이보리 벽"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 소프트 라운지 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 스퀘어넥 피티드 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 실크 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 와플 스파 로브"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 크로셰 셔츠 커버업"
+    },
+    {
+      "category_column": "E",
+      "tag": "아이보리 터틀넥 울 니트"
+    },
+    {
+      "category_column": "I",
+      "tag": "아이스링크 대기석 벤치"
+    },
+    {
+      "category_column": "I",
+      "tag": "아이폰"
+    },
+    {
+      "category_column": "H",
+      "tag": "아이폰 스냅사진 느낌"
+    },
+    {
+      "category_column": "G",
+      "tag": "아이폰 촬영"
+    },
+    {
+      "category_column": "E",
+      "tag": "아주 짧은 하이라이즈 데님 쇼츠"
+    },
+    {
+      "category_column": "I",
+      "tag": "안내데스크"
+    },
+    {
+      "category_column": "G",
+      "tag": "안내데스크 직원"
+    },
+    {
+      "category_column": "E",
+      "tag": "안내데스크 직원 유니폼"
+    },
+    {
+      "category_column": "E",
+      "tag": "안대"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 3인"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드 대면"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드 비서"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드 여성 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 왼손 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 정면 전신"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드 중심"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 함장 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 화면 정중앙"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 화면 중앙 오른쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드 화면 중앙 정면 전신"
+    },
+    {
+      "category_column": "G",
+      "tag": "안드로이드·오크"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드가 두 사람 사이에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드가 함장 바로 옆"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드는 함장 바로 옆"
+    },
+    {
+      "category_column": "H",
+      "tag": "안드로이드와 남성 정면 대치"
+    },
+    {
+      "category_column": "G",
+      "tag": "앉은 남성들"
+    },
+    {
+      "category_column": "G",
+      "tag": "알비노 백인 남성"
+    },
+    {
+      "category_column": "F",
+      "tag": "알파인 호텔 발코니"
+    },
+    {
+      "category_column": "I",
+      "tag": "앞좌석 풋레스트"
+    },
+    {
+      "category_column": "H",
+      "tag": "앞좌석 풋레스트 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "앞좌석 풋레스트 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "앞치마"
+    },
+    {
+      "category_column": "H",
+      "tag": "앞치마 아래 스트랩온 보임"
+    },
+    {
+      "category_column": "E",
+      "tag": "앞치마 포켓"
+    },
+    {
+      "category_column": "I",
+      "tag": "애쉬브라운 반묶음"
+    },
+    {
+      "category_column": "F",
+      "tag": "야간 거리 보이는 큰 유리창"
+    },
+    {
+      "category_column": "F",
+      "tag": "야간 고급 회장 집무실"
+    },
+    {
+      "category_column": "F",
+      "tag": "야간 다크 판타지 오크 왕좌 홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "야간 해수욕장 서술"
+    },
+    {
+      "category_column": "H",
+      "tag": "야릇한 미소"
+    },
+    {
+      "category_column": "F",
+      "tag": "야외 피트니스 대회"
+    },
+    {
+      "category_column": "F",
+      "tag": "야외 해변"
+    },
+    {
+      "category_column": "F",
+      "tag": "야외 해수욕장"
+    },
+    {
+      "category_column": "F",
+      "tag": "약국"
+    },
+    {
+      "category_column": "F",
+      "tag": "약국 조제 카운터"
+    },
+    {
+      "category_column": "G",
+      "tag": "약사"
+    },
+    {
+      "category_column": "E",
+      "tag": "약사 가운"
+    },
+    {
+      "category_column": "H",
+      "tag": "약한 광각 왜곡"
+    },
+    {
+      "category_column": "H",
+      "tag": "약한 측면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "약한 하이앵글"
+    },
+    {
+      "category_column": "E",
+      "tag": "얇은 스파게티 스트랩"
+    },
+    {
+      "category_column": "E",
+      "tag": "얇은 어깨끈"
+    },
+    {
+      "category_column": "F",
+      "tag": "얇은 연기"
+    },
+    {
+      "category_column": "H",
+      "tag": "양 무릎 높게 굽혀 좌우 넓게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양 무릎 높이 굽히고 좌우 넓게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양 무릎을 바닥에 댐"
+    },
+    {
+      "category_column": "H",
+      "tag": "양무릎 바깥으로 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 공중에 뜸"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 PC방 책상에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 골프 카트 스티어링 대시 중앙에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 레그프레스 발판에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 링크 난간에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 믹싱 콘솔 중앙에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 바 카운터에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 벽걸이 화장대 중앙에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 볼링공 리턴대에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 앞좌석 풋레스트에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 원목 보드게임 테이블 중앙에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 카페 테이블 중앙에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 뒤꿈치 페디큐어 발받침대에 붙여 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 모아 서기"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 모음"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 바닥 고정·발끝 바깥쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 바닥 지지"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 슬리퍼 안 까치발"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 어깨보다 넓게 벌리기"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 어깨보다 넓게 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발 하이힐 바닥 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발을 모아 남성 속옷 위에 접촉"
+    },
+    {
+      "category_column": "H",
+      "tag": "양발을 에스컬레이터 한 계단에 모음"
+    },
+    {
+      "category_column": "H",
+      "tag": "양손으로 열린 창문 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "양손으로 창틀 아래 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "양손으로 카운터 벽면을 쓰다듬음"
+    },
+    {
+      "category_column": "H",
+      "tag": "양손으로 해먹 잡음"
+    },
+    {
+      "category_column": "I",
+      "tag": "양쪽 데스크 지지대"
+    },
+    {
+      "category_column": "H",
+      "tag": "얕은 심도"
+    },
+    {
+      "category_column": "I",
+      "tag": "어깨 길이 검정 단발"
+    },
+    {
+      "category_column": "H",
+      "tag": "어깨 너머 뒤돌아보기"
+    },
+    {
+      "category_column": "E",
+      "tag": "어깨 흘러내린 넓은 목둘레"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 골프 페어웨이 배경"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 공연장"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 금속 선실"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 기내"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 녹음실 배경"
+    },
+    {
+      "category_column": "E",
+      "tag": "어두운 무릎길이 펜슬스커트"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 문틀"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 밤"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 배경"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 벽과 문"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 보드게임 카페 배경"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 브러시드 메탈 벽"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 석조 복도"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 실내"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 실내 볼링장"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 실내 아이스링크"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 원목 벽"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 주변부 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 태닝실"
+    },
+    {
+      "category_column": "F",
+      "tag": "어두운 패널벽"
+    },
+    {
+      "category_column": "I",
+      "tag": "얼굴 높이 구멍"
+    },
+    {
+      "category_column": "H",
+      "tag": "얼굴 미식별"
+    },
+    {
+      "category_column": "H",
+      "tag": "얼굴 어둡게"
+    },
+    {
+      "category_column": "H",
+      "tag": "얼굴·상반신 어둡게 유지"
+    },
+    {
+      "category_column": "H",
+      "tag": "얼굴을 구멍 가까이"
+    },
+    {
+      "category_column": "H",
+      "tag": "얼굴을 오른쪽 유리벽 구멍 가까이"
+    },
+    {
+      "category_column": "H",
+      "tag": "엄지발가락 끝 맞댐"
+    },
+    {
+      "category_column": "C",
+      "tag": "엉덩이"
+    },
+    {
+      "category_column": "H",
+      "tag": "엉덩이로 남성 얼굴을 벽쪽으로 누름"
+    },
+    {
+      "category_column": "H",
+      "tag": "엉덩이를 뒤로 뺌"
+    },
+    {
+      "category_column": "H",
+      "tag": "엉덩이를 옆으로 뺌"
+    },
+    {
+      "category_column": "H",
+      "tag": "엉덩이를 좌석 앞으로 뺌"
+    },
+    {
+      "category_column": "F",
+      "tag": "에스컬레이터"
+    },
+    {
+      "category_column": "G",
+      "tag": "에스컬레이터 이동"
+    },
+    {
+      "category_column": "I",
+      "tag": "에스프레소 머신"
+    },
+    {
+      "category_column": "F",
+      "tag": "에스프레소 바"
+    },
+    {
+      "category_column": "E",
+      "tag": "에코백"
+    },
+    {
+      "category_column": "I",
+      "tag": "엘리베이터 문"
+    },
+    {
+      "category_column": "F",
+      "tag": "엘리베이터 밖 대기 공간"
+    },
+    {
+      "category_column": "I",
+      "tag": "엘리베이터 반개방 문"
+    },
+    {
+      "category_column": "F",
+      "tag": "엘리베이터 외부 대기 공간"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 검정 시스루 블라우스"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 게이밍 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 겨드랑이 노출 포즈"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 경찰관·상급 경찰관"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 고개 관중 쪽으로 돌려 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 고개 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 고개만 뒤로 돌려 군중 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 고개만 어깨 너머로 돌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 골반 높이 카메라"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 골반 장착물 강조"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 골프 카트 시트에 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 관중"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 관중 환호"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 기장 맞이"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 뒤 깊은 와이드 스쿼트"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 뒤 바닥에 무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 뒤 반걸음 거리"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 바로 앞"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 바로 앞에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 벌린 다리 사이 깊은 스쿼트"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 직접 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성 쪽으로 몸 향함"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 남성을 넘어 카메라 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 네발기기 자세"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 높은 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 높은 카페 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 누움"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 눈 감음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 다른 손 안내 제스처"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 다른 손으로 외부 압박"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 다리가 남성의 하체로 뻗음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 단독"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 닫힌 운전석 문 바로 옆 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 대기석 벤치에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 데스크에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 두 다리 가지런히 모으기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 두 발 가지런히 모음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 뒤쪽 아래로 고개 돌려봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 뒷모습 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 뒷짐"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 등·맨발바닥 카메라 향함"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 딜러 흰 블라우스"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 레그프레스 시트에 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 맨발"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 머리부터 슬리퍼까지 전신 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 무릎 굽힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 무릎 높게 굽힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 바 스툴에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 바의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 반쯤 내리깐 눈과 은밀한 미소"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 반쯤 내리깐 눈으로 남성 응시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 발가락·앞꿈치 쪼리 안 바닥 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 발이 남성 하체 위에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 배경 벤치 가장자리에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 배경 중앙 책상 앞 가장자리 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 배경 중앙 철제 취조 테이블 앞 가장자리 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 배경 중앙 흰 대리석 책상 가장자리 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 배경 침대 앞 가장자리 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 변호사 배경 중앙 흰 대리석 책상 가장자리 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 변호사·남성 회장"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 볼링장 의자에 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 비서·남성 회장"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 사타구니 남성 엉덩이에 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 살롱 의자에 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 상급자 제압"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 상체 남성 쪽으로 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 상체 살짝 앞으로 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 상체 약간 앞으로 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 상체 오크 쪽 약간 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 상체 차량 내부"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손 남성 항문 외부에 접촉"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손 남성 항문에 접촉"
+    },
+    {
+      "category_column": "D",
+      "tag": "여성 손은 남성 골반 부근"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손이 남성 등에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손이 남성 속옷 위에 놓임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손이 남성 팬티 위에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 손이 남성의 항문 부근에 위치"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 수감자·교도관"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 스트랩온 위로 몸 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 아내 뒷모습 왼쪽 아래"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 아래 남성"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 아래 남성"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 암살자·오크 왕"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 약한 측면 자세"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 얇은 흰색 쉬폰 슬립 미니드레스"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양발 바닥 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양발 하이힐 바닥 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양발 한 에스컬레이터 계단에 모음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양발을 남성 팬티 위에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 남성 엉덩이 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 스트랩온 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 엉덩이 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 자신의 허벅지 위"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 전면 장착물 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 책상 뒤에 짚음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 허리에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손 허벅지 위"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양손으로 턱 괴기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양팔 들어 뒤통수에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 양팔 아래 자연스럽게"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 얼굴 구멍 가까이"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 얼굴 남성 엉덩이 근접"
+    },
+    {
+      "category_column": "D",
+      "tag": "여성 얼굴 남성 하체 가까이 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 얼굴 오른쪽 위"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 엉덩이 낮게 내려감"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 엔지니어 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 엘리베이터 문 근처 정면 서기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 엘리베이터 안쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 옆에 남성 착석"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 옆으로 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 오른쪽에 남성 배치"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 오른팔 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 오크 바로 앞에서 무릎 꿇기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 오크 오른쪽 옆 밀착 무릎 꿇기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 운전석에 옆으로 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 의류"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 의사"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 의사가운"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 의자 일부만 보임"
+    },
+    {
+      "category_column": "C",
+      "tag": "여성 자위"
+    },
+    {
+      "category_column": "I",
+      "tag": "여성 자위 영상"
+    },
+    {
+      "category_column": "D",
+      "tag": "여성 자위 중"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 정면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 정면 응시"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 제3자 등장"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 좌우에 남성 배치"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 주도"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 중심"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 중심 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 중앙 중경 전신"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 차창 안 남성 내려다봄"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 차콜 테일러드 블레이저"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 참석자"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 참석자는 전경 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 측면 회전"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 침대 위 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 카메라에 등을 보임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 카페 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 카페 홀 바닥에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 쿠션 체어에 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 타이트한 검정 크롭탑"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 턱 내리고 남성 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 턱 살짝 내림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 팔 자연스럽게 내림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 팔꿈치 베드 지지"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 퍼스트클래스 좌석에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 페디큐어 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 하반신 화면 오른쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 하이힐 양발 바닥 고정"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한 손 서류 제시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한 손 오크 사타구니"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한 손 차량 지붕에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한 손에 횃불"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한 손으로 남성 머리 붙잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 한쪽 엉덩이에 체중 싣기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 항공기 문 앞"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 허리 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 허벅지 근육 강조"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 헤어디자이너"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 호출"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 오른쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 오른쪽 중앙"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 왼쪽"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 정중앙"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 중앙 정면 서기"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 중앙보다 약간 오른쪽 중경 전신"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 하단 중앙"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 화면 하단 중앙 전경"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 환자 앞 정면 전신"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 회장"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성 회장 정장"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 회장이 뷰어 인지"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 후면 중앙"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성 후면 중앙 책상 앞 가장자리 앉음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성 휴머노이드"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성·남성 모두 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성·오크 왕"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성과 오크 신체 접촉 없음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성에게 등을 기댄 남성"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성은 남성 뒤에 옆으로 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성은 남성에게 관심 없음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성은 바 의자에 완전히 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성은 뷰어를 향해 공손하게 인사"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성은 빨간 스포츠카 차주"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성은 태닝샵 손님"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성은 휴대폰에 집중"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성을 향한 30도 회전 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성의 손이 남성 속옷 안으로 들어감"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성의 장난스러운 표정"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 감옥 복도 중앙에 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성이 겨드랑이 핥기를 허용"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 고개만 뒤돌아봄"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성이 관찰자 인지"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 뒤통수 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 머리 몸쪽으로 당김"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 머리 잡아당김"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 머리 잡음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성이 남성 시선을 알아챔"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 엉덩이 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 쳐다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성 하체로 발 뻗음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 남성을 향해 허리 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 뒤쪽 아래로 살짝 돌아봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 몸을 살짝 옆으로 돌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 발 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 빨대로 음료를 마심"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 상체 살짝 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 상체 앞으로 숙임"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성이 성적 행동 지시"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 수조 유리에 몸 밀착"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 엉덩이 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 엘리베이터 내부에 서 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 좌석 등받이 양쪽 상단을 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 카페 홀에 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성이 포로가 된 오크 왕 정면에 위치"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 한쪽 무릎 굽힘"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 허리 숙여 남성 다리 사이로 접근"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 허벅지 양쪽 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성이 화면 왼쪽에 위치"
+    },
+    {
+      "category_column": "E",
+      "tag": "여성지배 의상"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성형 로봇 문 앞에 서 있음"
+    },
+    {
+      "category_column": "G",
+      "tag": "여성형 안드로이드가 뷰어를 안내"
+    },
+    {
+      "category_column": "H",
+      "tag": "여성형 안드로이드가 족장을 내려다봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "역동적 카메라 앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "연결된 두 연구실"
+    },
+    {
+      "category_column": "E",
+      "tag": "연한 아이섀도"
+    },
+    {
+      "category_column": "F",
+      "tag": "열기구 탑승 전 VIP 라운지"
+    },
+    {
+      "category_column": "I",
+      "tag": "열대어"
+    },
+    {
+      "category_column": "F",
+      "tag": "열대어 배경"
+    },
+    {
+      "category_column": "H",
+      "tag": "열린 문 안에 인물 착석"
+    },
+    {
+      "category_column": "G",
+      "tag": "열린 문으로 다른 연구실 연결"
+    },
+    {
+      "category_column": "E",
+      "tag": "열린 의사 가운"
+    },
+    {
+      "category_column": "H",
+      "tag": "열린 테이블 아래 공간"
+    },
+    {
+      "category_column": "I",
+      "tag": "열린 항공기 문"
+    },
+    {
+      "category_column": "H",
+      "tag": "열쇠구멍 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "열쇠구멍 시점"
+    },
+    {
+      "category_column": "F",
+      "tag": "열차 내부"
+    },
+    {
+      "category_column": "I",
+      "tag": "열차 천장 손잡이"
+    },
+    {
+      "category_column": "F",
+      "tag": "영업 종료 후 닫힌 카페"
+    },
+    {
+      "category_column": "F",
+      "tag": "영업 종료된 네일샵"
+    },
+    {
+      "category_column": "F",
+      "tag": "영업 종료된 볼링장"
+    },
+    {
+      "category_column": "F",
+      "tag": "영화관"
+    },
+    {
+      "category_column": "F",
+      "tag": "영화관 실내 티켓 판매점"
+    },
+    {
+      "category_column": "H",
+      "tag": "옆으로 선 여성"
+    },
+    {
+      "category_column": "I",
+      "tag": "오디오 믹싱 콘솔"
+    },
+    {
+      "category_column": "H",
+      "tag": "오버더숄더 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "오버더숄더 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "오버핏 후드티"
+    },
+    {
+      "category_column": "G",
+      "tag": "오크 경계"
+    },
+    {
+      "category_column": "I",
+      "tag": "오크 경비"
+    },
+    {
+      "category_column": "E",
+      "tag": "오크 군주 가죽·철제 갑옷"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 두 손목 머리 위 철봉 결박"
+    },
+    {
+      "category_column": "F",
+      "tag": "오크 마을 맑은 하늘"
+    },
+    {
+      "category_column": "G",
+      "tag": "오크 마을 주민들이 아래에서 지켜봄"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 왕 단상 중앙 왼쪽 무릎 꿇기"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 왕 단상 중앙 정면 무릎 꿇기"
+    },
+    {
+      "category_column": "F",
+      "tag": "오크 요새 알현실"
+    },
+    {
+      "category_column": "G",
+      "tag": "오크 정복"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 족장 뒤 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 족장 무릎 꿇음"
+    },
+    {
+      "category_column": "H",
+      "tag": "오크 측면에서 여성 관찰"
+    },
+    {
+      "category_column": "G",
+      "tag": "오크 패배"
+    },
+    {
+      "category_column": "G",
+      "tag": "오크 항복"
+    },
+    {
+      "category_column": "E",
+      "tag": "오토바이 배달기사 복장"
+    },
+    {
+      "category_column": "E",
+      "tag": "오토바이 헬멧"
+    },
+    {
+      "category_column": "E",
+      "tag": "오프숄더 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "오프숄더 레이스 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "오프숄더 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "오프숄더 털 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "오픈토 스틸레토 힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "오픈토 하이힐"
+    },
+    {
+      "category_column": "F",
+      "tag": "와이너리"
+    },
+    {
+      "category_column": "F",
+      "tag": "와이너리 지하 셀러"
+    },
+    {
+      "category_column": "E",
+      "tag": "와이드 팬츠 세트"
+    },
+    {
+      "category_column": "F",
+      "tag": "와인바"
+    },
+    {
+      "category_column": "F",
+      "tag": "와인셀러"
+    },
+    {
+      "category_column": "F",
+      "tag": "와인셀러 테이스팅룸"
+    },
+    {
+      "category_column": "F",
+      "tag": "왕좌 홀 검정 철봉"
+    },
+    {
+      "category_column": "F",
+      "tag": "왕좌 홀 단상 계단"
+    },
+    {
+      "category_column": "F",
+      "tag": "왕좌 홀 천장 쇠사슬"
+    },
+    {
+      "category_column": "I",
+      "tag": "우주 캡슐"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주 캡슐 반쯤 열린 해치"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주선 개인 가동 시험실"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주선 개인 선실"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주선 개인 침실"
+    },
+    {
+      "category_column": "I",
+      "tag": "우주선 해치"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주선 회의실"
+    },
+    {
+      "category_column": "F",
+      "tag": "우주선 휴머노이드 가동실"
+    },
+    {
+      "category_column": "G",
+      "tag": "운동 중인 회원들"
+    },
+    {
+      "category_column": "I",
+      "tag": "운동화 고정 클램프"
+    },
+    {
+      "category_column": "I",
+      "tag": "운전대"
+    },
+    {
+      "category_column": "H",
+      "tag": "운전석 앞쪽에서 보는 3/4 전면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "운전석 착석"
+    },
+    {
+      "category_column": "G",
+      "tag": "원두 납품"
+    },
+    {
+      "category_column": "I",
+      "tag": "원목 가구"
+    },
+    {
+      "category_column": "H",
+      "tag": "원목 보드게임 테이블 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "원목 테이블 반사광"
+    },
+    {
+      "category_column": "H",
+      "tag": "원탁이 안드로이드 하체 부분 가림"
+    },
+    {
+      "category_column": "E",
+      "tag": "원피스"
+    },
+    {
+      "category_column": "I",
+      "tag": "원형 글로리홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "원형 무대"
+    },
+    {
+      "category_column": "H",
+      "tag": "원형 식탁이 비서 하체 일부 가림"
+    },
+    {
+      "category_column": "I",
+      "tag": "원형 의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "원형 테이블"
+    },
+    {
+      "category_column": "H",
+      "tag": "원형 테이블 화면 왼쪽"
+    },
+    {
+      "category_column": "I",
+      "tag": "원형 회의 테이블"
+    },
+    {
+      "category_column": "H",
+      "tag": "웨이스트샷"
+    },
+    {
+      "category_column": "E",
+      "tag": "유광 플럼프 립"
+    },
+    {
+      "category_column": "H",
+      "tag": "유리 반사"
+    },
+    {
+      "category_column": "I",
+      "tag": "유리 칸막이"
+    },
+    {
+      "category_column": "I",
+      "tag": "유리 테이블"
+    },
+    {
+      "category_column": "I",
+      "tag": "유리문"
+    },
+    {
+      "category_column": "H",
+      "tag": "유리문 그림자 반사"
+    },
+    {
+      "category_column": "H",
+      "tag": "유리문 너머 시점"
+    },
+    {
+      "category_column": "H",
+      "tag": "유리바닥 마름모꼴 구도"
+    },
+    {
+      "category_column": "I",
+      "tag": "유리벽 원형 글로리홀"
+    },
+    {
+      "category_column": "G",
+      "tag": "유리창 뒤 관객"
+    },
+    {
+      "category_column": "G",
+      "tag": "유리창에 남성 승객 반사"
+    },
+    {
+      "category_column": "I",
+      "tag": "유산소 운동기구"
+    },
+    {
+      "category_column": "G",
+      "tag": "유혹"
+    },
+    {
+      "category_column": "H",
+      "tag": "유혹적 미소"
+    },
+    {
+      "category_column": "G",
+      "tag": "은밀한 상황"
+    },
+    {
+      "category_column": "G",
+      "tag": "은밀한 성적 상황"
+    },
+    {
+      "category_column": "C",
+      "tag": "은밀한 성행위"
+    },
+    {
+      "category_column": "G",
+      "tag": "은밀한 시선"
+    },
+    {
+      "category_column": "I",
+      "tag": "은색 투척 단검"
+    },
+    {
+      "category_column": "E",
+      "tag": "은색 허리 벨트"
+    },
+    {
+      "category_column": "F",
+      "tag": "은색·흰색 미니멀 인테리어"
+    },
+    {
+      "category_column": "F",
+      "tag": "은은한 기내 네온 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "은은한 네온 라이팅"
+    },
+    {
+      "category_column": "F",
+      "tag": "은은한 바닥 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "은은한 카지노 조명"
+    },
+    {
+      "category_column": "I",
+      "tag": "음료 냉장고"
+    },
+    {
+      "category_column": "G",
+      "tag": "의도 인지"
+    },
+    {
+      "category_column": "I",
+      "tag": "의료 기구 트레이"
+    },
+    {
+      "category_column": "I",
+      "tag": "의료 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "의사 가운"
+    },
+    {
+      "category_column": "I",
+      "tag": "의자"
+    },
+    {
+      "category_column": "I",
+      "tag": "의자 팔걸이"
+    },
+    {
+      "category_column": "H",
+      "tag": "의자에 거꾸로 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "의자에 깊게 기대어 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "의자에 앉음"
+    },
+    {
+      "category_column": "E",
+      "tag": "이발 케이프"
+    },
+    {
+      "category_column": "F",
+      "tag": "이발소"
+    },
+    {
+      "category_column": "I",
+      "tag": "인간형 안드로이드 머리"
+    },
+    {
+      "category_column": "E",
+      "tag": "인명구조대 의상"
+    },
+    {
+      "category_column": "H",
+      "tag": "인물 간 거리 구분"
+    },
+    {
+      "category_column": "H",
+      "tag": "인물 블러"
+    },
+    {
+      "category_column": "H",
+      "tag": "인물 사이 반미터 간격"
+    },
+    {
+      "category_column": "F",
+      "tag": "인접 차량 운전석"
+    },
+    {
+      "category_column": "F",
+      "tag": "인피니티풀 가장자리"
+    },
+    {
+      "category_column": "G",
+      "tag": "일반 손님 아님"
+    },
+    {
+      "category_column": "F",
+      "tag": "일본 전통 다다미 가옥"
+    },
+    {
+      "category_column": "F",
+      "tag": "일본식 실내 방"
+    },
+    {
+      "category_column": "G",
+      "tag": "일상 이동"
+    },
+    {
+      "category_column": "F",
+      "tag": "임상 의료 공간"
+    },
+    {
+      "category_column": "F",
+      "tag": "입국심사 부스"
+    },
+    {
+      "category_column": "G",
+      "tag": "입국심사관"
+    },
+    {
+      "category_column": "H",
+      "tag": "입술 벌림"
+    },
+    {
+      "category_column": "I",
+      "tag": "자동차"
+    },
+    {
+      "category_column": "G",
+      "tag": "자동차 정비"
+    },
+    {
+      "category_column": "G",
+      "tag": "자동차 정비공"
+    },
+    {
+      "category_column": "G",
+      "tag": "자세 교육"
+    },
+    {
+      "category_column": "F",
+      "tag": "자연광"
+    },
+    {
+      "category_column": "F",
+      "tag": "자연광 카페 내부"
+    },
+    {
+      "category_column": "I",
+      "tag": "자연스러운 C컬 단발"
+    },
+    {
+      "category_column": "G",
+      "tag": "자위 목적"
+    },
+    {
+      "category_column": "I",
+      "tag": "작업 테이블"
+    },
+    {
+      "category_column": "G",
+      "tag": "잠입"
+    },
+    {
+      "category_column": "H",
+      "tag": "장난스러운 응시"
+    },
+    {
+      "category_column": "E",
+      "tag": "장식 귀걸이"
+    },
+    {
+      "category_column": "F",
+      "tag": "재즈바"
+    },
+    {
+      "category_column": "H",
+      "tag": "전경 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "전경 오크 족장 뒷모습"
+    },
+    {
+      "category_column": "H",
+      "tag": "전경·중경 구분"
+    },
+    {
+      "category_column": "C",
+      "tag": "전립선"
+    },
+    {
+      "category_column": "I",
+      "tag": "전립선 검사대"
+    },
+    {
+      "category_column": "F",
+      "tag": "전립선 검사실"
+    },
+    {
+      "category_column": "G",
+      "tag": "전립선 마사지 기대"
+    },
+    {
+      "category_column": "D",
+      "tag": "전립선 마사지 수행"
+    },
+    {
+      "category_column": "G",
+      "tag": "전립선 마사지 안내"
+    },
+    {
+      "category_column": "D",
+      "tag": "전립선 마사지 암시"
+    },
+    {
+      "category_column": "D",
+      "tag": "전립선 자극 암시"
+    },
+    {
+      "category_column": "H",
+      "tag": "전면 사선 구도"
+    },
+    {
+      "category_column": "I",
+      "tag": "전면 장착물"
+    },
+    {
+      "category_column": "I",
+      "tag": "전문 미용가위"
+    },
+    {
+      "category_column": "H",
+      "tag": "전신 구도"
+    },
+    {
+      "category_column": "F",
+      "tag": "전용기 객실 중앙 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "전용기 주간 자연광"
+    },
+    {
+      "category_column": "G",
+      "tag": "접수 간호사"
+    },
+    {
+      "category_column": "I",
+      "tag": "접수대"
+    },
+    {
+      "category_column": "H",
+      "tag": "접수대 위에 앉음"
+    },
+    {
+      "category_column": "I",
+      "tag": "접이식 테이블"
+    },
+    {
+      "category_column": "H",
+      "tag": "정면 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "정면 대칭 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "정면 전신 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "정비공"
+    },
+    {
+      "category_column": "H",
+      "tag": "정비공 POV"
+    },
+    {
+      "category_column": "H",
+      "tag": "정비공 뒷모습 화면 왼쪽 전경"
+    },
+    {
+      "category_column": "E",
+      "tag": "정비공 작업복"
+    },
+    {
+      "category_column": "I",
+      "tag": "정비용 카트"
+    },
+    {
+      "category_column": "E",
+      "tag": "제복 스커트 올라감"
+    },
+    {
+      "category_column": "G",
+      "tag": "제압"
+    },
+    {
+      "category_column": "G",
+      "tag": "조롱"
+    },
+    {
+      "category_column": "I",
+      "tag": "조리대"
+    },
+    {
+      "category_column": "F",
+      "tag": "조명 펜던트"
+    },
+    {
+      "category_column": "I",
+      "tag": "조제 카운터"
+    },
+    {
+      "category_column": "E",
+      "tag": "조종사 모자"
+    },
+    {
+      "category_column": "I",
+      "tag": "좁은 코끝"
+    },
+    {
+      "category_column": "C",
+      "tag": "종아리"
+    },
+    {
+      "category_column": "H",
+      "tag": "종아리 높이 카메라"
+    },
+    {
+      "category_column": "H",
+      "tag": "종아리 잡음"
+    },
+    {
+      "category_column": "I",
+      "tag": "종이"
+    },
+    {
+      "category_column": "I",
+      "tag": "좌석 등받이"
+    },
+    {
+      "category_column": "F",
+      "tag": "좌측 세로 철창"
+    },
+    {
+      "category_column": "F",
+      "tag": "주간 고급 펜트하우스 안방"
+    },
+    {
+      "category_column": "F",
+      "tag": "주간 고급 헤어살롱"
+    },
+    {
+      "category_column": "F",
+      "tag": "주간 고급 호텔 프레지덴셜 스위트"
+    },
+    {
+      "category_column": "F",
+      "tag": "주간 고급 회장 집무실"
+    },
+    {
+      "category_column": "F",
+      "tag": "주간 초고급 슈퍼카 VIP 전시장"
+    },
+    {
+      "category_column": "E",
+      "tag": "주름치마"
+    },
+    {
+      "category_column": "I",
+      "tag": "주방 선반"
+    },
+    {
+      "category_column": "G",
+      "tag": "주방 선반 살핌"
+    },
+    {
+      "category_column": "G",
+      "tag": "주변 무관심"
+    },
+    {
+      "category_column": "G",
+      "tag": "주변 손님"
+    },
+    {
+      "category_column": "H",
+      "tag": "주변부 어둡게"
+    },
+    {
+      "category_column": "H",
+      "tag": "중경 와이드 풀바디"
+    },
+    {
+      "category_column": "I",
+      "tag": "중앙 가동 플랫폼"
+    },
+    {
+      "category_column": "H",
+      "tag": "중앙 여성형 안드로이드 정면 전신"
+    },
+    {
+      "category_column": "I",
+      "tag": "지갑"
+    },
+    {
+      "category_column": "I",
+      "tag": "지퍼형 텐트 출입구"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철 객실"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철 계단"
+    },
+    {
+      "category_column": "I",
+      "tag": "지하철 손잡이"
+    },
+    {
+      "category_column": "H",
+      "tag": "지하철 손잡이 잡기"
+    },
+    {
+      "category_column": "H",
+      "tag": "지하철 안에 서 있음"
+    },
+    {
+      "category_column": "I",
+      "tag": "지하철 유리"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철 유리창"
+    },
+    {
+      "category_column": "I",
+      "tag": "지하철 좌석"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철역"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철역 상행 에스컬레이터"
+    },
+    {
+      "category_column": "F",
+      "tag": "지하철역 타일벽"
+    },
+    {
+      "category_column": "I",
+      "tag": "진료 차트"
+    },
+    {
+      "category_column": "F",
+      "tag": "진료실 밝은 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "진료실 스테인리스 기구 트레이"
+    },
+    {
+      "category_column": "F",
+      "tag": "진료실 흰색 벽"
+    },
+    {
+      "category_column": "H",
+      "tag": "진열대에서 한 손 상품 집기"
+    },
+    {
+      "category_column": "E",
+      "tag": "진주 목걸이"
+    },
+    {
+      "category_column": "E",
+      "tag": "진주빛 흰색 광택 암살자 점프수트"
+    },
+    {
+      "category_column": "G",
+      "tag": "질투"
+    },
+    {
+      "category_column": "G",
+      "tag": "질투·선망"
+    },
+    {
+      "category_column": "I",
+      "tag": "짐 검사 바구니"
+    },
+    {
+      "category_column": "F",
+      "tag": "집무실 냉청색 테두리 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "집중 스포트라이트"
+    },
+    {
+      "category_column": "H",
+      "tag": "짙은 태닝 발등과 창백한 발바닥 측면 대비"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 검정 미니스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 검정 플리츠스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 제복 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 주름 치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 청바지"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "짧은 팬츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "쪼리"
+    },
+    {
+      "category_column": "H",
+      "tag": "차 안에서 올려다본 구도"
+    },
+    {
+      "category_column": "F",
+      "tag": "차가운 청보라 횃불 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "차가운 형광등 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "차가운 흰색 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "차갑고 거친 경찰 취조실"
+    },
+    {
+      "category_column": "G",
+      "tag": "차량 내 관찰"
+    },
+    {
+      "category_column": "H",
+      "tag": "차량 도장·새틴 광택 반사"
+    },
+    {
+      "category_column": "I",
+      "tag": "차량 시트 위 옷가지"
+    },
+    {
+      "category_column": "I",
+      "tag": "차량 창문"
+    },
+    {
+      "category_column": "I",
+      "tag": "차문"
+    },
+    {
+      "category_column": "G",
+      "tag": "차종 설명"
+    },
+    {
+      "category_column": "E",
+      "tag": "차콜 리브드 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "차콜 테일러드 블레이저"
+    },
+    {
+      "category_column": "I",
+      "tag": "착륙 증기"
+    },
+    {
+      "category_column": "F",
+      "tag": "착륙한 우주 캡슐"
+    },
+    {
+      "category_column": "I",
+      "tag": "창문"
+    },
+    {
+      "category_column": "F",
+      "tag": "창문이 활짝 열림"
+    },
+    {
+      "category_column": "F",
+      "tag": "창밖 맑은 푸른 하늘"
+    },
+    {
+      "category_column": "F",
+      "tag": "창밖 어두운 빈 거리"
+    },
+    {
+      "category_column": "I",
+      "tag": "창틀"
+    },
+    {
+      "category_column": "F",
+      "tag": "창틀 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "채소"
+    },
+    {
+      "category_column": "I",
+      "tag": "책"
+    },
+    {
+      "category_column": "I",
+      "tag": "책상"
+    },
+    {
+      "category_column": "H",
+      "tag": "책상 앞 가장자리 착석"
+    },
+    {
+      "category_column": "H",
+      "tag": "천장 구석 CCTV 시점"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장 단일 강광등"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장 스포트라이트"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장 양측 스포트라이트"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장 집중 스포트라이트"
+    },
+    {
+      "category_column": "I",
+      "tag": "천장형 U자 갠트리"
+    },
+    {
+      "category_column": "I",
+      "tag": "천장형 파마 기계"
+    },
+    {
+      "category_column": "F",
+      "tag": "천장형 파마기 후드"
+    },
+    {
+      "category_column": "I",
+      "tag": "철봉"
+    },
+    {
+      "category_column": "I",
+      "tag": "철제 2층 침대"
+    },
+    {
+      "category_column": "I",
+      "tag": "철제 왕좌"
+    },
+    {
+      "category_column": "I",
+      "tag": "철제 취조 테이블"
+    },
+    {
+      "category_column": "F",
+      "tag": "철창 왼편 경계"
+    },
+    {
+      "category_column": "H",
+      "tag": "철창으로 두 번째 남성 신체 일부 가림"
+    },
+    {
+      "category_column": "H",
+      "tag": "첫 번째 남성 CCTV 카메라 올려다봄"
+    },
+    {
+      "category_column": "E",
+      "tag": "첫 번째 남성 남색 교정 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "첫 번째 남성 바지 무릎까지 내림"
+    },
+    {
+      "category_column": "E",
+      "tag": "첫 번째 남성 팔각 순찰모"
+    },
+    {
+      "category_column": "H",
+      "tag": "첫 번째 남성 화면 하단 네발기기"
+    },
+    {
+      "category_column": "H",
+      "tag": "첫 설정 남성 앞으로 몸 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "첫 설정 여성 남성 골반 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "첫 설정 측면 3/4 전신"
+    },
+    {
+      "category_column": "F",
+      "tag": "청보라빛 횃불 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "청색 오크 족장 의식용 갑옷"
+    },
+    {
+      "category_column": "F",
+      "tag": "청색·보라색 실내 조명"
+    },
+    {
+      "category_column": "I",
+      "tag": "청진기"
+    },
+    {
+      "category_column": "F",
+      "tag": "청회색 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "체크 미니스커트"
+    },
+    {
+      "category_column": "F",
+      "tag": "체크무늬 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "초대형 후면 화면"
+    },
+    {
+      "category_column": "F",
+      "tag": "최신식 실내 자동차 정비소"
+    },
+    {
+      "category_column": "G",
+      "tag": "최초 가동 평가"
+    },
+    {
+      "category_column": "I",
+      "tag": "출국 안내 전광판"
+    },
+    {
+      "category_column": "E",
+      "tag": "출입국심사관 제복"
+    },
+    {
+      "category_column": "H",
+      "tag": "출입문이 여성을 프레이밍"
+    },
+    {
+      "category_column": "F",
+      "tag": "취조실 콘크리트 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "측면 3/4 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "측면 30도 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "측면 구도"
+    },
+    {
+      "category_column": "E",
+      "tag": "치켜올린 스커트"
+    },
+    {
+      "category_column": "I",
+      "tag": "침대"
+    },
+    {
+      "category_column": "F",
+      "tag": "침실 앞 그림자 진 복도"
+    },
+    {
+      "category_column": "H",
+      "tag": "카메라 약간 멀리 있는 미디엄와이드샷"
+    },
+    {
+      "category_column": "H",
+      "tag": "카메라 응시"
+    },
+    {
+      "category_column": "I",
+      "tag": "카운터"
+    },
+    {
+      "category_column": "G",
+      "tag": "카운터 근무"
+    },
+    {
+      "category_column": "I",
+      "tag": "카운터 테이블"
+    },
+    {
+      "category_column": "H",
+      "tag": "카운터 테이블 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "카운터 테이블에 양손을 짚음"
+    },
+    {
+      "category_column": "G",
+      "tag": "카지노 딜러"
+    },
+    {
+      "category_column": "G",
+      "tag": "카지노 마담"
+    },
+    {
+      "category_column": "F",
+      "tag": "카지노 인테리어"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페"
+    },
+    {
+      "category_column": "H",
+      "tag": "카페 내부 뒤쪽 POV"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 대형 채광창"
+    },
+    {
+      "category_column": "E",
+      "tag": "카페 명찰"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 밖"
+    },
+    {
+      "category_column": "H",
+      "tag": "카페 밖 관찰자 시점"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 벽"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 사장"
+    },
+    {
+      "category_column": "E",
+      "tag": "카페 사장 의상"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 사장·납품업자"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 사장·정비공"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 사장·지인"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 손님"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 수리 방문"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 실내"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 실내 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 실내 식물"
+    },
+    {
+      "category_column": "E",
+      "tag": "카페 앞치마"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 에스프레소 바"
+    },
+    {
+      "category_column": "H",
+      "tag": "카페 의자에 앉음"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 전면 유리창"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 주방"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 중앙 바닥"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페 직원"
+    },
+    {
+      "category_column": "E",
+      "tag": "카페 직원 유니폼"
+    },
+    {
+      "category_column": "I",
+      "tag": "카페 창문"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 출입문"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 카운터"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 테라스"
+    },
+    {
+      "category_column": "H",
+      "tag": "카페 테이블 높이 로우앵글"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 테이블 반사광"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 펜던트 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "카페 흰색 세라믹 식기"
+    },
+    {
+      "category_column": "G",
+      "tag": "카페에 배달기사 등장"
+    },
+    {
+      "category_column": "H",
+      "tag": "카페에 앉음"
+    },
+    {
+      "category_column": "F",
+      "tag": "칵테일바"
+    },
+    {
+      "category_column": "F",
+      "tag": "칸막이 구멍"
+    },
+    {
+      "category_column": "G",
+      "tag": "칸막이 너머 남성"
+    },
+    {
+      "category_column": "I",
+      "tag": "캐딜락 기구"
+    },
+    {
+      "category_column": "E",
+      "tag": "캐주얼 운동복"
+    },
+    {
+      "category_column": "F",
+      "tag": "캠핑 텐트"
+    },
+    {
+      "category_column": "G",
+      "tag": "캠핑객"
+    },
+    {
+      "category_column": "F",
+      "tag": "캠핑장"
+    },
+    {
+      "category_column": "F",
+      "tag": "캡슐 주변 잔류 연기"
+    },
+    {
+      "category_column": "F",
+      "tag": "캡슐 청백색 내부 조명"
+    },
+    {
+      "category_column": "I",
+      "tag": "커피머신"
+    },
+    {
+      "category_column": "I",
+      "tag": "커피잔"
+    },
+    {
+      "category_column": "H",
+      "tag": "커피컵 들고 빨대 사용"
+    },
+    {
+      "category_column": "I",
+      "tag": "컨베이어 벨트"
+    },
+    {
+      "category_column": "I",
+      "tag": "케이블 머신"
+    },
+    {
+      "category_column": "I",
+      "tag": "케이지"
+    },
+    {
+      "category_column": "F",
+      "tag": "케이지 경기장"
+    },
+    {
+      "category_column": "G",
+      "tag": "케이지 밖 여성 관중"
+    },
+    {
+      "category_column": "G",
+      "tag": "케이팝 아이돌"
+    },
+    {
+      "category_column": "F",
+      "tag": "코인노래방"
+    },
+    {
+      "category_column": "I",
+      "tag": "콘솔 의자"
+    },
+    {
+      "category_column": "E",
+      "tag": "퀼팅 베스트"
+    },
+    {
+      "category_column": "E",
+      "tag": "크게 헐렁한 죄수복"
+    },
+    {
+      "category_column": "E",
+      "tag": "크로셰 니트 탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "크로스넥 비키니"
+    },
+    {
+      "category_column": "E",
+      "tag": "크로스넥 초미니 비키니"
+    },
+    {
+      "category_column": "E",
+      "tag": "크로스백 앞치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "크롭 볼링 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "크롭 패딩"
+    },
+    {
+      "category_column": "I",
+      "tag": "크림 벨벳 벤치"
+    },
+    {
+      "category_column": "E",
+      "tag": "크림 코튼 가디건"
+    },
+    {
+      "category_column": "E",
+      "tag": "크림 트위드 크롭 재킷"
+    },
+    {
+      "category_column": "E",
+      "tag": "큰 귀걸이"
+    },
+    {
+      "category_column": "I",
+      "tag": "큰 눈"
+    },
+    {
+      "category_column": "E",
+      "tag": "큰 링 귀걸이"
+    },
+    {
+      "category_column": "I",
+      "tag": "큰 홍채"
+    },
+    {
+      "category_column": "F",
+      "tag": "클럽"
+    },
+    {
+      "category_column": "F",
+      "tag": "클럽 VIP룸"
+    },
+    {
+      "category_column": "E",
+      "tag": "클럽용 큐빅 드레스"
+    },
+    {
+      "category_column": "I",
+      "tag": "클리퍼"
+    },
+    {
+      "category_column": "E",
+      "tag": "킬힐"
+    },
+    {
+      "category_column": "C",
+      "tag": "타액 페티시"
+    },
+    {
+      "category_column": "I",
+      "tag": "타원 항공기 창문"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이탄 하이힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 면티"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 살롱 가운 상의"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 제복풍 셔츠원피스"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 티셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 펜슬 미니스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "타이트한 폴로 상의"
+    },
+    {
+      "category_column": "F",
+      "tag": "타일벽"
+    },
+    {
+      "category_column": "I",
+      "tag": "탑승교 구조물"
+    },
+    {
+      "category_column": "F",
+      "tag": "탑승교 자연 채광"
+    },
+    {
+      "category_column": "F",
+      "tag": "탑승교 측면 창"
+    },
+    {
+      "category_column": "F",
+      "tag": "탑승교 회색 금속 구조벽"
+    },
+    {
+      "category_column": "H",
+      "tag": "탑승교에서 항공기 방향을 보는 POV"
+    },
+    {
+      "category_column": "C",
+      "tag": "태닝 라인"
+    },
+    {
+      "category_column": "I",
+      "tag": "태닝 베드"
+    },
+    {
+      "category_column": "F",
+      "tag": "태닝 베드 단일 광원"
+    },
+    {
+      "category_column": "I",
+      "tag": "태닝 베드 제어 패널"
+    },
+    {
+      "category_column": "H",
+      "tag": "태닝 베드에 발 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "태닝 베드에 엎드린 자세"
+    },
+    {
+      "category_column": "I",
+      "tag": "태닝 오일"
+    },
+    {
+      "category_column": "H",
+      "tag": "태닝샵 사장 POV"
+    },
+    {
+      "category_column": "F",
+      "tag": "태닝숍"
+    },
+    {
+      "category_column": "E",
+      "tag": "태닝용 타올"
+    },
+    {
+      "category_column": "I",
+      "tag": "태블릿"
+    },
+    {
+      "category_column": "H",
+      "tag": "턱 들기"
+    },
+    {
+      "category_column": "I",
+      "tag": "테이블"
+    },
+    {
+      "category_column": "F",
+      "tag": "테이블 반사광"
+    },
+    {
+      "category_column": "H",
+      "tag": "테이블 반사광으로 신체 표현"
+    },
+    {
+      "category_column": "H",
+      "tag": "테이블 조명 집중"
+    },
+    {
+      "category_column": "I",
+      "tag": "테이블 하부"
+    },
+    {
+      "category_column": "H",
+      "tag": "테이블에 발뒤꿈치 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "테이블에 팔꿈치 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "테이블에 한 팔 올림"
+    },
+    {
+      "category_column": "I",
+      "tag": "테이스팅 테이블"
+    },
+    {
+      "category_column": "G",
+      "tag": "텐트 안 성인 남성"
+    },
+    {
+      "category_column": "F",
+      "tag": "텐트 조명"
+    },
+    {
+      "category_column": "H",
+      "tag": "통로 측면 구도"
+    },
+    {
+      "category_column": "F",
+      "tag": "통유리 도시 야경"
+    },
+    {
+      "category_column": "F",
+      "tag": "통유리 도심 전망"
+    },
+    {
+      "category_column": "F",
+      "tag": "통유리 밝은 업무지구 전경"
+    },
+    {
+      "category_column": "F",
+      "tag": "통유리 업무지구 전망"
+    },
+    {
+      "category_column": "G",
+      "tag": "퇴근 후 사무실"
+    },
+    {
+      "category_column": "F",
+      "tag": "퇴근시간 지난 어두운 사무실"
+    },
+    {
+      "category_column": "E",
+      "tag": "투명 열처리 비닐캡"
+    },
+    {
+      "category_column": "I",
+      "tag": "투명 유리벽"
+    },
+    {
+      "category_column": "E",
+      "tag": "튜브탑"
+    },
+    {
+      "category_column": "H",
+      "tag": "티셔츠 밑단 당기기"
+    },
+    {
+      "category_column": "F",
+      "tag": "파노라마 창문"
+    },
+    {
+      "category_column": "I",
+      "tag": "파라솔"
+    },
+    {
+      "category_column": "F",
+      "tag": "파라솔 그림자"
+    },
+    {
+      "category_column": "G",
+      "tag": "파마 열처리 중인 남성 고객"
+    },
+    {
+      "category_column": "I",
+      "tag": "파손된 나무 울타리"
+    },
+    {
+      "category_column": "C",
+      "tag": "팔"
+    },
+    {
+      "category_column": "E",
+      "tag": "패디큐어"
+    },
+    {
+      "category_column": "I",
+      "tag": "패스트리 진열"
+    },
+    {
+      "category_column": "F",
+      "tag": "패스트푸드 매장"
+    },
+    {
+      "category_column": "G",
+      "tag": "패스트푸드 직원"
+    },
+    {
+      "category_column": "I",
+      "tag": "퍼스트클래스 좌석"
+    },
+    {
+      "category_column": "C",
+      "tag": "페깅"
+    },
+    {
+      "category_column": "D",
+      "tag": "페깅 수행"
+    },
+    {
+      "category_column": "G",
+      "tag": "페깅 안내"
+    },
+    {
+      "category_column": "D",
+      "tag": "페깅 준비"
+    },
+    {
+      "category_column": "I",
+      "tag": "페디큐어 발받침대"
+    },
+    {
+      "category_column": "F",
+      "tag": "페디큐어 발받침대 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "페디큐어 의자"
+    },
+    {
+      "category_column": "E",
+      "tag": "페이스 베일"
+    },
+    {
+      "category_column": "C",
+      "tag": "페이스시팅"
+    },
+    {
+      "category_column": "D",
+      "tag": "페이스시팅 수행"
+    },
+    {
+      "category_column": "E",
+      "tag": "페티시 의상"
+    },
+    {
+      "category_column": "F",
+      "tag": "펜던트 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "펜슬 스커트"
+    },
+    {
+      "category_column": "C",
+      "tag": "펨돔"
+    },
+    {
+      "category_column": "G",
+      "tag": "편의점 사장"
+    },
+    {
+      "category_column": "G",
+      "tag": "편의점 손님"
+    },
+    {
+      "category_column": "E",
+      "tag": "편의점 조끼"
+    },
+    {
+      "category_column": "E",
+      "tag": "폴로 셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "표범무늬 T팬티"
+    },
+    {
+      "category_column": "C",
+      "tag": "풋잡"
+    },
+    {
+      "category_column": "G",
+      "tag": "풋잡 경험"
+    },
+    {
+      "category_column": "G",
+      "tag": "풋잡 선호"
+    },
+    {
+      "category_column": "D",
+      "tag": "풋잡 수행"
+    },
+    {
+      "category_column": "D",
+      "tag": "풋잡 암시"
+    },
+    {
+      "category_column": "G",
+      "tag": "풋잡 전문가"
+    },
+    {
+      "category_column": "D",
+      "tag": "풋잡 준비"
+    },
+    {
+      "category_column": "F",
+      "tag": "프라이빗 다이닝룸"
+    },
+    {
+      "category_column": "F",
+      "tag": "프라이빗 재즈룸"
+    },
+    {
+      "category_column": "F",
+      "tag": "프라이빗 필라테스 스튜디오"
+    },
+    {
+      "category_column": "E",
+      "tag": "플로랄 라운드 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "플립플롭"
+    },
+    {
+      "category_column": "G",
+      "tag": "피부관리사"
+    },
+    {
+      "category_column": "E",
+      "tag": "피부관리사 유니폼"
+    },
+    {
+      "category_column": "F",
+      "tag": "피부관리숍"
+    },
+    {
+      "category_column": "H",
+      "tag": "피사체 중심 구도"
+    },
+    {
+      "category_column": "G",
+      "tag": "피트니스 대회"
+    },
+    {
+      "category_column": "E",
+      "tag": "피티드 모크넥 니트"
+    },
+    {
+      "category_column": "E",
+      "tag": "피티드 플리스"
+    },
+    {
+      "category_column": "I",
+      "tag": "피팅 스툴"
+    },
+    {
+      "category_column": "F",
+      "tag": "피팅룸"
+    },
+    {
+      "category_column": "G",
+      "tag": "필라테스 강사·남성"
+    },
+    {
+      "category_column": "I",
+      "tag": "필라테스 리포머"
+    },
+    {
+      "category_column": "I",
+      "tag": "필라테스 매트"
+    },
+    {
+      "category_column": "F",
+      "tag": "필라테스 스튜디오"
+    },
+    {
+      "category_column": "F",
+      "tag": "필라테스 스튜디오 자연 채광"
+    },
+    {
+      "category_column": "E",
+      "tag": "하늘색 블라우스 승무원 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "하늘하늘한 롱 주름 원피스"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 긴 슬립 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 끈 팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 삼각팬티"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 승무원 제복"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 여성 정장세트"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 오프숄더 슬립"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 튜브탑"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀 패디큐어"
+    },
+    {
+      "category_column": "E",
+      "tag": "하얀색 레이스 바디콘 드레스"
+    },
+    {
+      "category_column": "E",
+      "tag": "하의 벗음"
+    },
+    {
+      "category_column": "E",
+      "tag": "하이 슬릿"
+    },
+    {
+      "category_column": "H",
+      "tag": "하이앵글"
+    },
+    {
+      "category_column": "E",
+      "tag": "하이힐"
+    },
+    {
+      "category_column": "H",
+      "tag": "하이힐 바닥 고정"
+    },
+    {
+      "category_column": "C",
+      "tag": "하체"
+    },
+    {
+      "category_column": "I",
+      "tag": "하체 근육 발달"
+    },
+    {
+      "category_column": "H",
+      "tag": "하체 중심 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "하체는 테이블 아래"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손 과자봉지"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손 상품 집기"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손에 뮬 두 짝 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 머리 넘김"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 머리를 쓸어넘김"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 바닥 지지"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 신체 부위 옆으로 벌림"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 커피컵을 들고 있음"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 턱 괴기"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손으로 휴대전화 들기"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손은 금속 탐지봉"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 손을 엉덩이에 올림"
+    },
+    {
+      "category_column": "H",
+      "tag": "한 팔 들어 뒤통수에 대기"
+    },
+    {
+      "category_column": "F",
+      "tag": "한국 카페"
+    },
+    {
+      "category_column": "H",
+      "tag": "한쪽 무릎 살짝 굽힘"
+    },
+    {
+      "category_column": "E",
+      "tag": "한쪽 오프숄더 저지"
+    },
+    {
+      "category_column": "G",
+      "tag": "함장·안드로이드 비서"
+    },
+    {
+      "category_column": "G",
+      "tag": "함장은 기계식 의자에 앉음"
+    },
+    {
+      "category_column": "H",
+      "tag": "함장은 테이블 왼쪽 중앙에 착석"
+    },
+    {
+      "category_column": "I",
+      "tag": "합성 외피"
+    },
+    {
+      "category_column": "I",
+      "tag": "핫타월 워머"
+    },
+    {
+      "category_column": "G",
+      "tag": "항공구조대"
+    },
+    {
+      "category_column": "E",
+      "tag": "항공구조대 비행복 세트"
+    },
+    {
+      "category_column": "F",
+      "tag": "항공기 객실 입구"
+    },
+    {
+      "category_column": "F",
+      "tag": "항공기 기내"
+    },
+    {
+      "category_column": "F",
+      "tag": "항공기 동체 외관"
+    },
+    {
+      "category_column": "I",
+      "tag": "항공기 승객 좌석"
+    },
+    {
+      "category_column": "F",
+      "tag": "항공기 승무원석"
+    },
+    {
+      "category_column": "D",
+      "tag": "항문 외부 압박"
+    },
+    {
+      "category_column": "C",
+      "tag": "항문 자극"
+    },
+    {
+      "category_column": "D",
+      "tag": "항문 접촉"
+    },
+    {
+      "category_column": "I",
+      "tag": "해먹"
+    },
+    {
+      "category_column": "H",
+      "tag": "해먹에 앉음"
+    },
+    {
+      "category_column": "F",
+      "tag": "해변 모래 바닥"
+    },
+    {
+      "category_column": "H",
+      "tag": "해변 벤치에 앉음"
+    },
+    {
+      "category_column": "F",
+      "tag": "해변 분위기 실내 카페"
+    },
+    {
+      "category_column": "G",
+      "tag": "해수욕객"
+    },
+    {
+      "category_column": "F",
+      "tag": "해수욕장"
+    },
+    {
+      "category_column": "F",
+      "tag": "해수욕장 벤치"
+    },
+    {
+      "category_column": "I",
+      "tag": "해수욕장 벤치"
+    },
+    {
+      "category_column": "C",
+      "tag": "핸드잡"
+    },
+    {
+      "category_column": "G",
+      "tag": "핸드잡 안내"
+    },
+    {
+      "category_column": "D",
+      "tag": "핸드잡 암시"
+    },
+    {
+      "category_column": "G",
+      "tag": "행위 인지"
+    },
+    {
+      "category_column": "F",
+      "tag": "향수 부티크"
+    },
+    {
+      "category_column": "F",
+      "tag": "향수 부티크 프라이빗 상담실"
+    },
+    {
+      "category_column": "H",
+      "tag": "허리 숙임"
+    },
+    {
+      "category_column": "E",
+      "tag": "허리 앞치마"
+    },
+    {
+      "category_column": "H",
+      "tag": "허리를 90도로 숙임"
+    },
+    {
+      "category_column": "H",
+      "tag": "허리를 곧게 세움"
+    },
+    {
+      "category_column": "C",
+      "tag": "허벅지"
+    },
+    {
+      "category_column": "E",
+      "tag": "허벅지 높이 슬릿"
+    },
+    {
+      "category_column": "E",
+      "tag": "허벅지 단검 스트랩"
+    },
+    {
+      "category_column": "D",
+      "tag": "허벅지 움켜쥠"
+    },
+    {
+      "category_column": "H",
+      "tag": "허벅지 위 양손"
+    },
+    {
+      "category_column": "H",
+      "tag": "허벅지 잡음"
+    },
+    {
+      "category_column": "H",
+      "tag": "허벅지 집중 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "허벅지·하체 강조"
+    },
+    {
+      "category_column": "E",
+      "tag": "허벅지까지 치켜올린 스커트"
+    },
+    {
+      "category_column": "E",
+      "tag": "헐렁한 앞치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "헐렁한 흰 카페 앞치마"
+    },
+    {
+      "category_column": "E",
+      "tag": "헤드폰"
+    },
+    {
+      "category_column": "E",
+      "tag": "헤어밴드"
+    },
+    {
+      "category_column": "F",
+      "tag": "헤어살롱 거울 반사광"
+    },
+    {
+      "category_column": "F",
+      "tag": "헬스장 내부"
+    },
+    {
+      "category_column": "F",
+      "tag": "헬스장 매트"
+    },
+    {
+      "category_column": "G",
+      "tag": "헬스장 사장"
+    },
+    {
+      "category_column": "F",
+      "tag": "헬스장 상담실"
+    },
+    {
+      "category_column": "F",
+      "tag": "헬스장 상담실 데스크"
+    },
+    {
+      "category_column": "F",
+      "tag": "헬스장 홀"
+    },
+    {
+      "category_column": "F",
+      "tag": "현대 미술 작품"
+    },
+    {
+      "category_column": "F",
+      "tag": "현대식 태닝샵"
+    },
+    {
+      "category_column": "F",
+      "tag": "현대식 한국 카페"
+    },
+    {
+      "category_column": "F",
+      "tag": "현대식 회사 엘리베이터"
+    },
+    {
+      "category_column": "E",
+      "tag": "형광 노란색 UFC 라운드걸 의상"
+    },
+    {
+      "category_column": "F",
+      "tag": "호박색·진홍색 조명"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔 내부 풋 페티시 클럽"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔 라운지"
+    },
+    {
+      "category_column": "G",
+      "tag": "호텔 리셉셔니스트"
+    },
+    {
+      "category_column": "E",
+      "tag": "호텔 리셉셔니스트 유니폼"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔 스파"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔 스파 프라이빗 휴식실"
+    },
+    {
+      "category_column": "I",
+      "tag": "호텔 침대"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔 프런트 데스크"
+    },
+    {
+      "category_column": "F",
+      "tag": "호텔방 문밖"
+    },
+    {
+      "category_column": "I",
+      "tag": "호텔방 열쇠구멍"
+    },
+    {
+      "category_column": "F",
+      "tag": "혼잡한 주 검색대와 분리"
+    },
+    {
+      "category_column": "I",
+      "tag": "홀로그램 디스플레이"
+    },
+    {
+      "category_column": "I",
+      "tag": "홀로그램 인터페이스"
+    },
+    {
+      "category_column": "I",
+      "tag": "화로"
+    },
+    {
+      "category_column": "H",
+      "tag": "화면 가득 인물 구도"
+    },
+    {
+      "category_column": "H",
+      "tag": "화면 왼쪽 뷰어 뒷모습"
+    },
+    {
+      "category_column": "H",
+      "tag": "화면 왼쪽 앞 아내 뒷모습"
+    },
+    {
+      "category_column": "H",
+      "tag": "화면 왼쪽 정비공 뒷모습"
+    },
+    {
+      "category_column": "H",
+      "tag": "화면 왼쪽 하단 전경 사장 머리·어깨·등"
+    },
+    {
+      "category_column": "E",
+      "tag": "화이트 시어 셔츠 커버업"
+    },
+    {
+      "category_column": "E",
+      "tag": "화이트 크루넥 티셔츠"
+    },
+    {
+      "category_column": "I",
+      "tag": "화장대"
+    },
+    {
+      "category_column": "F",
+      "tag": "화장대 반사광"
+    },
+    {
+      "category_column": "I",
+      "tag": "화장대 서랍"
+    },
+    {
+      "category_column": "H",
+      "tag": "화장대 양측 노출"
+    },
+    {
+      "category_column": "H",
+      "tag": "화장대 착석"
+    },
+    {
+      "category_column": "F",
+      "tag": "화장실 칸막이"
+    },
+    {
+      "category_column": "I",
+      "tag": "화장실 칸막이 구멍"
+    },
+    {
+      "category_column": "G",
+      "tag": "환자 안내"
+    },
+    {
+      "category_column": "I",
+      "tag": "횃불"
+    },
+    {
+      "category_column": "F",
+      "tag": "횃불 조명"
+    },
+    {
+      "category_column": "E",
+      "tag": "회색 오피스레이디 미니드레스"
+    },
+    {
+      "category_column": "F",
+      "tag": "회색 콘크리트 교도소 감방"
+    },
+    {
+      "category_column": "F",
+      "tag": "회색 콘크리트 벽"
+    },
+    {
+      "category_column": "H",
+      "tag": "회의 참석자 뒷모습 전경"
+    },
+    {
+      "category_column": "G",
+      "tag": "회장 당황"
+    },
+    {
+      "category_column": "G",
+      "tag": "회장 대기"
+    },
+    {
+      "category_column": "G",
+      "tag": "회장 맞이"
+    },
+    {
+      "category_column": "E",
+      "tag": "회장 비서 정장"
+    },
+    {
+      "category_column": "I",
+      "tag": "회장 의자"
+    },
+    {
+      "category_column": "G",
+      "tag": "회장 정면 응시"
+    },
+    {
+      "category_column": "I",
+      "tag": "회장 책상"
+    },
+    {
+      "category_column": "H",
+      "tag": "회장과 비서 비율 조절"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 검정 대리석 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 높은 천장"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 대리석 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 밖 복도"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 밝은 자연광"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 월넛 벽면"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 천연석 바닥"
+    },
+    {
+      "category_column": "F",
+      "tag": "회장실 흑백 인테리어"
+    },
+    {
+      "category_column": "G",
+      "tag": "회장실의 여성 방문객"
+    },
+    {
+      "category_column": "H",
+      "tag": "회장은 문 뒤쪽 배경"
+    },
+    {
+      "category_column": "H",
+      "tag": "후면 구도"
+    },
+    {
+      "category_column": "I",
+      "tag": "휴대전화 화면 재생 영상"
+    },
+    {
+      "category_column": "H",
+      "tag": "휴대전화 화면 제시"
+    },
+    {
+      "category_column": "E",
+      "tag": "흑백 가로줄 죄수복 상의"
+    },
+    {
+      "category_column": "I",
+      "tag": "흑백 모니터"
+    },
+    {
+      "category_column": "G",
+      "tag": "흑인 남성"
+    },
+    {
+      "category_column": "G",
+      "tag": "흑인 남성 첫 번째 교도관"
+    },
+    {
+      "category_column": "G",
+      "tag": "흑인 노인 남성"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰 린넨 바리스타 앞치마"
+    },
+    {
+      "category_column": "F",
+      "tag": "흰 벽"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 간호사 원피스"
+    },
+    {
+      "category_column": "F",
+      "tag": "흰색 대리석 바닥"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 새틴 비서 블라우스"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 스포츠 브라"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 오픈토 하이힐"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 타이트 티셔츠"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 핑거리스 장갑"
+    },
+    {
+      "category_column": "E",
+      "tag": "흰색 하이웨이스트 필라테스 레깅스"
+    }
+  ]
+}

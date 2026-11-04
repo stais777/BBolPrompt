@@ -1,0 +1,23 @@
+{
+  "steps": [
+    {
+      "args": "analyze",
+      "exit_code": 0,
+      "stdout": "원본 HWPX 분석 시작 (승인 정답 파일은 열지 않습니다): /workspace/Bbolprompt/examples/smoke_2cards.hwpx\n분석 결과 생성: /tmp/tmps5o6oi34/analysis/engine_result.json\n카드 추정: 2 / 이미지 참조: 2 / 태그 초안: 8\n",
+      "stderr": ""
+    },
+    {
+      "args": "register",
+      "exit_code": 0,
+      "stdout": "중복 검토: {'new_card': 2, 'add_images': 0, 'skip_identical': 0}\n등록: 미반영 · 검토 전용\n",
+      "stderr": ""
+    },
+    {
+      "args": "register --commit",
+      "exit_code": 0,
+      "stdout": "중복 검토: {'new_card': 2, 'add_images': 0, 'skip_identical': 0}\n등록: 실제 DB 반영됨\n",
+      "stderr": ""
+    }
+  ],
+  "dry_run_no_db_created": true
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "bbolprom-handoff-evidence-audit-v1",
+  "manifest": {
+    "listed_files": 120,
+    "verified_files": 120,
+    "mismatches": []
+  },
+  "master": {
+    "sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+    "expected_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+    "hash_matches": true,
+    "sheet_count": 106,
+    "sheets": [
+      "카드별태그",
+      "통합태그색인",
+      "작업이력",
+      "운영규칙",
+      "001-010_검수이력",
+      "011-030_검수이력",
+      "031-050_검수이력",
+      "001-050_C태그복원",
+      "051-070_추가검수",
+      "071-090_추가검수",
+      "091-110_추가검수",
+      "111-130_추가검수",
+      "131-150_추가검수",
+      "151-170_추가검수",
+      "171-190_추가검수",
+      "191-210_추가검수",
+      "211-230_추가검수",
+      "231-250_추가검수",
+      "251-270_추가검수",
+      "271-290_추가검수",
+      "291-309_추가검수",
+      "B_001-050_승인원본",
+      "B_001-050_승인사전",
+      "B_051-100_검토원본",
+      "B_051-100_검토후보",
+      "B_정규화_진행현황",
+      "B_051-100_승인원본",
+      "B_001-100_누적승인사전",
+      "B_001-100_누적원본500건",
+      "B_101-150_검토원본",
+      "B_101-150_검토후보",
+      "B_정규화_진행현황2",
+      "B_101-150_승인원본",
+      "B_001-150_누적승인사전",
+      "B_001-150_누적원본753건",
+      "B_151-200_검토원본",
+      "B_151-200_검토후보",
+      "B_정규화_진행현황4",
+      "B_151-200_승인원본",
+      "B_001-200_누적승인사전",
+      "B_001-200_누적원본1007건",
+      "B_201-250_검토원본",
+      "B_201-250_검토후보",
+      "B_정규화_진행현황5",
+      "B_201-250_승인원본",
+      "B_001-250_누적승인사전",
+      "B_001-250_누적원본1386건",
+      "B_251-300_검토원본",
+      "B_251-300_검토후보",
+      "B_정규화_진행현황6",
+      "B_251-300_승인원본",
+      "B_001-300_누적승인사전",
+      "B_001-300_누적원본1758건",
+      "B_301-309_검토원본",
+      "B_301-309_검토후보",
+      "B_정규화_진행현황7",
+      "B_301-309_승인원본102건",
+      "B_001-309_최종승인사전",
+      "B_001-309_원본1860건",
+      "B_301-309_최종매핑4종",
+      "B_정규화_전체완료",
+      "C_001-050_검토후보",
+      "C_001-050_검토원본",
+      "C_001-050_카드별원본",
+      "C_정규화_진행현황",
+      "C_001-050_승인사전16종",
+      "C_001-050_승인원본124건",
+      "C_051-100_검토후보7종",
+      "C_051-100_검토원본103건",
+      "C_051-100_카드별원본",
+      "C_001-100_승인누적현황",
+      "C_001-100_승인사전16종",
+      "C_001-100_원본227건",
+      "C_051-100_승인원본103건",
+      "C_101-150_신규후보13종",
+      "C_101-150_원본114건",
+      "C_101-150_카드별원본",
+      "C_001-150_승인누적현황",
+      "C_001-150_승인사전29종",
+      "C_001-150_원본341건",
+      "C_101-150_승인원본114건",
+      "C_151-200_신규후보52종",
+      "C_151-200_원본173건",
+      "C_151-200_카드별원본",
+      "C_001-200_검토현황",
+      "C251-300_승인감사",
+      "C301-309_승인감사",
+      "C151-200_최종승인감사",
+      "C201-250_최종승인감사",
+      "DE_반영검증_20261102",
+      "F_001-309_승인원본1297",
+      "F_반영검증_20261102",
+      "G열_중복삭제_검토대기",
+      "G열_최종반영_검증",
+      "G열_승인반영_요약",
+      "H열_승인원본1080",
+      "H열_중복검토대기1",
+      "H열_마스터반영검증",
+      "가로1차_변경전백업",
+      "가로1차_승인변경이력",
+      "가로1차_검증보고",
+      "가로_다음차수적용기준",
+      "가로2차_변경전백업",
+      "가로2차_승인변경이력",
+      "가로2차_검증보고",
+      "가로2차_다음차수적용기준"
+    ],
+    "cards": 309,
+    "tag_mappings": 8471,
+    "baseline_tag_set_matches": true
+  },
+  "approved_baseline": {
+    "cards": 309,
+    "tag_mappings": 8471,
+    "unique_tag_names": 2200,
+    "unique_prompt_sha256": 296,
+    "duplicate_prompt_card_groups": [
+      [
+        16,
+        21
+      ],
+      [
+        18,
+        19,
+        20
+      ],
+      [
+        55,
+        82
+      ],
+      [
+        58,
+        87
+      ],
+      [
+        67,
+        88
+      ],
+      [
+        75,
+        76
+      ],
+      [
+        118,
+        136
+      ],
+      [
+        120,
+        135
+      ],
+      [
+        121,
+        134
+      ],
+      [
+        177,
+        178
+      ],
+      [
+        223,
+        227
+      ],
+      [
+        301,
+        303
+      ]
+    ],
+    "highlight_spans": 10358,
+    "empty_evidence_tags": 17,
+    "invalid_span_slices": [],
+    "final_html_prompts_match": true,
+    "final_html_tags_match": true
+  },
+  "historical_actual_pt_reports": {
+    "A_1번_generic": {
+      "input_sha256": "c5d52ce0cda5901d9da178f88c8d5c2eeb5614eefa5a0546916e4951df881ddf",
+      "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+      "source_count": {
+        "baseline_cards": 309,
+        "engine_cards": 1156,
+        "exact_text": 218,
+        "whitespace_equivalent_text": 0,
+        "partial_text_only": 18,
+        "unmatched_baseline": 73,
+        "unmatched_engine": 920
+      },
+      "image_references": {
+        "baseline": 531,
+        "engine": 531,
+        "correct_in_aligned_cards": 425,
+        "recall_pct": 80.04,
+        "precision_pct": 80.04
+      },
+      "tags": {
+        "baseline": 8471,
+        "engine": 4288,
+        "correct_in_aligned_cards": 421,
+        "recall_pct": 4.97,
+        "precision_pct": 9.82
+      },
+      "highlight_spans": {
+        "baseline": 10358,
+        "engine": 7744,
+        "comparable_baseline_spans": 6788,
+        "correct_spans_when_raw_text_identical": 236,
+        "recall_pct_over_all_baseline": 2.28,
+        "note": "원문이 완전히 동일할 때만 좌표 비교. 공백/문단 차이가 있으면 위치 비교를 수행하지 않음."
+      },
+      "card_aggregates": {
+        "false_negative_tags": 8050,
+        "false_positive_tags_in_aligned_cards": 1884,
+        "missing_image_refs": 106,
+        "extra_image_refs_in_aligned_cards": 0,
+        "text_relations": {
+          "exact": 218,
+          "partial_source": 18,
+          "unmatched": 73
+        }
+      },
+      "source": "supplied historical actual PT report; not rerun during this task"
+    },
+    "B_2번_terms": {
+      "input_sha256": "c5d52ce0cda5901d9da178f88c8d5c2eeb5614eefa5a0546916e4951df881ddf",
+      "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+      "source_count": {
+        "baseline_cards": 309,
+        "engine_cards": 1156,
+        "exact_text": 218,
+        "whitespace_equivalent_text": 0,
+        "partial_text_only": 18,
+        "unmatched_baseline": 73,
+        "unmatched_engine": 920
+      },
+      "image_references": {
+        "baseline": 531,
+        "engine": 531,
+        "correct_in_aligned_cards": 425,
+        "recall_pct": 80.04,
+        "precision_pct": 80.04
+      },
+      "tags": {
+        "baseline": 8471,
+        "engine": 7063,
+        "correct_in_aligned_cards": 1719,
+        "recall_pct": 20.29,
+        "precision_pct": 24.34
+      },
+      "highlight_spans": {
+        "baseline": 10358,
+        "engine": 13892,
+        "comparable_baseline_spans": 6788,
+        "correct_spans_when_raw_text_identical": 1460,
+        "recall_pct_over_all_baseline": 14.1,
+        "note": "원문이 완전히 동일할 때만 좌표 비교. 공백/문단 차이가 있으면 위치 비교를 수행하지 않음."
+      },
+      "card_aggregates": {
+        "false_negative_tags": 6752,
+        "false_positive_tags_in_aligned_cards": 2675,
+        "missing_image_refs": 106,
+        "extra_image_refs_in_aligned_cards": 0,
+        "text_relations": {
+          "exact": 218,
+          "partial_source": 18,
+          "unmatched": 73
+        }
+      },
+      "source": "supplied historical actual PT report; not rerun during this task"
+    }
+  },
+  "current_actual_pt_retest": {
+    "status": "not_run",
+    "required_sha256": "c5d52ce0cda5901d9da178f88c8d5c2eeb5614eefa5a0546916e4951df881ddf",
+    "reason": "605MB original PT.hwpx is absent; supplied simulated HWPX cannot measure actual PT improvement"
+  },
+  "live_api_quality": {
+    "status": "not_run",
+    "reason": "Mock/schema tests do not measure semantic API accuracy"
+  },
+  "independence": "This evaluation module reads gold. Runtime segmentation must never import it."
+}

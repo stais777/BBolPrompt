@@ -1,0 +1,29 @@
+{
+  "generated_utc": "2026-11-04T13:52:15.170100+00:00",
+  "artifact": "/workspace/Bbolprompt/dist/Bbolprom-Windows-x64-v0.3.zip",
+  "bytes": 14790112,
+  "sha256": "8fabeae8320725515e5a18160e5ce299f442d0f249f473ffe1d7fc5a9333d456",
+  "launcher_sha256": "524ae622f7b54328ea8cdbd575eba8472ad79dc8a39271baf58b6b03c2699b63",
+  "build": "Linux to Windows x64 cross-build",
+  "native_windows_executed": false,
+  "windows_runtime_executed": false,
+  "checks": {
+    "cross_compile": true,
+    "pe32plus_amd64_gui": true,
+    "embedded_long_path_manifest": true,
+    "upstream_python_nuget_sha512": true,
+    "upstream_zig_pypi_sha256": true,
+    "bundle_file_hash_count": 1331,
+    "approved_readonly_gallery_cards": 309,
+    "current_source_files_identical": 18,
+    "packaged_host_python_smoke": "passed: Linux Python 3.12.14, Unicode paths + HWPX + original text + MD5/SHA1 + SQLite",
+    "packaged_host_http_health_selftest": "passed: Linux host, required local socket sandbox escalation"
+  },
+  "unrun": [
+    "native Windows EXE and bundled Windows Python execution",
+    "Windows browser launch, file dialogs and long paths",
+    "actual PT.hwpx regression",
+    "live external AI API quality"
+  ],
+  "distribution_semantics": "Portable complete folder with native EXE launcher and bundled official Python runtime; no global Python install required. Display catalog is isolated from inference; evaluation baseline not bundled."
+}

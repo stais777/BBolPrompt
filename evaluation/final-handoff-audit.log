@@ -1,0 +1,80 @@
+{
+  "schema": "bbolprom-handoff-evidence-audit-v1",
+  "manifest": {
+    "listed_files": 120,
+    "verified_files": 120,
+    "mismatches": []
+  },
+  "approved_baseline": {
+    "cards": 309,
+    "tag_mappings": 8471,
+    "unique_tag_names": 2200,
+    "unique_prompt_sha256": 296,
+    "duplicate_prompt_card_groups": [
+      [
+        16,
+        21
+      ],
+      [
+        18,
+        19,
+        20
+      ],
+      [
+        55,
+        82
+      ],
+      [
+        58,
+        87
+      ],
+      [
+        67,
+        88
+      ],
+      [
+        75,
+        76
+      ],
+      [
+        118,
+        136
+      ],
+      [
+        120,
+        135
+      ],
+      [
+        121,
+        134
+      ],
+      [
+        177,
+        178
+      ],
+      [
+        223,
+        227
+      ],
+      [
+        301,
+        303
+      ]
+    ],
+    "highlight_spans": 10358,
+    "empty_evidence_tags": 17,
+    "invalid_span_slices": [],
+    "final_html_prompts_match": true,
+    "final_html_tags_match": true
+  },
+  "current_actual_pt_retest": {
+    "status": "not_run",
+    "required_sha256": "c5d52ce0cda5901d9da178f88c8d5c2eeb5614eefa5a0546916e4951df881ddf",
+    "reason": "605MB original PT.hwpx is absent; supplied simulated HWPX cannot measure actual PT improvement"
+  },
+  "live_api_quality": {
+    "status": "not_run",
+    "reason": "Mock/schema tests do not measure semantic API accuracy"
+  },
+  "independence": "This evaluation module reads gold. Runtime segmentation must never import it."
+}

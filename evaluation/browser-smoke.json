@@ -1,0 +1,67 @@
+{
+  "run_at": "2026-11-04T13:51:02.953Z",
+  "platform": "linux",
+  "browser": "Chromium headless",
+  "actual_PT_tested": false,
+  "external_api_called": false,
+  "checks": [
+    {
+      "name": "approved_309_gallery_readonly",
+      "status": "passed"
+    },
+    {
+      "name": "four_views_and_five_themes",
+      "status": "passed"
+    },
+    {
+      "name": "substring_candidates_and_selected_tag_AND_filter",
+      "status": "passed"
+    },
+    {
+      "name": "approved_highlight_preserves_full_source",
+      "status": "passed"
+    },
+    {
+      "name": "manual_image_and_emoji_prompt_persist",
+      "status": "passed"
+    },
+    {
+      "name": "Unicode_codepoint_highlight_after_emoji",
+      "status": "passed"
+    },
+    {
+      "name": "manual_tag_edit_evidence_and_codepoint_highlight",
+      "status": "passed"
+    },
+    {
+      "name": "disabled_API_rejected_card_unchanged",
+      "status": "passed"
+    },
+    {
+      "name": "HWPX_upload_review_and_commit",
+      "status": "passed"
+    },
+    {
+      "name": "HWPX_drag_drop_duplicate_preserves_card_count",
+      "status": "passed"
+    },
+    {
+      "name": "backup_download",
+      "status": "passed"
+    },
+    {
+      "name": "xlsx_download",
+      "status": "passed"
+    },
+    {
+      "name": "reload_persists_three_new_cards",
+      "status": "passed"
+    },
+    {
+      "name": "no_javascript_errors_or_external_network",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "status": "passed"
+}

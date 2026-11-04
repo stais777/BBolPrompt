@@ -1,0 +1,59 @@
+{
+  "schema": "bbolprom-local-functional-evidence-v1",
+  "recorded_utc": "2026-11-04T13:51:19.047740+00:00",
+  "executed": [
+    {
+      "command": "python3 -m unittest discover -s tests -p test_library_v3.py -v",
+      "tests": 9,
+      "passed": 9,
+      "exit_code": 0,
+      "scope": [
+        "SQLite persistence",
+        "exact UTF-8 prompt SHA",
+        "MD5/SHA1/SHA256 image byte preservation",
+        "duplicate origins and multi-image merge",
+        "tamper rollback",
+        "restorable backup",
+        "OOXML content and user-defined categories"
+      ]
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p test_app_v3.py -v",
+      "tests": 13,
+      "passed": 13,
+      "exit_code": 0,
+      "execution": "socket permission through managed require_escalated; ephemeral localhost HTTP server",
+      "scope": [
+        "actual HTTP manual import and image serving",
+        "HWPX upload-review-commit",
+        "long Unicode original filename and duplicate provenance",
+        "backup/export downloads inspected",
+        "Host/Origin/session-token enforcement",
+        "approved gallery immutable category projection",
+        "API unavailable and invalid JSON preserve accepted tags",
+        "context load error boundary",
+        "unique approved prompt overlay, master text/tags/spans unchanged",
+        "ambiguous approved prompts require matching explicit target and persist choice",
+        "user tag editing exact Unicode multispans and empty evidence",
+        "invalid tag edits leave accepted data unchanged",
+        "approved tag edits blocked for visible and overlay IDs"
+      ]
+    }
+  ],
+  "mocked": [
+    "remote semantic API transport only for API failure regression"
+  ],
+  "not_demonstrated": [
+    "actual PT 309/531 reparsing",
+    "live semantic API quality",
+    "Windows native executable run",
+    "browser visual/UI interaction"
+  ],
+  "final_integrated_suite": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "tests": 64,
+    "passed": 64,
+    "exit_code": 0,
+    "log": "evaluation/final-integrated-tests.log"
+  }
+}
