@@ -1,0 +1,410 @@
+{
+  "highlight_invariants": [
+    {
+      "id": "method-b025322a46e9-L11",
+      "provenance": {
+        "line": 11,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- Python Unicode **코드포인트** 기준 0부터 시작. 끝점 미포함 `[start_cp,end_cp)`."
+    },
+    {
+      "id": "method-b025322a46e9-L12",
+      "provenance": {
+        "line": 12,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 정확한 검증식: `source_text[start_cp:end_cp] == evidence`."
+    },
+    {
+      "id": "method-b025322a46e9-L13",
+      "provenance": {
+        "line": 13,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- JavaScript에서 UTF-16 문자열 슬라이스를 바로 적용하면 비BMP 문자에서 오프셋이 달라진다. `Array.from(source_text).slice(start_cp,end_cp).join('')`로 코드포인트를 맞춘다."
+    },
+    {
+      "id": "method-b025322a46e9-L14",
+      "provenance": {
+        "line": 14,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- `source_text_sha256 == SHA256(원문 UTF-8 바이트)`. 원문은 NFC/NFD 변환, 공백 압축, 줄바꿈 교체, 한영 번역, 문장 재배열, 구두점 삭제를 하지 않는다."
+    },
+    {
+      "id": "method-b025322a46e9-L15",
+      "provenance": {
+        "line": 15,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 마스터 O열 원문 == JSON `source_cards[].source_text`; J열 이미지 참조 == `source_cards[].image_ref`."
+    },
+    {
+      "id": "method-b025322a46e9-L16",
+      "provenance": {
+        "line": 16,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- `match_status`는 결괏값의 근거 매칭 유형이지 해당 문장 전체가 참이라는 독립 사실 인증이 아니다. `matched_semantic`은 실제 원문 구절에 대한 의미 매핑이며 정확 문자열 오프셋 검사를 별도로 통과해야 한다."
+    },
+    {
+      "id": "method-b025322a46e9-L20",
+      "provenance": {
+        "line": 20,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 최종 수량: 8,471 태그 매핑 / 10,358 원문 하이라이팅 구간 / 17 태그의 빈 `spans[]`."
+    },
+    {
+      "id": "method-b025322a46e9-L21",
+      "provenance": {
+        "line": 21,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 코드포인트 좌표에 대한 **현재 파일 재검증 결과는 10,358/10,358 문자열 구간 일치**, 모든 기록의 원문 SHA 일치. `verification_report.json` 참조."
+    },
+    {
+      "id": "method-b025322a46e9-L22",
+      "provenance": {
+        "line": 22,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- `spans=[]`인 17건은 사용자 승인에 따라 태그가 유지됐지만 긍정 원문에서 단독 근거를 직접 특정하지 못해 **형광펜 없음** 처리한 케이스. 근거가 없으면 `0,0`이나 아무 주변 텍스트를 임의 하이라이트하지 말 것."
+    },
+    {
+      "id": "method-b025322a46e9-L23",
+      "provenance": {
+        "line": 23,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 승인 전 검토 결과의 임시 근거(`review_needed`)와 최종 승인 후 근거를 구분. 임시 매핑은 정답으로 수입하지 말 것."
+    },
+    {
+      "id": "method-b025322a46e9-L24",
+      "provenance": {
+        "line": 24,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 하이라이팅은 **원문 O열만** 색을 입히는 UI 파생 기능. 원본 O열 자체에 하이라이트 문구를 삽입하는 것이 아님."
+    },
+    {
+      "id": "method-b025322a46e9-L50",
+      "provenance": {
+        "line": 50,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- API가 `tag`만 반환했다고 임의 근거를 자동 할당하지 않는다."
+    },
+    {
+      "id": "method-b025322a46e9-L51",
+      "provenance": {
+        "line": 51,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 확정 데이터의 17건 `spans=[]`을 신규 자동 처리에 무조건 일반화하지 않는다. 이들은 **사용자 명시 승인에 따른 역사적 예외**다."
+    },
+    {
+      "id": "method-b025322a46e9-L52",
+      "provenance": {
+        "line": 52,
+        "source_id": "method-b025322a46e9"
+      },
+      "text": "- 원문을 생략·요약한 `preview` 텍스트에 좌표를 붙여서는 안 되고 반드시 최종 화면에 표시하는 동일한 원문 문자열에 매핑해야 한다."
+    }
+  ],
+  "historical_exceptions": [
+    {
+      "id": "method-14f028868ce6-L19",
+      "provenance": {
+        "line": 19,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "5. 같은 원문이 다른 이미지·카드 ID에 나타나는 경우에도 과거 309개 기준 데이터에서는 원본 카드 식별자를 유지했다(예: 18·19·20, 301·303). 향후 새 파일 반입의 통합·중복정책과 역사적 데이터의 카드를 구분해야 한다."
+    },
+    {
+      "id": "method-14f028868ce6-L27",
+      "provenance": {
+        "line": 27,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "5. 반복적인 얼굴·머리·체형 등의 범용 외형 묘사는 초기 방침상 태그에서 우선 제외하는 기준이 있었다. **다만 최종 정규화된 태그가 실제로 존재하면 초기 제외 규칙만으로 삭제해서는 안 된다.** 후속 단계와 사용자 승인에 따라 여성블락 프리셋 등 인물 외형 태그도 최종 데이터에 포함됐다. 초기 원칙과 최종 상태를 구별한다."
+    }
+  ],
+  "limits": [
+    "Related examples are contextual, not keyword substitutions or guaranteed correct new-card answers.",
+    "Keep current API evidence-quote contract; exact offsets are program-validated.",
+    "Historical same-prompt card IDs do not redefine current new-import deduplication policy.",
+    "Do not repeat historic per-tag approval rounds for every new card. Ambiguous candidates may remain unclassified.",
+    "A static baseline is not evidence of independent extraction or actual model quality."
+  ],
+  "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+  "normalization_phases": [
+    {
+      "id": "method-14f028868ce6-L48",
+      "provenance": {
+        "line": 48,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "1. 특정 분류의 원본 태그 표현을 카드 ID+순번 기준으로 모두 펼쳐 **원본 발생 횟수·원래 문구·최종 결정**을 보존한다."
+    },
+    {
+      "id": "method-14f028868ce6-L49",
+      "provenance": {
+        "line": 49,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "2. 단어별/유형별로 먼저 대표어를 정한다(띄어쓰기·한영·표기차·동의어). 서로 다른 의미는 같은 단어가 일부 들어 있어도 억지 통합하지 않는다."
+    },
+    {
+      "id": "method-14f028868ce6-L50",
+      "provenance": {
+        "line": 50,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "3. 상태 태그는 **행위의 준비·접근·암시·실제 수행·부정/금지**를 구별한다. 의상·장비 착용 여부, 역할/관계/장소/인물 상태를 서로 다른 대분류에 일관되게 배정한다."
+    },
+    {
+      "id": "method-14f028868ce6-L51",
+      "provenance": {
+        "line": 51,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "4. 동일 카드 동일 분류의 완전 중복은 대표 태그 하나로 압축. 의미가 완전히 겹치는 표현은 사용자 승인 규칙에 따라 통합. 한 의미 안에 독립적인 두 특징이 있으면 **분화**해 각각 저장할 수 있다."
+    },
+    {
+      "id": "method-14f028868ce6-L52",
+      "provenance": {
+        "line": 52,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "5. 원문 근거가 부족한 표현은 `삭제`, 기존 정확한 태그로 `통합`, 문구만 `정정`, 사용자 명시 `유지`, 적절한 분류로 `이동`, 독립 특징이면 `분화` 등을 **별도 결정**으로 기록한다. '근거 없다'와 '원문에 명시적으로 없음을 지시한다'를 같은 의미로 취급하지 않는다."
+    },
+    {
+      "id": "method-14f028868ce6-L53",
+      "provenance": {
+        "line": 53,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "6. 승인되지 않은 판단은 마스터에 반영하지 않는다. 초·중반에는 항목별 사용자 승인을 받았고, 사용자 지시에 따라 후반에는 반복 승인 부담을 줄이기 위해 기존 승인 기준을 활용한 **일괄 승인/자동 처리**가 도입됐다. 단, 사용자가 명시적으로 보류한 항목을 자동 승인으로 덮어쓰지 않는다."
+    },
+    {
+      "id": "method-14f028868ce6-L54",
+      "provenance": {
+        "line": 54,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "7. 승인 후 해당 분류의 셀과 연동 집계만 바꾸고 원문·이미지·기타 열을 비교 검증한다. 원본 발생별/승인사전/검토후보/반영검증 시트를 남긴다."
+    },
+    {
+      "id": "method-14f028868ce6-L60",
+      "provenance": {
+        "line": 60,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "1. **전제:** 세로 정규화의 승인값이 확보된 카드에 대해 C~I 전체를 펼친다."
+    },
+    {
+      "id": "method-14f028868ce6-L61",
+      "provenance": {
+        "line": 61,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "2. **1차 분류 적합성:** 태그가 현재 대분류에 맞는지 판단해 사용자 승인된 것만 다른 열로 옮긴다. 분류 하나에 가장 적합한 표준 태그를 두는 원칙이다."
+    },
+    {
+      "id": "method-14f028868ce6-L62",
+      "provenance": {
+        "line": 62,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "3. **2차 같은 대분류 중복 제거:** 같은 카드 같은 열에서 동일 표준 태그 중복을 하나로 만든다."
+    },
+    {
+      "id": "method-14f028868ce6-L63",
+      "provenance": {
+        "line": 63,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "4. **3차 대분류 간 중복 제거:** 동일 의미·표제어가 다른 대분류에 중복 등록됐으면 문맥/분류 정의에 따라 하나로 정리한다. 서로 다른 뜻이면 별도 유지."
+    },
+    {
+      "id": "method-14f028868ce6-L64",
+      "provenance": {
+        "line": 64,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "5. **4차 유사·포괄·중첩 분석:** 대표어로 통합할 것과 독립 의미가 있는 표현을 개별 판정한다. 특정 행위를 삭제하면 다른 행위를 자동 삭제하지 않는다."
+    },
+    {
+      "id": "method-14f028868ce6-L65",
+      "provenance": {
+        "line": 65,
+        "source_id": "method-14f028868ce6"
+      },
+      "text": "6. **5차 K열 다시 생성:** C~I 태그를 분류 순서대로 합쳐 카드 내 중복 제거한 `모든태그` 값을 만들고, 카드별 C~I↔K, 가로합 B의 `일치` 상태를 검증한다."
+    }
+  ],
+  "precedence": "Current explicit user scope and API policy > final master/actual approval decisions > reconstructed method descriptions.",
+  "processing_steps": [
+    {
+      "id": "method-5d3150215c9a-L45",
+      "provenance": {
+        "line": 45,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "1. 원문을 변경하지 않고 카드 단위로 문장/런/구절을 분석한다."
+    },
+    {
+      "id": "method-5d3150215c9a-L46",
+      "provenance": {
+        "line": 46,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "2. `긍정/부정/금지/상황 설명/과거·미래/2차 묘사/실제 수행` 구간을 분류한다."
+    },
+    {
+      "id": "method-5d3150215c9a-L47",
+      "provenance": {
+        "line": 47,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "3. 장면 중심 특징을 객체·행위·상태·장소·인물 역할·자세·구도로 뽑고, 승인된 분류 정의에 배치한다."
+    },
+    {
+      "id": "method-5d3150215c9a-L48",
+      "provenance": {
+        "line": 48,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "4. 표준어/동의어/승인된 통합 및 분화 규칙을 적용하고 같은 카드 중복을 제거한다."
+    },
+    {
+      "id": "method-5d3150215c9a-L49",
+      "provenance": {
+        "line": 49,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "5. 근거가 약하거나 속성을 추론해야 하는 후보는 검토하도록 분리한다. 자동으로 사실을 만들어내지 않는다."
+    },
+    {
+      "id": "method-5d3150215c9a-L50",
+      "provenance": {
+        "line": 50,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "6. 승인된 태그 각각에 원문 근거를 연결하고 문자열 일치까지 검증한다."
+    },
+    {
+      "id": "method-5d3150215c9a-L51",
+      "provenance": {
+        "line": 51,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "7. 사용자 승인 후 C~I/K와 색인에 최소 반영하며 모든 불변 필드를 대조한다."
+    }
+  ],
+  "schema": "bbolprom-method-guidance-1",
+  "semantic_axes": [
+    {
+      "id": "method-5d3150215c9a-L9",
+      "provenance": {
+        "line": 9,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 카드 상태 | 원본 카드 경계와 출처 고정. 같은 프롬프트도 원본 카드 ID 별로 보존 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L10",
+      "provenance": {
+        "line": 10,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 사실성 | 긍정 서술·직접 지시 > 문맥상 지지되는 의미 대응 > 부정/금지 구문. 부정 단어를 긍정 태그 근거로 쓰지 않음 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L11",
+      "provenance": {
+        "line": 11,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 시간·상태 | 실제 수행 / 준비·접근 / 암시·목적 / 과거 경험 / 부정·금지 / 화면 속 2차 영상 등을 구분 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L12",
+      "provenance": {
+        "line": 12,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 대상 | 누가 행위를 하는지, 여성/남성/관찰자, 전경·후경, 역할을 원문대로 구별 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L13",
+      "provenance": {
+        "line": 13,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 동작·자세 | 단순 방향 정렬을 접촉·수행으로 승격하지 않음. 자세 간 충돌은 원문 불변·각 근거/주석 병존 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L14",
+      "provenance": {
+        "line": 14,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 의상·직업 | 의사 가운 입었다고 의사 직업을 확정하지 않음. 유니폼·관계·역할은 별도 의미 판단 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L15",
+      "provenance": {
+        "line": 15,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 장소·소품 | 장소와 그 내부 소품을 분리. 구멍 모양/높이·방 크기·조명의 속성을 원문 없이 추정하지 않음 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L16",
+      "provenance": {
+        "line": 16,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 동의어 | 한국어/영어, 띄어쓰기/표기 차는 승인 대표어로 통일. 의미가 다른 상태·방향·물건은 분리 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L17",
+      "provenance": {
+        "line": 17,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 분류 충돌 | 같은 의미를 C~I 두 대분류에 불필요하게 중복하지 않고 가장 적합한 분류를 택함 |"
+    },
+    {
+      "id": "method-5d3150215c9a-L18",
+      "provenance": {
+        "line": 18,
+        "source_id": "method-5d3150215c9a"
+      },
+      "text": "| 원문 보존 | 태그 삭제·명칭 변경·분류 이동은 원본 O열 변경 권한이 아님 |"
+    }
+  ],
+  "sources": {
+    "method-14f028868ce6": {
+      "approval_authority": "final master and explicit approvals take precedence",
+      "kind": "reconstructed_method_description",
+      "path": "01_full_process.md",
+      "sha256": "65b7343fd825afcd6a8d60f5e1d955bb81847c174cd4c9db6484736a3cab0ac7"
+    },
+    "method-5d3150215c9a": {
+      "approval_authority": "final master and explicit approvals take precedence",
+      "kind": "reconstructed_method_description",
+      "path": "02_decision_rules_examples.md",
+      "sha256": "dd6502bdf80988a47038ffa50190a983b536de9f756fb90a2012ae3d2d31495a"
+    },
+    "method-b025322a46e9": {
+      "approval_authority": "final master and explicit approvals take precedence",
+      "kind": "reconstructed_method_description",
+      "path": "03_highlighting_mapping.md",
+      "sha256": "f5313ced38f39975de7e34d091d6ebbb7df1368b26bb59a73df37352b74e35e0"
+    }
+  }
+}

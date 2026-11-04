@@ -14,5 +14,9 @@
   "Bbolprom-Windows-x64-v0.3.zip": {
     "bytes": 14790112,
     "sha256": "8fabeae8320725515e5a18160e5ce299f442d0f249f473ffe1d7fc5a9333d456"
+  },
+  "Bbolprom-Windows-x64-v0.3.2-baseline.zip": {
+    "bytes": 15269295,
+    "sha256": "6dc8374d06be24d17ade0c1739768bce39c9d784b8ca3f9faa9639dbc0d7c83d"
   }
 }

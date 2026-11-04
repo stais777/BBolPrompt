@@ -1,0 +1,45 @@
+{
+  "version": "0.3.2-baseline",
+  "artifact": "Bbolprom-Windows-x64-v0.3.2-baseline.zip",
+  "bytes": 15269295,
+  "sha256": "6dc8374d06be24d17ade0c1739768bce39c9d784b8ca3f9faa9639dbc0d7c83d",
+  "application_source_commit": "a796f8d7c70319a303ff847db2cd3edbd3f0d0f4",
+  "cross_built": true,
+  "native_windows_executed": false,
+  "windows_runtime_executed": false,
+  "files_hash_verified": 1342,
+  "packaged_source_matches": true,
+  "host_packaged_source_smoke": {
+    "platform": "linux",
+    "runtime": "Python3.12.14",
+    "checks_passed": [
+      "Unicode diagnostic HWPX read",
+      "309 fixed IDs/296 distinct prompts",
+      "531 refs/522 paths",
+      "109/110 and188",
+      "8471 tags/10358 spans",
+      "approval history/method provenance",
+      "app startup HTTP health"
+    ]
+  },
+  "source_integration_tests": 111,
+  "browser_checks": {
+    "existing": 16,
+    "baseline": 5,
+    "UI_handoff": 15
+  },
+  "UI_handoff_applied": true,
+  "actual_PT_tested": false,
+  "live_API_called": false,
+  "not_implemented": [
+    "Native Hancom one-step card+images drag and drop",
+    "Video scene linking",
+    "New source version diff and conflict review",
+    "Import-batch rollback",
+    "Secondary concept key mapping",
+    "Whole-backup restore UI and timed backups"
+  ],
+  "provided_api_keys": false,
+  "user_database_included": false,
+  "raw_handoff_zip_included": false
+}

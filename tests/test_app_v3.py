@@ -414,4 +414,37 @@ class LocalHTTPApplication(unittest.TestCase):
             status,_,_=self.request('POST','/api/settings',{'api':{**base,'use_approved_examples':invalid}})
             self.assertEqual(status,400)
 
+    def test_recorded_workflow_is_sent_and_reference_ids_survive_api_failure(self):
+        from bbolprom_engine.api import APIUnavailable
+        text='신규 원문: 원형 의자와 유산소 운동기구를 확인한다.'
+        status,created,_=self.request('POST','/api/manual',{'text':text,'images':[]})
+        self.assertEqual(status,200);cid=created['id']
+        self.assertEqual(self.request('POST','/api/tags',{'id':cid,'tags':[{'name':'보존할 태그','category_id':None,'evidence':''}]})[0],200)
+        tags_before=copy.deepcopy(self.user_cards()[0]['tags'])
+        self.assertEqual(self.request('POST','/api/settings',{'api':{'enabled':True,'consent':True,'endpoint':'https://provider.invalid/v1/chat/completions','model':'mock'}})[0],200)
+        captured=[]
+        def failed_provider(request,config):
+            captured.append(copy.deepcopy(request))
+            raise APIUnavailable('API HTTP429; mock failure, card retained')
+        with patch('bbolprom_engine.api._live_transport',side_effect=failed_provider):
+            status,result,_=self.request('POST','/api/analyze',{'id':cid})
+        self.assertEqual(status,200);self.assertEqual(result['status'],'api_unavailable')
+        request=captured[0];history=request['approved_processing_history']
+        self.assertEqual(len(history['workflow']),8)
+        self.assertEqual(len(history['constraints']),19)
+        self.assertEqual(len(request['tag_highlight_method']['normalization_phases']),13)
+        self.assertTrue(history['decisions'])
+        self.assertEqual(request['approved_normalization_examples'],[])
+        self.assertTrue(all(r['status'] in ('approved_rule','final_confirmed') for r in history['decisions']))
+        card=self.user_cards()[0]
+        self.assertEqual(card['source_text'],text);self.assertEqual(card['tags'],tags_before)
+        self.assertEqual(card['analysis_references']['decision_ids'],[r['id'] for r in history['decisions']])
+        self.assertEqual(card['analysis_references']['status'],'api_unavailable')
+        self.assertEqual(len(card['analysis_references']['workflow_ids']),8)
+        self.assertEqual(card['analysis_references']['method_guidance']['guidance_sha256'],request['tag_highlight_method']['guidance_sha256'])
+        self.assertEqual(len(card['analysis_references']['method_guidance']['clause_ids']),46)
+        self.assertNotIn('Authorization',json.dumps(card['analysis_references']))
+        with self.app.library.connect() as db:
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM analysis_references WHERE card_id=?',(cid,)).fetchone()[0],1)
+
 if __name__=='__main__':unittest.main()

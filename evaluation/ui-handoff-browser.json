@@ -1,0 +1,25 @@
+{
+  "platform": "linux",
+  "actual_PT_tested": false,
+  "external_API_called": false,
+  "native_Windows_tested": false,
+  "Hancom_DnD_tested": false,
+  "checks": [
+    "UI01_empty_gallery_and_separate_309_reference",
+    "UI13_review_before_real_commit",
+    "UI02_four_views_zero_two_three_twenty_tag_limits",
+    "UI03_image_then_categories_then_entire_prompt",
+    "UI07_UI08_zero_multi_images_wheel_ratio_and_original_save",
+    "UI09_resize_preserves_selection_and_persists_width",
+    "UI10_five_themes_accents_modals_and_reset",
+    "UI11_hide_show_restore_is_separate_from_filter_selection",
+    "UI12_drag_user_order_and_original_order_remain_separate",
+    "UI14_manual_edit_review_preserves_raw_text_and_origins",
+    "UI04_multiple_codepoint_spans_copy_prompt_and_image_pixels",
+    "UI14_card_revision_diff_restore_text_images_and_tag_spans",
+    "UI_representative_tags_are_preferences_not_master_edits",
+    "UI19_restart_with_new_port_preserves_theme_view_hidden_order_pins",
+    "UI16_no_master_mutation_no_external_calls_or_JS_errors"
+  ],
+  "status": "passed"
+}

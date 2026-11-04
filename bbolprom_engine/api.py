@@ -17,6 +17,8 @@ import urllib.error
 from urllib.parse import urlsplit
 from .approved_context import retrieve_context
 from .approved_examples import prepare_examples_for_request
+from .approval_history import retrieve_approval_history
+from .method_guidance import prepare_method_guidance
 
 POLICY_VERSION='API-POLICY-1.0'
 SYSTEM_POLICY='''You are the semantic tagging component of Bbolprompt, API-POLICY-1.0.
@@ -42,6 +44,21 @@ Return exact source evidence quote(s); NEVER return offsets, rewrite the prompt,
 mutate a DB, or create categories. Missing evidence means empty quotes and an
 unclassified candidate, never a fabricated highlight. Do not drop a meaningful
 uncertain candidate or force a tag count. Existing master cards remain unchanged.
+When approved_processing_history is supplied, follow its eight original user-
+approved workflow steps and constraints. Its decisions have been checked against
+final approved mappings. Older rationale is not automatically current: read current
+card tags and accompanying later highlight decisions, which take precedence. Never
+promote a pending proposal, historical mismatch, or outdated B/C/F/G/H column label
+to a universal rule. Treat these as contextual cases, not literal substitutions.
+In your concise reason, cite applicable supplied approval IDs where relevant;
+do not invent a missing rationale or claim that example retrieval is learning.
+If tag_highlight_method is provided, use its source-backed semantic axes,
+vertical normalization, cross-category horizontal checks and evidence mapping
+method as historical guidance. It is not new approval, an instruction to restart
+local HWPX segmentation, permission to mutate a baseline, or permission to repeat
+all historic human review rounds. Current explicit user/API policy and final
+approval decisions take precedence over reconstructed summaries. Quote evidence;
+let program code calculate offsets. Preserve distinct concepts and uncertainty.
 Use the supplied JSON schema strictly. All fields are required. create_categories
 and direct_mutations must both be []. Return only one response, no follow-up calls.
 '''
@@ -152,7 +169,7 @@ def select_evidence_spans(text,quote,*,prefix='',suffix=''):
     return matches
 
 
-def build_request(card_ref,text,categories,tags,context=None,examples=None):
+def build_request(card_ref,text,categories,tags,context=None,examples=None,approval_history=None,method_guidance=None):
     if not isinstance(card_ref,str) or not card_ref:raise APIValidationError('card_ref required')
     if not isinstance(text,str):raise APIValidationError('Source text must be a string')
     active=[];ids=set()
@@ -162,7 +179,7 @@ def build_request(card_ref,text,categories,tags,context=None,examples=None):
         if c['id'] in ids:raise APIValidationError('Duplicate active category ID')
         ids.add(c['id']);active.append({k:copy.deepcopy(c[k]) for k in
             ('id','name','definition','include','exclude','definition_revision') if k in c})
-    selected=retrieve_context(text,context)
+    selected=retrieve_context(text,dict(context,decisions=[]) if approval_history is not None and context is not None else context)
     # Full current standards remain local for validator; only bounded relevant
     # standards are disclosed. Include latest DB tags as well as approved standards.
     merged={t['id']:t for t in selected['standards']}
@@ -170,9 +187,13 @@ def build_request(card_ref,text,categories,tags,context=None,examples=None):
     for t in retrieve_context(text,latest_context,tag_limit=100)['standards']:merged[t['id']]=t
     existing=[{'id':t['id'],'name':t['name'],'category_id':t.get('category_id')}
               for t in merged.values()]
+    history=retrieve_approval_history(text,approval_history) if approval_history is not None else None
+    if history is not None:selected['decisions']=[] # full source-backed decisions appear only once below
     return {'card_ref':card_ref,'prompt_text':text,'active_categories':active,
             'existing_tags':existing,'approved_normalization_examples':selected['decisions'],
             'approved_card_examples':prepare_examples_for_request(text,examples),
+            'approved_processing_history':history,
+            'tag_highlight_method':prepare_method_guidance(method_guidance),
             'context_provenance':selected['source_sha256'],'policy_version':POLICY_VERSION}
 
 
@@ -332,7 +353,7 @@ def _live_transport(request,config):
         raise APIUnavailable('API connection/timeout/response error; card retained, retry is manual') from None
 
 
-def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None,examples=None):
+def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None,examples=None,approval_history=None,method_guidance=None):
     """API boundary + engine-format results; no persistence or implicit retries.
 
     transport is test-only injection. A mock response exercises validation, not
@@ -341,7 +362,20 @@ def analyze_card(card_ref,text,categories,tags,context=None,transport=None,confi
     base={'card_ref':card_ref,'source_text':text,'status':'pending','tags':[],
           'unclassified':[],'warnings':[],'usage':{},'mode':'mock' if transport else 'live'}
     try:
-        request=build_request(card_ref,text,categories,tags,context,examples=examples)
+        request=build_request(card_ref,text,categories,tags,context,examples=examples,approval_history=approval_history,method_guidance=method_guidance)
+        history=request.get('approved_processing_history')
+        if history is not None:
+            base['reference_audit']={'master_sha256':history['master_sha256'],'ledger_sha256':history['ledger_sha256'],
+                'workflow_ids':[x['id'] for x in history['workflow']],
+                'constraint_ids':[x['id'] for x in history['constraints']],
+                'decision_ids':[x['id'] for x in history['decisions']],
+                'sources':history['sources'],'example_card_ids':[x['approved_card_id'] for x in request['approved_card_examples']],
+                'selection_method':history['selection_method']}
+        if request.get('tag_highlight_method') is not None:
+            method=request['tag_highlight_method']
+            base.setdefault('reference_audit',{})['method_guidance']={
+                'guidance_sha256':method['guidance_sha256'],'sources':method['sources'],
+                'clause_ids':[c['id'] for group in ('semantic_axes','processing_steps','normalization_phases','highlight_invariants','historical_exceptions') for c in method[group]]}
         if transport:
             response=transport(copy.deepcopy(request))
         else:

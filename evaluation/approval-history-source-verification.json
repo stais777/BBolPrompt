@@ -1,0 +1,10 @@
+{
+  "ledger_sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+  "source_files_and_archive_members_sha_verified": 19,
+  "records_checked_against_original_rows_or_json_pointers": 6416,
+  "workflow_steps_exact_source_lines": 8,
+  "constraints_exact_source_lines": 19,
+  "source_field_differences": 0,
+  "originals_modified": false,
+  "live_API_called": false
+}

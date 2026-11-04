@@ -25,6 +25,10 @@ CREATE TABLE IF NOT EXISTS card_media(card_id TEXT REFERENCES cards(id),media_sh
 CREATE TABLE IF NOT EXISTS origins(id TEXT PRIMARY KEY,card_id TEXT REFERENCES cards(id),
  filename TEXT NOT NULL,source_sha TEXT NOT NULL,ref TEXT NOT NULL,imported TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS analysis_references(id TEXT PRIMARY KEY,card_id TEXT NOT NULL REFERENCES cards(id),
+ created TEXT NOT NULL,status TEXT NOT NULL,mode TEXT NOT NULL,reference_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS card_versions(id TEXT PRIMARY KEY,card_id TEXT NOT NULL REFERENCES cards(id),
+ created TEXT NOT NULL,reason TEXT NOT NULL,snapshot_json TEXT NOT NULL);
 '''
 
 def sha_text(text):
@@ -79,6 +83,8 @@ class Library:
                 item['images'] = [dict(r) for r in c.execute('''SELECT m.*,cm.position FROM media m
                   JOIN card_media cm ON cm.media_sha=m.sha WHERE cm.card_id=? ORDER BY cm.position''', (item['id'],))]
                 item['origins'] = [dict(r) for r in c.execute('SELECT * FROM origins WHERE card_id=? ORDER BY imported', (item['id'],))]
+                audit=c.execute('SELECT reference_json,status,mode FROM analysis_references WHERE card_id=? ORDER BY created DESC LIMIT 1',(item['id'],)).fetchone()
+                item['analysis_references']=dict(json.loads(audit[0]),status=audit[1],mode=audit[2]) if audit else None
                 item['approved'] = False
                 out.append(item)
             return out
@@ -174,13 +180,74 @@ class Library:
                 dig, rel = self._put_media(stream)
                 self._link(c, cid, dig, rel)
                 self._origin(c, cid, name, dig['sha256'], name)
-            if not images: self._origin(c,cid,filename,sha_text(text),'')
+            if not images or filename!='직접 등록': self._origin(c,cid,filename,sha_text(text),'')
             return cid
 
     def _link(self, c, cid, dig, rel):
         c.execute('INSERT OR IGNORE INTO media VALUES(?,?,?,?,?)', (dig['sha256'],dig['md5'],dig['sha1'],dig['bytes'],rel))
-        pos = c.execute('SELECT COUNT(*) FROM card_media WHERE card_id=?', (cid,)).fetchone()[0]
+        pos = c.execute('SELECT COALESCE(MAX(position),-1)+1 FROM card_media WHERE card_id=?', (cid,)).fetchone()[0]
         c.execute('INSERT OR IGNORE INTO card_media VALUES(?,?,?)', (cid,dig['sha256'],pos))
+
+    def _version(self,c,cid,reason):
+        row=c.execute('SELECT * FROM cards WHERE id=?',(cid,)).fetchone()
+        if row is None:raise ValueError('수정할 신규 카드가 없습니다')
+        snapshot=dict(row)
+        snapshot['images']=[dict(r) for r in c.execute('SELECT media_sha,position FROM card_media WHERE card_id=? ORDER BY position',(cid,))]
+        c.execute('INSERT INTO card_versions VALUES(?,?,?,?,?)',
+                  (uuid.uuid4().hex,cid,_now(),reason,json.dumps(snapshot,ensure_ascii=False)))
+        return snapshot
+
+    def edit_card(self,cid,text,images,remove_images=(),expected_sha=None):
+        if not isinstance(text,str) or not text.strip():raise ValueError('프롬프트 원문이 필요합니다')
+        self.backup()
+        with self.connect() as c:
+            c.execute('BEGIN IMMEDIATE')
+            old=self._version(c,cid,'user_card_edit')
+            if expected_sha is not None and old['sha']!=expected_sha:raise ValueError('편집 중 다른 창에서 원문이 변경되었습니다. 다시 불러오세요.')
+            conflict=c.execute('SELECT id FROM cards WHERE sha=? AND id<>?',(sha_text(text),cid)).fetchone()
+            if conflict:raise ValueError('다른 카드와 동일한 원문입니다. 기존 카드를 덮어쓰지 않습니다.')
+            known={r['media_sha'] for r in old['images']}
+            if set(remove_images)-known:raise ValueError('현재 카드에 없는 이미지입니다')
+            tags=json.loads(old['tags'])
+            if text!=old['text']:
+                # Keep the user's tags, but never attach stale coordinates to
+                # changed text. The complete old mapping is in the version.
+                for tag in tags:
+                    tag['spans']=[]
+                    tag['reason']='원문 수정: 근거 재확인 필요'
+                status='text_edited_evidence_review'
+            else:status=old['analysis_status']
+            c.execute('UPDATE cards SET text=?,sha=?,tags=?,analysis_status=? WHERE id=?',
+                      (text,sha_text(text),json.dumps(tags,ensure_ascii=False),status,cid))
+            for sha in remove_images:c.execute('DELETE FROM card_media WHERE card_id=? AND media_sha=?',(cid,sha))
+            for name,stream in images:
+                dig,rel=self._put_media(stream);self._link(c,cid,dig,rel);self._origin(c,cid,name,dig['sha256'],name)
+        return cid
+
+    def card_history(self,cid):
+        with self.connect() as c:
+            versions=[]
+            for row in c.execute('SELECT * FROM card_versions WHERE card_id=? ORDER BY created DESC',(cid,)):
+                version=dict(row);snapshot=json.loads(version.pop('snapshot_json'))
+                version.update(source_text=snapshot['text'],tags=json.loads(snapshot['tags']),images=snapshot['images'])
+                versions.append(version)
+            return versions
+
+    def restore_card(self,cid,version_id):
+        self.backup()
+        with self.connect() as c:
+            c.execute('BEGIN IMMEDIATE')
+            row=c.execute('SELECT snapshot_json FROM card_versions WHERE id=? AND card_id=?',(version_id,cid)).fetchone()
+            if not row:raise ValueError('이 카드의 수정 이력이 없습니다')
+            target=json.loads(row[0])
+            if c.execute('SELECT 1 FROM cards WHERE sha=? AND id<>?',(target['sha'],cid)).fetchone():raise ValueError('다른 카드의 원문과 충돌합니다. 복원 중단')
+            self._version(c,cid,'user_restore')
+            validate_tags(target['text'],json.loads(target['tags']))
+            c.execute('UPDATE cards SET text=?,sha=?,tags=?,analysis_status=? WHERE id=?',
+                      (target['text'],target['sha'],target['tags'],target['analysis_status'],cid))
+            c.execute('DELETE FROM card_media WHERE card_id=?',(cid,))
+            c.executemany('INSERT INTO card_media VALUES(?,?,?)',[(cid,im['media_sha'],im['position']) for im in target['images']])
+        return cid
 
     def _origin(self, c, cid, filename, source_sha, ref):
         c.execute('INSERT INTO origins VALUES(?,?,?,?,?,?)', (uuid.uuid4().hex,cid,filename,source_sha,ref,_now()))
@@ -194,6 +261,20 @@ class Library:
             validate_tags(row[0], tags)
             c.execute('UPDATE cards SET tags=?,analysis_status=? WHERE id=?',
                       (json.dumps(tags,ensure_ascii=False),result['status'],cid))
+            self._record_analysis_audit(c,cid,result)
+
+    def _record_analysis_audit(self,c,cid,result):
+        audit=result.get('reference_audit')
+        if audit is None:return
+        expected={'master_sha256','ledger_sha256','workflow_ids','constraint_ids','decision_ids','sources','example_card_ids','selection_method'}
+        if not isinstance(audit,dict) or not expected.issubset(audit) or (set(audit)-expected-{'method_guidance'}):raise ValueError('Invalid approval reference audit')
+        c.execute('INSERT INTO analysis_references VALUES(?,?,?,?,?,?)',
+            (uuid.uuid4().hex,cid,_now(),result['status'],result.get('mode','unknown'),json.dumps(audit,ensure_ascii=False)))
+
+    def record_analysis_audit(self,cid,result):
+        # Failed API attempts preserve original tags while retaining provenance
+        # of the attempted guidance; provider bodies and secrets are not saved.
+        with self.connect() as c:self._record_analysis_audit(c,cid,result)
 
     def backup(self):
         folder = self.root / 'backup'; folder.mkdir(exist_ok=True)

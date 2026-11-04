@@ -36,7 +36,7 @@ def safe_extract(z, folder, prefix=''):
         with z.open(info) as source, destination.open('wb') as target: shutil.copyfileobj(source,target)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');parser.add_argument('--version',default='0.3.1-diagnostic');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');parser.add_argument('--version',default='0.3.2-baseline');args=parser.parse_args()
     if not re.fullmatch(r'[0-9]+(?:\.[0-9]+)*(?:-[a-z]+)?',args.version):raise ValueError('Invalid artifact version')
     CACHE.mkdir(parents=True,exist_ok=True)
     python=artifact('python.3.13.7.nupkg',PYTHON_URL,PYTHON_SHA512,'sha512',args.offline)
@@ -54,7 +54,7 @@ def main():
     shutil.copy2(launcher,package/'Bbolprom.exe')
     with zipfile.ZipFile(python) as z:safe_extract(z,package/'runtime','tools/')
     shutil.copytree(ROOT/'bbolprom_engine', package/'app/bbolprom_engine',ignore=shutil.ignore_patterns('__pycache__','*.pyc','compare.py'))
-    # The display-only approved gallery catalog is isolated from inference.
+    # Approved fixed baseline and opt-in API reference catalogue.
     # Evaluation baselines, API keys, local databases, caches, tests and handoff files
     # are excluded from the executable distribution.
     catalog=ROOT/'assets/approved_catalog.json'
@@ -66,7 +66,9 @@ def main():
     shutil.copy2(DESKTOP/'windows_smoke.py',package/'windows_smoke.py')
     smoke=ROOT/'scripts/test_windows.ps1'
     if smoke.exists(): shutil.copy2(smoke,package/'test_windows.ps1')
-    provenance={'version':args.version,'cross_built':True,'native_windows_executed':False,'target':'Windows 10/11 x64','python':{'version':'3.13.7','source':PYTHON_URL,'upstream_catalog':PYTHON_CATALOG,'sha512_base64':PYTHON_SHA512,'publisher':'Python Software Foundation'},'compiler':{'version':'Zig 0.13.0','source':ZIG_URL,'sha256':ZIG_SHA256},'command':command,'notes':'Unsigned development build. Windows execution is a separate validation requirement.'}
+    source_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    source_dirty=bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True).strip())
+    provenance={'version':args.version,'application_source_commit':source_commit,'application_source_clean_at_build':not source_dirty,'cross_built':True,'native_windows_executed':False,'actual_PT_tested':False,'live_API_tested':False,'UI_handoff_applied':True,'target':'Windows 10/11 x64','python':{'version':'3.13.7','source':PYTHON_URL,'upstream_catalog':PYTHON_CATALOG,'sha512_base64':PYTHON_SHA512,'publisher':'Python Software Foundation'},'compiler':{'version':'Zig 0.13.0','source':ZIG_URL,'sha256':ZIG_SHA256},'command':command,'notes':'Unsigned development build. Windows execution is a separate validation requirement.'}
     (package/'BUILD_PROVENANCE.json').write_text(json.dumps(provenance,indent=2),encoding='utf-8')
     hashes={str(p.relative_to(package)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(package.rglob('*')) if p.is_file()}
     (package/'SHA256.json').write_text(json.dumps(hashes,indent=2,ensure_ascii=False),encoding='utf-8')

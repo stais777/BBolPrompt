@@ -33,3 +33,14 @@
 API 기본 응답 스키마는 그대로이며, 요청에 `approved_card_examples`만 추가했다. `analyze_card(..., examples=사례목록)`과 `build_request(..., examples=사례목록)`은 전달된 사례의 필드·근거 문자열·원본/발췌 좌표·출처 SHA 형식·공개 분량을 다시 검사한다. API 어댑터가 자체적으로 카탈로그를 열거나 암묵적으로 사례 전송을 시작하지 않는다. 기존 표준 태그 ID는 원래와 동일하게 `std-` + SHA256(분류 ID + NUL + 대표명)의 앞 16자다.
 
 `tests/test_api_examples.py`의 9개 테스트는 opt-in, 원문·근거·출처, 실제 카탈로그 불변, 정확히 같은 원문 제외, 분량 제한, 긴 원문 코드포인트 좌표와 모의 API 요청 연결을 검증했다. 이 테스트는 실제 API 호출·새 원문 의미 판단 품질·A/B 재현율 개선을 검증하지 않았다.
+
+
+## 승인 과정 원장과 추가 방법론 연결
+
+`load_approval_history()`는 원본마스터106시트 중24정본 시트, 초기~18차 실제 승인287항목 및 원본API지침에서 만든 출처원장을 읽습니다. 6416레코드에는 중복/과거 기록이 포함됩니다. 최종매핑과 맞는4425레코드와215기준 중 관련 자료만 선택하고,1775불일치 기록과1설명행은 운영 판단으로 보내지 않습니다. 오래된 사유에는 같은 카드의 후행 승인을 동반합니다. 원래9개 항목의 미승인 문구는 전건 승인 증빙과 연결하되 원문을 바꾸지 않습니다.
+
+`analyze_card(..., approval_history=원장, method_guidance=방법론)` 및 `build_request`는 `approved_processing_history`, `tag_highlight_method`를 요청에 추가합니다. 전자는 원래8단계·19정책과 관련 판단12개 이하(전체JSON32000자 이하), 후자는 의미판단축10·처리순서7·세로/가로13·하이라이팅불변14·역사적예외2의 원문46절(24000자 이하)입니다. `method_guidance`는 실제 승인보다 우선하지 않는 재구성 설명입니다. API는 여전히 근거구절만 반환하고 CP좌표는 코드가 계산합니다. 새 대분류 자동생성·과거 베이스수정·로컬재분할·반복승인 루프를 허용하지 않습니다.
+
+앱은 API가 활성화되고 전송에 동의했을 때 이 경로를 사용하며, 관련309카드 원문발췌 사례의 전송은 기존 `use_approved_examples`선택을 따릅니다. 새원장의 사용 중에는 예전4시트285개 판단을 중복해서 보내지 않습니다. 응답의 `reference_audit`는 제공한 기준ID·출처·데이터SHA와 방법론절ID를 담고 SQLite `analysis_references`에 저장합니다. 실제로 모델이 어떤 판단을 정확히 수행했는지 검증했다는 의미는 아닙니다.
+
+인계문서의 단위·수량 및 사용자 현재방침과 충돌한 부분은 `docs/APPROVAL_HISTORY_AUDIT.md`, 기계검증은 `evaluation/method-handoff-analysis.json`, `approval-history-source-verification.json` 등에 기록했습니다. 실제API호출과 의미품질은 아직 검증하지 않았습니다.

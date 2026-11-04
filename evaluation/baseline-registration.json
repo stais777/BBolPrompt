@@ -1,0 +1,41 @@
+{
+  "mode": "fixed_master_baseline",
+  "independent_card_extraction_claimed": false,
+  "master_modified": false,
+  "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+  "counts": {
+    "fixed_card_ids": 309,
+    "unique_prompt_hashes": 296,
+    "image_references": 531,
+    "distinct_source_paths": 522,
+    "tag_mappings": 8471,
+    "codepoint_spans": 10358,
+    "approved_zero_span_tags": 17
+  },
+  "tests": {
+    "unit_and_local_HTTP": 105,
+    "synthetic_baseline_browser_checks": 5,
+    "existing_browser_regressions": 16,
+    "app_self_test_exit_code": 0,
+    "source_sha_override_in_tests_only": true
+  },
+  "evidence_sha256": {
+    "baseline-integrated-tests.log": "4785c1c26554567ac1958346bd2b696b8d0b0ebe2bf25209d984b1e6f8c10724",
+    "baseline-browser-smoke.json": "1cab78c684564969b219fcea02f75360f6f12997987ddd8debb4f8f361970ed3",
+    "gap-audit-review.json": "3cb303ba10f8523bfc3d32a66a81c84e57327cd80a62dd3a7ae52ceac07f4abf",
+    "history/baseline-phase-browser-smoke.json": "198bda778e9ab4895c9192f2415f1b7e4f724916ec4884e7ac8f0e86735c75d6"
+  },
+  "actual_PT_tested": false,
+  "external_API_tested": false,
+  "native_Windows_tested": false,
+  "Windows_zip_rebuilt_this_phase": false,
+  "UI_handoff_zip_opened": false,
+  "remaining": [
+    "Source version comparison and disappeared-card states",
+    "Import-session rollback",
+    "Secondary concept/state key mapping and search",
+    "Full manual tag confirmation/exclusion protection during reanalysis",
+    "Missing item-level original approvals for global 37/15 and horizontal rounds3-7"
+  ],
+  "phase": "Fixed-baseline implementation before UI handoff application"
+}

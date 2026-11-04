@@ -1,0 +1,1508 @@
+{
+  "limitations": [
+    "An approved historical action is not a universal rule. Final-mismatched records are excluded from live guidance.",
+    "Inventory is not blanket approval: older candidate sheets and pending JSON lists are not sent as current decisions.",
+    "Other historical workbooks and illustrative HTML repeat intermediate states; not all are promoted. No unavailable original chat log is invented.",
+    "Individual B/C/F/G/H labels in vertical worksheets refer to an older column layout; raw fields remain unchanged."
+  ],
+  "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+  "master_sheets_inventoried": 106,
+  "nested_json_inventory": [
+    {
+      "action_keys": [
+        "review_proposals",
+        "user_approved_tag_actions_156_175"
+      ],
+      "archive": "뽈프롬_156-175_하이라이팅_11차승인완료_12차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드156-175_승인완료_원문하이라이팅_매핑538_20261104.json",
+      "status": "APPROVED 2026-11-04. All 40 proposed actions applied; no pending review items.",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175"
+      ],
+      "archive": "뽈프롬_156-175_하이라이팅_11차승인완료_12차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-175_승인완료_원문하이라이팅_매핑4121_20261104.json",
+      "status": "APPROVED through card 175. No pending review items.",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_156-175_하이라이팅_11차승인완료_12차인계패키지_20261104.zip",
+      "member": "뽈프롬_156-175_11차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_176-195_하이라이팅_12차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드176-195_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "UNAPPROVED 34 REVIEW ITEMS: DO NOT MODIFY MASTER",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "pilot_176_195_pending_review_proposals"
+      ],
+      "archive": "뽈프롬_176-195_하이라이팅_12차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-195_검토용누적매핑4707_176-195미승인_20261104.json",
+      "status": "APPROVED through 175 ONLY; 176-195 is PENDING 34 review items.",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_176-195_하이라이팅_12차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_176-195_12차검토_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_actions_176_195"
+      ],
+      "archive": "뽈프롬_176-195_하이라이팅_12차승인완료_13차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드176-195_승인완료_원문하이라이팅_매핑560_20261104.json",
+      "status": "APPROVED all 34 review proposals on 2026-11-04",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195"
+      ],
+      "archive": "뽈프롬_176-195_하이라이팅_12차승인완료_13차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-195_승인완료_원문하이라이팅_매핑4681_20261104.json",
+      "status": "APPROVED all 001-195, 12th 34 proposals approved",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_176-195_하이라이팅_12차승인완료_13차인계패키지_20261104.zip",
+      "member": "뽈프롬_176-195_12차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_196-215_하이라이팅_13차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드196-215_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "UNAPPROVED; DO NOT MODIFY MASTER",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "pilot_196_215_review_proposals"
+      ],
+      "archive": "뽈프롬_196-215_하이라이팅_13차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-215_검토용누적매핑5267_196-215미승인_20261104.json",
+      "status": "001~195 APPROVED ONLY; 196~215 PENDING",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_196-215_하이라이팅_13차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_196-215_13차검토_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_196-215_하이라이팅_13차승인완료_14차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드196-215_승인완료_원문하이라이팅_매핑576_20261104.json",
+      "status": "사용자 14건 전건 승인·공식 마스터 반영 완료",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215"
+      ],
+      "archive": "뽈프롬_196-215_하이라이팅_13차승인완료_14차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-215_승인완료_원문하이라이팅_매핑5257_20261104.json",
+      "status": "001~215 전체 사용자 승인 완료",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_196-215_하이라이팅_13차승인완료_14차인계패키지_20261104.zip",
+      "member": "뽈프롬_196-215_13차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_216-235_하이라이팅_14차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드216-235_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "216~235 검토9건 사용자 승인 대기·마스터 변경 없음",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "review_proposals_216_235"
+      ],
+      "archive": "뽈프롬_216-235_하이라이팅_14차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-235_검토용누적매핑5916_216-235미승인_20261104.json",
+      "status": "001~215 승인 확정 / 216~235 9건 승인 대기",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_216-235_하이라이팅_14차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_216-235_14차검토_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_actions_216_235"
+      ],
+      "archive": "뽈프롬_216-235_하이라이팅_14차승인완료_15차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드216-235_승인완료_원문하이라이팅_매핑657_20261104.json",
+      "status": "216~235 카드 9건 사용자 전건 승인 완료; 마스터 반영 및 오프셋 검증",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235"
+      ],
+      "archive": "뽈프롬_216-235_하이라이팅_14차승인완료_15차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-235_승인완료_원문하이라이팅_매핑5914_20261104.json",
+      "status": "001~235 카드 사용자 승인 확정",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_216-235_하이라이팅_14차승인완료_15차인계패키지_20261104.zip",
+      "member": "뽈프롬_216-235_14차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_236-255_하이라이팅_15차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드236-255_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "236~255 검토 32건 사용자 승인 대기·공식 마스터 미수정",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "review_proposals_236_255"
+      ],
+      "archive": "뽈프롬_236-255_하이라이팅_15차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-255_검토용누적매핑6503_236-255미승인_20261104.json",
+      "status": "001~235 사용자 확정 / 236~255 검토32건 승인 대기",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_236-255_하이라이팅_15차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_236-255_15차검토_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_236-255_하이라이팅_15차승인완료_16차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드236-255_승인완료_원문하이라이팅_매핑563_20261104.json",
+      "status": "15차 236~255 사용자 32건 전건 승인·공식 마스터 반영 완료",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255"
+      ],
+      "archive": "뽈프롬_236-255_하이라이팅_15차승인완료_16차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-255_승인완료_원문하이라이팅_누적매핑6477_20261104.json",
+      "status": "001~255 카드 사용자 승인 확정",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_236-255_하이라이팅_15차승인완료_16차인계패키지_20261104.zip",
+      "member": "뽈프롬_236-255_15차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_256-275_하이라이팅_16차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드256-275_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "256~275 검토22건 사용자 승인 대기, 공식 마스터 미수정",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255",
+        "review_proposals_256_275"
+      ],
+      "archive": "뽈프롬_256-275_하이라이팅_16차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-275_검토용누적매핑7164_256-275미승인_20261104.json",
+      "status": "001~255 사용자 확정 / 256~275 22건 승인 대기",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_256-275_하이라이팅_16차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_256-275_16차검토_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_proposals"
+      ],
+      "archive": "뽈프롬_256-275_하이라이팅_16차승인완료_17차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드256-275_승인완료_원문하이라이팅_매핑672_20261104.json",
+      "status": "검토22건 전건 사용자 승인 반영·검증 완료",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255",
+        "user_approved_tag_actions_256_275"
+      ],
+      "archive": "뽈프롬_256-275_하이라이팅_16차승인완료_17차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-275_승인완료_원문하이라이팅_누적매핑7149_20261104.json",
+      "status": "001~275 승인 확정 · 미승인0",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_256-275_하이라이팅_16차승인완료_17차인계패키지_20261104.zip",
+      "member": "뽈프롬_256-275_16차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_recommendations"
+      ],
+      "archive": "뽈프롬_276-295_하이라이팅_17차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드276-295_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "pending_user_review_13",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255",
+        "user_approved_tag_actions_256_275",
+        "review_recommendations_276_295"
+      ],
+      "archive": "뽈프롬_276-295_하이라이팅_17차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-295_검토용_원문하이라이팅_누적매핑7943_20261104.json",
+      "status": "001-275 approved, 276-295 pending user review",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_276-295_하이라이팅_17차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_276-295_17차승인대기_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_276-295_하이라이팅_17차승인완료_18차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드276-295_승인완료_원문하이라이팅_매핑790_20261104.json",
+      "status": "검토13건 전건 사용자 승인 확정 · 미승인0",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255",
+        "user_approved_tag_actions_256_275",
+        "user_approved_tag_actions_276_295"
+      ],
+      "archive": "뽈프롬_276-295_하이라이팅_17차승인완료_18차인계패키지_20261104.zip",
+      "member": "Bbolprom_카드001-295_승인완료_원문하이라이팅_누적매핑7939_20261104.json",
+      "status": "001~295 확정 · 미승인0",
+      "used_as_latest_cumulative": true
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_276-295_하이라이팅_17차승인완료_18차인계패키지_20261104.zip",
+      "member": "뽈프롬_276-295_17차승인완료_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "review_recommendations"
+      ],
+      "archive": "뽈프롬_296-309_하이라이팅_18차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드296-309_원문하이라이팅_실제매핑_승인대기_20261104.json",
+      "status": "296~309 검토12건 사용자 승인 대기 · 공식 마스터 미변경",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [
+        "user_approved_tag_removals",
+        "user_approved_tag_changes_016_025",
+        "user_approved_tag_changes_026_035",
+        "user_approved_tag_retention_026_035",
+        "user_approved_tag_changes_036_055",
+        "user_approved_tag_merges_056_075",
+        "user_approved_tag_changes_076_095",
+        "approved_tag_changes_096_115",
+        "user_approved_tag_merges_116_135",
+        "user_approved_tag_actions_136_155",
+        "user_approved_tag_actions_156_175",
+        "user_approved_tag_actions_176_195",
+        "user_approved_tag_actions_196_215",
+        "user_approved_tag_actions_216_235",
+        "user_approved_tag_actions_236_255",
+        "user_approved_tag_actions_256_275",
+        "user_approved_tag_actions_276_295",
+        "review_recommendations_296_309"
+      ],
+      "archive": "뽈프롬_296-309_하이라이팅_18차매핑_승인대기패키지_20261104.zip",
+      "member": "Bbolprom_카드001-309_검토용_원문하이라이팅_누적매핑8475_20261104.json",
+      "status": "001~295 승인 확정 / 296~309 12건 검토 대기",
+      "used_as_latest_cumulative": false
+    },
+    {
+      "action_keys": [],
+      "archive": "뽈프롬_296-309_하이라이팅_18차매핑_승인대기패키지_20261104.zip",
+      "member": "뽈프롬_296-309_18차승인대기_SHA256_manifest_20261104.json",
+      "status": null,
+      "used_as_latest_cumulative": false
+    }
+  ],
+  "policy_constraints": 19,
+  "record_families": {
+    "approved_rule": 75,
+    "duplicate_removal": 29,
+    "highlight_decision": 287,
+    "horizontal_decision": 602,
+    "vertical_concept": 1860,
+    "vertical_dictionary": 210,
+    "vertical_props": 1080,
+    "vertical_situation": 1297,
+    "vertical_state": 976
+  },
+  "record_outcomes": {
+    "approved_rule": 215,
+    "final_confirmed": 4425,
+    "historical_conflict": 1775,
+    "non_decision_excluded": 1
+  },
+  "selected_sheets": 24,
+  "sheet_coverage": [
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 309,
+      "selected": false,
+      "sheet": "카드별태그"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 2200,
+      "selected": false,
+      "sheet": "통합태그색인"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "작업이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 21,
+      "selected": false,
+      "sheet": "운영규칙"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 13,
+      "selected": false,
+      "sheet": "001-010_검수이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "011-030_검수이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "031-050_검수이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 47,
+      "selected": false,
+      "sheet": "001-050_C태그복원"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "051-070_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "071-090_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "091-110_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "111-130_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "131-150_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "151-170_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "171-190_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "191-210_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "211-230_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "231-250_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "251-270_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 20,
+      "selected": false,
+      "sheet": "271-290_추가검수"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 19,
+      "selected": false,
+      "sheet": "291-309_추가검수"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 210,
+        "historical_conflict": 33
+      },
+      "reason": "canonical approval history",
+      "rows": 243,
+      "selected": true,
+      "sheet": "B_001-050_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 18,
+      "selected": false,
+      "sheet": "B_001-050_승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 257,
+      "selected": false,
+      "sheet": "B_051-100_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 13,
+      "selected": false,
+      "sheet": "B_051-100_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 4,
+      "selected": false,
+      "sheet": "B_정규화_진행현황"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 207,
+        "historical_conflict": 50
+      },
+      "reason": "canonical approval history",
+      "rows": 257,
+      "selected": true,
+      "sheet": "B_051-100_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 21,
+      "selected": false,
+      "sheet": "B_001-100_누적승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 500,
+      "selected": false,
+      "sheet": "B_001-100_누적원본500건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 253,
+      "selected": false,
+      "sheet": "B_101-150_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 18,
+      "selected": false,
+      "sheet": "B_101-150_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 5,
+      "selected": false,
+      "sheet": "B_정규화_진행현황2"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 214,
+        "historical_conflict": 39
+      },
+      "reason": "canonical approval history",
+      "rows": 253,
+      "selected": true,
+      "sheet": "B_101-150_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 32,
+      "selected": false,
+      "sheet": "B_001-150_누적승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 753,
+      "selected": false,
+      "sheet": "B_001-150_누적원본753건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 254,
+      "selected": false,
+      "sheet": "B_151-200_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 44,
+      "selected": false,
+      "sheet": "B_151-200_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 6,
+      "selected": false,
+      "sheet": "B_정규화_진행현황4"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 212,
+        "historical_conflict": 42
+      },
+      "reason": "canonical approval history",
+      "rows": 254,
+      "selected": true,
+      "sheet": "B_151-200_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 63,
+      "selected": false,
+      "sheet": "B_001-200_누적승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 1007,
+      "selected": false,
+      "sheet": "B_001-200_누적원본1007건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 379,
+      "selected": false,
+      "sheet": "B_201-250_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 47,
+      "selected": false,
+      "sheet": "B_201-250_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 7,
+      "selected": false,
+      "sheet": "B_정규화_진행현황5"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 316,
+        "historical_conflict": 63
+      },
+      "reason": "canonical approval history",
+      "rows": 379,
+      "selected": true,
+      "sheet": "B_201-250_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 110,
+      "selected": false,
+      "sheet": "B_001-250_누적승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 1386,
+      "selected": false,
+      "sheet": "B_001-250_누적원본1386건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 372,
+      "selected": false,
+      "sheet": "B_251-300_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 67,
+      "selected": false,
+      "sheet": "B_251-300_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 8,
+      "selected": false,
+      "sheet": "B_정규화_진행현황6"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 266,
+        "historical_conflict": 106
+      },
+      "reason": "canonical approval history",
+      "rows": 372,
+      "selected": true,
+      "sheet": "B_251-300_승인원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 177,
+      "selected": false,
+      "sheet": "B_001-300_누적승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 1758,
+      "selected": false,
+      "sheet": "B_001-300_누적원본1758건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 102,
+      "selected": false,
+      "sheet": "B_301-309_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 4,
+      "selected": false,
+      "sheet": "B_301-309_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 8,
+      "selected": false,
+      "sheet": "B_정규화_진행현황7"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 81,
+        "historical_conflict": 21
+      },
+      "reason": "canonical approval history",
+      "rows": 102,
+      "selected": true,
+      "sheet": "B_301-309_승인원본102건"
+    },
+    {
+      "outcomes": {
+        "approved_rule": 181
+      },
+      "reason": "canonical approval history",
+      "rows": 181,
+      "selected": true,
+      "sheet": "B_001-309_최종승인사전"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 1860,
+      "selected": false,
+      "sheet": "B_001-309_원본1860건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 4,
+      "selected": false,
+      "sheet": "B_301-309_최종매핑4종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 11,
+      "selected": false,
+      "sheet": "B_정규화_전체완료"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 16,
+      "selected": false,
+      "sheet": "C_001-050_검토후보"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 124,
+      "selected": false,
+      "sheet": "C_001-050_검토원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "C_001-050_카드별원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 7,
+      "selected": false,
+      "sheet": "C_정규화_진행현황"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 16,
+      "selected": false,
+      "sheet": "C_001-050_승인사전16종"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 83,
+        "historical_conflict": 41
+      },
+      "reason": "canonical approval history",
+      "rows": 124,
+      "selected": true,
+      "sheet": "C_001-050_승인원본124건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 7,
+      "selected": false,
+      "sheet": "C_051-100_검토후보7종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 103,
+      "selected": false,
+      "sheet": "C_051-100_검토원본103건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "C_051-100_카드별원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 7,
+      "selected": false,
+      "sheet": "C_001-100_승인누적현황"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 16,
+      "selected": false,
+      "sheet": "C_001-100_승인사전16종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 227,
+      "selected": false,
+      "sheet": "C_001-100_원본227건"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 53,
+        "historical_conflict": 50
+      },
+      "reason": "canonical approval history",
+      "rows": 103,
+      "selected": true,
+      "sheet": "C_051-100_승인원본103건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 13,
+      "selected": false,
+      "sheet": "C_101-150_신규후보13종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 114,
+      "selected": false,
+      "sheet": "C_101-150_원본114건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "C_101-150_카드별원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 8,
+      "selected": false,
+      "sheet": "C_001-150_승인누적현황"
+    },
+    {
+      "outcomes": {
+        "approved_rule": 29
+      },
+      "reason": "canonical approval history",
+      "rows": 29,
+      "selected": true,
+      "sheet": "C_001-150_승인사전29종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 341,
+      "selected": false,
+      "sheet": "C_001-150_원본341건"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 70,
+        "historical_conflict": 44
+      },
+      "reason": "canonical approval history",
+      "rows": 114,
+      "selected": true,
+      "sheet": "C_101-150_승인원본114건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 52,
+      "selected": false,
+      "sheet": "C_151-200_신규후보52종"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 173,
+      "selected": false,
+      "sheet": "C_151-200_원본173건"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "C_151-200_카드별원본"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 6,
+      "selected": false,
+      "sheet": "C_001-200_검토현황"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 209,
+        "historical_conflict": 25
+      },
+      "reason": "canonical approval history",
+      "rows": 234,
+      "selected": true,
+      "sheet": "C251-300_승인감사"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 68
+      },
+      "reason": "canonical approval history",
+      "rows": 68,
+      "selected": true,
+      "sheet": "C301-309_승인감사"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 143,
+        "historical_conflict": 30
+      },
+      "reason": "canonical approval history",
+      "rows": 173,
+      "selected": true,
+      "sheet": "C151-200_최종승인감사"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 149,
+        "historical_conflict": 11
+      },
+      "reason": "canonical approval history",
+      "rows": 160,
+      "selected": true,
+      "sheet": "C201-250_최종승인감사"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 13,
+      "selected": false,
+      "sheet": "DE_반영검증_20261102"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 713,
+        "historical_conflict": 584
+      },
+      "reason": "canonical approval history",
+      "rows": 1297,
+      "selected": true,
+      "sheet": "F_001-309_승인원본1297"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 18,
+      "selected": false,
+      "sheet": "F_반영검증_20261102"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 27
+      },
+      "reason": "canonical approval history",
+      "rows": 27,
+      "selected": true,
+      "sheet": "G열_중복삭제_검토대기"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 309,
+      "selected": false,
+      "sheet": "G열_최종반영_검증"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 15,
+      "selected": false,
+      "sheet": "G열_승인반영_요약"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 749,
+        "historical_conflict": 331
+      },
+      "reason": "canonical approval history",
+      "rows": 1080,
+      "selected": true,
+      "sheet": "H열_승인원본1080"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 1,
+        "non_decision_excluded": 1
+      },
+      "reason": "canonical approval history",
+      "rows": 2,
+      "selected": true,
+      "sheet": "H열_중복검토대기1"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 13,
+      "selected": false,
+      "sheet": "H열_마스터반영검증"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "가로1차_변경전백업"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 147,
+        "historical_conflict": 120
+      },
+      "reason": "canonical approval history",
+      "rows": 267,
+      "selected": true,
+      "sheet": "가로1차_승인변경이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "가로1차_검증보고"
+    },
+    {
+      "outcomes": {
+        "approved_rule": 52
+      },
+      "reason": "canonical approval history",
+      "rows": 52,
+      "selected": true,
+      "sheet": "가로_다음차수적용기준"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "가로2차_변경전백업"
+    },
+    {
+      "outcomes": {
+        "final_confirmed": 220,
+        "historical_conflict": 115
+      },
+      "reason": "canonical approval history",
+      "rows": 335,
+      "selected": true,
+      "sheet": "가로2차_승인변경이력"
+    },
+    {
+      "outcomes": {},
+      "reason": "Preserved inventory only: earlier cumulative duplicate, unapproved proposal, backup, operational history or validation report; not silently promoted to a current rule",
+      "rows": 50,
+      "selected": false,
+      "sheet": "가로2차_검증보고"
+    },
+    {
+      "outcomes": {
+        "approved_rule": 23
+      },
+      "reason": "canonical approval history",
+      "rows": 23,
+      "selected": true,
+      "sheet": "가로2차_다음차수적용기준"
+    }
+  ],
+  "source_status_conflicts": [
+    "approval-06329",
+    "approval-06330",
+    "approval-06331",
+    "approval-06332",
+    "approval-06333",
+    "approval-06334",
+    "approval-06335",
+    "approval-06336",
+    "approval-06337"
+  ],
+  "sources": {
+    "src-222875632f7a2fd9": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드296-309_원문하이라이팅_18차검토_승인대기_인계_20261104.md",
+      "sha256": "10b8228c0032e0797162384f83aaa3ca71f2fddfffb98567af81dfdc6f0531c8"
+    },
+    "src-2b40f1a2055240f7": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드276-295_원문하이라이팅_17차_승인완료_18차인계_20261104.md",
+      "sha256": "940d8a5d4bddb86acae33db4d47c08cf25a2c9e4d01876c978729a9d4abd61d6"
+    },
+    "src-31a0415a0018144d": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드156-175_원문하이라이팅_11차검토_인계_20261104(1).md",
+      "sha256": "90dce9d8d355726c2c51902ad266ae24c05ef5e84cb3a5ce423509291c5af1cf"
+    },
+    "src-3203e6fa5e038d14": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드216-235_원문하이라이팅_14차검토_승인대기_인계_20261104.md",
+      "sha256": "6601855de8e99089a9ac7d6c0a203abaf787c5627f94fb28e23d69b18cf6a52c"
+    },
+    "src-45f2f240c6da2a47": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드256-275_원문하이라이팅_16차검토_승인대기_인계_20261104.md",
+      "sha256": "b855e2fcb416326ed17f7596434fb72282d8ba4b5971baa15596985f56dd3a8c"
+    },
+    "src-4fab904c56e8bd2b": {
+      "kind": "final_highlight_approval",
+      "member": null,
+      "path": "01_확정자료/Bbolprom_309카드_18차승인_최종무결성검증_20261104.xlsx",
+      "sha256": "4bd7e59be9558f8651fb905b1b3ccb8c02e922ef848e6fe4908e1153826b2157"
+    },
+    "src-58a803ef62cd0314": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드276-295_원문하이라이팅_17차검토_승인대기_인계_20261104.md",
+      "sha256": "e1640fd0dcd630dc2b50b07e14916aa15519e701ed83a3ed23c78762241f0632"
+    },
+    "src-7e70b264cce606c5": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드176-195_원문하이라이팅_12차검토_승인대기_인계_20261104.md",
+      "sha256": "1110fc2ccd095933611e1ef187cab8a4181f9190758739b74f81d6f4efcedd70"
+    },
+    "src-7f20889db575e6e7": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드236-255_원문하이라이팅_15차_승인완료_16차인계_20261104.md",
+      "sha256": "5637c771f486a2a2636024c322bd3f447e70088ef393214d39e96d13a5c600e4"
+    },
+    "src-9a24efb1b9c5f834": {
+      "kind": "final_master",
+      "member": null,
+      "path": "01_확정자료/Bbolprom_Master_309Cards_001-309_원문하이라이팅최종확정_통합태그색인재구축_20261104.xlsx",
+      "sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe"
+    },
+    "src-a8d45cdbaa0cb103": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드156-175_원문하이라이팅_11차_승인완료_12차인계_20261104.md",
+      "sha256": "d8944113388de49d0ef38c12002c0314db21f4731d50c148f461c5ffaa7f705f"
+    },
+    "src-b1f0da118755d806": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드256-275_원문하이라이팅_16차_승인완료_17차인계_20261104.md",
+      "sha256": "38ef398c9da400df908abf946b01bdcbecde56f4726da86521066717fd2d34fe"
+    },
+    "src-c0dd2176297a185e": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드236-255_원문하이라이팅_15차검토_승인대기_인계_20261104.md",
+      "sha256": "e0c76b2ecfbf22dabdbe8ac65251ff9566125ccaf95740fc0080d8f4e59dbefa"
+    },
+    "src-c1a91613005df9b5": {
+      "archive_sha256": "c373a3c2a4ad6bb85fb805f41cdf6f952e1d9550e0fa9da551ac5ddbe6bc64e7",
+      "kind": "approved_cumulative_json",
+      "member": "Bbolprom_카드001-295_승인완료_원문하이라이팅_누적매핑7939_20261104.json",
+      "path": "05_과거작업/뽈프롬_276-295_하이라이팅_17차승인완료_18차인계패키지_20261104.zip",
+      "sha256": "20a8e3d5443d85fd4a4ea6a1a26b78ef9dec9f9f7dfa5e123b6356d2c48a3c8b"
+    },
+    "src-c99c48122fc012a7": {
+      "kind": "user_api_policy",
+      "member": null,
+      "path": "02_API_승인지침/뽈프롬_API관련사항_ChatGPT코딩용_상세구현지침_20261104.md",
+      "sha256": "9bc6247c72f6cf1315f7db19ae35e04f709586f874532a30e0c14a6b27c5c755"
+    },
+    "src-e66e73d49acbc908": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드196-215_원문하이라이팅_13차_승인완료_14차인계_20261104.md",
+      "sha256": "058b42d8d5ee66fb38d3381dbea236e567fa78c3c42f2bb958c8383e3a2b41f9"
+    },
+    "src-e81525943d7ba8d9": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드176-195_원문하이라이팅_12차_승인완료_13차인계_20261104.md",
+      "sha256": "72006ac2e0a0d640cf86073eb7ffabed49317f1e9ffbba23f201ff6fdb555f48"
+    },
+    "src-edf095beff5f0924": {
+      "kind": "review_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드196-215_원문하이라이팅_13차검토_승인대기_인계_20261104.md",
+      "sha256": "e9a1af8655f69a12d22141f341e5906266e89c152222cdb97f4623ffdf7de531"
+    },
+    "src-ff08728dd2842726": {
+      "kind": "approval_handoff",
+      "member": null,
+      "path": "05_과거작업/뽈프롬_카드216-235_원문하이라이팅_14차_승인완료_15차인계_20261104.md",
+      "sha256": "d695b7a319831871004f0668e2d108875e96191ef91690b009f46f9ef5aa17e0"
+    }
+  },
+  "workflow_steps": 8
+}

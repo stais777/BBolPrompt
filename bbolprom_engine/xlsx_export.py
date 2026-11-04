@@ -17,7 +17,7 @@ def export_xlsx(cards, path, category_names=None):
         rows.append([str(c['id']),c['source_text'],*['\n'.join(t.get('tag',t.get('name','')) for t in tags
                       if t.get('category_id',t.get('category_column'))==col) for col in columns],
                      '\n'.join(t.get('tag',t.get('name','')) for t in tags if not t.get('category_id',t.get('category_column'))),
-                     '\n'.join(i.get('sha',i.get('ref','')) for i in c['images']),c.get('analysis_status','approved_readonly')])
+                     '\n'.join(i.get('sha') or i.get('ref','') for i in c['images']),c.get('analysis_status','approved_readonly')])
         for t in tags:
             name=t.get('tag',t.get('name','')); cat=t.get('category_id',t.get('category_column'))
             index.setdefault((name,str(cat or '')),[]).append(str(c['id']))

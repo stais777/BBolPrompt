@@ -1,0 +1,13 @@
+{
+  "actual_PT_tested": false,
+  "external_api_called": false,
+  "fixture_source_sha_patched_in_test_process_only": true,
+  "checks": [
+    "fixed_IDs_and_188_zero_images_before_attachment",
+    "unknown_source_rejected_by_product_import_button_without_registration",
+    "review_309_readonly_ids_with_109_110_ordered_refs_and_cancel",
+    "review_commit_and_repeat_keep_309_cards_and_531_links",
+    "reload_preserves_images_ids_and_approved_tags"
+  ],
+  "status": "passed"
+}

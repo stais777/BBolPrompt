@@ -1,0 +1,87 @@
+{
+  "guidance_clauses_source_lines_exact": 46,
+  "method_package_files_hash_verified": 55,
+  "master_sha256": "b59c80d08222f33e8d2e23964e88ec2432153c3a12db48a14c788dc730284fbe",
+  "master_sheets": 106,
+  "cards": 309,
+  "tag_mappings": 8471,
+  "spans": 10358,
+  "empty_span_records": [
+    "262-H-02",
+    "276-H-13",
+    "277-H-13",
+    "278-H-13",
+    "279-H-11",
+    "284-H-12",
+    "292-H-16",
+    "293-H-16",
+    "294-H-16",
+    "295-H-16",
+    "296-H-16",
+    "304-H-03",
+    "305-H-03",
+    "306-H-03",
+    "307-H-03",
+    "308-H-03",
+    "309-H-03"
+  ],
+  "image_reference_count": 531,
+  "unique_image_reference_ids": 522,
+  "binary_media_count_verified": false,
+  "existing_ledger_approval_actions_matched": 287,
+  "no_image_cards": [
+    188
+  ],
+  "index_entries": 2200,
+  "existing_catalog_text_tags_and_spans_match": true,
+  "verbatim_action_collections": 18,
+  "verbatim_actions": 287,
+  "analyzed_method_documents": {
+    "01_full_process.md": "65b7343fd825afcd6a8d60f5e1d955bb81847c174cd4c9db6484736a3cab0ac7",
+    "02_decision_rules_examples.md": "dd6502bdf80988a47038ffa50190a983b536de9f756fb90a2012ae3d2d31495a",
+    "03_highlighting_mapping.md": "f5313ced38f39975de7e34d091d6ebbb7df1368b26bb59a73df37352b74e35e0",
+    "04_master_schema.md": "c5270d09b86e056851b7dd26fc905ef2e0eaddca26e8c65a18fc318da6372308",
+    "05_approval_timeline.md": "10aa868e1743cb5ac907f9070fc32c37bece7723b712a3245aa3c534081d0eac",
+    "06_codex_implementation_brief.md": "5fb1e2313feac102b8a3872a9eaf4b5ab697e1739efa459964debf36b6cfc1a1"
+  },
+  "semantic_axes": 10,
+  "processing_steps": 7,
+  "normalization_phase_steps": 13,
+  "highlight_invariants": 14,
+  "historical_exceptions": 2,
+  "discrepancies_and_scope_resolutions": [
+    {
+      "document": "06_codex_implementation_brief.md",
+      "issue": "Document reports local v0.3.1 extracted665; current user screenshots/report say495. No evidence these are the same run.",
+      "resolution": "Keep each attributed observation; do not overwrite user-reported495 or claim parser quality improved."
+    },
+    {
+      "document": "01_full_process.md",
+      "issue": "Historical counts1297/2573 are labelled oldE/place and oldF/situation. Master evidence has F_001-309_승인원본1297 with situation concepts and G열_승인반영_요약2573 with poses.",
+      "resolution": "Use semantic field headers and actual approval sheets; preserve original text and record this discrepancy. Do not shift current approved categories based on the summary count."
+    },
+    {
+      "document": "06_codex_implementation_brief.md",
+      "issue": "Independent local HWPX engine is an original project goal; latest user stopped local segmentation and requested fixed baselining.",
+      "resolution": "Latest user scope governs. This phase audits methods/API context only; do not restart local segmentation or disguise baselining as extraction."
+    },
+    {
+      "document": "03_highlighting_mapping.md",
+      "issue": "Description mentions API position candidates; existing API policy assigns exact codepoint calculation to the program.",
+      "resolution": "Keep evidence-quote response contract; code computes and validates offsets. No response-schema change is inferred."
+    },
+    {
+      "document": "02_decision_rules_examples.md",
+      "issue": "Card304 description says natural C-curl bob was shortened to C-curl bob. The supplied final master/catalog instead retains I:자연스러운 C컬 단발.",
+      "resolution": "Preserve the supplied final value. Treat the claimed shortening as an unverified historical description, not a current replacement rule; do not feed summary examples as final approved actions."
+    },
+    {
+      "document": "04_master_schema.md",
+      "issue": "Nine round14 raw rows retain pre-approval status strings.",
+      "resolution": "Explicit subsequent batch approval and final mappings govern; raw status text is retained and linked to proof."
+    }
+  ],
+  "source_modified": false,
+  "actual_PT_reparsed": false,
+  "live_API_called": false
+}

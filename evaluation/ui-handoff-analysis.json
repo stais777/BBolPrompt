@@ -1,0 +1,36 @@
+{
+  "schema": "bbolprom-ui-handoff-analysis-1",
+  "user_authorization": "2026-11-05: ui도 보고 반영해주세용",
+  "zip_sha256": "31a947a3f15fbf461c828e46e53a5b3db6dc312d1e85d9858196cbf7c68a7e5c",
+  "members_sha_verified": [
+    {
+      "name": "뽈프롬_UI_개발인계_최신확정사항_20261104.md",
+      "bytes": 16263,
+      "sha256": "8687990dbd70ff0de17bd141ee27ca0a259334970b2e0bfdcdfe0d79b7bfbcd2"
+    },
+    {
+      "name": "뽈프롬_직접반입_인스펙터_이미지아래태그_배치수정_시안_v0.8.html",
+      "bytes": 2444520,
+      "sha256": "d2e1851224792af8fb88183ebb67d08a61b307ffa6a9fc98887b5e61a3a2e51f"
+    },
+    {
+      "name": "Bbolprom_카드001-309_태그클릭_형광펜_최종_20261104.html",
+      "bytes": 4961690,
+      "sha256": "b2623fb6e04e73c10231a1627a15b111105717871317a783df8f3b40235697f2"
+    }
+  ],
+  "visual_reference": "뽈프롬_직접반입_인스펙터_이미지아래태그_배치수정_시안_v0.8.html",
+  "reference_css_sha256": "99cd7560957486029748b18172c72b2f019005e4ddd5df67ab11a1ef7d983eeb",
+  "reference_css_preserved_as_production_prefix": true,
+  "reference_javascript_or_embedded_card_data_copied": false,
+  "master_modified": false,
+  "UI_zip_modified": false,
+  "interpretation_notes": [
+    "The metadata says master_present:true, but the UI ZIP itself has no XLSX member; final master is separately supplied.",
+    "Pre-import gallery is empty;309 fixed SQLite reference rows are distinct from imported registered display cards.",
+    "HWPX entry uses the approved fixed baseline, not the prototype text matcher or a restarted local splitter.",
+    "The supplied665 result does not replace the user-reported495 measurement.",
+    "Video source is distinct from image PT per supplemental gap audit; raw video is absent.",
+    "UI17 Windows/Hancom one-step DnD and UI18 video linking are not implemented or native-tested."
+  ]
+}

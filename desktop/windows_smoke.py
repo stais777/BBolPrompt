@@ -5,6 +5,10 @@ package=Path(__file__).resolve().parent
 sys.path.insert(0,str(package/'app'))
 from bbolprom_engine.hwpx import HWPXReader
 from bbolprom_engine.analysis import analyze
+from bbolprom_engine.baseline import BaselineStore,load_dataset,MASTER_SHA
+from bbolprom_engine.library import Library
+from bbolprom_engine.approval_history import load_approval_history
+from bbolprom_engine.method_guidance import load_method_guidance
 
 with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     source=Path(folder)/'짧은_경로_😀.hwpx'
@@ -25,4 +29,17 @@ with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     connection.execute('INSERT INTO test VALUES (?)',(text,))
     assert connection.execute('SELECT text FROM test').fetchone()[0]==text
     connection.close()
-print(json.dumps({'runtime':sys.version,'platform':sys.platform,'checks':['Unicode path','HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))
+    store=BaselineStore(Library(Path(folder)/'library'),load_dataset())
+    baseline=store.cards()
+    assert len(baseline)==309
+    assert len({c['source_text_sha256'] for c in baseline})==296
+    assert sum(len(c['images']) for c in baseline)==531
+    assert len(store.paths)==522
+    assert baseline[187]['images']==[]
+    assert [i['ref'] for i in baseline[108]['images']]==['image195']
+    assert [i['ref'] for i in baseline[109]['images']]==['image'+str(i) for i in range(196,210)]
+    assert sum(len(c['tags']) for c in baseline)==8471
+    assert sum(len(t['spans']) for c in baseline for t in c['tags'])==10358
+    assert load_approval_history()['master_sha256']==MASTER_SHA
+    assert load_method_guidance()['master_sha256']==MASTER_SHA
+print(json.dumps({'runtime':sys.version,'platform':sys.platform,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))

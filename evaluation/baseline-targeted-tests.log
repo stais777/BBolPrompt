@@ -1,0 +1,14 @@
+test_authenticated_upload_review_commit_state_and_idempotent_reupload (test_baseline.BaselineHTTP.test_authenticated_upload_review_commit_state_and_idempotent_reupload) ... ok
+test_approved_database_rows_and_link_identity_cannot_be_rewritten (test_baseline.FixedBaseline.test_approved_database_rows_and_link_identity_cannot_be_rewritten) ... ok
+test_cancel_and_cross_route_cannot_commit_baseline_as_generic_cards (test_baseline.FixedBaseline.test_cancel_and_cross_route_cannot_commit_baseline_as_generic_cards) ... ok
+test_changed_source_after_review_and_edited_card_are_rejected (test_baseline.FixedBaseline.test_changed_source_after_review_and_edited_card_are_rejected) ... ok
+test_image_digest_failure_rolls_back_every_db_link (test_baseline.FixedBaseline.test_image_digest_failure_rolls_back_every_db_link) ... ok
+test_missing_reference_refuses_preparation (test_baseline.FixedBaseline.test_missing_reference_refuses_preparation) ... ok
+test_registers_309_fixed_ids_without_merging_repeated_prompts (test_baseline.FixedBaseline.test_registers_309_fixed_ids_without_merging_repeated_prompts) ... ok
+test_synthetic_attach_restart_repeat_and_shared_paths (test_baseline.FixedBaseline.test_synthetic_attach_restart_repeat_and_shared_paths) ... ok
+test_unknown_or_updated_source_is_rejected_without_changing_user_data (test_baseline.FixedBaseline.test_unknown_or_updated_source_is_rejected_without_changing_user_data) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.845s
+
+OK

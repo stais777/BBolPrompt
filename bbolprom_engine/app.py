@@ -1,6 +1,6 @@
 """Local desktop backend. Bound to loopback only; no external transmission by default."""
 from __future__ import annotations
-import argparse, base64, copy, hashlib, io, json, mimetypes, os, secrets, sys, tempfile
+import argparse, base64, hashlib, io, json, os, secrets, sys, tempfile
 import threading, uuid, webbrowser, zipfile, traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -12,6 +12,14 @@ from .tags import CATEGORIES
 from .xlsx_export import export_xlsx
 
 APP_ROOT=Path(__file__).resolve().parent.parent
+
+def image_mime(body):
+    if body.startswith(b'\x89PNG'):return 'image/png'
+    if body.startswith(b'\xff\xd8'):return 'image/jpeg'
+    if body.startswith(b'GIF8'):return 'image/gif'
+    if body.startswith(b'BM'):return 'image/bmp'
+    if body[:4]==b'RIFF' and body[8:12]==b'WEBP':return 'image/webp'
+    return 'application/octet-stream'
 
 class ImportReviewError(ValueError):
     def __init__(self,message,review_card,approved_matches):
@@ -27,13 +35,10 @@ class Application:
         self.api_config=None
         self.approved=[]
         self.approved_hashes=set()
-        catalog=APP_ROOT/'assets'/'approved_catalog.json'
-        if catalog.is_file():
-            raw=json.loads(catalog.read_text(encoding='utf8'))
-            for card in raw['cards']:
-                self.approved_hashes.add(hashlib.sha256(card['source_text'].encode()).hexdigest())
-                self.approved.append(dict(card,id='approved-'+str(card['card_id']),approved=True,
-                    images=[{'ref':card['image_ref'],'missing':True}],analysis_status='approved_readonly',origins=[]))
+        from .baseline import BaselineStore, load_dataset
+        self.baseline=BaselineStore(self.library,load_dataset(APP_ROOT))
+        self.approved=self.baseline.cards()
+        self.approved_hashes={c['source_text_sha256'] for c in self.approved}
 
     def categories(self):
         return self.library.get_setting('categories',[
@@ -43,7 +48,7 @@ class Application:
     def all_cards(self):
         # Project current category state without rewriting a single approved byte.
         categories={c['id']:c for c in self.categories()}
-        cards=copy.deepcopy(self.approved)
+        cards=self.baseline.cards()
         by_sha={}
         for c in cards:by_sha.setdefault(hashlib.sha256(c['source_text'].encode()).hexdigest(),[]).append(c)
         targets=self.library.get_setting('approved_overlay_targets',{})
@@ -72,12 +77,14 @@ class Application:
         return cards
 
     def state(self):
+        from .ui import preferences
         config=self.library.get_setting('api',{})
-        return {'cards':self.all_cards(),'categories':self.categories(),'api':config,
+        baseline=self.baseline.status()
+        return {'cards':self.all_cards(),'categories':self.categories(),'api':config,'baseline':baseline,'ui':preferences(self.library),
                 'api_key_present':bool(os.environ.get(config.get('key_env','BBOLPROM_API_KEY'))),
                 'api_usage':self.api_config.public_settings() if self.api_config else {},
-                'limitations':['실제 PT.hwpx 원본 미포함: 309/531 재추출 및 A/B 개선율 미검증',
-                    '승인 카드 이미지는 참조 ID만 제공됨: 원본 이미지 파일 없음',
+                'limitations':['309개는 확정 마스터에서 베이스화한 고정 데이터입니다. 독립 추출 성능이 아닙니다.',
+                    '확정 PT 이미지 연결 '+str(baseline['linked_image_references'])+' / 531건. 원본을 선택해 연결할 수 있습니다.',
                     'API 기본 꺼짐. 사용자 확정 분류 정의와 API 설정 필요. 규칙 태그는 의미 판단 대체 불가']}
 
     def prepare(self, path, name):
@@ -100,6 +107,12 @@ class Application:
         return {'ticket':ticket,'plan':plan,'cards':result['cards'],
                 'stats':dict(result['result_stats'],tag_candidates=0,highlight_spans=0),'notice':'태그는 등록 후 명시적 API 분석으로 생성됩니다. 경계가 모호하면 등록 전 카드를 확인하세요.'}
 
+    def prepare_baseline(self,path,name):
+        result=self.baseline.prepare(path,name)
+        ticket=uuid.uuid4().hex
+        self.pending[ticket]=(Path(path),result)
+        return dict(result,ticket=ticket)
+
     def validate_approved_target(self,text,chosen,targets):
         matches=[a['id'] for a in self.approved if a['source_text']==text]
         sha=hashlib.sha256(text.encode()).hexdigest()
@@ -110,6 +123,9 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route=='/api/ui':
+            from .ui import save_preferences
+            return {'ui':save_preferences(self.library,data)}
         if route=='/api/diagnostic':
             if data['ticket'] not in self.pending:raise ValueError('반입 검토 세션이 없습니다. 파일을 다시 선택하세요.')
             from .diagnostics import collect_structure
@@ -125,10 +141,19 @@ class Application:
             entry=self.pending.pop(data['ticket'],None)
             if entry:entry[0].unlink(missing_ok=True)
             return {'cancelled':True}
+        if route=='/api/baseline-commit':
+            if set(data)!={'ticket'}:raise ValueError('베이스화는 확정 카드의 편집 없이 검토 세션만 등록합니다.')
+            ticket=data['ticket']
+            if ticket not in self.pending:raise ValueError('검토 세션이 만료됨: 원본을 다시 선택하세요.')
+            source,result=self.pending[ticket]
+            status=self.baseline.commit(source,result)
+            del self.pending[ticket];source.unlink(missing_ok=True)
+            return {'baseline':status,'message':'베이스화 309개 ID를 유지하고 531건의 이미지 참조를 연결했습니다.'}
         if route=='/api/commit':
             ticket=data['ticket']
             if ticket not in self.pending: raise ValueError('검토 세션이 만료됨: 재반입 필요')
             source,result=self.pending[ticket]
+            if result.get('mode')=='fixed_master_baseline':raise ValueError('확정 베이스는 베이스화 등록 경로를 사용하세요.')
             # Review supports explicit per-card prompt/images. The source remains untouched.
             if 'cards' in data:
                 original_images={(i['ref'],i['path']):i for c in result['cards'] for i in c['images']}
@@ -159,9 +184,21 @@ class Application:
                 images.append((str(im['name']),io.BytesIO(base64.b64decode(im['base64'],validate=True))))
             targets=self.library.get_setting('approved_overlay_targets',{})
             self.validate_approved_target(data['text'],data.get('approved_target'),targets)
-            cid=self.library.manual(data['text'],images)
+            origin=data.get('origin_filename','직접 등록')
+            if not isinstance(origin,str) or not origin.strip() or len(origin)>512:raise ValueError('출처 파일명 확인 필요')
+            cid=self.library.manual(data['text'],images,filename=origin)
             self.library.set_setting('approved_overlay_targets',targets)
             return {'id':cid}
+        if route in ('/api/card-edit','/api/card-history','/api/card-restore'):
+            card=next((c for c in self.library.cards() if c['id']==data['id']),None)
+            if card is None or card['sha'] in self.approved_hashes:raise ValueError('사용자 신규 카드만 수정·복원할 수 있습니다. 승인 기준은 읽기 전용입니다.')
+            if route=='/api/card-history':return {'versions':self.library.card_history(card['id'])}
+            if route=='/api/card-restore':
+                self.library.restore_card(card['id'],data['version_id']);return {'message':'이전 원문·태그·이미지 연결을 복원했습니다. 출처 이력은 유지합니다.'}
+            if hashlib.sha256(data['text'].encode()).hexdigest() in self.approved_hashes:raise ValueError('승인 원문으로 변경해 기준 카드를 대체할 수 없습니다.')
+            images=[(str(im['name']),io.BytesIO(base64.b64decode(im['base64'],validate=True))) for im in data.get('images',[])]
+            self.library.edit_card(card['id'],data['text'],images,data.get('remove_images',[]),data.get('expected_sha'))
+            return {'message':'카드 수정 저장. 이전 원문·연결·태그는 수정 이력에 보존했습니다.'}
         if route=='/api/shutdown':
             return {'shutdown':True}
         if route=='/api/backup':
@@ -243,9 +280,14 @@ class Application:
                     standards[key]={'id':key,'name':name,'category_id':cat}
             from .approved_examples import retrieve_approved_examples
             examples=retrieve_approved_examples(card['source_text'],enabled=config.get('use_approved_examples',False))
-            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples)
+            from .approval_history import load_approval_history
+            history=load_approval_history()
+            from .method_guidance import load_method_guidance
+            method=load_method_guidance()
+            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples,approval_history=history,method_guidance=method)
             if result['status'] in ('ok','partial'):
                 self.library.backup();self.library.save_analysis(card['id'],result)
+            else:self.library.record_analysis_audit(card['id'],result)
             return result
         raise ValueError('지원하지 않는 작업')
 
@@ -275,7 +317,10 @@ def make_server(data,port=0):
                 if path=='/':
                     page=(Path(__file__).parent/'web'/'index.html').read_text(encoding='utf8')
                     self.send(200,page.replace('__TOKEN__',app.token).encode(),'text/html; charset=utf-8');return
-                if path=='/health':self.send(200,{'ok':True,'version':'0.3.1-diagnostic','approved_count':len(app.approved)});return
+                if path in ('/ui.css','/app.js'):
+                    body=(Path(__file__).parent/'web'/path[1:]).read_bytes()
+                    self.send(200,body,'text/css; charset=utf-8' if path.endswith('.css') else 'text/javascript; charset=utf-8');return
+                if path=='/health':self.send(200,{'ok':True,'version':'0.3.2-baseline','approved_count':len(app.approved)});return
                 if path=='/api/state':
                     if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
                     self.send(200,app.state());return
@@ -286,16 +331,14 @@ def make_server(data,port=0):
                     refs=[i for c in result['cards'] for i in c['images']]
                     ix=int(parts[3])
                     if not 0<=ix<len(refs):raise ValueError('검토 이미지 없음')
-                    with HWPXReader(source) as reader:body=reader.zip.read(refs[ix]['path'])
-                    mime='image/png' if body.startswith(b'\x89PNG') else 'image/jpeg' if body.startswith(b'\xff\xd8') else 'image/gif' if body.startswith(b'GIF8') else 'image/webp' if body[8:12]==b'WEBP' else 'application/octet-stream'
-                    self.send(200,body,mime);return
+                    with zipfile.ZipFile(source) as archive:body=archive.read(refs[ix]['path'])
+                    self.send(200,body,image_mime(body));return
                 if path.startswith('/media/'):
                     sha=path.removeprefix('/media/')
                     if len(sha)!=64 or any(ch not in '0123456789abcdef' for ch in sha):raise ValueError('잘못된 이미지 ID')
                     p=app.library.root/'vault'/sha
                     body=p.read_bytes()
-                    mime='image/png' if body.startswith(b'\x89PNG') else 'image/jpeg' if body.startswith(b'\xff\xd8') else 'image/gif' if body.startswith(b'GIF8') else 'image/webp' if body[8:12]==b'WEBP' else 'application/octet-stream'
-                    self.send(200,body,mime);return
+                    self.send(200,body,image_mime(body));return
                 if path.startswith('/download/'):
                     # Downloads carry only user-selected export/backup files, never arbitrary filesystem paths.
                     parts=path.split('/')
@@ -311,7 +354,7 @@ def make_server(data,port=0):
                 length=int(self.headers.get('Content-Length','0'))
                 if length<=0 or length>2*1024**3:raise ValueError('파일 크기 제한 2GB')
                 with app.lock:
-                    if path=='/api/upload':
+                    if path in ('/api/upload','/api/baseline-upload'):
                         name=unquote(self.headers.get('X-Filename','import.hwpx'))
                         if not name.lower().endswith('.hwpx'):raise ValueError('HWPX 파일이 필요합니다')
                         pending=app.library.root/'pending';pending.mkdir(exist_ok=True)
@@ -323,7 +366,8 @@ def make_server(data,port=0):
                                     block=self.rfile.read(min(remain,1024*1024))
                                     if not block:raise ValueError('업로드가 중단됨')
                                     f.write(block);remain-=len(block)
-                            result=app.prepare(source,Path(name.replace('\\','/')).name)
+                            prepare=app.prepare_baseline if path=='/api/baseline-upload' else app.prepare
+                            result=prepare(source,Path(name.replace('\\','/')).name)
                         except Exception:
                             source.unlink(missing_ok=True);raise
                     else:
