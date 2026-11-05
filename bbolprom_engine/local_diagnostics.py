@@ -24,7 +24,12 @@ def safe_error(error):
     # No traceback, credential-bearing HTTP body, arbitrary OS path or headers.
     result={'type':type(error).__name__}
     if isinstance(error,ValueError):result['message']=str(error)[:1000]
-    elif isinstance(error,OSError):result['errno']=error.errno
+    elif isinstance(error,OSError):
+        result['errno']=error.errno
+        if type(getattr(error,'winerror',None)) is int:result['winerror']=error.winerror
+        operation=getattr(error,'bbolprom_operation',None)
+        if operation in ('backup_prepare','backup_database_copy','backup_archive_write','backup_temporary_cleanup'):
+            result['operation']=operation
     return result
 
 

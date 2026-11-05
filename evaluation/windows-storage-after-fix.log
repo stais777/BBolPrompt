@@ -1,0 +1,8 @@
+test_backup_closes_temporary_database_before_windows_unlink (test_windows_storage.WindowsStorage.test_backup_closes_temporary_database_before_windows_unlink) ... ok
+test_backup_failure_closes_connections_and_removes_temporary_database (test_windows_storage.WindowsStorage.test_backup_failure_closes_connections_and_removes_temporary_database) ... ok
+test_library_transaction_closes_and_rolls_back_on_error (test_windows_storage.WindowsStorage.test_library_transaction_closes_and_rolls_back_on_error) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.067s
+
+OK

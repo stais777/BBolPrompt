@@ -1,0 +1,46 @@
+test_backup_closes_temporary_database_before_windows_unlink (test_windows_storage.WindowsStorage.test_backup_closes_temporary_database_before_windows_unlink) ... ERROR
+test_backup_failure_closes_connections_and_removes_temporary_database (test_windows_storage.WindowsStorage.test_backup_failure_closes_connections_and_removes_temporary_database) ... FAIL
+test_library_transaction_closes_and_rolls_back_on_error (test_windows_storage.WindowsStorage.test_library_transaction_closes_and_rolls_back_on_error) ... FAIL
+
+======================================================================
+ERROR: test_backup_closes_temporary_database_before_windows_unlink (test_windows_storage.WindowsStorage.test_backup_closes_temporary_database_before_windows_unlink)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_windows_storage.py", line 49, in test_backup_closes_temporary_database_before_windows_unlink
+    archive=library.backup()
+            ^^^^^^^^^^^^^^^^
+  File "/workspace/Bbolprompt/bbolprom_engine/library.py", line 293, in backup
+    os.unlink(tmp)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/Bbolprompt/tests/test_windows_storage.py", line 34, in guarded_unlink
+    raise PermissionError(errno.EACCES,'Simulated Windows open SQLite file',str(path))
+PermissionError: [Errno 13] Simulated Windows open SQLite file: '/tmp/tmpr3k6cs9r/library/backup/tmpeidr99yo.sqlite3'
+
+======================================================================
+FAIL: test_backup_failure_closes_connections_and_removes_temporary_database (test_windows_storage.WindowsStorage.test_backup_failure_closes_connections_and_removes_temporary_database)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_windows_storage.py", line 77, in test_backup_failure_closes_connections_and_removes_temporary_database
+    self.assertTrue(all(c.test_closed for c in connections))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_library_transaction_closes_and_rolls_back_on_error (test_windows_storage.WindowsStorage.test_library_transaction_closes_and_rolls_back_on_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_windows_storage.py", line 64, in test_library_transaction_closes_and_rolls_back_on_error
+    self.assertTrue(connections[-1].test_closed)
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.054s
+
+FAILED (failures=2, errors=1)

@@ -26,5 +26,9 @@
   "Bbolprom-Windows-x64-v0.3.4-security.zip": {
     "bytes": 15281229,
     "sha256": "78d59df25fc005ce2441c3af7a8a04c9347afc5eed9c234a6fb3e9ba4ea975e2"
+  },
+  "Bbolprom-Windows-x64-v0.3.5-windowsfix.zip": {
+    "bytes": 15282711,
+    "sha256": "caab9a49a46806f43cede024641a383da88565ebd51fc90cff97f2af3e980850"
   }
 }

@@ -11,8 +11,20 @@ import sqlite3
 import tempfile
 import uuid
 import zipfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
+from .sqlite_utils import ClosingConnection
+
+
+@contextmanager
+def _storage_step(operation):
+    try:
+        yield
+    except OSError as exc:
+        # A fixed operation name, never a full path, is safe to export.
+        exc.bbolprom_operation=operation
+        raise
 
 DDL = '''
 PRAGMA foreign_keys=ON;
@@ -61,7 +73,7 @@ class Library:
             c.executescript(DDL)
 
     def connect(self):
-        c = sqlite3.connect(self.db, timeout=30)
+        c = sqlite3.connect(self.db, timeout=30, factory=ClosingConnection)
         c.row_factory = sqlite3.Row
         c.execute('PRAGMA foreign_keys=ON')
         return c
@@ -279,18 +291,23 @@ class Library:
         with self.connect() as c:self._record_analysis_audit(c,cid,result)
 
     def backup(self):
-        folder = self.root / 'backup'; folder.mkdir(exist_ok=True)
-        dest = folder / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')+'.bak.zip')
-        fd, tmp = tempfile.mkstemp(dir=folder, suffix='.sqlite3'); os.close(fd)
+        with _storage_step('backup_prepare'):
+            folder = self.root / 'backup'; folder.mkdir(exist_ok=True)
+            dest = folder / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')+'.bak.zip')
+            fd, tmp = tempfile.mkstemp(dir=folder, suffix='.sqlite3'); os.close(fd)
         try:
-            with self.connect() as src, sqlite3.connect(tmp) as dst: src.backup(dst)
-            with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
-                z.write(tmp, 'library.sqlite3')
-                # Include every vault object: a consistent superset also covers a concurrent import.
-                for path in (self.root/'vault').glob('*'):
-                    if path.is_file() and not path.name.startswith('pending-'): z.write(path,'vault/'+path.name)
+            with _storage_step('backup_database_copy'):
+                with self.connect() as src, sqlite3.connect(tmp, factory=ClosingConnection) as dst:
+                    src.backup(dst)
+            with _storage_step('backup_archive_write'):
+                with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
+                    z.write(tmp, 'library.sqlite3')
+                    # Include every vault object: a consistent superset also covers a concurrent import.
+                    for path in (self.root/'vault').glob('*'):
+                        if path.is_file() and not path.name.startswith('pending-'): z.write(path,'vault/'+path.name)
         finally:
-            os.unlink(tmp)
+            with _storage_step('backup_temporary_cleanup'):
+                os.unlink(tmp)
         return dest
 
 def _now():

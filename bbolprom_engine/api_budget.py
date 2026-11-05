@@ -10,6 +10,7 @@ from decimal import Decimal, ROUND_CEILING
 from pathlib import Path
 import sqlite3
 import uuid
+from .sqlite_utils import ClosingConnection
 
 _SCALE = Decimal(10**9)
 
@@ -32,7 +33,7 @@ class APIBudget:
                 output_tokens INTEGER NOT NULL DEFAULT 0)''')
 
     def connect(self):
-        return sqlite3.connect(self.path, timeout=15)
+        return sqlite3.connect(self.path, timeout=15, factory=ClosingConnection)
 
     @staticmethod
     def day():

@@ -25,6 +25,18 @@ def bitmap(width,height):
 def main():
     folder=Path(sys.argv[1]);folder.mkdir(parents=True,exist_ok=True)
     server=make_server(folder)
+    if '--fail-backup-once' in sys.argv[2:]:
+        original_backup=server.application.library.backup
+        failed=False
+        def backup_once():
+            nonlocal failed
+            if not failed:
+                failed=True
+                error=PermissionError(13,'Simulated Windows backup cleanup denial')
+                error.winerror=32;error.bbolprom_operation='backup_temporary_cleanup'
+                raise error
+            return original_backup()
+        server.application.library.backup=backup_once
     fixture=folder/'synthetic.hwpx'
     with zipfile.ZipFile(fixture,'w',zipfile.ZIP_DEFLATED) as z:
         for i,name in enumerate(server.application.baseline.paths):

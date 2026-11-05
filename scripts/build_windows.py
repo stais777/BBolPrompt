@@ -36,7 +36,7 @@ def safe_extract(z, folder, prefix=''):
         with z.open(info) as source, destination.open('wb') as target: shutil.copyfileobj(source,target)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');parser.add_argument('--version',default='0.3.4-security');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');parser.add_argument('--version',default='0.3.5-windowsfix');args=parser.parse_args()
     if not re.fullmatch(r'[0-9]+(?:\.[0-9]+)*(?:-[a-z]+)?',args.version):raise ValueError('Invalid artifact version')
     CACHE.mkdir(parents=True,exist_ok=True)
     python=artifact('python.3.13.7.nupkg',PYTHON_URL,PYTHON_SHA512,'sha512',args.offline)

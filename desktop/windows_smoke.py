@@ -61,4 +61,9 @@ with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     assert sum(len(t['spans']) for c in baseline for t in c['tags'])==10358
     assert load_approval_history()['master_sha256']==MASTER_SHA
     assert load_method_guidance()['master_sha256']==MASTER_SHA
-print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))
+    # Regression: Windows must be able to remove the backup's temporary DB.
+    backup=store.library.backup()
+    with zipfile.ZipFile(backup) as z:
+        assert z.testzip() is None and 'library.sqlite3' in z.namelist()
+    assert not list((store.library.root/'backup').glob('*.sqlite3'))
+print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance','backup temporary SQLite closed before cleanup'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))

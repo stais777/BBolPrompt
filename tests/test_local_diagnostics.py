@@ -10,11 +10,19 @@ from pathlib import Path
 from unittest.mock import patch
 
 from bbolprom_engine.app import Application,make_server
-from bbolprom_engine.local_diagnostics import collect_local_diagnostic,ImportAudit,MAX_ATTEMPTS
+from bbolprom_engine.local_diagnostics import collect_local_diagnostic,ImportAudit,MAX_ATTEMPTS,safe_error
 from test_baseline import synthetic_source
 
 
 class LocalDiagnostics(unittest.TestCase):
+    def test_windows_storage_error_metadata_excludes_path_and_unknown_operation(self):
+        error=PermissionError(13,'private-error-message','private-user-path')
+        error.winerror=32;error.bbolprom_operation='backup_temporary_cleanup'
+        self.assertEqual(safe_error(error),{'type':'PermissionError','errno':13,'winerror':32,'operation':'backup_temporary_cleanup'})
+        error.bbolprom_operation='private-secret-operation'
+        self.assertNotIn('operation',safe_error(error))
+        self.assertNotIn('private',json.dumps(safe_error(error)))
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
         self.app=Application(self.root/'library');self.source=self.root/'source.hwpx';self.counter=0

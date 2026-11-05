@@ -1,0 +1,71 @@
+{
+  "version": "0.3.5-windowsfix",
+  "comparison_source_commit": "5770089951d2d9cf5b88227e2d8f12721c6b1afc",
+  "protected_files": [
+    {
+      "path": "assets/approved_catalog.json",
+      "sha256": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/baseline_manifest.json",
+      "sha256": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_context.json",
+      "sha256": "3e3be1daa6eb056ca459fdf150085658156c7bc77cfbeea6fd0113fc3b51f308",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_history.json",
+      "sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/method_guidance.json",
+      "sha256": "37cdb8b257db9130a54380597b9f570649edbed9b91f001ab4157b27abc8e0d9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline.py",
+      "sha256": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/analysis.py",
+      "sha256": "1164ad68ba862817d8fb84e71dc26119c5fd750d38704141c2257db60a16ee23",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/api.py",
+      "sha256": "c19395257c5318b8845d02e032f929f09f5bb2c8f97f7dac4b2296cd7ee1e714",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approved_examples.py",
+      "sha256": "40abe3e59f8cd4e2a5f0ab4538f663934e5824dd3585b47acc407887bc0ea7b1",
+      "unchanged": true
+    }
+  ],
+  "scope": "SQLite file lifecycle, baseline review error visibility and bounded storage error metadata",
+  "tests": {
+    "integrated_passed": 140,
+    "new_windows_lock_model_tests": 3,
+    "windows_lock_model_before_fix": "2 failures, 1 error",
+    "windows_lock_model_after_fix": "3 passed",
+    "diagnostic_browser_checks": 6
+  },
+  "developer_native_windows_executed": false,
+  "user_old_version_windows_observation": {
+    "version": "0.3.3-baseline",
+    "source_hash_matches": true,
+    "prepared_source_paths": 522,
+    "commit_error_type": "PermissionError",
+    "commit_errno": 13,
+    "stored_links": 0
+  },
+  "real_API_called": false,
+  "raw_user_report_published": false,
+  "engine_improvements": "on hold pending user basefile test and approval"
+}
