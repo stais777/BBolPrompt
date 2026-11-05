@@ -144,15 +144,13 @@ class LocalHTTPApplication(unittest.TestCase):
             self.assertIn(text,''.join(sheet.itertext()))
         self.assertEqual(self.request('GET','/download/exports/../../library.sqlite3')[0],400)
 
-    def test_category_deactivation_projects_approved_without_rewriting_catalog(self):
-        catalog=APP_ROOT/'assets'/'approved_catalog.json';before=catalog.read_bytes()
-        status,result,_=self.request('POST','/api/categories',{'operation':'deactivate','id':'F'})
+    def test_category_deactivation_preserves_approved_tags_and_catalog(self):
+        catalog=APP_ROOT/'assets/approved_catalog.json';before=catalog.read_bytes()
+        original=[copy.deepcopy(c['tags']) for c in self.app.all_cards()]
+        status,_,_=self.request('POST','/api/categories',{'operation':'deactivate','id':'F'})
         self.assertEqual(status,200)
         status,state,_=self.request('GET','/api/state');self.assertEqual(status,200)
-        tags=[t for c in state['cards'] if c['approved'] for t in c['tags']]
-        projected=[t for t in tags if t.get('original_category_id')=='F']
-        self.assertTrue(projected)
-        self.assertTrue(all(t.get('category_id') is None and t.get('category_column') is None for t in projected))
+        self.assertEqual([c['tags'] for c in state['cards']],original)
         self.assertEqual(catalog.read_bytes(),before)
         self.assertTrue(self.app.library.get_setting('category_history'))
 

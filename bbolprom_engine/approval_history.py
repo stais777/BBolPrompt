@@ -62,7 +62,7 @@ def load_approval_history(path=None):
     validate_history(data)
     return data
 
-def retrieve_approval_history(text,history=None,*,record_limit=MAX_RECORDS,char_limit=MAX_CHARS):
+def retrieve_approval_history(text,history=None,*,record_limit=MAX_RECORDS,char_limit=MAX_CHARS,exclude_card_ids=()):
     """Always provide the approved method; choose a bounded contextual history.
 
     Excludes all unresolved/pending/final-mismatching rows. Later approved card
@@ -74,11 +74,13 @@ def retrieve_approval_history(text,history=None,*,record_limit=MAX_RECORDS,char_
     if type(record_limit) is not int or not 1<=record_limit<=MAX_RECORDS:raise ValueError('Invalid history record limit')
     if type(char_limit) is not int or not 8000<=char_limit<=MAX_CHARS:raise ValueError('Invalid history size bound')
     history=load_approval_history() if history is None else validate_history(history)
+    excluded=set(exclude_card_ids)
+    if any(type(cid) is not int or not 1<=cid<=309 for cid in excluded):raise ValueError('Invalid edited baseline card IDs')
     ledger_sha=hashlib.sha256(json.dumps(history,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf8')).hexdigest()
     q=_features(text);by_id={r['id']:r for r in history['records']}
     candidates=[]
     for index,r in enumerate(history['records']):
-        if r['status'] not in LIVE_STATUSES:continue
+        if r['status'] not in LIVE_STATUSES or r['card_id'] in excluded:continue
         # Never score card IDs/counts/status as relevant subject matter.
         content=' '.join([str(r['before'].get('name',''))]+[str(t.get('name','')) for t in r['after']]+[
           str(v) for k,v in r['fields'].items() if any(w in k for w in ('근거','사유','reason','원칙','예외','기준'))])
@@ -105,7 +107,7 @@ def retrieve_approval_history(text,history=None,*,record_limit=MAX_RECORDS,char_
         signature=json.dumps([record['family'],record['before'],record['after'],
            {k:v for k,v in record['fields'].items() if '사유' in k or 'reason' in k or '근거' in k}],ensure_ascii=False,sort_keys=True)
         if signature in signatures:continue
-        companions=[by_id[i] for i in record.get('later_card_decision_ids',[]) if by_id[i]['status'] in LIVE_STATUSES and i not in ids]
+        companions=[by_id[i] for i in record.get('later_card_decision_ids',[]) if by_id[i]['status'] in LIVE_STATUSES and by_id[i]['card_id'] not in excluded and i not in ids]
         additions=[]
         for r in companions+[record]:
             if r['id'] not in ids and r['id'] not in {x['id'] for x in additions}:additions.append(r)

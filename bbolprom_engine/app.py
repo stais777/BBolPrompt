@@ -45,6 +45,8 @@ class Application:
         self.baseline=BaselineStore(self.library,load_dataset(APP_ROOT))
         self.approved=self.baseline.cards()
         self.approved_hashes={c['source_text_sha256'] for c in self.approved}
+        from .baseline_edits import BaselineTagEdits
+        self.baseline_tag_edits=BaselineTagEdits(self.library,self.baseline.records)
         from .local_diagnostics import ImportAudit
         self.import_audit=ImportAudit(self.library)
 
@@ -54,9 +56,8 @@ class Application:
             for col,name in CATEGORIES.items()])
 
     def all_cards(self):
-        # Project current category state without rewriting a single approved byte.
-        categories={c['id']:c for c in self.categories()}
-        cards=self.baseline.cards()
+        # Only explicit manual tag editions can change the baseline tag display.
+        cards=self.baseline_tag_edits.project(self.baseline.cards())
         by_sha={}
         for c in cards:by_sha.setdefault(hashlib.sha256(c['source_text'].encode()).hexdigest(),[]).append(c)
         targets=self.library.get_setting('approved_overlay_targets',{})
@@ -72,16 +73,6 @@ class Application:
                     approved['images']+=c['images'];approved['origins']+=c['origins']
                     approved['overlay_id']=c['id']
             else:cards.append(c)
-        history=self.library.get_setting('category_history',[])
-        for card in cards:
-            for tag in card['tags']:
-                cid=tag.get('category_id',tag.get('category_column'))
-                events=[h for h in history if h['category_id']==cid and h['operation'] in ('deactivate','reactivate_user_choice')]
-                deactivated=bool(events and events[-1]['operation']=='deactivate') or bool(events and events[-1].get('restore_tags') is False)
-                if card['approved'] and (deactivated or categories.get(cid,{}).get('enabled') is False):
-                    tag['original_category_id']=cid
-                    tag['category_id']=None;tag['category_column']=None
-                    tag['category_status']='unclassified'
         return cards
 
     def state(self):
@@ -94,7 +85,7 @@ class Application:
             key_error=''
         except CredentialError:
             key_present=False;key_error='Windows 보안 보관함 상태를 확인하지 못했습니다.'
-        return {'cards':self.all_cards(),'categories':self.categories(),'api':config,'baseline':baseline,'ui':preferences(self.library),
+        return {'cards':self.all_cards(),'categories':self.categories(),'baseline_category_names':CATEGORIES,'api':config,'baseline':baseline,'ui':preferences(self.library),
                 'api_key_present':key_present,
                 'api_key_storage':{'supported':self.credentials.supported,'error':key_error,'kind':'windows_credential_manager'},
                 'api_usage':self.api_budget.status(),
@@ -148,6 +139,18 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route in ('/api/baseline-tags','/api/baseline-tag-history','/api/baseline-tag-restore'):
+            fields={'/api/baseline-tags':{'id','tags','expected_revision'},
+                '/api/baseline-tag-history':{'id'},
+                '/api/baseline-tag-restore':{'id','target_revision','expected_revision'}}
+            if not isinstance(data,dict) or set(data)!=fields[route]:raise ValueError('수동 태그 수정 요청 필드를 확인하세요.')
+            cid=self.baseline_tag_edits.card_id(data['id'])
+            if route=='/api/baseline-tag-history':
+                return {'versions':self.baseline_tag_edits.history(cid),'current_revision':self.baseline_tag_edits.latest(cid)['revision']}
+            if route=='/api/baseline-tags':
+                revision=self.baseline_tag_edits.save(cid,data['tags'],self.categories(),data['expected_revision'])
+            else:revision=self.baseline_tag_edits.restore(cid,data['target_revision'],data['expected_revision'])
+            return {'revision':revision,'message':'사용자 태그 수정본을 저장했습니다. 최초309개 원본과 이전 수정 이력은 보존됩니다.'}
         if route=='/api/local-diagnostic':
             from .local_diagnostics import collect_local_diagnostic
             folder=self.library.root/'exports';folder.mkdir(exist_ok=True)
@@ -324,6 +327,12 @@ class Application:
             from .approved_context import load_approved_context
             context=load_approved_context()
             standards={t['id']:t for t in context['standards']}
+            for edition in self.baseline_tag_edits.editions().values():
+                for tag in edition['tags']:
+                    name=tag['tag'];cat=tag.get('category_column')
+                    if cat is None:continue
+                    key='std-'+hashlib.sha256((cat+'\0'+name).encode()).hexdigest()[:16]
+                    standards[key]={'id':key,'name':name,'category_id':cat}
             for c in self.library.cards():
                 for t in c['tags']:
                     name=t.get('tag',t.get('name',''));cat=t.get('category_id',t.get('category_column'))
@@ -332,12 +341,15 @@ class Application:
                     key='tag-'+hashlib.sha256((str(cat)+'\0'+name).encode()).hexdigest()[:20]
                     standards[key]={'id':key,'name':name,'category_id':cat}
             from .approved_examples import retrieve_approved_examples
-            examples=retrieve_approved_examples(card['source_text'],enabled=config.get('use_approved_examples',False))
+            use_examples=config.get('use_approved_examples',False)
+            # Keep the opt-in contract: no raw-card example preparation when off.
+            catalog=self.baseline_tag_edits.reference_catalog() if use_examples else None
+            examples=retrieve_approved_examples(card['source_text'],enabled=use_examples,catalog=catalog)
             from .approval_history import load_approval_history
             history=load_approval_history()
             from .method_guidance import load_method_guidance
             method=load_method_guidance()
-            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples,approval_history=history,method_guidance=method)
+            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples,approval_history=history,method_guidance=method,edited_card_ids=list(self.baseline_tag_edits.editions()))
             if result['status'] in ('ok','partial'):
                 self.library.backup();self.library.save_analysis(card['id'],result)
             else:self.library.record_analysis_audit(card['id'],result)

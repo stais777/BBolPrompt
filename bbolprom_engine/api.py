@@ -44,6 +44,9 @@ and exact source evidence. Use them to understand prior contextual judgments,
 not as lookup answers. Never copy their tags or evidence into the new card merely
 because wording is similar. Current active user category definitions govern NEW
 classification; historical example categories must not be rewritten/reclassified.
+An example with user_tag_revision reflects the latest explicit user tag edition
+for that card; it takes precedence over older history for that card. It is a
+contextual user correction, never an automatic rewrite of other baseline cards.
 Return exact source evidence quote(s); NEVER return offsets, rewrite the prompt,
 mutate a DB, or create categories. Missing evidence means empty quotes and an
 unclassified candidate, never a fabricated highlight. Do not drop a meaningful
@@ -170,7 +173,7 @@ def select_evidence_spans(text,quote,*,prefix='',suffix=''):
     return matches
 
 
-def build_request(card_ref,text,categories,tags,context=None,examples=None,approval_history=None,method_guidance=None):
+def build_request(card_ref,text,categories,tags,context=None,examples=None,approval_history=None,method_guidance=None,edited_card_ids=None):
     if not isinstance(card_ref,str) or not card_ref:raise APIValidationError('card_ref required')
     if not isinstance(text,str):raise APIValidationError('Source text must be a string')
     active=[];ids=set()
@@ -188,7 +191,7 @@ def build_request(card_ref,text,categories,tags,context=None,examples=None,appro
     for t in retrieve_context(text,latest_context,tag_limit=100)['standards']:merged[t['id']]=t
     existing=[{'id':t['id'],'name':t['name'],'category_id':t.get('category_id')}
               for t in merged.values()]
-    history=retrieve_approval_history(text,approval_history) if approval_history is not None else None
+    history=retrieve_approval_history(text,approval_history,exclude_card_ids=edited_card_ids or ()) if approval_history is not None else None
     if history is not None:selected['decisions']=[] # full source-backed decisions appear only once below
     return {'card_ref':card_ref,'prompt_text':text,'active_categories':active,
             'existing_tags':existing,'approved_normalization_examples':selected['decisions'],
@@ -357,7 +360,7 @@ def _live_transport(request,config):
         raise APIUnavailable('API connection/timeout/response error; card retained, retry is manual') from None
 
 
-def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None,examples=None,approval_history=None,method_guidance=None):
+def analyze_card(card_ref,text,categories,tags,context=None,transport=None,config=None,examples=None,approval_history=None,method_guidance=None,edited_card_ids=None):
     """API boundary + engine-format results; no persistence or implicit retries.
 
     transport is test-only injection. A mock response exercises validation, not
@@ -366,7 +369,7 @@ def analyze_card(card_ref,text,categories,tags,context=None,transport=None,confi
     base={'card_ref':card_ref,'source_text':text,'status':'pending','tags':[],
           'unclassified':[],'warnings':[],'usage':{},'mode':'mock' if transport else 'live'}
     try:
-        request=build_request(card_ref,text,categories,tags,context,examples=examples,approval_history=approval_history,method_guidance=method_guidance)
+        request=build_request(card_ref,text,categories,tags,context,examples=examples,approval_history=approval_history,method_guidance=method_guidance,edited_card_ids=edited_card_ids)
         history=request.get('approved_processing_history')
         if history is not None:
             base['reference_audit']={'master_sha256':history['master_sha256'],'ledger_sha256':history['ledger_sha256'],
@@ -375,6 +378,10 @@ def analyze_card(card_ref,text,categories,tags,context=None,transport=None,confi
                 'decision_ids':[x['id'] for x in history['decisions']],
                 'sources':history['sources'],'example_card_ids':[x['approved_card_id'] for x in request['approved_card_examples']],
                 'selection_method':history['selection_method']}
+            revisions=[{'card_id':e['approved_card_id'],'revision':e['provenance']['user_tag_revision'],
+                'tags_sha256':e['provenance']['user_tag_revision_sha256']}
+                for e in request['approved_card_examples'] if e['provenance'].get('user_tag_revision')]
+            if revisions:base['reference_audit']['example_revisions']=revisions
         if request.get('tag_highlight_method') is not None:
             method=request['tag_highlight_method']
             base.setdefault('reference_audit',{})['method_guidance']={

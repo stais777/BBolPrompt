@@ -79,6 +79,7 @@ def retrieve_approved_examples(text,*,enabled=False,catalog_path=None,catalog=No
         scored=[]
         for position,tag in enumerate(tags):
             name=tag.get('tag');cat=tag.get('category_column')
+            if cat is None and card.get('user_tag_revision'):continue # user kept this candidate unclassified
             if not isinstance(name,str) or not isinstance(cat,str):raise ValueError('Invalid approved tag identity')
             raw_spans=tag.get('spans',[])
             if not isinstance(raw_spans,list):raise ValueError('Invalid approved spans')
@@ -118,6 +119,9 @@ def retrieve_approved_examples(text,*,enabled=False,catalog_path=None,catalog=No
             'provenance':{'master_sha256':APPROVED_MASTER_SHA,'catalog_sha256':catalog_sha,
                           'catalog_file':catalog_name,'full_source_sha256':_sha(source)},
             'scope':EXAMPLE_SCOPE}
+        if card.get('user_tag_revision'):
+            example['provenance'].update(user_tag_revision=card['user_tag_revision'],
+                user_tag_revision_sha256=card['user_tag_revision_sha256'])
         while mappings and len(json.dumps(example,ensure_ascii=False,separators=(',',':')))>remaining-(1 if selected else 0):
             mappings.pop();example['partial_tag_selection']=True
         if not mappings:continue
@@ -139,9 +143,14 @@ def prepare_examples_for_request(text,examples):
     for example in examples:
         if not isinstance(example,dict) or set(example)!=fields:raise ValueError('Invalid approved example fields')
         source=example['source_text'];p=example['provenance']
-        if not isinstance(p,dict) or set(p)!={'master_sha256','catalog_sha256','catalog_file','full_source_sha256'} or p['master_sha256']!=APPROVED_MASTER_SHA:
+        required={'master_sha256','catalog_sha256','catalog_file','full_source_sha256'}
+        revised={'user_tag_revision','user_tag_revision_sha256'}
+        if not isinstance(p,dict) or set(p) not in (required,required|revised) or p['master_sha256']!=APPROVED_MASTER_SHA:
             raise ValueError('Invalid approved example provenance')
-        if not all(isinstance(p[k],str) and p[k] for k in p):raise ValueError('Invalid approved example provenance types')
+        if not all(isinstance(p[k],str) and p[k] for k in required):raise ValueError('Invalid approved example provenance types')
+        if revised.issubset(p) and (type(p['user_tag_revision']) is not int or p['user_tag_revision']<1 or
+                not isinstance(p['user_tag_revision_sha256'],str) or not re.fullmatch('[0-9a-f]{64}',p['user_tag_revision_sha256'])):
+            raise ValueError('Invalid user-approved tag edition provenance')
         if not all(re.fullmatch('[0-9a-f]{64}',p[k]) for k in ('master_sha256','catalog_sha256','full_source_sha256')):
             raise ValueError('Invalid approved example provenance digest')
         if not isinstance(source,str) or len(source)>MAX_PROMPT_CHARS or _sha(source)!=example['excerpt_sha256']:

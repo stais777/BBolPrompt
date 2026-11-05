@@ -30,5 +30,9 @@
   "Bbolprom-Windows-x64-v0.3.5-windowsfix.zip": {
     "bytes": 15282711,
     "sha256": "caab9a49a46806f43cede024641a383da88565ebd51fc90cff97f2af3e980850"
+  },
+  "Bbolprom-Windows-x64-v0.3.6-manualtags.zip": {
+    "bytes": 15289047,
+    "sha256": "6c2542cd79cec26cc259d958fbaa4511b2e2df06848e2137251227cb4a056fb4"
   }
 }

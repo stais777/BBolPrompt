@@ -281,7 +281,7 @@ class Library:
         audit=result.get('reference_audit')
         if audit is None:return
         expected={'master_sha256','ledger_sha256','workflow_ids','constraint_ids','decision_ids','sources','example_card_ids','selection_method'}
-        if not isinstance(audit,dict) or not expected.issubset(audit) or (set(audit)-expected-{'method_guidance'}):raise ValueError('Invalid approval reference audit')
+        if not isinstance(audit,dict) or not expected.issubset(audit) or (set(audit)-expected-{'method_guidance','example_revisions'}):raise ValueError('Invalid approval reference audit')
         c.execute('INSERT INTO analysis_references VALUES(?,?,?,?,?,?)',
             (uuid.uuid4().hex,cid,_now(),result['status'],result.get('mode','unknown'),json.dumps(audit,ensure_ascii=False)))
 

@@ -177,8 +177,10 @@ def collect_local_diagnostic(store,destination,ui_snapshot=None):
                      'approved_zero_span_tags':17,'image_references':531,'unique_source_paths':522}
     count_match=all(counts.get(k)==v for k,v in expected_counts.items())
     source_ok=bool(sources) and all(s['source_sha']==baseline.SOURCE_SHA for s in sources)
+    from .baseline_edits import audit_editions
+    manual_edits=audit_editions(library,store.records)
     clean=(count_match and not immutable_errors and not invalid_spans and not identity_errors and
-           not media_errors and db_check==['ok'] and not foreign_keys)
+           not media_errors and db_check==['ok'] and not foreign_keys and not manual_edits['errors'])
     acceptance='not_imported'
     if sources:
         acceptance='failed_integrity'
@@ -191,7 +193,7 @@ def collect_local_diagnostic(store,destination,ui_snapshot=None):
             'reference':{'master_sha256':baseline.MASTER_SHA,'manifest_sha256':baseline.MANIFEST_SHA,
                          'catalog_sha256':baseline.CATALOG_SHA,'expected_PT_sha256':baseline.SOURCE_SHA},
             'baseline_status':status,'counts':counts,'expected_counts':expected_counts,'counts_match':count_match,
-            'acceptance':acceptance,'committed_sources':sources,'cards':cards,'media':media,
+            'acceptance':acceptance,'committed_sources':sources,'cards':cards,'media':media,'manual_tag_edits':manual_edits,
             'integrity':{'sqlite_quick_check':db_check,'foreign_key_errors':foreign_keys,
                          'immutable_card_errors':immutable_errors,'invalid_spans':invalid_spans,
                          'image_identity_errors':identity_errors,'media_errors':media_errors,

@@ -1,0 +1,54 @@
+{
+  "version": "0.3.6-manualtags",
+  "comparison_source_commit": "987d84ee02206e4333b137826fedb46ce658d184",
+  "protected_files": [
+    {
+      "path": "assets/approved_catalog.json",
+      "sha256": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/baseline_manifest.json",
+      "sha256": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_context.json",
+      "sha256": "3e3be1daa6eb056ca459fdf150085658156c7bc77cfbeea6fd0113fc3b51f308",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_history.json",
+      "sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/method_guidance.json",
+      "sha256": "37cdb8b257db9130a54380597b9f570649edbed9b91f001ab4157b27abc8e0d9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline.py",
+      "sha256": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/analysis.py",
+      "sha256": "1164ad68ba862817d8fb84e71dc26119c5fd750d38704141c2257db60a16ee23",
+      "unchanged": true
+    }
+  ],
+  "scope": "Explicit user baseline tag editions, append-only history/restore, latest user-approved API examples and original protection",
+  "tests": {
+    "integrated": 154,
+    "new_manual_edit_subset": 14,
+    "new_manual_browser": 9,
+    "existing_browser_regression": 16
+  },
+  "native_windows_tested": false,
+  "real_API_called": false,
+  "actual_basefile_tested_on_developer_host": false,
+  "user_database_modified": false,
+  "backup_redesign_implemented": false,
+  "new_operational_card_feedback_engine_implemented": false
+}

@@ -44,3 +44,7 @@ API 기본 응답 스키마는 그대로이며, 요청에 `approved_card_example
 앱은 API가 활성화되고 전송에 동의했을 때 이 경로를 사용하며, 관련309카드 원문발췌 사례의 전송은 기존 `use_approved_examples`선택을 따릅니다. 새원장의 사용 중에는 예전4시트285개 판단을 중복해서 보내지 않습니다. 응답의 `reference_audit`는 제공한 기준ID·출처·데이터SHA와 방법론절ID를 담고 SQLite `analysis_references`에 저장합니다. 실제로 모델이 어떤 판단을 정확히 수행했는지 검증했다는 의미는 아닙니다.
 
 인계문서의 단위·수량 및 사용자 현재방침과 충돌한 부분은 `docs/APPROVAL_HISTORY_AUDIT.md`, 기계검증은 `evaluation/method-handoff-analysis.json`, `approval-history-source-verification.json` 등에 기록했습니다. 실제API호출과 의미품질은 아직 검증하지 않았습니다.
+
+## 사용자 수동 태그 수정본 (0.3.6)
+
+고정309개 원본은 보존하고 인증된 /api/baseline-tags, /api/baseline-tag-history, /api/baseline-tag-restore만 수동 수정 이력을 다룹니다. expected_revision으로 오래된 창의 덮어쓰기를 막습니다. API분석은 기준 카드에 계속 금지합니다. approved_card_examples 옵션이 켜져 있으면 최신 사용자 수정본의 사례에 provenance.user_tag_revision/user_tag_revision_sha256을 추가합니다. 해당 카드의 과거 승인행은 edited_card_ids/exclude_card_ids로 선택에서 제외하고, 모의·실응답 검증은 최신 태그ID를 인식합니다. 선택한 수정 사례 버전은 reference_audit.example_revisions에 기록합니다. 새 카테고리 자동 생성과 원본 DB 변경은 허용하지 않습니다. [수동 태그 정책과 시험](docs/BASELINE_TAG_EDITING.md)을 참조하세요.

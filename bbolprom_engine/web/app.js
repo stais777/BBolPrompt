@@ -4,6 +4,7 @@ const $=id=>document.getElementById(id);
 const tagName=t=>t.tag??t.name;
 const catId=t=>t.category_id===undefined?t.category_column:t.category_id;
 let state={cards:[],categories:[]},ui={},selected=null,selectedTags=[],imageIndex=0;
+let tagEditContext=null;
 let review=null,baselineReview=null,editingTags=[],manualDraft=null,categoryFocus='',uiSave=Promise.resolve();
 const cardImages=new Map();
 function node(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e}
@@ -57,7 +58,7 @@ function render(){
  const tagLayouts=[];
  if(selected&&!cards.some(c=>c.id===selected.id)){selected=null;inspect()}
  $('stCards').textContent=registered.length;$('stTags').textContent=registered.reduce((n,c)=>n+c.tags.length,0);$('stImages').textContent=registered.reduce((n,c)=>n+c.images.filter(i=>i.sha).length,0);$('stReady').textContent=state.baseline?.complete?'연결됨':'대기';
- $('count').textContent='표시 '+cards.length+' / 등록 '+registered.length+' · 읽기 전용 기준 309개';
+ $('count').textContent='표시 '+cards.length+' / 등록 '+registered.length+' · 최초 정답 보존 309개';
  $('hiddenBtn').textContent=(ui.show_hidden?'일반 카드 보기':'숨긴 카드 보기')+' ('+registered.filter(c=>hidden.has(c.id)).length+')';
  $('showAllBtn').classList.toggle('active',!ui.filter_active);$('applyTagsBtn').classList.toggle('active',!!ui.filter_active);
  $('filterHint').textContent=ui.filter_active?'적용 중: '+(ui.applied_tags||[]).join(' AND '):'태그를 선택한 뒤 ‘태그 적용’을 누르세요. 선택은 전체 보기에서도 유지됩니다.';
@@ -111,10 +112,10 @@ function galleryPicture(card,thumb,index){
 }
 function changeCardImage(card,thumb,d){const index=((cardImages.get(card.id)??0)+d+card.images.length)%card.images.length;cardImages.set(card.id,index);galleryPicture(card,thumb,index);if(selected?.id===card.id){imageIndex=index;showImage()}}
 async function pinTag(card,name){await busy(async()=>{const pins=structuredClone(ui.pinned_tags||{}),old=pins[card.id]||[];pins[card.id]=old.includes(name)?old.filter(x=>x!==name):[...old,name];const saving=saveUI({pinned_tags:pins});render();await saving})}
-function effectiveCat(tag){return state.categories.find(c=>c.id===catId(tag))?.name||'미분류'}
+function effectiveCat(tag,card){const id=catId(tag);if(card?.approved)return tag.category_display_name||state.baseline_category_names?.[id]||'미분류';return state.categories.find(c=>c.id===id)?.name||'미분류'}
 function tagGroups(card,container,target){
  container.replaceChildren();const groups=new Map();
- for(const tag of card.tags){const name=effectiveCat(tag);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(tag)}
+ for(const tag of card.tags){const name=effectiveCat(tag,card);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(tag)}
  if(!groups.size){container.append(node('p','등록된 태그가 없습니다.','muted'));return}
  for(const [name,tags] of groups){const group=node('section',undefined,'inspector-tag-group');group.append(node('div',name,'cathead'));const list=node('div',undefined,'taglist');
   for(const tag of tags){const label=tagName(tag),pair=node('span',undefined,'tag-pair'),button=node('button',label,'tag'+(selectedTags.includes(label)?' picked':''));button.dataset.tag=label;button.title='클릭: 원문 형광펜 · 우클릭: 대표 태그';button.onclick=()=>highlight(tag,target,card);button.oncontextmenu=e=>{e.preventDefault();pinTag(card,label)};const add=node('button','+','tag-add');add.title=label+' 필터 선택';add.onclick=()=>selectTag(label);pair.append(button,add);list.append(pair)}group.append(list);container.append(group);
@@ -126,7 +127,7 @@ function inspect(){
  imageIndex=Math.min(imageIndex,Math.max(0,selected.images.length-1));
  $('cardTitle').textContent=selected.approved?'승인 카드 '+selected.card_id:'신규 카드';showImage();tagGroups(selected,$('taglist'),$('source'));
  $('source').textContent=selected.source_text;$('origins').textContent=JSON.stringify({source_text_sha256:selected.sha??selected.source_text_sha256,origins:selected.origins,analysis_references:selected.analysis_references},null,2);
- $('cardState').textContent=selected.analysis_status;$('analyzeBtn').disabled=!!selected.approved;$('editTagsBtn').disabled=!!selected.approved;$('editCardBtn').disabled=!!selected.approved;$('historyBtn').disabled=!!selected.approved;
+ $('cardState').textContent=selected.approved?(selected.user_tag_edited?'사용자 태그 수정본 · 버전 '+selected.tag_revision:'최초 정답 원본 유지'):selected.analysis_status;$('analyzeBtn').disabled=!!selected.approved;$('editTagsBtn').disabled=false;$('editCardBtn').disabled=!!selected.approved;$('historyBtn').disabled=false;$('historyBtn').textContent=selected.approved?'태그 수정 이력 · 복원':'수정 이력 · 복원';
  $('hideCard').textContent=(ui.hidden_cards||[]).includes(selected.id)?'숨김 해제':'카드 숨기기';
 }
 function currentImage(){return selected?.images[imageIndex]}
@@ -234,7 +235,44 @@ function reviewRender(){reviewOverview();$('reviewErrors').textContent='';$('rev
 $('commitBtn').onclick=()=>busy(async()=>{const unresolved=unresolvedReviewIndices();if(unresolved.length){focusReviewCard(unresolved[0]);return}$('commitBtn').disabled=true;try{const r=await api('/api/commit',{ticket:review.ticket,cards:review.cards,approved_targets:Object.fromEntries(review.cards.map((c,i)=>[String(i+1),c.approved_target||null]))});$('reviewDialog').close();review=null;await refresh();msg(r.message)}catch(error){const detail=error.details||{};const indices=detail.unresolved_card_indices||[detail.unresolved_index??detail.card_index].filter(x=>x!==undefined);if(indices.length){focusReviewCard(Number(indices[0])-1,'검토 카드 #'+indices[0]+': '+error.message)}else{$('reviewErrors').textContent=error.message;throw error}}finally{$('commitBtn').disabled=false}});
 $('diagnosticBtn').onclick=()=>busy(async()=>{if(!review)return;const result=await api('/api/diagnostic',{ticket:review.ticket});download(result.download);msg('구조 진단 ZIP을 로컬에 저장했습니다. 원문·XML 포함, 이미지 미포함 · 외부 전송 없음')});
 
-function tagRows(){$('tagEditRows').replaceChildren();editingTags.forEach((t,i)=>{const row=node('div',undefined,'review-card');const name=node('input');name.value=t.name;name.placeholder='태그명';name.oninput=()=>t.name=name.value;const cat=node('select');cat.append(new Option('미분류',''));for(const c of state.categories.filter(c=>c.enabled))cat.append(new Option(c.name,c.id));cat.value=t.category_id||'';cat.onchange=()=>t.category_id=cat.value||null;const evidence=node('textarea');evidence.value=t.evidence;evidence.placeholder='실제 원문 구절 (선택)';evidence.oninput=()=>{t.evidence=evidence.value;t.original_spans=undefined};const remove=node('button','태그 삭제');remove.onclick=()=>{editingTags.splice(i,1);tagRows()};row.append(name,cat,evidence,remove);$('tagEditRows').append(row)})}$('editTagsBtn').onclick=()=>{editingTags=selected.tags.map(t=>({name:tagName(t),category_id:catId(t)||null,evidence:t.spans?.[0]?.evidence||'',original_spans:t.spans||[]}));tagRows();$('tagsDialog').showModal()};$('addTagRow').onclick=()=>{editingTags.push({name:'',category_id:null,evidence:''});tagRows()};$('saveTags').onclick=()=>busy(async()=>{const r=await api('/api/tags',{id:selected.id,tags:editingTags});$('tagsDialog').close();await refresh();msg(r.message)});
+function tagRows(){
+ $('tagEditRows').replaceChildren();editingTags.forEach((t,i)=>{
+  const row=node('div',undefined,'review-card'),name=node('input');name.value=t.name;name.placeholder='태그명';name.oninput=()=>t.name=name.value;
+  const cat=node('select');cat.append(new Option('미분류',''));for(const c of state.categories.filter(c=>c.enabled))cat.append(new Option(tagEditContext?.approved?(state.baseline_category_names?.[c.id]||c.name):c.name,c.id));
+  if(t.category_id&&!state.categories.some(c=>c.id===t.category_id&&c.enabled))cat.append(new Option((state.baseline_category_names?.[t.category_id]||t.category_id)+' · 기존 소속 보존',t.category_id));
+  cat.value=t.category_id||'';cat.onchange=()=>t.category_id=cat.value||null;
+  const evidence=node('textarea');evidence.value=t.evidence;evidence.placeholder='정확한 원문 구절 (선택)';evidence.oninput=()=>{t.evidence=evidence.value;delete t.original_spans};
+  const remove=node('button','태그 삭제');remove.onclick=()=>{editingTags.splice(i,1);tagRows()};row.append(name,cat,evidence,remove);$('tagEditRows').append(row);
+ });
+}
+$('editTagsBtn').onclick=()=>{
+ if(!selected)return;tagEditContext={id:selected.id,approved:!!selected.approved,revision:selected.tag_revision??0};
+ editingTags=selected.tags.map((t,i)=>({name:tagName(t),category_id:catId(t)||null,evidence:t.spans?.[0]?.evidence||'',original_spans:structuredClone(t.spans||[]),...(selected.approved?{source_index:i}:{})}));
+ $('tagEditTitle').textContent=selected.approved?'기준 카드 '+selected.card_id+' · 사용자 태그 수정':'신규 카드 태그 직접 수정';
+ $('tagEditNotice').textContent=selected.approved?'최초 정답309개는 그대로 보존합니다. 저장한 수동 수정은 이 카드에만 적용하며, 태그명만 바꾸면 기존 근거 구간을 유지합니다.':'원문은 유지하고 태그와 근거를 직접 수정합니다.';
+ $('tagEditError').textContent='';$('tagEditProgress').textContent='';tagRows();$('tagsDialog').showModal();
+};
+$('addTagRow').onclick=()=>{editingTags.push({name:'',category_id:null,evidence:''});tagRows()};
+$('saveTags').onclick=()=>busy(async()=>{
+ if(!tagEditContext)return;$('saveTags').disabled=true;$('tagEditError').textContent='';$('tagEditProgress').textContent='저장 중… 백업과 사용자 수정 이력을 기록하고 있습니다.';
+ try{
+  const c=tagEditContext,data={id:c.id,tags:editingTags};if(c.approved)data.expected_revision=c.revision;
+  const r=await api(c.approved?'/api/baseline-tags':'/api/tags',data);$('tagsDialog').close();tagEditContext=null;await refresh();msg(r.message);
+ }catch(e){$('tagEditError').textContent=e.message;msg('태그 저장 실패: '+e.message)}finally{$('saveTags').disabled=false;$('tagEditProgress').textContent=''}
+});
+async function showBaselineTagHistory(){
+ const card=selected,r=await api('/api/baseline-tag-history',{id:card.id});$('baselineTagVersions').replaceChildren();$('baselineTagHistoryError').textContent='';
+ $('baselineTagHistorySummary').textContent='카드 '+card.card_id+' · 현재 사용자 수정 버전 '+r.current_revision+' · 최초 원본은 버전0';
+ for(const version of r.versions){
+  const box=node('details');box.dataset.revision=String(version.revision);
+  box.append(node('summary',version.revision===0?'최초 정답 원본 · 버전0':'수정 버전 '+version.revision+' · '+new Date(version.created).toLocaleString()));
+  for(const t of version.tags){const line=node('div',tagName(t)+' · '+effectiveCat(t,card));line.append(node('pre',(t.spans||[]).map(s=>s.evidence).join(' / ')||'직접 근거 없음'));box.append(line)}
+  const restore=node('button',version.revision===0?'최초 정답 원본으로 복원':'이 태그 버전으로 복원');restore.disabled=version.revision===r.current_revision;
+  restore.onclick=()=>busy(async()=>{restore.disabled=true;try{const done=await api('/api/baseline-tag-restore',{id:card.id,target_revision:version.revision,expected_revision:r.current_revision});$('baselineTagHistoryDialog').close();await refresh();msg(done.message)}catch(e){$('baselineTagHistoryError').textContent=e.message;restore.disabled=false}});
+  box.append(restore);$('baselineTagVersions').append(box);
+ }
+ $('baselineTagHistoryDialog').showModal();
+}
 $('analyzeBtn').onclick=()=>busy(async()=>{const r=await api('/api/analyze',{id:selected.id});await refresh();msg('API 상태: '+r.status+' · '+(r.warnings||[]).join(' / '))});
 function settings(){const c=state.api||{};$('apiEnabled').checked=!!c.enabled;$('apiConsent').checked=!!c.consent;$('apiExamples').checked=c.use_approved_examples??false;$('endpoint').value='https://api.openai.com/v1/chat/completions';$('model').value=c.model||'gpt-6.1-sol';$('apiKey').value='';$('saveKey').disabled=!state.api_key_storage?.supported;$('deleteKey').disabled=!state.api_key_storage?.supported;$('maxCalls').value=c.max_calls??10;$('maxTokens').value=c.max_output_tokens||4096;$('timeout').value=c.timeout||30;$('maxCost').value=c.max_cost_usd??'';$('inPrice').value=c.input_usd_per_million??'';$('outPrice').value=c.output_usd_per_million??'';const u=state.api_usage||{};$('apiUsage').textContent='오늘 (UTC '+(u.day_utc||'')+') 호출 '+(u.calls||0)+'회 · 입력 '+(u.total_input_tokens||0)+' / 출력 '+(u.total_output_tokens||0)+' 토큰 · 비용 예약 상한 $'+(u.reserved_cost_usd||0)+' (가격은 사용자가 공급자 기준으로 입력)';$('keyPresent').textContent=state.api_key_storage?.error||(!state.api_key_storage?.supported?'Windows 보안 보관함을 사용할 수 없습니다. 키 저장·API 호출 차단':('Windows 보안 보관함: '+(state.api_key_present?'키 등록됨 (값은 반환하지 않음)':'키 없음')));$('categoryRows').replaceChildren();for(const cat of state.categories){const box=node('details');box.append(node('summary',cat.id+' · '+cat.name+(cat.enabled?'':' · 비활성')));const name=node('input');name.value=cat.name;const def=node('textarea');def.value=cat.definition||'';def.placeholder='사용자가 확정한 분류 정의 · 포함/제외';const rename=node('button','표시명 변경');rename.onclick=()=>category({operation:'rename',id:cat.id,name:name.value});const define=node('button','이후 분석용 정의 확정');define.onclick=()=>category({operation:'define',id:cat.id,definition:def.value});const toggle=node('button',cat.enabled?'비활성화 → 미분류':'재활성화 (태그 자동 복귀 없음)');toggle.onclick=()=>category({operation:cat.enabled?'deactivate':'reactivate',id:cat.id,restore_tags:false});box.append(name,rename,def,define,toggle);$('categoryRows').append(box)}}async function category(data){await busy(async()=>{await api('/api/categories',data);await refresh();settings();msg('분류 설정 저장됨')})}
 $('settingsBtn').onclick=()=>{settings();$('settingsDialog').showModal()};$('saveApi').onclick=()=>busy(async()=>{await api('/api/settings',{api:{enabled:$('apiEnabled').checked,consent:$('apiConsent').checked,use_approved_examples:$('apiExamples').checked,endpoint:$('endpoint').value,model:$('model').value,timeout:Number($('timeout').value),max_calls:Number($('maxCalls').value),max_output_tokens:Number($('maxTokens').value),max_cost_usd:$('maxCost').value===''?null:Number($('maxCost').value),input_usd_per_million:$('inPrice').value===''?null:Number($('inPrice').value),output_usd_per_million:$('outPrice').value===''?null:Number($('outPrice').value)}});await refresh();settings();msg('API 설정 저장됨')});$('addCat').onclick=()=>category({operation:'add',id:$('newCatId').value,category:{id:$('newCatId').value,name:$('newCatName').value,definition:$('newCatDef').value}});
@@ -244,7 +282,7 @@ $('editCardBtn').onclick=()=>{if(!selected||selected.approved)return;cardEdit={i
 $('editToReview').onclick=()=>busy(async()=>{if(!cardEdit)return;const text=$('editCardText').value;if(!text.trim())throw Error('원문이 필요합니다.');const images=[];for(const file of $('editCardFiles').files)images.push({name:file.name,base64:await readBase64(file)});Object.assign(cardEdit,{text,images,remove_images:[...$('editCardImages').querySelectorAll('input:checked')].map(x=>x.dataset.sha)});$('editBefore').textContent=cardEdit.old_text;$('editAfter').textContent=text;$('editImageChange').textContent='연결 제거 '+cardEdit.remove_images.length+'개 · 이미지 추가 '+images.length+'개';$('editCardForm').hidden=true;$('editCardReview').hidden=false});
 $('editBack').onclick=()=>{$('editCardForm').hidden=false;$('editCardReview').hidden=true};
 $('saveCardEdit').onclick=()=>busy(async()=>{if(!cardEdit)return;$('saveCardEdit').disabled=true;try{const {id,text,images,remove_images,expected_sha}=cardEdit;const r=await api('/api/card-edit',{id,text,images,remove_images,expected_sha});$('editCardDialog').close();cardEdit=null;await refresh();msg(r.message)}finally{$('saveCardEdit').disabled=false}});
-$('historyBtn').onclick=()=>busy(async()=>{if(!selected||selected.approved)return;const id=selected.id;const r=await api('/api/card-history',{id});$('historyRows').replaceChildren();if(!r.versions.length)$('historyRows').append(node('p','저장된 수정 이력이 없습니다.'));for(const version of r.versions){const box=node('details');box.append(node('summary',new Date(version.created).toLocaleString()+' · '+version.reason),node('h3','이전 원문'),node('pre',version.source_text),node('p',version.tags.length+'태그 · '+version.images.length+'이미지 연결'));const restore=node('button','이 상태로 복원');restore.onclick=()=>busy(async()=>{restore.disabled=true;try{const done=await api('/api/card-restore',{id,version_id:version.id});$('historyDialog').close();await refresh();msg(done.message)}finally{restore.disabled=false}});box.append(restore);$('historyRows').append(box)}$('historyDialog').showModal()});
+$('historyBtn').onclick=()=>busy(async()=>{if(!selected)return;if(selected.approved){await showBaselineTagHistory();return}const id=selected.id;const r=await api('/api/card-history',{id});$('historyRows').replaceChildren();if(!r.versions.length)$('historyRows').append(node('p','저장된 수정 이력이 없습니다.'));for(const version of r.versions){const box=node('details');box.append(node('summary',new Date(version.created).toLocaleString()+' · '+version.reason),node('h3','이전 원문'),node('pre',version.source_text),node('p',version.tags.length+'태그 · '+version.images.length+'이미지 연결'));const restore=node('button','이 상태로 복원');restore.onclick=()=>busy(async()=>{restore.disabled=true;try{const done=await api('/api/card-restore',{id,version_id:version.id});$('historyDialog').close();await refresh();msg(done.message)}finally{restore.disabled=false}});box.append(restore);$('historyRows').append(box)}$('historyDialog').showModal()});
 for(const b of document.querySelectorAll('#editCardDialog [data-close],#historyDialog [data-close]'))b.onclick=()=>$(b.dataset.close).close();
 
 async function exportLocalDiagnostic(){
