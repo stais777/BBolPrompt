@@ -1,0 +1,46 @@
+{
+  "version": "0.3.9-filtertoggle",
+  "patch_file": "Bbolprom-UI-Patch-v0.3.8-to-v0.3.9.zip",
+  "patch_bytes": 168573,
+  "patch_sha256": "986377b617ef0e770661f599fc65394d926486be138ec74ba1fb72513e36e71a",
+  "changed_bundle_files": 8,
+  "changed_paths": [
+    "BUILD_PROVENANCE.json",
+    "Bbolprom.exe",
+    "SHA256.json",
+    "app/bbolprom_engine/version.py",
+    "app/bbolprom_engine/web/app.js",
+    "app/bbolprom_engine/web/index.html",
+    "app/bbolprom_engine/web/ui.css",
+    "사용방법.txt"
+  ],
+  "base_version": "0.3.8-startupfix",
+  "all_1350_full_bundle_hashes_match_after_overlay": true,
+  "verified_bundle_file_count": 1350,
+  "synthetic_existing_data_unchanged": true,
+  "patched_host_smoke": "passed on Linux/Python3.12",
+  "ZIP_CRC_verified": true,
+  "runtime_files_changed": false,
+  "user_data_or_keys_included": false,
+  "native_Windows_tested": false,
+  "details": {
+    "base_version": "0.3.8-startupfix",
+    "target_version": "0.3.9-filtertoggle",
+    "base_zip_sha256": "c0fafce5aea006e5073c93688cb5d0972e06475605a0aa4a965529de8cc90b68",
+    "full_zip_sha256": "6e6a757634cbfac2a979bc79cd15363c1ee16f2ba5fa97fb300fcca6ba34583e",
+    "application_source_commit": "63fa5e0623848f92af0d6607ed59f1393206de95",
+    "files": {
+      "BUILD_PROVENANCE.json": "74b169f29c9bd6058e0fd0972b4264570b195bda78405b048681153d349256eb",
+      "Bbolprom.exe": "a7f7d93f8e3d9119ea718ef2f661767a2db61837d04c04929d3b3848a23c7ffe",
+      "SHA256.json": "30eb40434fd6b36808bed6a28b42378290ee9d80bf02872d4295f310ebf30d65",
+      "app/bbolprom_engine/version.py": "4d3dc9ac7087279c736421d6806777a8e9bc7bf99fb907c151a54626bb13a65d",
+      "app/bbolprom_engine/web/app.js": "758588b772e7ba7ac16c159a4f7cbc9b0a1b1badebb340eff6221db145c30ff5",
+      "app/bbolprom_engine/web/index.html": "ad266161e4aa29672093e06ee079965494e186086f882dbe916680c762535bfc",
+      "app/bbolprom_engine/web/ui.css": "98720f4a5e88518487c09f4f303fb3ae1878c032f33f54e9fb02231d3e970d75",
+      "사용방법.txt": "8e5904353ef977be583695c43e331b1a2057c8b906fe329dc505cf1676305a02"
+    },
+    "user_data_included": false,
+    "engine_or_storage_logic_changed": false,
+    "native_Windows_tested": false
+  }
+}

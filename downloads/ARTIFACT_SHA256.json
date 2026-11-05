@@ -42,5 +42,13 @@
   "Bbolprom-Windows-x64-v0.3.8-startupfix.zip": {
     "bytes": 15299638,
     "sha256": "c0fafce5aea006e5073c93688cb5d0972e06475605a0aa4a965529de8cc90b68"
+  },
+  "Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip": {
+    "bytes": 15299920,
+    "sha256": "6e6a757634cbfac2a979bc79cd15363c1ee16f2ba5fa97fb300fcca6ba34583e"
+  },
+  "Bbolprom-UI-Patch-v0.3.8-to-v0.3.9.zip": {
+    "bytes": 168573,
+    "sha256": "986377b617ef0e770661f599fc65394d926486be138ec74ba1fb72513e36e71a"
   }
 }

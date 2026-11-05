@@ -52,7 +52,28 @@ async function check(name, fn) { console.log('Checking: '+name); await fn(); res
   await check('substring_candidates_and_selected_tag_AND_filter',async()=>{
    assert(pair);for(const name of pair.names){await page.fill('#query',name.slice(0,2));await page.locator('#suggestions button').filter({hasText:name}).first().waitFor();
     const exact=page.locator('#suggestions button').filter({hasText:new RegExp('^'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'$')});await exact.click();}
-   assert.equal(await page.locator('#filters button').count(),2);assert.equal(await page.locator('#gallery article').count(),309);await page.click('#applyTagsBtn');await page.waitForFunction(n=>visibleCards().length===n,pair.count);assert.equal(await page.locator('#gallery article').count(),pair.count);await page.click('#showAllBtn');await page.waitForFunction(()=>!ui.filter_active);assert.equal(await page.locator('#filters button').count(),2);await page.click('#clearTagsBtn');await page.waitForFunction(()=>selectedTags.length===0);
+   assert.equal(await page.locator('#filters button').count(),2);assert.equal(await page.locator('#gallery article').count(),309);
+   // One control changes its next action; returning to all preserves selection.
+   assert.equal(await page.locator('#showAllBtn').count(),0);
+   const toggle=page.locator('#applyTagsBtn');assert.equal(await toggle.textContent(),'태그 적용');
+   const before=await toggle.boundingBox();await toggle.click();
+   await page.waitForFunction(n=>ui.filter_active&&visibleCards().length===n,pair.count);await page.evaluate(()=>uiSave);
+   assert.equal(await toggle.textContent(),'전체 카드 보기');assert.equal(await toggle.getAttribute('aria-pressed'),'true');
+   assert.equal(await page.locator('#gallery article').count(),pair.count);
+   const after=await toggle.boundingBox();assert.equal(after.x,before.x);assert.equal(after.width,before.width);
+   await page.reload();await page.waitForFunction(()=>state.cards.length===309&&ui.filter_active);
+   assert.equal(await toggle.textContent(),'전체 카드 보기');assert.equal(await page.locator('#filters button').count(),2);
+   assert.equal(await page.locator('#gallery article').count(),pair.count);
+   await toggle.click();await page.waitForFunction(()=>!ui.filter_active);await page.evaluate(()=>uiSave);
+   assert.equal(await toggle.textContent(),'태그 적용');assert.equal(await toggle.getAttribute('aria-pressed'),'false');
+   assert.equal(await page.locator('#filters button').count(),2);assert.equal(await page.locator('#gallery article').count(),309);
+   assert.deepEqual(await page.evaluate(()=>selectedTags),pair.names);
+   // Keyboard reapplication uses the same retained selection after a reload.
+   await page.reload();await page.waitForFunction(()=>state.cards.length===309&&selectedTags.length===2);
+   await toggle.focus();await page.keyboard.press('Enter');
+   await page.waitForFunction(n=>ui.filter_active&&visibleCards().length===n,pair.count);
+   await page.click('#clearTagsBtn');await page.waitForFunction(()=>selectedTags.length===0&&!ui.filter_active);
+   assert.equal(await toggle.textContent(),'태그 적용');assert.equal(await page.locator('#gallery article').count(),309);
   });
   await check('approved_highlight_preserves_full_source',async()=>{
    await page.locator('#gallery article').first().locator('.thumb').click();

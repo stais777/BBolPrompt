@@ -1,0 +1,21 @@
+Checking: approved_309_gallery_readonly
+Checking: four_views_and_five_themes
+Checking: approved_examples_opt_in_setting_persists_without_enabling_API
+Checking: substring_candidates_and_selected_tag_AND_filter
+Checking: approved_highlight_preserves_full_source
+Checking: manual_image_and_emoji_prompt_persist
+Checking: Unicode_codepoint_highlight_after_emoji
+Checking: manual_tag_edit_evidence_and_codepoint_highlight
+Checking: disabled_API_rejected_card_unchanged
+Checking: legacy_diagnostic_review_and_commit
+Checking: legacy_diagnostic_duplicate_preserves_card_count
+Checking: duplicate_approved_source_review_guidance_and_diagnostic
+Checking: backup_download
+Checking: xlsx_download
+Checking: reload_persists_three_new_cards
+Checking: no_javascript_errors_or_external_network
+{
+  "status": "passed",
+  "passed": 16,
+  "failures": []
+}

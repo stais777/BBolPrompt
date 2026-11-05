@@ -1,0 +1,14 @@
+Checking: approved_309_gallery_readonly
+Checking: four_views_and_five_themes
+Checking: approved_examples_opt_in_setting_persists_without_enabling_API
+Checking: substring_candidates_and_selected_tag_AND_filter
+{
+  "status": "failed",
+  "passed": 3,
+  "failures": [
+    {
+      "message": "Expected values to be strictly equal:\n\n1 !== 0\n",
+      "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n\n    at /workspace/Bbolprompt/scripts/browser_smoke.js:57:11\n    at async check (/workspace/Bbolprompt/scripts/browser_smoke.js:14:66)\n    at async /workspace/Bbolprompt/scripts/browser_smoke.js:52:3"
+    }
+  ]
+}

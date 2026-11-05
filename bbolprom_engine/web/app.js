@@ -62,7 +62,8 @@ function render(){
  $('stCards').textContent=registered.length;$('stTags').textContent=registered.reduce((n,c)=>n+c.tags.length,0);$('stImages').textContent=registered.reduce((n,c)=>n+c.images.filter(i=>i.sha).length,0);$('stReady').textContent=state.baseline?.complete?'연결됨':'대기';
  $('count').textContent='표시 '+cards.length+' / 등록 '+registered.length+' · 최초 정답 보존 309개';
  $('hiddenBtn').textContent=(ui.show_hidden?'일반 카드 보기':'숨긴 카드 보기')+' ('+registered.filter(c=>hidden.has(c.id)).length+')';
- $('showAllBtn').classList.toggle('active',!ui.filter_active);$('applyTagsBtn').classList.toggle('active',!!ui.filter_active);
+ $('applyTagsBtn').textContent=ui.filter_active?'전체 카드 보기':'태그 적용';
+ $('applyTagsBtn').classList.toggle('active',!!ui.filter_active);$('applyTagsBtn').setAttribute('aria-pressed',String(!!ui.filter_active));
  $('filterHint').textContent=ui.filter_active?'적용 중: '+(ui.applied_tags||[]).join(' AND '):'태그를 선택한 뒤 ‘태그 적용’을 누르세요. 선택은 전체 보기에서도 유지됩니다.';
  $('filters').replaceChildren();for(const name of selectedTags){const b=node('button',name+' ×','chip');b.onclick=()=>selectTag(name);$('filters').append(b)}
  $('gallery').className='cards mode-'+(ui.view||'basic');$('gallery').replaceChildren();$('galleryEmpty').hidden=cards.length>0;
@@ -185,8 +186,7 @@ document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{$('view').val
 $('sort').onchange=()=>busy(async()=>{const saving=saveUI({sort:$('sort').value});render();await saving});
 for(const id of ['theme','tone'])$(id).onchange=()=>busy(async()=>{const saving=saveUI({theme:$('theme').value,tone:$('tone').value});applyDisplay();await saving});
 $('themeReset').onclick=()=>busy(async()=>{const saving=saveUI({theme:'workstation',tone:'preset',inspector_width:385,view:'basic'});applyDisplay();render();await saving});
-$('applyTagsBtn').onclick=()=>busy(async()=>{const saving=saveUI({filter_active:true,applied_tags:[...selectedTags]});render();await saving});
-$('showAllBtn').onclick=()=>busy(async()=>{const saving=saveUI({filter_active:false});render();await saving});
+$('applyTagsBtn').onclick=()=>busy(async()=>{const patch=ui.filter_active?{filter_active:false}:{filter_active:true,applied_tags:[...selectedTags]};const saving=saveUI(patch);render();await saving});
 $('clearTagsBtn').onclick=()=>busy(async()=>{selectedTags=[];const saving=saveUI({selected_tags:[],applied_tags:[],filter_active:false});render();inspect();await saving});
 $('hiddenBtn').onclick=()=>busy(async()=>{const saving=saveUI({show_hidden:!ui.show_hidden});selected=null;inspect();render();await saving});
 $('hideCard').onclick=()=>busy(async()=>{if(!selected)return;const ids=ui.hidden_cards||[],id=selected.id;const saving=saveUI({hidden_cards:ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]});selected=null;inspect();render();await saving});

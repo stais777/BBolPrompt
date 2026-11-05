@@ -1,0 +1,34 @@
+{
+  "version": "0.3.9-filtertoggle",
+  "artifacts": {
+    "Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip": {
+      "bytes": 15299920,
+      "sha256": "6e6a757634cbfac2a979bc79cd15363c1ee16f2ba5fa97fb300fcca6ba34583e"
+    },
+    "Bbolprom-UI-Patch-v0.3.8-to-v0.3.9.zip": {
+      "bytes": 168573,
+      "sha256": "986377b617ef0e770661f599fc65394d926486be138ec74ba1fb72513e36e71a"
+    }
+  },
+  "application_source_commit": "63fa5e0623848f92af0d6607ed59f1393206de95",
+  "application_source_clean_at_build": true,
+  "cross_built": true,
+  "native_windows_executed_this_version": false,
+  "live_API_called": false,
+  "actual_PT_tested_this_change": false,
+  "actual_user_DB_used": false,
+  "browser_regression_checks_passed": 16,
+  "backend_tests_rerun_this_change": false,
+  "previous_0_3_8_integration_test_count": 188,
+  "protected_files_unchanged": 15,
+  "files_hash_verified": 1350,
+  "ZIP_CRC_verified": true,
+  "patch_base": "0.3.8-startupfix",
+  "patch_verified_against_full_bundle": true,
+  "patch_existing_synthetic_data_unchanged": true,
+  "patched_host_smoke": "passed on Linux/Python3.12",
+  "actual_user_UI_retry_confirmed": false,
+  "original309_or_manual_editions_changed": false,
+  "engine_or_storage_schema_changed": false,
+  "user_data_or_keys_bundled": false
+}
