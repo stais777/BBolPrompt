@@ -27,7 +27,9 @@ function visibleCards(){
 }
 async function refresh(){
  await uiSave.catch(()=>{});state=await api('/api/state');ui=state.ui;selectedTags=[...ui.selected_tags];
- $('limits').replaceChildren(...state.limitations.map(x=>node('p',x)));applyDisplay();render();
+ $('limits').replaceChildren(...state.limitations.map(x=>node('p',x)));
+ const storage=state.storage||{};$('storageInfo').textContent=(storage.data_path||'자료 폴더')+' · '+(storage.baseline_source_saved?'PT 원본 보관됨':'PT 원본 보관 필요')+(storage.warning?' · '+storage.warning:'');
+ $('importBtn').textContent=state.baseline?.complete?'PT.hwpx 원본 보관':'＋ PT.hwpx 등록';applyDisplay();render();
  if(selected){selected=state.cards.find(c=>c.id===selected.id)||null;inspect()}
 }
 function applyDisplay(){
@@ -127,7 +129,7 @@ function inspect(){
  imageIndex=Math.min(imageIndex,Math.max(0,selected.images.length-1));
  $('cardTitle').textContent=selected.approved?'승인 카드 '+selected.card_id:'신규 카드';showImage();tagGroups(selected,$('taglist'),$('source'));
  $('source').textContent=selected.source_text;$('origins').textContent=JSON.stringify({source_text_sha256:selected.sha??selected.source_text_sha256,origins:selected.origins,analysis_references:selected.analysis_references},null,2);
- $('cardState').textContent=selected.approved?(selected.user_tag_edited?'사용자 태그 수정본 · 버전 '+selected.tag_revision:'최초 정답 원본 유지'):selected.analysis_status;$('analyzeBtn').disabled=!!selected.approved;$('editTagsBtn').disabled=false;$('editCardBtn').disabled=!!selected.approved;$('historyBtn').disabled=false;$('historyBtn').textContent=selected.approved?'태그 수정 이력 · 복원':'수정 이력 · 복원';
+ $('cardState').textContent=selected.approved?(selected.user_tag_edited?'사용자 태그 수정본 · 버전 '+selected.tag_revision:'최초 정답 원본 유지'):selected.analysis_status;$('analyzeBtn').disabled=!!selected.approved;$('editTagsBtn').disabled=false;$('cardFolderBtn').disabled=!!selected.approved;$('editCardBtn').disabled=!!selected.approved;$('historyBtn').disabled=false;$('historyBtn').textContent=selected.approved?'태그 수정 이력 · 복원':'수정 이력 · 복원';
  $('hideCard').textContent=(ui.hidden_cards||[]).includes(selected.id)?'숨김 해제':'카드 숨기기';
 }
 function currentImage(){return selected?.images[imageIndex]}
@@ -214,7 +216,9 @@ busy(refresh);
 async function upload(file){await busy(async()=>{const r=await fetch('/api/upload',{method:'POST',headers:{'X-Bbolprom-Token':token,'X-Filename':encodeURIComponent(file.name)},body:file});review=await r.json();if(!r.ok)throw Error(review.error);review.originalImages=review.cards.flatMap(c=>c.images);reviewRender();$('reviewDialog').showModal();msg('반입 검토 대기')})}
 
 async function cancelBaseline(){if($('baselineCommit').disabled)return;if(baselineReview){const ticket=baselineReview.ticket;baselineReview=null;await api('/api/cancel',{ticket})}$('baselineDialog').close()}
-async function uploadBaseline(file){await busy(async()=>{$('importBtn').disabled=true;try{if(baselineReview)await cancelBaseline();const r=await fetch('/api/baseline-upload',{method:'POST',headers:{'X-Bbolprom-Token':token,'X-Filename':encodeURIComponent(file.name)},body:file});const result=await r.json();if(!r.ok)throw Error(result.error);baselineReview=result;$('baselineError').textContent='';$('baselineProgress').textContent='';$('baselineSummary').textContent='고정 ID '+result.stats.cards+'개 · 이미지 참조 '+result.stats.image_references+'건 · 원본 이미지 경로 '+result.stats.unique_image_paths+'개 · 등록 전';$('baselineCards').replaceChildren();let image=0;for(const c of result.cards){const box=node('details');box.dataset.cardId=String(c.card_id);box.append(node('summary','베이스 #'+c.card_id+' · '+c.images.length+' 이미지 · '+c.tag_count+' 태그'));const text=node('pre',c.source_text);text.style.whiteSpace='pre-wrap';box.append(text);for(const im of c.images){const img=node('img');img.src='/pending-media/'+result.ticket+'/'+image++;img.loading='lazy';img.alt=im.ref;img.style.cssText='width:96px;height:96px;object-fit:contain';box.append(img)}$('baselineCards').append(box)}$('baselineDialog').showModal();msg('베이스화 이미지 연결 검토 대기')}finally{$('importBtn').disabled=false}})}
+async function uploadBaseline(file){await busy(async()=>{$('importBtn').disabled=true;try{
+ if(state.baseline?.complete){msg('PT 원본을 복사·검증하고 있습니다. 기존 매핑은 유지합니다.');const response=await fetch('/api/source-upload',{method:'POST',headers:{'X-Bbolprom-Token':token,'X-Filename':encodeURIComponent(file.name)},body:file});const saved=await response.json();if(!response.ok)throw Error(saved.error);await refresh();msg(saved.message);return}
+ if(baselineReview)await cancelBaseline();const r=await fetch('/api/baseline-upload',{method:'POST',headers:{'X-Bbolprom-Token':token,'X-Filename':encodeURIComponent(file.name)},body:file});const result=await r.json();if(!r.ok)throw Error(result.error);baselineReview=result;$('baselineError').textContent='';$('baselineProgress').textContent='';$('baselineSummary').textContent='고정 ID '+result.stats.cards+'개 · 이미지 참조 '+result.stats.image_references+'건 · 원본 이미지 경로 '+result.stats.unique_image_paths+'개 · 등록 전';$('baselineCards').replaceChildren();let image=0;for(const c of result.cards){const box=node('details');box.dataset.cardId=String(c.card_id);box.append(node('summary','베이스 #'+c.card_id+' · '+c.images.length+' 이미지 · '+c.tag_count+' 태그'));const text=node('pre',c.source_text);text.style.whiteSpace='pre-wrap';box.append(text);for(const im of c.images){const img=node('img');img.src='/pending-media/'+result.ticket+'/'+image++;img.loading='lazy';img.alt=im.ref;img.style.cssText='width:96px;height:96px;object-fit:contain';box.append(img)}$('baselineCards').append(box)}$('baselineDialog').showModal();msg('베이스화 이미지 연결 검토 대기')}finally{$('importBtn').disabled=false}})}
 $('baselineCancel').onclick=()=>busy(cancelBaseline);$('baselineDialog').addEventListener('cancel',e=>{e.preventDefault();busy(cancelBaseline)});$('baselineCommit').onclick=()=>busy(async()=>{
  if(!baselineReview||$('baselineCommit').disabled)return;
  $('baselineError').textContent='';$('baselineProgress').textContent='등록 중… 원본 확인·백업·이미지 저장을 진행하고 있습니다.';
@@ -303,3 +307,6 @@ for(const id of ['localDiagnosticBtn','baselineDiagnosticBtn'])$(id).onclick=()=
 $('saveKey').onclick=()=>busy(async()=>{let key=$('apiKey').value;$('apiKey').value='';$('saveKey').disabled=true;try{const r=await api('/api/key',{operation:'save',key});key='';await refresh();settings();msg(r.message)}finally{key='';$('apiKey').value='';$('saveKey').disabled=!state.api_key_storage?.supported}});
 $('deleteKey').onclick=()=>busy(async()=>{$('apiKey').value='';const r=await api('/api/key',{operation:'delete'});await refresh();settings();msg(r.message)});
 $('settingsDialog').addEventListener('close',()=>{$('apiKey').value=''});
+
+$('dataFolderBtn').onclick=()=>busy(async()=>{const r=await api('/api/open-data-folder',{});msg(r.message)});
+$('cardFolderBtn').onclick=()=>busy(async()=>{if(selected&&!selected.approved){const r=await api('/api/open-card-folder',{id:selected.id});msg(r.message)}});

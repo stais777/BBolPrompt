@@ -125,7 +125,7 @@ class BaselineTagEdits:
         if type(expected_revision) is not int or expected_revision<0:raise ValueError('현재 태그 수정 버전이 필요합니다.')
         validate_tags(self.records[card_id]['source_text'],tags)
         # Existing full backup format automatically includes the edition journal.
-        self.library.backup()
+        self.library.backup(include_sources=False)
         with self.library.connect() as c:
             c.execute('BEGIN IMMEDIATE')
             row=c.execute('SELECT * FROM baseline_tag_editions WHERE card_id=? ORDER BY revision DESC LIMIT 1',(card_id,)).fetchone()

@@ -1,1 +1,1 @@
-VERSION = '0.3.6-manualtags'
+VERSION = '0.3.7-portable'

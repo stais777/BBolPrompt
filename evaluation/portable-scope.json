@@ -1,0 +1,76 @@
+{
+  "version": "0.3.7-portable",
+  "base_commit": "8d04706",
+  "scope": "portable storage and original retention; fixed309 mapping and manual edit protection preserved",
+  "protected_files": [
+    {
+      "path": "assets/approved_catalog.json",
+      "sha256": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/analysis.py",
+      "sha256": "1164ad68ba862817d8fb84e71dc26119c5fd750d38704141c2257db60a16ee23",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approval_history.py",
+      "sha256": "0b36353608e33d579d19456320b6b4d412bb3949b53d13c1b384760e125103f2",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approved_context.py",
+      "sha256": "8e2936eb4689fd9d49d0b6029d4e8e53618f55f886d50e8c79057bc37fbc4df5",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline.py",
+      "sha256": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_context.json",
+      "sha256": "3e3be1daa6eb056ca459fdf150085658156c7bc77cfbeea6fd0113fc3b51f308",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_history.json",
+      "sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/baseline_manifest.json",
+      "sha256": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/method_guidance.json",
+      "sha256": "37cdb8b257db9130a54380597b9f570649edbed9b91f001ab4157b27abc8e0d9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/method_guidance.py",
+      "sha256": "6058c414d168e607c82ef27f9185a20b6aa677bcfa6b68e69b979920f2b4f2c5",
+      "unchanged": true
+    }
+  ],
+  "automated_tests": 179,
+  "portable_storage_tests_included": 23,
+  "real_child_process_tests_included": 2,
+  "portable_browser_checks": 8,
+  "manual_tag_browser_checks": 9,
+  "legacy_browser_checks": 16,
+  "baseline_counts": {
+    "cards": 309,
+    "tags": 8471,
+    "spans": 10358,
+    "image_references": 531,
+    "unique_image_paths": 522
+  },
+  "live_API_calls": 0,
+  "actual_user_DB_used": false,
+  "actual_PT_tested": false,
+  "native_Windows_tested": false,
+  "full_backup_restore_UI_implemented": false,
+  "unimplemented_followup_API_improvements_unchanged": true
+}

@@ -1,0 +1,7 @@
+test_child_migrates_legacy_and_progress_redirects_to_ready_app (test_portable_main.PortableProcessStartup.test_child_migrates_legacy_and_progress_redirects_to_ready_app) ... ok
+test_fresh_child_uses_program_data_without_touching_user_profile (test_portable_main.PortableProcessStartup.test_fresh_child_uses_program_data_without_touching_user_profile) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.641s
+
+OK

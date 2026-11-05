@@ -24,24 +24,28 @@ def bitmap(width,height):
 
 def main():
     folder=Path(sys.argv[1]);folder.mkdir(parents=True,exist_ok=True)
+    if '--portable' in sys.argv[2:]:
+        from bbolprom_engine.portable_storage import prepare_portable_data
+        prepare_portable_data(folder,None)
     server=make_server(folder)
     if '--fail-backup-once' in sys.argv[2:]:
         original_backup=server.application.library.backup
         failed=False
-        def backup_once():
+        def backup_once(*args,**kwargs):
             nonlocal failed
             if not failed:
                 failed=True
                 error=PermissionError(13,'Simulated Windows backup cleanup denial')
                 error.winerror=32;error.bbolprom_operation='backup_temporary_cleanup'
                 raise error
-            return original_backup()
+            return original_backup(*args,**kwargs)
         server.application.library.backup=backup_once
-    fixture=folder/'synthetic.hwpx'
-    with zipfile.ZipFile(fixture,'w',zipfile.ZIP_DEFLATED) as z:
-        for i,name in enumerate(server.application.baseline.paths):
-            w,h=[(9,16),(16,9),(1,1)][i%3]
-            z.writestr(name,bitmap(w,h)+name.encode())
+    fixture=folder/'sources/PT.hwpx' if '--reuse-source' in sys.argv[2:] else folder/'synthetic.hwpx'
+    if not fixture.exists():
+        with zipfile.ZipFile(fixture,'w',zipfile.ZIP_DEFLATED) as z:
+            for i,name in enumerate(server.application.baseline.paths):
+                w,h=[(9,16),(16,9),(1,1)][i%3]
+                z.writestr(name,bitmap(w,h)+name.encode())
     baseline.SOURCE_SHA=hashlib.sha256(fixture.read_bytes()).hexdigest()
     (folder/'runtime.json').write_text(json.dumps({'port':server.server_port,'pid':os.getpid(),'synthetic_fixture':str(fixture)}))
     server.serve_forever()

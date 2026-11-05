@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "first_registration_copies_PT_into_data_before_showing_registered309",
+    "registered_library_can_store_PT_again_without_reopening_mapping_review",
+    "wrong_PT_does_not_replace_retained_source",
+    "new_card_keeps_readable_original_text_and_image_in_its_own_folder",
+    "explicit_baseline_tag_edit_is_saved_before_portable_move",
+    "move_to_a_new_path_preserves_mapping_originals_and_user_editions",
+    "moved_library_diagnostic_rechecks_source_and_original_files",
+    "full_backup_includes_PT_and_per_card_originals"
+  ],
+  "actual_PT_tested": false,
+  "live_API_called": false,
+  "native_Windows_tested": false,
+  "status": "passed"
+}

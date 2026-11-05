@@ -17,7 +17,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE previous, PWSTR arguments, int
     wchar_t *slash = wcsrchr(folder, L'\\');
     if (!slash) { fail(L"프로그램 폴더를 찾지 못했습니다."); return 2; }
     *slash = 0;
-    if (wcslen(folder) + wcslen(arguments) + 160 >= CAP) {
+    if (2*wcslen(folder) + wcslen(arguments) + 200 >= CAP) {
         fail(L"경로 또는 실행 인수가 너무 깁니다. 압축을 짧은 폴더(C:\\Bbolprom 등)에 풀어주세요.");
         return 2;
     }
@@ -28,7 +28,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE previous, PWSTR arguments, int
         fail(L"실행에 필요한 runtime 또는 app 폴더가 없습니다. ZIP 전체를 압축 해제한 뒤 실행해주세요.");
         return 2;
     }
-    swprintf(cmd, CAP, L"\"%ls\" -B -E -s -m bbolprom_engine.app %ls", runtime, arguments);
+    swprintf(cmd, CAP, L"\"%ls\" -B -E -s -m bbolprom_engine.app --portable-root \"%ls\\.\" %ls", runtime, folder, arguments);
     STARTUPINFOW startup = {0}; PROCESS_INFORMATION process = {0};
     startup.cb = sizeof(startup);
     if (!CreateProcessW(runtime, cmd, NULL, NULL, FALSE, CREATE_NO_WINDOW,
@@ -41,7 +41,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE previous, PWSTR arguments, int
     DWORD code = 0; GetExitCodeProcess(process.hProcess, &code);
     CloseHandle(process.hThread); CloseHandle(process.hProcess);
     if (code) {
-        fail(L"프로그램이 오류로 종료되었습니다. %LOCALAPPDATA%\\Bbolprom 폴더의 로그를 확인해주세요.");
+        fail(L"자료 준비 또는 프로그램 실행 중 오류가 발생했습니다. 실행 폴더와 data 폴더의 startup-error.log를 확인하세요. 쓰기 가능한 폴더에 압축을 풀었는지, 이전 앱을 종료했는지 확인해주세요.");
     }
     return (int)code;
 }

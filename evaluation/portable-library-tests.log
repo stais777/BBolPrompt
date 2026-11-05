@@ -1,0 +1,14 @@
+test_analysis_saves_unicode_spans_and_empty_evidence_without_changing_text (test_library_v3.LibraryPersistence.test_analysis_saves_unicode_spans_and_empty_evidence_without_changing_text) ... ok
+test_backup_contains_restorable_db_and_original_media (test_library_v3.LibraryPersistence.test_backup_contains_restorable_db_and_original_media) ... ok
+test_exact_prompt_identity_and_same_prompt_image_merge (test_library_v3.LibraryPersistence.test_exact_prompt_identity_and_same_prompt_image_merge) ... ok
+test_hwpx_repeated_import_preserves_provenance_and_bytes (test_library_v3.LibraryPersistence.test_hwpx_repeated_import_preserves_provenance_and_bytes) ... ok
+test_same_batch_same_prompt_merges_multiple_images (test_library_v3.LibraryPersistence.test_same_batch_same_prompt_merges_multiple_images) ... ok
+test_tampered_source_or_media_digest_rejected_and_database_rolls_back (test_library_v3.LibraryPersistence.test_tampered_source_or_media_digest_rejected_and_database_rolls_back) ... ok
+test_unresolved_images_cannot_be_silently_registered (test_library_v3.LibraryPersistence.test_unresolved_images_cannot_be_silently_registered) ... ok
+test_xlsx_keeps_user_created_category_in_per_card_export (test_library_v3.LibraryPersistence.test_xlsx_keeps_user_created_category_in_per_card_export) ... ok
+test_xlsx_preserves_text_spans_and_index_and_never_overwrites (test_library_v3.LibraryPersistence.test_xlsx_preserves_text_spans_and_index_and_never_overwrites) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.525s
+
+OK

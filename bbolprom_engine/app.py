@@ -34,6 +34,7 @@ class Application:
         self.pending={}
         self.lock=threading.RLock()
         self.api_config=None
+        self.portable_warning=''
         from .credentials import WindowsCredentialStore
         from .api_budget import APIBudget
         self.credentials=WindowsCredentialStore()
@@ -77,6 +78,7 @@ class Application:
 
     def state(self):
         from .ui import preferences
+        from .portable_storage import storage_summary
         config=self.library.get_setting('api',{})
         baseline=self.baseline.status()
         from .credentials import CredentialError
@@ -85,7 +87,9 @@ class Application:
             key_error=''
         except CredentialError:
             key_present=False;key_error='Windows 보안 보관함 상태를 확인하지 못했습니다.'
-        return {'cards':self.all_cards(),'categories':self.categories(),'baseline_category_names':CATEGORIES,'api':config,'baseline':baseline,'ui':preferences(self.library),
+        storage=storage_summary(self.library)
+        if self.portable_warning:storage['warning']=self.portable_warning
+        return {'cards':self.all_cards(),'categories':self.categories(),'baseline_category_names':CATEGORIES,'api':config,'baseline':baseline,'storage':storage,'ui':preferences(self.library),
                 'api_key_present':key_present,
                 'api_key_storage':{'supported':self.credentials.supported,'error':key_error,'kind':'windows_credential_manager'},
                 'api_usage':self.api_budget.status(),
@@ -139,6 +143,19 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route in ('/api/open-data-folder','/api/open-card-folder'):
+            if not isinstance(data,dict) or set(data)!=({'id'} if route.endswith('card-folder') else set()):raise ValueError('폴더 열기 요청을 확인하세요.')
+            path=self.library.root
+            if route.endswith('card-folder'):
+                card=next((c for c in self.library.cards() if c['id']==data['id']),None)
+                if card is None:raise ValueError('신규 카드 원본 폴더가 없습니다.')
+                from .portable_storage import relative_file
+                path=relative_file(self.library.root,'new_cards/'+card['id'])
+            if not path.is_dir():raise ValueError('보관 폴더가 없습니다.')
+            opener=getattr(os,'startfile',None)
+            if opener is None:raise ValueError('Windows에서 자료 폴더 열기를 지원합니다.')
+            opener(str(path))
+            return {'message':'원본 자료 폴더를 열었습니다.'}
         if route in ('/api/baseline-tags','/api/baseline-tag-history','/api/baseline-tag-restore'):
             fields={'/api/baseline-tags':{'id','tags','expected_revision'},
                 '/api/baseline-tag-history':{'id'},
@@ -184,7 +201,10 @@ class Application:
             ticket=data['ticket']
             if ticket not in self.pending:raise ValueError('검토 세션이 만료됨: 원본을 다시 선택하세요.')
             source,result=self.pending[ticket]
-            try:status=self.baseline.commit(source,result)
+            try:
+                from .portable_storage import preserve_basefile
+                preserve_basefile(self.library,source)
+                status=self.baseline.commit(source,result)
             except Exception as exc:
                 from .local_diagnostics import safe_error
                 if result.get('attempt_id'):self.import_audit.update(result['attempt_id'],'commit_failed',error=safe_error(exc))
@@ -283,7 +303,7 @@ class Application:
             elif op=='add': manager.add(data['category'],user_confirmed=True)
             else: raise ValueError('알 수 없는 분류 작업')
             snap=manager.snapshot()
-            self.library.backup()
+            self.library.backup(include_sources=False)
             self.library.set_setting('categories',snap['categories'])
             self.library.set_setting('category_history',snap['history'])
             # Approved read-only catalogue is never rewritten. User-library tag affiliation follows deactivation policy.
@@ -310,7 +330,7 @@ class Application:
                 tags.append({'name':name,'tag':name,'category_id':cat,'category_column':cat,
                     'category_status':'classified' if cat else 'unclassified',
                     'spans':raw.get('original_spans',evidence_spans(card['source_text'],[quote])),'source':'user_edit','reason':'사용자 직접 수정'})
-            self.library.backup()
+            self.library.backup(include_sources=False)
             self.library.save_analysis(card['id'],{'source_text':card['source_text'],'tags':tags,'status':'user_edited'})
             return {'message':'신규 카드 태그를 저장했습니다. 원문은 불변입니다.'}
         if route=='/api/analyze':
@@ -351,7 +371,7 @@ class Application:
             method=load_method_guidance()
             result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples,approval_history=history,method_guidance=method,edited_card_ids=list(self.baseline_tag_edits.editions()))
             if result['status'] in ('ok','partial'):
-                self.library.backup();self.library.save_analysis(card['id'],result)
+                self.library.backup(include_sources=False);self.library.save_analysis(card['id'],result)
             else:self.library.record_analysis_audit(card['id'],result)
             return result
         raise ValueError('지원하지 않는 작업')
@@ -422,7 +442,7 @@ def make_server(data,port=0):
                 if path=='/api/key' and length>2048:raise ValueError('키 요청 크기 제한')
                 if length<=0 or length>2*1024**3:raise ValueError('파일 크기 제한 2GB')
                 with app.lock:
-                    if path in ('/api/upload','/api/baseline-upload'):
+                    if path in ('/api/upload','/api/baseline-upload','/api/source-upload'):
                         name=unquote(self.headers.get('X-Filename','import.hwpx'))
                         if not name.lower().endswith('.hwpx'):raise ValueError('HWPX 파일이 필요합니다')
                         pending=app.library.root/'pending';pending.mkdir(exist_ok=True)
@@ -434,8 +454,14 @@ def make_server(data,port=0):
                                     block=self.rfile.read(min(remain,1024*1024))
                                     if not block:raise ValueError('업로드가 중단됨')
                                     f.write(block);remain-=len(block)
-                            prepare=app.prepare_baseline if path=='/api/baseline-upload' else app.prepare
-                            result=prepare(source,Path(name.replace('\\','/')).name)
+                            if path=='/api/source-upload':
+                                from .portable_storage import preserve_basefile
+                                measured=preserve_basefile(app.library,source)
+                                source.unlink(missing_ok=True)
+                                result={'message':'베이스파일 원본을 data/sources/PT.hwpx에 보관했습니다. 기존 카드·태그·이미지 연결은 유지했습니다.','sha256':measured['sha256'],'bytes':measured['bytes']}
+                            else:
+                                prepare=app.prepare_baseline if path=='/api/baseline-upload' else app.prepare
+                                result=prepare(source,Path(name.replace('\\','/')).name)
                         except Exception:
                             source.unlink(missing_ok=True);raise
                     else:
@@ -457,7 +483,8 @@ def make_server(data,port=0):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description='뽈프롬 데스크톱')
-    parser.add_argument('--data',type=Path,default=Path(os.environ.get('LOCALAPPDATA',str(Path.home())))/'Bbolprom')
+    parser.add_argument('--data',type=Path,default=None)
+    parser.add_argument('--portable-root',type=Path,default=None)
     parser.add_argument('--port',type=int,default=0)
     parser.add_argument('--no-browser',action='store_true')
     parser.add_argument('--self-test',action='store_true')
@@ -472,20 +499,40 @@ def main(argv=None):
                 if not result['ok']:raise RuntimeError('health failed')
             finally:server.shutdown();server.server_close();t.join()
         return 0
-    args.data.mkdir(parents=True,exist_ok=True)
+    startup=None
+    package_root=args.portable_root or (APP_ROOT.parent if APP_ROOT.name=='app' else APP_ROOT)
+    log_root=package_root
+    portable=args.data is None
+    profile=Path(os.environ.get('LOCALAPPDATA',str(Path.home())))
     try:
+        if args.data is None:
+            from .portable_storage import prepare_portable_data,previous_data_root
+            callback=None
+            if not args.no_browser:
+                from .startup_progress import StartupProgress
+                startup=StartupProgress();webbrowser.open(startup.url);callback=startup.update
+            legacy=previous_data_root(package_root/'data',profile)
+            args.data=prepare_portable_data(package_root/'data',legacy,callback)
+        else:args.data.mkdir(parents=True,exist_ok=True)
         server=make_server(args.data,args.port)
+        if portable:
+            from .portable_storage import remember_data_root
+            if not remember_data_root(args.data,profile):server.application.portable_warning='이 PC에 자료 위치를 기록하지 못했습니다. 업데이트할 때 기존 data 폴더를 함께 옮겨주세요.'
         url=f'http://127.0.0.1:{server.server_port}/'
         (args.data/'runtime.json').write_text(json.dumps({'port':server.server_port,'pid':os.getpid()}))
-        if not args.no_browser:webbrowser.open(url)
+        if startup:startup.ready(url)
+        elif not args.no_browser:webbrowser.open(url)
         if sys.stdout:print('뽈프롬 시작:',url,flush=True)
         server.serve_forever()
     except KeyboardInterrupt:return 0
     except Exception:
-        (args.data/'startup-error.log').write_text(traceback.format_exc(),encoding='utf8')
+        if startup:startup.fail()
+        try:(log_root/'startup-error.log').write_text(traceback.format_exc(),encoding='utf8')
+        except OSError:pass
         raise
     finally:
         if 'server' in locals():server.server_close()
+        if startup:startup.close()
     return 0
 
 if __name__=='__main__':raise SystemExit(main())

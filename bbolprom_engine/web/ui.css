@@ -166,3 +166,5 @@ body{transition:background-color .16s,color .16s}
 
 /* Keep baseline save failures visible inside the open review dialog. */
 .baseline-actions{position:sticky;bottom:-22px;background:var(--surface);border-top:1px solid var(--line);padding:12px 0;z-index:3}.baseline-actions p{white-space:pre-wrap;overflow-wrap:anywhere}.baseline-actions p:empty{display:none}
+
+#storageInfo{overflow-wrap:anywhere;font-size:11px}

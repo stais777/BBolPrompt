@@ -34,5 +34,9 @@
   "Bbolprom-Windows-x64-v0.3.6-manualtags.zip": {
     "bytes": 15289047,
     "sha256": "6c2542cd79cec26cc259d958fbaa4511b2e2df06848e2137251227cb4a056fb4"
+  },
+  "Bbolprom-Windows-x64-v0.3.7-portable.zip": {
+    "bytes": 15297524,
+    "sha256": "7a951bf58ffa1dcb4eb59f2468e4822de5ede4edb043aa7622761685e19e5a2c"
   }
 }

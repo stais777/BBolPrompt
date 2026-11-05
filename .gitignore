@@ -9,3 +9,7 @@ outputs/
 .env
 desktop/*.exe
 desktop/*.pdb
+
+/data/
+/.bbolprom-data-copy-*/
+/startup-error.log

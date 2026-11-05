@@ -43,6 +43,11 @@ CREATE TABLE IF NOT EXISTS card_versions(id TEXT PRIMARY KEY,card_id TEXT NOT NU
  created TEXT NOT NULL,reason TEXT NOT NULL,snapshot_json TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS import_attempts(id TEXT PRIMARY KEY,created TEXT NOT NULL,updated TEXT NOT NULL,
  mode TEXT NOT NULL,status TEXT NOT NULL,filename TEXT NOT NULL,details_json TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS source_documents(path TEXT PRIMARY KEY,sha256 TEXT NOT NULL,
+ bytes INTEGER NOT NULL,stored TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS card_original_files(card_id TEXT NOT NULL REFERENCES cards(id),kind TEXT NOT NULL,
+ sha256 TEXT NOT NULL,path TEXT UNIQUE NOT NULL,original_name TEXT NOT NULL,bytes INTEGER NOT NULL,
+ PRIMARY KEY(card_id,kind,sha256));
 '''
 
 def sha_text(text):
@@ -159,7 +164,7 @@ class Library:
         if file_sha256(source) != result['file']['sha256']:
             raise ValueError('분석 이후 원본 파일이 변경됨')
         self.plan(result)
-        self.backup()
+        self.backup(include_sources=False)
         with HWPXReader(source) as reader, self.connect() as c:
             c.execute('BEGIN IMMEDIATE')
             ids = []
@@ -179,11 +184,13 @@ class Library:
                 if not card['images']:
                     self._origin(c, cid, result['file']['name'], result['file']['sha256'], '')
                 ids.append(cid)
+                from .portable_storage import sync_card_originals
+                sync_card_originals(self,c,cid)
             return ids
 
     def manual(self, text, images, filename='직접 등록'):
         if not isinstance(text, str) or not text.strip(): raise ValueError('원문이 필요합니다')
-        self.backup()
+        self.backup(include_sources=False)
         with self.connect() as c:
             c.execute('BEGIN IMMEDIATE')
             row = c.execute('SELECT id FROM cards WHERE sha=?', (sha_text(text),)).fetchone()
@@ -195,6 +202,8 @@ class Library:
                 self._link(c, cid, dig, rel)
                 self._origin(c, cid, name, dig['sha256'], name)
             if not images or filename!='직접 등록': self._origin(c,cid,filename,sha_text(text),'')
+            from .portable_storage import sync_card_originals
+            sync_card_originals(self,c,cid)
             return cid
 
     def _link(self, c, cid, dig, rel):
@@ -213,7 +222,7 @@ class Library:
 
     def edit_card(self,cid,text,images,remove_images=(),expected_sha=None):
         if not isinstance(text,str) or not text.strip():raise ValueError('프롬프트 원문이 필요합니다')
-        self.backup()
+        self.backup(include_sources=False)
         with self.connect() as c:
             c.execute('BEGIN IMMEDIATE')
             old=self._version(c,cid,'user_card_edit')
@@ -236,6 +245,8 @@ class Library:
             for sha in remove_images:c.execute('DELETE FROM card_media WHERE card_id=? AND media_sha=?',(cid,sha))
             for name,stream in images:
                 dig,rel=self._put_media(stream);self._link(c,cid,dig,rel);self._origin(c,cid,name,dig['sha256'],name)
+            from .portable_storage import sync_card_originals
+            sync_card_originals(self,c,cid)
         return cid
 
     def card_history(self,cid):
@@ -248,7 +259,7 @@ class Library:
             return versions
 
     def restore_card(self,cid,version_id):
-        self.backup()
+        self.backup(include_sources=False)
         with self.connect() as c:
             c.execute('BEGIN IMMEDIATE')
             row=c.execute('SELECT snapshot_json FROM card_versions WHERE id=? AND card_id=?',(version_id,cid)).fetchone()
@@ -261,6 +272,8 @@ class Library:
                       (target['text'],target['sha'],target['tags'],target['analysis_status'],cid))
             c.execute('DELETE FROM card_media WHERE card_id=?',(cid,))
             c.executemany('INSERT INTO card_media VALUES(?,?,?)',[(cid,im['media_sha'],im['position']) for im in target['images']])
+            from .portable_storage import sync_card_originals
+            sync_card_originals(self,c,cid)
         return cid
 
     def _origin(self, c, cid, filename, source_sha, ref):
@@ -290,7 +303,7 @@ class Library:
         # of the attempted guidance; provider bodies and secrets are not saved.
         with self.connect() as c:self._record_analysis_audit(c,cid,result)
 
-    def backup(self):
+    def backup(self,*,include_sources=True):
         with _storage_step('backup_prepare'):
             folder = self.root / 'backup'; folder.mkdir(exist_ok=True)
             dest = folder / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')+'.bak.zip')
@@ -303,8 +316,11 @@ class Library:
                 with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
                     z.write(tmp, 'library.sqlite3')
                     # Include every vault object: a consistent superset also covers a concurrent import.
-                    for path in (self.root/'vault').glob('*'):
-                        if path.is_file() and not path.name.startswith('pending-'): z.write(path,'vault/'+path.name)
+                    folders=['vault','new_cards']+(['sources'] if include_sources else [])
+                    for name in folders:
+                        for path in (self.root/name).rglob('*'):
+                            if path.is_symlink():raise ValueError('백업에 외부 연결을 포함하지 않습니다.')
+                            if path.is_file() and not path.name.startswith(('pending-','.copy-','.write-')):z.write(path,path.relative_to(self.root))
         finally:
             with _storage_step('backup_temporary_cleanup'):
                 os.unlink(tmp)

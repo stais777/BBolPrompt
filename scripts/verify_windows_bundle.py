@@ -15,6 +15,7 @@ assert struct.unpack_from('<H',exe,pe+4)[0]==0x8664,'Expected AMD64'
 assert struct.unpack_from('<H',exe,pe+24)[0]==0x20b,'Expected PE32+'
 assert struct.unpack_from('<H',exe,pe+24+68)[0]==2,'Expected Windows GUI subsystem'
 assert b'longPathAware' in exe,'Missing embedded long path manifest'
+assert '--portable-root'.encode('utf-16-le') in exe,'Missing executable-relative portable data argument'
 assert (package/'runtime/pythonw.exe').is_file()
 assert (package/'runtime/python313.dll').is_file()
 assert (package/'runtime/DLLs/_sqlite3.pyd').is_file()
