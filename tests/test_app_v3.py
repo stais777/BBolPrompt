@@ -165,7 +165,7 @@ class LocalHTTPApplication(unittest.TestCase):
         self.app.library.save_analysis(cid,{'source_text':text,'tags':accepted,'status':'ok'})
         status,_,_=self.request('POST','/api/categories',{'operation':'define','id':'F','definition':'실제 장면의 장소'})
         self.assertEqual(status,200)
-        config={'enabled':True,'consent':True,'endpoint':'https://provider.invalid/v1/chat/completions','model':'fixture-model'}
+        config={'enabled':True,'consent':True,'endpoint':'https://api.openai.com/v1/chat/completions','model':'fixture-model'}
         self.assertEqual(self.request('POST','/api/settings',{'api':config})[0],200)
         for failure,expected in [(APIUnavailable('API HTTP 429; card retained'),'api_unavailable'),(None,'invalid_response')]:
             kwargs={'side_effect':failure} if failure else {'return_value':('malformed json',{})}
@@ -179,7 +179,7 @@ class LocalHTTPApplication(unittest.TestCase):
 
     def test_context_load_failure_is_reported_without_losing_existing_card(self):
         text='원문 유지 및 오류 처리';cid=self.app.library.manual(text,[])
-        config={'enabled':True,'consent':True,'endpoint':'https://provider.invalid/v1/chat/completions','model':'fixture-model'}
+        config={'enabled':True,'consent':True,'endpoint':'https://api.openai.com/v1/chat/completions','model':'fixture-model'}
         self.assertEqual(self.request('POST','/api/settings',{'api':config})[0],200)
         with patch('bbolprom_engine.approved_context.load_approved_context',side_effect=ValueError('승인 사례 파일을 읽을 수 없음')):
             status,error,_=self.request('POST','/api/analyze',{'id':cid})
@@ -387,7 +387,7 @@ class LocalHTTPApplication(unittest.TestCase):
             requests.append(copy.deepcopy(request))
             return json.dumps({'card_ref':request['card_ref'],'policy_version':'API-POLICY-1.0',
                 'tags':[],'unclassified':[],'create_categories':[],'direct_mutations':[]}),{}
-        base={'enabled':True,'consent':True,'endpoint':'https://provider.invalid/chat/completions','model':'mock-model'}
+        base={'enabled':True,'consent':True,'endpoint':'https://api.openai.com/v1/chat/completions','model':'mock-model'}
         with patch('bbolprom_engine.api._live_transport',side_effect=provider):
             self.assertEqual(self.request('POST','/api/settings',{'api':base})[0],200)
             with patch('bbolprom_engine.approved_examples.CATALOG_PATH',self.root/'does-not-exist.json'):
@@ -421,7 +421,7 @@ class LocalHTTPApplication(unittest.TestCase):
         self.assertEqual(status,200);cid=created['id']
         self.assertEqual(self.request('POST','/api/tags',{'id':cid,'tags':[{'name':'보존할 태그','category_id':None,'evidence':''}]})[0],200)
         tags_before=copy.deepcopy(self.user_cards()[0]['tags'])
-        self.assertEqual(self.request('POST','/api/settings',{'api':{'enabled':True,'consent':True,'endpoint':'https://provider.invalid/v1/chat/completions','model':'mock'}})[0],200)
+        self.assertEqual(self.request('POST','/api/settings',{'api':{'enabled':True,'consent':True,'endpoint':'https://api.openai.com/v1/chat/completions','model':'mock'}})[0],200)
         captured=[]
         def failed_provider(request,config):
             captured.append(copy.deepcopy(request))

@@ -34,6 +34,11 @@ class Application:
         self.pending={}
         self.lock=threading.RLock()
         self.api_config=None
+        from .credentials import WindowsCredentialStore
+        from .api_budget import APIBudget
+        self.credentials=WindowsCredentialStore()
+        # Kept outside library.sqlite3: restoring a library backup cannot clear use.
+        self.api_budget=APIBudget(self.library.root/'api-safety.sqlite3')
         self.approved=[]
         self.approved_hashes=set()
         from .baseline import BaselineStore, load_dataset
@@ -83,9 +88,16 @@ class Application:
         from .ui import preferences
         config=self.library.get_setting('api',{})
         baseline=self.baseline.status()
+        from .credentials import CredentialError
+        try:
+            key_present=self.credentials.present()
+            key_error=''
+        except CredentialError:
+            key_present=False;key_error='Windows 보안 보관함 상태를 확인하지 못했습니다.'
         return {'cards':self.all_cards(),'categories':self.categories(),'api':config,'baseline':baseline,'ui':preferences(self.library),
-                'api_key_present':bool(os.environ.get(config.get('key_env','BBOLPROM_API_KEY'))),
-                'api_usage':self.api_config.public_settings() if self.api_config else {},
+                'api_key_present':key_present,
+                'api_key_storage':{'supported':self.credentials.supported,'error':key_error,'kind':'windows_credential_manager'},
+                'api_usage':self.api_budget.status(),
                 'limitations':['309개는 확정 마스터에서 베이스화한 고정 데이터입니다. 독립 추출 성능이 아닙니다.',
                     '확정 PT 이미지 연결 '+str(baseline['linked_image_references'])+' / 531건. 원본을 선택해 연결할 수 있습니다.',
                     'API 기본 꺼짐. 사용자 확정 분류 정의와 API 설정 필요. 규칙 태그는 의미 판단 대체 불가']}
@@ -236,10 +248,20 @@ class Application:
             p=folder/(uuid.uuid4().hex[:12]+'.xlsx')
             export_xlsx(self.all_cards(),p)
             return {'download':'/download/exports/'+p.name}
+        if route=='/api/key':
+            if not isinstance(data,dict) or data.get('operation') not in ('save','delete'):
+                raise ValueError('지원하지 않는 키 작업입니다.')
+            if data['operation']=='save' and set(data)=={'operation','key'}:
+                try:self.credentials.save(data.pop('key'))
+                finally:data.pop('key',None)
+            elif data['operation']=='delete' and set(data)=={'operation'}:
+                self.credentials.delete()
+            else:raise ValueError('지원하지 않는 키 요청 필드입니다.')
+            return {'message':'키를 Windows 보안 보관함에 저장했습니다.' if data['operation']=='save' else '이 PC의 보관된 키를 삭제했습니다. OpenAI에서 키 폐기는 별도로 해야 합니다.'}
         if route=='/api/settings':
             config=data['api']
-            # No credentials in config: key must exist as a process environment binding.
-            allowed={'enabled','consent','endpoint','model','key_env','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples'}
+            # No credentials in config, DB or backups; the key has its own route.
+            allowed={'enabled','consent','endpoint','model','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples'}
             if set(config)-allowed: raise ValueError('지원하지 않는 API 설정 필드')
             from .api import APIConfig
             if 'use_approved_examples' in config and type(config['use_approved_examples']) is not bool:raise ValueError('승인 사례 참조 설정은 true/false여야 합니다')
@@ -295,7 +317,10 @@ class Application:
             config=self.library.get_setting('api',{})
             if not config.get('enabled') or not config.get('consent'):
                 raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
-            if self.api_config is None:self.api_config=APIConfig(**{k:v for k,v in config.items() if k!='use_approved_examples'})
+            if self.api_config is None:
+                self.api_config=APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','key_env')})
+                self.api_config._credentials=self.credentials
+                self.api_config._budget=self.api_budget
             from .approved_context import load_approved_context
             context=load_approved_context()
             standards={t['id']:t for t in context['standards']}
@@ -340,6 +365,8 @@ def make_server(data,port=0):
             if origin and origin!='http://'+host: return False
             return self.headers.get('X-Bbolprom-Token')==app.token
         def do_GET(self):
+            if self.headers.get('Host')!=f'127.0.0.1:{self.server.server_port}':
+                self.send(403,{'error':'로컬 주소 확인 실패'});return
             path=urlsplit(self.path).path
             try:
                 if path=='/':
@@ -380,6 +407,7 @@ def make_server(data,port=0):
             path=urlsplit(self.path).path
             try:
                 length=int(self.headers.get('Content-Length','0'))
+                if path=='/api/key' and length>2048:raise ValueError('키 요청 크기 제한')
                 if length<=0 or length>2*1024**3:raise ValueError('파일 크기 제한 2GB')
                 with app.lock:
                     if path in ('/api/upload','/api/baseline-upload'):
@@ -405,7 +433,10 @@ def make_server(data,port=0):
                 if path=='/api/shutdown':threading.Thread(target=self.server.shutdown,daemon=True).start()
             except Exception as exc:
                 # API exceptions are sanitized inside api.py; never echo credential/header values.
-                self.send(400,dict(error=str(exc) if isinstance(exc,(ValueError,KeyError,OSError)) else type(exc).__name__,**getattr(exc,'details',{})))
+                if path=='/api/key':
+                    from .credentials import CredentialError
+                    self.send(400,{'error':str(exc) if isinstance(exc,CredentialError) else '키 보관 작업에 실패했습니다. 키값은 기록하지 않았습니다.'})
+                else:self.send(400,dict(error=str(exc) if isinstance(exc,(ValueError,KeyError,OSError)) else type(exc).__name__,**getattr(exc,'details',{})))
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
     server.daemon_threads=True
     server.application=app

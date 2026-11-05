@@ -1,0 +1,79 @@
+{
+  "version": "0.3.4-security",
+  "scope": "API credentials, destination and usage guardrails only",
+  "protected_files": [
+    {
+      "path": "assets/approved_catalog.json",
+      "sha256": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/baseline_manifest.json",
+      "sha256": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_context.json",
+      "sha256": "3e3be1daa6eb056ca459fdf150085658156c7bc77cfbeea6fd0113fc3b51f308",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_history.json",
+      "sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/method_guidance.json",
+      "sha256": "37cdb8b257db9130a54380597b9f570649edbed9b91f001ab4157b27abc8e0d9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline.py",
+      "sha256": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/analysis.py",
+      "sha256": "1164ad68ba862817d8fb84e71dc26119c5fd750d38704141c2257db60a16ee23",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/method_guidance.py",
+      "sha256": "6058c414d168e607c82ef27f9185a20b6aa677bcfa6b68e69b979920f2b4f2c5",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approval_history.py",
+      "sha256": "3ff9251fc06fd8d2c80cf090557784fe676c5ffbae4a5bcf9366d8d429769531",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approved_examples.py",
+      "sha256": "40abe3e59f8cd4e2a5f0ab4538f663934e5824dd3585b47acc407887bc0ea7b1",
+      "unchanged": true
+    }
+  ],
+  "unchanged_api_judgment_components": [
+    "SYSTEM_POLICY",
+    "POLICY_VERSION",
+    "TAG_FIELDS",
+    "TAG_SCHEMA",
+    "RESPONSE_SCHEMA",
+    "build_request",
+    "validate_response",
+    "evidence_spans",
+    "select_evidence_spans"
+  ],
+  "native_windows_tested": false,
+  "live_API_tested": false,
+  "real_key_used": false,
+  "actual_basefile_tested": false,
+  "downstream_engine_work": "on hold until user basefile test and mapping confirmation",
+  "comparison_source_commit": "dc579c56edd832ead38cc0c8eaf45bef5cb2aa12",
+  "tests": {
+    "integrated": 136,
+    "security_targeted_subset": 16,
+    "security_browser": 6,
+    "existing_browser_regression": 16
+  }
+}

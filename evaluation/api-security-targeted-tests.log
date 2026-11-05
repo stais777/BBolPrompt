@@ -1,0 +1,21 @@
+test_native_error_or_corrupt_credential_has_no_secret_in_error (test_api_security.CredentialBoundary.test_native_error_or_corrupt_credential_has_no_secret_in_error) ... ok
+test_reject_key_injection_and_secret_in_model (test_api_security.CredentialBoundary.test_reject_key_injection_and_secret_in_model) ... ok
+test_unavailable_platform_does_not_fall_back_to_environment_or_files (test_api_security.CredentialBoundary.test_unavailable_platform_does_not_fall_back_to_environment_or_files) ... ok
+test_win32_roundtrip_replacement_and_idempotent_delete (test_api_security.CredentialBoundary.test_win32_roundtrip_replacement_and_idempotent_delete) ... ok
+test_application_settings_and_restart_do_not_reset_call_ledger (test_api_security.KeyHTTPBoundary.test_application_settings_and_restart_do_not_reset_call_ledger) ... ok
+test_auth_origin_and_host_protect_key_writes (test_api_security.KeyHTTPBoundary.test_auth_origin_and_host_protect_key_writes) ... ok
+test_key_does_not_get_returned_via_settings_and_http_request_size_limit (test_api_security.KeyHTTPBoundary.test_key_does_not_get_returned_via_settings_and_http_request_size_limit) ... ok
+test_key_errors_are_sanitized_and_settings_reject_embedded_keys (test_api_security.KeyHTTPBoundary.test_key_errors_are_sanitized_and_settings_reject_embedded_keys) ... ok
+test_key_save_state_diagnostic_and_backup_contain_no_key (test_api_security.KeyHTTPBoundary.test_key_save_state_diagnostic_and_backup_contain_no_key) ... ok
+test_atomic_concurrent_reservation_prevents_double_spend (test_api_security.PaidCallBoundary.test_atomic_concurrent_reservation_prevents_double_spend) ... ok
+test_auth_header_only_no_retry_and_tls_redirect_guard (test_api_security.PaidCallBoundary.test_auth_header_only_no_retry_and_tls_redirect_guard) ... ok
+test_budget_io_failure_stops_before_send (test_api_security.PaidCallBoundary.test_budget_io_failure_stops_before_send) ... ok
+test_failed_call_reservation_survives_recreation_and_reconfiguration (test_api_security.PaidCallBoundary.test_failed_call_reservation_survives_recreation_and_reconfiguration) ... ok
+test_failed_cost_reservation_cannot_be_reset_by_restarting_config (test_api_security.PaidCallBoundary.test_failed_cost_reservation_cannot_be_reset_by_restarting_config) ... ok
+test_missing_budget_prices_or_definitions_never_spends (test_api_security.PaidCallBoundary.test_missing_budget_prices_or_definitions_never_spends) ... ok
+test_nonofficial_destinations_rejected_before_credential_read_or_network (test_api_security.PaidCallBoundary.test_nonofficial_destinations_rejected_before_credential_read_or_network) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 5.217s
+
+OK

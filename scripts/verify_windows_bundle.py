@@ -18,6 +18,7 @@ assert b'longPathAware' in exe,'Missing embedded long path manifest'
 assert (package/'runtime/pythonw.exe').is_file()
 assert (package/'runtime/python313.dll').is_file()
 assert (package/'runtime/DLLs/_sqlite3.pyd').is_file()
+assert (package/'runtime/DLLs/_ctypes.pyd').is_file()
 assert (package/'runtime/LICENSE.txt').is_file()
 assert (package/'app/bbolprom_engine/app.py').is_file()
 for path in (package/'app').rglob('*'):

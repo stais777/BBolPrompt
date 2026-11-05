@@ -3,6 +3,10 @@ import copy
 import json
 import os
 import unittest
+import tempfile
+from pathlib import Path
+from types import SimpleNamespace
+from bbolprom_engine.api_budget import APIBudget
 from unittest.mock import patch
 from bbolprom_engine.api import (analyze_card,APIConfig,build_request,
     validate_response,evidence_spans,select_evidence_spans,APIValidationError,_live_transport)
@@ -25,6 +29,20 @@ def response(*tags):
             'unclassified':[],'create_categories':[],'direct_mutations':[]}
 
 class APIContract(unittest.TestCase):
+    def setUp(self):
+        self.temp=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.budget=APIBudget(Path(self.temp.name)/'api-safety.sqlite3')
+
+    def live_config(self,**kwargs):
+        defaults=dict(endpoint='https://api.openai.com/v1/chat/completions',
+                      max_cost_usd=10,input_usd_per_million=1,output_usd_per_million=1)
+        defaults.update(kwargs)
+        cfg=APIConfig(**defaults)
+        cfg._credentials=SimpleNamespace(read=lambda:'sk-test-only-not-real-123456789')
+        cfg._budget=self.budget
+        return cfg
+
     def call(self,res,text='😀 우주선 조종실에서 패널을 조작한다.',cats=None):
         return analyze_card('new-1',text,cats or CATS,TAGS,CONTEXT,transport=lambda req:copy.deepcopy(res))
 
@@ -102,14 +120,15 @@ class APIContract(unittest.TestCase):
     def test_missing_key_or_consent_never_calls_network(self):
         for consent in [False,True]:
             with patch.dict(os.environ,{},clear=True),patch('urllib.request.build_opener',side_effect=AssertionError('No network expected')):
-                config=APIConfig(enabled=True,consent=consent,endpoint='https://api.example.com/v1/chat/completions',model='user-selected')
+                config=self.live_config(enabled=True,consent=consent,endpoint='https://api.openai.com/v1/chat/completions',model='user-selected')
+                config._credentials=SimpleNamespace(read=lambda:None)
                 result=analyze_card('new-1','original',CATS,TAGS,CONTEXT,config=config)
             self.assertEqual(result['status'],'api_unavailable')
             self.assertEqual(result['source_text'],'original')
 
     def test_call_cost_budget_and_tls_endpoint(self):
-        for cfg in [APIConfig(endpoint='https://api.example.com/x',max_calls=0),
-                    APIConfig(endpoint='https://api.example.com/x',max_cost_usd=0,input_usd_per_million=1,output_usd_per_million=1)]:
+        for cfg in [self.live_config(endpoint='https://api.openai.com/v1/chat/completions',max_calls=0),
+                    self.live_config(endpoint='https://api.openai.com/v1/chat/completions',max_cost_usd=0,input_usd_per_million=1,output_usd_per_million=1)]:
             cfg.enabled=True;cfg.consent=True;cfg.model='test'
             with patch.dict(os.environ,{'BBOLPROM_API_KEY':'test-only-not-real'}),patch('urllib.request.build_opener',side_effect=AssertionError('No network expected')):
                 result=analyze_card('new-1','original',CATS,TAGS,CONTEXT,config=cfg)
@@ -117,7 +136,7 @@ class APIContract(unittest.TestCase):
             self.assertEqual(cfg.calls,0)
 
     def test_connection_timeout_preserves_original(self):
-        config=APIConfig(enabled=True,consent=True,endpoint='https://api.example.com/v1/chat/completions',model='test')
+        config=self.live_config(enabled=True,consent=True,endpoint='https://api.openai.com/v1/chat/completions',model='test')
         with patch.dict(os.environ,{'BBOLPROM_API_KEY':'test-only-not-real'}),patch('urllib.request.OpenerDirector.open',side_effect=TimeoutError):
             result=analyze_card('new-1','original',CATS,TAGS,CONTEXT,config=config)
         self.assertEqual(result['status'],'api_unavailable')
@@ -128,7 +147,7 @@ class APIContract(unittest.TestCase):
     def test_quota_error_does_not_leak_provider_body_or_retry(self):
         from urllib.error import HTTPError
         from io import BytesIO
-        config=APIConfig(enabled=True,consent=True,endpoint='https://api.example.com/v1/chat/completions',model='test')
+        config=self.live_config(enabled=True,consent=True,endpoint='https://api.openai.com/v1/chat/completions',model='test')
         error=HTTPError(config.endpoint,429,'quota',{},BytesIO(b'never-expose-server-secret'))
         with patch.dict(os.environ,{'BBOLPROM_API_KEY':'test-only-not-real'}),patch('urllib.request.OpenerDirector.open',side_effect=error) as called:
             result=analyze_card('new-1','original',CATS,TAGS,CONTEXT,config=config)
@@ -144,7 +163,7 @@ class APIContract(unittest.TestCase):
                           ('max_output_tokens',0),('max_output_tokens',1.5),
                           ('max_input_chars',0),('max_cost_usd',float('nan')),
                           ('input_usd_per_million',-1),('output_usd_per_million',float('inf')),
-                          ('enabled','true'),('key_env','KEY=secret'),('endpoint','http://api.example.com/x'),
+                          ('enabled','true'),('model','sk-not-a-model-123456789'),('endpoint','http://api.example.com/x'),
                           ('endpoint','https://u:secret@api.example.com/x'),('endpoint','https://api.example.com/x?key=secret'),
                           ('endpoint','https://api.example.com:secret/x')]:
             with self.subTest(key=key,value=value),self.assertRaises(APIValidationError):APIConfig(**{key:value})
@@ -161,7 +180,7 @@ class APIContract(unittest.TestCase):
 
     def test_provider_usage_reconciles_budget_and_blocks_next_call(self):
         from io import BytesIO
-        config=APIConfig(enabled=True,consent=True,endpoint='https://api.example.com/v1/chat/completions',model='test',
+        config=self.live_config(enabled=True,consent=True,endpoint='https://api.openai.com/v1/chat/completions',model='test',
                          max_calls=2,max_cost_usd=0.1,input_usd_per_million=1,output_usd_per_million=1)
         envelope={'choices':[{'message':{'content':json.dumps(response(tag()),ensure_ascii=False)},'finish_reason':'stop'}],
                   'usage':{'prompt_tokens':200,'completion_tokens':50}}
@@ -182,7 +201,7 @@ class APIContract(unittest.TestCase):
 
     def test_malformed_provider_envelope_preserves_card(self):
         from io import BytesIO
-        config=APIConfig(enabled=True,consent=True,endpoint='https://api.example.com/v1/chat/completions',model='test')
+        config=self.live_config(enabled=True,consent=True,endpoint='https://api.openai.com/v1/chat/completions',model='test')
         with patch.dict(os.environ,{'BBOLPROM_API_KEY':'test-only-not-real'}),patch('urllib.request.OpenerDirector.open',return_value=BytesIO(b'[]')):
             result=analyze_card('new-1','original',CATS,TAGS,CONTEXT,config=config)
         self.assertEqual(result['status'],'api_unavailable')

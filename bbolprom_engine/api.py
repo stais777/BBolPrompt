@@ -10,15 +10,19 @@ from dataclasses import dataclass, field
 import json
 import math
 import re
-import os
 import ssl
+import sqlite3
+from decimal import Decimal
 import urllib.request
 import urllib.error
-from urllib.parse import urlsplit
 from .approved_context import retrieve_context
 from .approved_examples import prepare_examples_for_request
 from .approval_history import retrieve_approval_history
 from .method_guidance import prepare_method_guidance
+from .credentials import WindowsCredentialStore, CredentialError
+from .api_budget import BudgetError
+
+OPENAI_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
 
 POLICY_VERSION='API-POLICY-1.0'
 SYSTEM_POLICY='''You are the semantic tagging component of Bbolprompt, API-POLICY-1.0.
@@ -84,7 +88,6 @@ class APIConfig:
     consent: bool=False
     endpoint: str=''
     model: str=''
-    key_env: str='BBOLPROM_API_KEY'
     timeout: float=30.0
     max_calls: int=10
     max_output_tokens: int=4096
@@ -98,6 +101,8 @@ class APIConfig:
     total_input_tokens: int=field(default=0,init=False)
     total_output_tokens: int=field(default=0,init=False)
     estimated_cost_usd: float=field(default=0.0,init=False)
+    _credentials: object=field(default=None,init=False,repr=False)
+    _budget: object=field(default=None,init=False,repr=False)
 
     def __post_init__(self):
         self.validate()
@@ -110,28 +115,24 @@ class APIConfig:
             if type(value) is not int or not low<=value<=high:raise APIValidationError(f'Invalid {key} limit')
         if type(self.timeout) not in (int,float) or not math.isfinite(self.timeout) or not 0<self.timeout<=300:
             raise APIValidationError('Invalid API timeout')
-        for key in ('endpoint','model','key_env'):
+        for key in ('endpoint','model'):
             if not isinstance(getattr(self,key),str):raise APIValidationError(f'{key} must be a string')
-        if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',self.key_env):
-            raise APIValidationError('Invalid API key environment variable name')
-        if self.endpoint:
-            try:
-                parsed=urlsplit(self.endpoint)
-                valid=(parsed.scheme=='https' and parsed.hostname and not parsed.username and not parsed.password
-                       and not parsed.query and not parsed.fragment and parsed.port in (None,443))
-            except ValueError:valid=False
-            if not valid:raise APIValidationError('Configure a credential-free HTTPS API endpoint on port 443')
-        if len(self.model)>200 or any(ord(c)<32 for c in self.model):raise APIValidationError('Invalid API model name')
+        if self.endpoint and self.endpoint != OPENAI_ENDPOINT:
+            raise APIValidationError('OpenAI 공식 API 주소만 허용합니다.')
+        if (self.model and not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._:/-]{0,199}',self.model)) or self.model.startswith('sk-'):
+            raise APIValidationError('Invalid API model name (키는 모델 칸에 입력하지 마세요)')
         for key in ('max_cost_usd','input_usd_per_million','output_usd_per_million'):
             value=getattr(self,key)
-            if value is not None and (type(value) not in (int,float) or not math.isfinite(value) or value<0):
+            if value is not None and (type(value) not in (int,float) or not math.isfinite(value) or not 0<=value<=1000000):
                 raise APIValidationError(f'Invalid {key}')
 
 
     def public_settings(self):
-        return {k:getattr(self,k) for k in ('enabled','consent','endpoint','model','key_env','timeout',
+        result={k:getattr(self,k) for k in ('enabled','consent','endpoint','model','timeout',
             'max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','calls',
             'reserved_cost_usd','estimated_cost_usd','total_input_tokens','total_output_tokens')}
+        if self._budget is not None:result.update(self._budget.status())
+        return result
 
 
 def evidence_spans(text, quotes):
@@ -294,15 +295,18 @@ def validate_response(response,request,tags):
 def _live_transport(request,config):
     config.validate()
     if not config.enabled or not config.consent:raise APIUnavailable('API disabled or external-transmission consent missing')
-    endpoint=urlsplit(config.endpoint)
-    if endpoint.scheme!='https' or not endpoint.hostname or endpoint.username or endpoint.password or endpoint.fragment or endpoint.query:
-        raise APIUnavailable('Configure a credential-free HTTPS API endpoint')
+    if config.endpoint != OPENAI_ENDPOINT:raise APIUnavailable('OpenAI 공식 API 주소 설정이 필요합니다.')
     if not config.model.strip():raise APIUnavailable('API model is not configured')
     if not 0<config.timeout<=300 or not 1<=config.max_output_tokens<=32768:
         raise APIUnavailable('Invalid API timeout/output token limit')
-    if config.calls>=config.max_calls:raise APIUnavailable('Session API call limit reached')
-    key=os.environ.get(config.key_env)
-    if not key:raise APIUnavailable('Configured API key environment variable is missing')
+    if not request.get('active_categories'):raise APIUnavailable('확정한 활성 분류 정의가 없어 API 호출을 중단했습니다.')
+    if any(v is None or v<=0 for v in (config.max_cost_usd,config.input_usd_per_million,config.output_usd_per_million)):
+        raise APIUnavailable('일일 비용 한도와 모델의 입력·출력 단가를 모두 설정해야 합니다.')
+    if config._budget is None:raise APIUnavailable('영구 호출 한도 기록을 사용할 수 없어 API 호출을 중단했습니다.')
+    try:
+        key=(config._credentials or WindowsCredentialStore()).read()
+    except CredentialError as exc:raise APIUnavailable(str(exc)) from None
+    if not key:raise APIUnavailable('Windows 보안 보관함에 OpenAI 키를 등록하세요.')
     body={'model':config.model,'messages':[{'role':'system','content':SYSTEM_POLICY},
           {'role':'user','content':json.dumps(request,ensure_ascii=False)}],
           'max_completion_tokens':config.max_output_tokens,
@@ -310,15 +314,13 @@ def _live_transport(request,config):
     encoded=json.dumps(body,ensure_ascii=False).encode('utf8')
     if len(encoded)>config.max_input_chars*4:raise APIUnavailable('API request size limit reached')
     # UTF-8 byte count conservatively upper-bounds usual BPE input token counts.
-    reserve=0.0
-    if config.max_cost_usd is not None:
-        if config.input_usd_per_million is None or config.output_usd_per_million is None:
-            raise APIUnavailable('Specify provider/model token prices before enabling a cost cap')
-        if min(config.max_cost_usd,config.input_usd_per_million,config.output_usd_per_million)<0:
-            raise APIUnavailable('Cost settings cannot be negative')
-        reserve=(len(encoded)*config.input_usd_per_million+config.max_output_tokens*config.output_usd_per_million)/1e6
-        if config.reserved_cost_usd+reserve>config.max_cost_usd:raise APIUnavailable('Session API cost cap reached')
-    config.calls+=1;config.reserved_cost_usd+=reserve
+    reserve=(Decimal(len(encoded))*Decimal(str(config.input_usd_per_million))+
+        Decimal(config.max_output_tokens)*Decimal(str(config.output_usd_per_million)))/Decimal(10**6)
+    try:
+        reservation=config._budget.reserve(reserve,config)
+    except BudgetError as exc:raise APIUnavailable(str(exc)) from None
+    except (OSError,sqlite3.Error,ArithmeticError):raise APIUnavailable('호출 한도 기록에 실패하여 API를 호출하지 않았습니다.') from None
+    config.calls+=1;config.reserved_cost_usd+=float(reserve)
     req=urllib.request.Request(config.endpoint,data=encoded,
             headers={'Content-Type':'application/json','Authorization':'Bearer '+key},method='POST')
     # The default redirect behavior must not leak bearer credentials cross-host.
@@ -340,16 +342,18 @@ def _live_transport(request,config):
         # incomplete/missing usage response retains its conservative reservation.
         input_tokens=usage.get('prompt_tokens');output_tokens=usage.get('completion_tokens')
         if all(type(v) is int and v>=0 for v in (input_tokens,output_tokens)) and config.input_usd_per_million is not None and config.output_usd_per_million is not None:
-            actual=(input_tokens*config.input_usd_per_million+output_tokens*config.output_usd_per_million)/1e6
-            config.estimated_cost_usd+=actual
-            config.reserved_cost_usd=max(0,config.reserved_cost_usd-reserve)+actual
+            actual=(Decimal(input_tokens)*Decimal(str(config.input_usd_per_million))+
+                Decimal(output_tokens)*Decimal(str(config.output_usd_per_million)))/Decimal(10**6)
+            config._budget.settle(reservation,actual,input_tokens,output_tokens)
+            config.estimated_cost_usd+=float(actual)
+            config.reserved_cost_usd=max(0,config.reserved_cost_usd-float(reserve))+float(actual)
         choice=envelope['choices'][0]
         if choice.get('finish_reason') not in (None,'stop'):raise APIUnavailable('Provider response incomplete or refused')
         return choice['message']['content'],usage
     except urllib.error.HTTPError as exc:
         # Never include server bodies/URLs/headers/keys in user-facing messages.
         raise APIUnavailable(f'API HTTP {exc.code}; card retained, retry is manual') from None
-    except (urllib.error.URLError,TimeoutError,ValueError,KeyError,IndexError,OSError):
+    except (urllib.error.URLError,TimeoutError,ValueError,KeyError,IndexError,OSError,sqlite3.Error,ArithmeticError):
         raise APIUnavailable('API connection/timeout/response error; card retained, retry is manual') from None
 
 

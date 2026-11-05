@@ -4,7 +4,7 @@
 
 ## 현재 진행 범위 (2026-11-05)
 
-로컬 PT 재분리는 중단했습니다. 승인 기록 대조와 API 방법론 연결에 이어 **고정309카드의 SQLite 베이스화 등록·확정 PT의531이미지 참조 연결**을 구현했습니다. 같은 원문을 가진 역사적 카드도 각각 유지합니다. [등록 경로·시험 범위](docs/BASELINE_REGISTRATION.md), [승인 기록 분석](docs/APPROVAL_HISTORY_AUDIT.md), [추가 누락22항목 대조](docs/GAP_AUDIT_REVIEW.md)를 확인하세요. 원본 마스터/카탈로그는 불변입니다. 이후 사용자 요청으로 **UI인계 v0.8을 분석·적용**했습니다. [UI 반영·인수 범위](docs/UI_IMPLEMENTATION.md)를 확인하세요.0.3.3-baseline 실행 배포본에는 이 변경을 포함합니다.
+로컬 PT 재분리는 중단했습니다. 승인 기록 대조와 API 방법론 연결에 이어 **고정309카드의 SQLite 베이스화 등록·확정 PT의531이미지 참조 연결**을 구현했습니다. 같은 원문을 가진 역사적 카드도 각각 유지합니다. [등록 경로·시험 범위](docs/BASELINE_REGISTRATION.md), [승인 기록 분석](docs/APPROVAL_HISTORY_AUDIT.md), [추가 누락22항목 대조](docs/GAP_AUDIT_REVIEW.md)를 확인하세요. 원본 마스터/카탈로그는 불변입니다. 이후 사용자 요청으로 **UI인계 v0.8을 분석·적용**했습니다. [UI 반영·인수 범위](docs/UI_IMPLEMENTATION.md)를 확인하세요.0.3.4-security 실행 배포본에는 이 변경을 포함합니다.
 
 ## 실제 PT 오류와 이전 Windows 배포판
 
@@ -12,7 +12,7 @@
 
 ## 다운로드
 
-- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.3.3-baseline.zip)
+- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.3.4-security.zip)
 - [이전0.3.1 소스·테스트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Source-v0.3.1-diagnostic.zip)
 - [검증 결과](docs/VALIDATION.md)
 - [배포 ZIP SHA256](downloads/ARTIFACT_SHA256.json)
@@ -21,7 +21,7 @@
 
 ## Windows 사용
 
-`dist/Bbolprom-Windows-x64-v0.3.3-baseline.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 `%LOCALAPPDATA%\Bbolprom`에 저장됩니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
+`dist/Bbolprom-Windows-x64-v0.3.4-security.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 `%LOCALAPPDATA%\Bbolprom`에 저장됩니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
 
 이 EXE는 실제 PE32+ Windows x64 프로그램으로 교차 빌드했습니다. Windows에서 실행해 확인한 결과는 없습니다. `test_windows.ps1`은 파일 무결성·번들 Python·HWPX/Unicode/SQLite·실제 EXE 시작/HTTP 응답을 점검하는 Windows용 실행 시험입니다. 빌드와 Windows 실행을 구분하십시오. 단일 EXE에 모든 파일을 합친 형식은 아니며 Python을 포함한 폴더형 독립 배포입니다.
 
@@ -49,7 +49,7 @@
 
 ## API 설정
 
-프로그램 내 API·분류 창에서 공급자의 HTTPS Chat Completions endpoint와 모델을 설정하고 외부 전송에 동의합니다. 키 값은 UI/소스/ZIP/로그에 넣지 말고 Windows 사용자 환경변수 또는 보안 저장소에서 주입한 프로세스 환경으로 제공하십시오. 기본 변수명은 `BBOLPROM_API_KEY`입니다. 키 이름만 설정에 저장합니다.
+API는 기본 꺼짐입니다. 키는 API 설정창의 전용 비밀번호 입력칸으로 등록·교체·삭제하며 Windows 자격 증명 관리자에만 보관합니다. 일반 설정·DB·백업·진단 ZIP에 저장하지 않고 기존 환경변수도 읽지 않습니다. 공식 `https://api.openai.com/v1/chat/completions`로만 전송하며 선택 모델은 `gpt-6.1-sol`입니다. [보안 구현·시험 범위](docs/API_KEY_SECURITY.md)를 확인하세요. Windows 보관함의 실제 동작과 실 API 호환성은 아직 검증하지 않았습니다.
 
 초기 C~I는 승인 표시명만 있습니다. 확정 문서에는 완전한 분류 정의가 없으므로 만들어낸 정의를 사용자 승인 사실로 넣지 않았습니다. API에 보낼 분류 정의·포함/제외는 사용자가 설정창에서 확정할 수 있습니다. 새 대분류를 API가 만들 수 없으며 재활성화의 자동 복귀 정책을 전역으로 임의 확정하지 않습니다. UI의 재활성화 버튼은 **태그 자동 복귀 없음**이라는 명시적 개별 선택입니다.
 
@@ -68,7 +68,7 @@ python evaluation/structural_regression.py --handoff /path/to/extracted/handoff
 node scripts/browser_smoke.js
 node scripts/baseline_browser_smoke.js
 node scripts/ui_handoff_browser_smoke.js
-python scripts/build_windows.py --version 0.3.3-baseline
+python scripts/build_windows.py --version 0.3.4-security
 python scripts/package_source.py --version 0.3.1-diagnostic
 python scripts/verify_windows_bundle.py
 ```
@@ -91,8 +91,8 @@ python -m bbolprom_engine test-pt --input PT.hwpx --out outputs/PT --baseline ev
 - 실제 API 호출/의미 태그 품질과 비용은 미측정입니다. 중복 근거 구절은 모든 실제 일치 구간을 표시하고 모호성 경고를 남깁니다. API 응답의 문맥별 단일 위치 선택은 완전히 연결되지 않았습니다.
 - Windows 네이티브 실행·UI·실제 긴 경로 동작은 미검증입니다. 긴 이름을 짧은 저장 경로로 바꾸는 동작과 Unicode Windows 런처 manifest는 별도 검증했습니다. Windows 독립 실행에 성공했다고 보고하지 않습니다.
 - 구조 기반 분리는 일반 HWPX의 완전한 의미 경계 판독기가 아닙니다. 모호한 문서에는 검토가 필요합니다. 인계물에 없는 승인 이미지 원본을 복원하거나 대신 생성하지 않았습니다.
-- 다중 카드 태그 일괄 편집, OS 키체인 직접 연동, 자동 업데이트/코드서명/설치 마법사는 구현하지 않았습니다. 직접 태그 수정과 환경변수 키 사용, 폴더형 배포를 제공합니다.
+- 다중 카드 태그 일괄 편집, 자동 업데이트/코드서명/설치 마법사는 구현하지 않았습니다. 직접 태그 수정, Windows 자격 증명 관리자 키 보관, 폴더형 배포를 제공합니다. Windows 보관함은 Win32 호출 모의시험만 수행했으며 실제 Windows 시험은 남아 있습니다.
 
 ## 로컬 PT 진단 로그
 
-0.3.3-baseline부터 좌측의 **진단 로그 내보내기**와 반입 검토창의 같은 버튼으로 작은 ZIP을 저장할 수 있습니다. 성공/실패·PT SHA256·309개 고정ID/원문해시/태그·근거개수·531참조/522경로·원본에서 측정한 이미지해시와 저장파일 재검증·DB상태·실행OS/버전을 기록합니다. 원문·이미지·XML·DB·API키는 포함하지 않고 자동 전송하지 않습니다. 저장된 ZIP을 사용자가 채팅에 첨부하면 진단할 수 있습니다. 상세 범위는 [진단 안내](docs/LOCAL_DIAGNOSTICS.md)를 확인하세요.
+0.3.4-security부터 좌측의 **진단 로그 내보내기**와 반입 검토창의 같은 버튼으로 작은 ZIP을 저장할 수 있습니다. 성공/실패·PT SHA256·309개 고정ID/원문해시/태그·근거개수·531참조/522경로·원본에서 측정한 이미지해시와 저장파일 재검증·DB상태·실행OS/버전을 기록합니다. 원문·이미지·XML·DB·API키는 포함하지 않고 자동 전송하지 않습니다. 저장된 ZIP을 사용자가 채팅에 첨부하면 진단할 수 있습니다. 상세 범위는 [진단 안내](docs/LOCAL_DIAGNOSTICS.md)를 확인하세요.

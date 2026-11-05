@@ -1,6 +1,6 @@
 """Packaged Windows runtime smoke check; does not call external APIs or use PT answers."""
 from pathlib import Path
-import hashlib,json,sqlite3,sys,tempfile,zipfile
+import hashlib,json,sqlite3,sys,tempfile,zipfile,uuid
 package=Path(__file__).resolve().parent
 sys.path.insert(0,str(package/'app'))
 from bbolprom_engine.hwpx import HWPXReader
@@ -9,6 +9,25 @@ from bbolprom_engine.baseline import BaselineStore,load_dataset,MASTER_SHA
 from bbolprom_engine.library import Library
 from bbolprom_engine.approval_history import load_approval_history
 from bbolprom_engine.method_guidance import load_method_guidance
+
+# Only the manually executed Windows check touches a disposable test target.
+# Never overwrite, return or print the user's real Bbolprom credential.
+native_vault_tested=False
+if sys.platform=='win32':
+    import bbolprom_engine.credentials as credentials
+    original_target=credentials.TARGET
+    credentials.TARGET='Bbolprom/SelfTest/'+uuid.uuid4().hex
+    test_key='sk-synthetic-Windows-self-test-123456789'
+    vault=credentials.WindowsCredentialStore()
+    try:
+        vault.save(test_key)
+        assert vault.read()==test_key
+        vault.delete()
+        assert vault.read() is None
+        native_vault_tested=True
+    finally:
+        try:vault.delete()
+        finally:credentials.TARGET=original_target
 
 with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     source=Path(folder)/'짧은_경로_😀.hwpx'
@@ -42,4 +61,4 @@ with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     assert sum(len(t['spans']) for c in baseline for t in c['tags'])==10358
     assert load_approval_history()['master_sha256']==MASTER_SHA
     assert load_method_guidance()['master_sha256']==MASTER_SHA
-print(json.dumps({'runtime':sys.version,'platform':sys.platform,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))
+print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))

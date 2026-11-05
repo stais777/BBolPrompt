@@ -1,1 +1,1 @@
-VERSION = '0.3.3-baseline'
+VERSION = '0.3.4-security'

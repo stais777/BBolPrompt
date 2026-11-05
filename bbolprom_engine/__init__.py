@@ -2,4 +2,4 @@
 
 No per-card approved labels/source are read during analysis.
 """
-__version__='0.3.1-diagnostic'
+from .version import VERSION as __version__

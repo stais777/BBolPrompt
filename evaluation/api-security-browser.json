@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "key_masked_and_official_endpoint_locked",
+    "save_key_clears_field_and_never_returns_secret_in_state",
+    "close_or_escape_clears_unsaved_input",
+    "replacement_and_delete_affect_vault_only_not_API_enablement",
+    "failed_save_also_clears_secret",
+    "zero_call_limit_is_preserved_after_settings_save"
+  ],
+  "live_API_called": false,
+  "native_Windows_tested": false,
+  "real_key_used": false,
+  "status": "passed"
+}
