@@ -38,5 +38,9 @@
   "Bbolprom-Windows-x64-v0.3.7-portable.zip": {
     "bytes": 15297524,
     "sha256": "7a951bf58ffa1dcb4eb59f2468e4822de5ede4edb043aa7622761685e19e5a2c"
+  },
+  "Bbolprom-Windows-x64-v0.3.8-startupfix.zip": {
+    "bytes": 15299638,
+    "sha256": "c0fafce5aea006e5073c93688cb5d0972e06475605a0aa4a965529de8cc90b68"
   }
 }

@@ -407,7 +407,10 @@ def make_server(data,port=0):
                 if path in ('/ui.css','/app.js'):
                     body=(Path(__file__).parent/'web'/path[1:]).read_bytes()
                     self.send(200,body,'text/css; charset=utf-8' if path.endswith('.css') else 'text/javascript; charset=utf-8');return
-                if path=='/health':self.send(200,{'ok':True,'version':VERSION,'approved_count':len(app.approved)});return
+                if path=='/health':
+                    from .portable_storage import data_identity
+                    self.send(200,{'ok':True,'version':VERSION,'approved_count':len(app.approved),
+                        'pid':os.getpid(),'data_id':data_identity(app.library.root)});return
                 if path=='/api/state':
                     if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
                     self.send(200,app.state());return
@@ -504,6 +507,8 @@ def main(argv=None):
     log_root=package_root
     portable=args.data is None
     profile=Path(os.environ.get('LOCALAPPDATA',str(Path.home())))
+    from .startup_progress import clear_startup_error,write_startup_error
+    clear_startup_error(log_root)
     try:
         if args.data is None:
             from .portable_storage import prepare_portable_data,previous_data_root
@@ -519,16 +524,21 @@ def main(argv=None):
             from .portable_storage import remember_data_root
             if not remember_data_root(args.data,profile):server.application.portable_warning='이 PC에 자료 위치를 기록하지 못했습니다. 업데이트할 때 기존 data 폴더를 함께 옮겨주세요.'
         url=f'http://127.0.0.1:{server.server_port}/'
-        (args.data/'runtime.json').write_text(json.dumps({'port':server.server_port,'pid':os.getpid()}))
+        from .portable_storage import data_identity
+        (args.data/'runtime.json').write_text(json.dumps({'port':server.server_port,'pid':os.getpid(),
+            'data_id':data_identity(args.data)}),encoding='utf8')
         if startup:startup.ready(url)
         elif not args.no_browser:webbrowser.open(url)
         if sys.stdout:print('뽈프롬 시작:',url,flush=True)
         server.serve_forever()
     except KeyboardInterrupt:return 0
-    except Exception:
+    except Exception as exc:
         if startup:startup.fail()
-        try:(log_root/'startup-error.log').write_text(traceback.format_exc(),encoding='utf8')
-        except OSError:pass
+        write_startup_error(log_root,exc,traceback.format_exc(),VERSION)
+        from .portable_storage import LibraryInUseError
+        if isinstance(exc,LibraryInUseError) and not args.no_browser:
+            try:webbrowser.open(exc.url)
+            except OSError:pass
         raise
     finally:
         if 'server' in locals():server.server_close()

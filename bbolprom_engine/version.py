@@ -1,1 +1,1 @@
-VERSION = '0.3.7-portable'
+VERSION = '0.3.8-startupfix'

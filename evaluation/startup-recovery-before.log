@@ -1,0 +1,71 @@
+test_current_failure_shows_reason_and_opens_detected_app_without_killing_it (test_startup_recovery.StartupRecovery.test_current_failure_shows_reason_and_opens_detected_app_without_killing_it) ... FAIL
+test_health_identity_exposes_no_raw_path_or_session_token (test_startup_recovery.StartupRecovery.test_health_identity_exposes_no_raw_path_or_session_token) ... ERROR
+test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app (test_startup_recovery.StartupRecovery.test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app) ... ERROR
+test_reused_port_for_other_library_cannot_block_migration (test_startup_recovery.StartupRecovery.test_reused_port_for_other_library_cannot_block_migration) ... ERROR
+test_same_library_still_blocks_and_identifies_exact_local_page (test_startup_recovery.StartupRecovery.test_same_library_still_blocks_and_identifies_exact_local_page) ... FAIL
+test_success_removes_previous_failure_and_runtime_records_identity (test_startup_recovery.StartupRecovery.test_success_removes_previous_failure_and_runtime_records_identity) ... 뽈프롬 시작: http://127.0.0.1:12345/
+FAIL
+
+======================================================================
+ERROR: test_health_identity_exposes_no_raw_path_or_session_token (test_startup_recovery.StartupRecovery.test_health_identity_exposes_no_raw_path_or_session_token)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 79, in test_health_identity_exposes_no_raw_path_or_session_token
+    self.assertEqual(body['pid'],os.getpid());self.assertEqual(len(body['data_id']),64)
+                     ~~~~^^^^^^^
+KeyError: 'pid'
+
+======================================================================
+ERROR: test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app (test_startup_recovery.StartupRecovery.test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 61, in test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app
+    with patch('bbolprom_engine.portable_storage.process_alive',return_value=False):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1467, in __enter__
+    original, local = self.get_original()
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1437, in get_original
+    raise AttributeError(
+AttributeError: <module 'bbolprom_engine.portable_storage' from '/workspace/Bbolprompt/bbolprom_engine/portable_storage.py'> does not have the attribute 'process_alive'
+
+======================================================================
+ERROR: test_reused_port_for_other_library_cannot_block_migration (test_startup_recovery.StartupRecovery.test_reused_port_for_other_library_cannot_block_migration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 43, in test_reused_port_for_other_library_cannot_block_migration
+    prepare_portable_data(target,old)
+  File "/workspace/Bbolprompt/bbolprom_engine/portable_storage.py", line 279, in prepare_portable_data
+    if _legacy_running(legacy):raise ValueError('이전 뽈프롬에서 앱 종료 후 다시 실행하세요. 기존 자료는 그대로 있습니다.')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: 이전 뽈프롬에서 앱 종료 후 다시 실행하세요. 기존 자료는 그대로 있습니다.
+
+======================================================================
+FAIL: test_current_failure_shows_reason_and_opens_detected_app_without_killing_it (test_startup_recovery.StartupRecovery.test_current_failure_shows_reason_and_opens_detected_app_without_killing_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 90, in test_current_failure_shows_reason_and_opens_detected_app_without_killing_it
+    self.assertIn(url,[c.args[0] for c in opened.call_args_list])
+AssertionError: 'http://127.0.0.1:38721/' not found in ['http://127.0.0.1:39743/']
+
+======================================================================
+FAIL: test_same_library_still_blocks_and_identifies_exact_local_page (test_startup_recovery.StartupRecovery.test_same_library_still_blocks_and_identifies_exact_local_page)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 69, in test_same_library_still_blocks_and_identifies_exact_local_page
+    self.assertIn(f'http://127.0.0.1:{server.server_port}/',str(caught.exception))
+AssertionError: 'http://127.0.0.1:35487/' not found in '이전 뽈프롬에서 앱 종료 후 다시 실행하세요. 기존 자료는 그대로 있습니다.'
+
+======================================================================
+FAIL: test_success_removes_previous_failure_and_runtime_records_identity (test_startup_recovery.StartupRecovery.test_success_removes_previous_failure_and_runtime_records_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_startup_recovery.py", line 103, in test_success_removes_previous_failure_and_runtime_records_identity
+    for name in ('startup-error.log','startup-error-message.txt'):self.assertFalse((program/name).exists())
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 6 tests in 4.285s
+
+FAILED (failures=3, errors=3)

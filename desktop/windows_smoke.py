@@ -1,6 +1,6 @@
 """Packaged Windows runtime smoke check; does not call external APIs or use PT answers."""
 from pathlib import Path
-import hashlib,json,sqlite3,sys,tempfile,zipfile,uuid,io,shutil
+import hashlib,json,sqlite3,sys,tempfile,zipfile,uuid,io,shutil,os
 package=Path(__file__).resolve().parent
 sys.path.insert(0,str(package/'app'))
 from bbolprom_engine.hwpx import HWPXReader
@@ -14,7 +14,11 @@ from bbolprom_engine.baseline_edits import BaselineTagEdits
 # Only the manually executed Windows check touches a disposable test target.
 # Never overwrite, return or print the user's real Bbolprom credential.
 native_vault_tested=False
+native_process_probe_tested=False
 if sys.platform=='win32':
+    from bbolprom_engine.portable_storage import process_alive
+    assert process_alive(os.getpid()) is True
+    native_process_probe_tested=True
     import bbolprom_engine.credentials as credentials
     original_target=credentials.TARGET
     credentials.TARGET='Bbolprom/SelfTest/'+uuid.uuid4().hex
@@ -86,4 +90,4 @@ with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     relocated=Path(folder)/'다른 PC #2/data';shutil.copytree(portable,relocated)
     prepare_portable_data(relocated,None)
     assert Library(relocated).cards()[0]['id']==cid
-print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance','backup temporary SQLite closed before cleanup','baseline manual tags/history/original restore','verified portable data copy and relative path relocation'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))
+print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'native_process_probe_tested':native_process_probe_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance','backup temporary SQLite closed before cleanup','baseline manual tags/history/original restore','verified portable data copy and relative path relocation'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))

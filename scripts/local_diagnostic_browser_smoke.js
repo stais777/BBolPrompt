@@ -26,7 +26,7 @@ with zipfile.ZipFile(sys.argv[1]) as z:
  print(json.dumps({'acceptance':d['acceptance'],'counts':d['counts'],'latest_status':d['import_attempts'][0]['status'] if d['import_attempts'] else None,'latest_error':d['import_attempts'][0]['details'].get('error') if d['import_attempts'] else None,'integrity':d['integrity'],'version':d['application']['version'],'media_errors':len(d['integrity']['media_errors'])}))`,filename],{encoding:'utf8'});
    assert.equal(proc.status,0,proc.stderr);return JSON.parse(proc.stdout);
   }
-  await check('not_imported_export_is_available_and_not_marked_success',async()=>{const d=await report('#localDiagnosticBtn');assert.equal(d.acceptance,'not_imported');assert.equal(d.counts.linked_image_references,0);assert.equal(d.version,'0.3.7-portable')});
+  await check('not_imported_export_is_available_and_not_marked_success',async()=>{const d=await report('#localDiagnosticBtn');assert.equal(d.acceptance,'not_imported');assert.equal(d.counts.linked_image_references,0);assert.equal(d.version,'0.3.8-startupfix')});
   await check('wrong_file_failure_has_exportable_history',async()=>{
    await page.setInputFiles('#hwpx',{name:'wrong.hwpx',mimeType:'application/zip',buffer:Buffer.from('wrong file')});await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('SHA256'));
    const d=await report('#localDiagnosticBtn');assert.equal(d.latest_status,'failed');assert.equal(d.acceptance,'not_imported');

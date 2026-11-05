@@ -13,3 +13,4 @@ desktop/*.pdb
 /data/
 /.bbolprom-data-copy-*/
 /startup-error.log
+/startup-error-message.txt

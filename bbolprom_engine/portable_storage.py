@@ -217,16 +217,69 @@ def _snapshot(source,dest):
         src.backup(dst)
 
 
+def data_identity(root):
+    """Local instance identity without disclosing the user's absolute path."""
+    return hashlib.sha256(os.path.normcase(str(Path(root).resolve())).encode('utf8')).hexdigest()
+
+
+def process_alive(pid):
+    """Read-only tri-state check: True / False / unknown (None).
+
+    Windows os.kill(pid, 0) is NOT a liveness probe: it can terminate the process.
+    Only wait on a process handle; never send a signal on Windows.
+    """
+    if type(pid) is not int or not 0<pid<=0xffffffff:return None
+    if os.name=='nt':return _windows_process_alive(pid)
+    try:os.kill(pid,0);return True
+    except ProcessLookupError:return False
+    except (PermissionError,OSError):return None
+
+
+def _windows_process_alive(pid):
+    import ctypes
+    from ctypes import wintypes
+    kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+    kernel.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD]
+    kernel.OpenProcess.restype=wintypes.HANDLE
+    kernel.WaitForSingleObject.argtypes=[wintypes.HANDLE,wintypes.DWORD]
+    kernel.WaitForSingleObject.restype=wintypes.DWORD
+    kernel.CloseHandle.argtypes=[wintypes.HANDLE];kernel.CloseHandle.restype=wintypes.BOOL
+    handle=kernel.OpenProcess(0x00100000,False,pid) # SYNCHRONIZE only
+    if not handle:return False if ctypes.get_last_error()==87 else None
+    try:
+        result=kernel.WaitForSingleObject(handle,0)
+        return False if result==0 else True if result==258 else None
+    finally:kernel.CloseHandle(handle)
+
+
+class LibraryInUseError(ValueError):
+    def __init__(self,url):
+        self.url=url
+        super().__init__('이전 뽈프롬에서 앱 종료 후 다시 실행하세요. 기존 자료는 그대로 있습니다.\n'
+            '응답 중인 뽈프롬 주소: '+url+'\n'
+            '해당 화면의 [앱 종료]를 누르세요. 브라우저 창만 닫으면 프로그램이 남아 있을 수 있습니다.')
+
+
 def _legacy_running(root):
     runtime=Path(root)/'runtime.json'
     if not runtime.is_file() or runtime.stat().st_size>4096:return False
     try:
-        port=json.loads(runtime.read_text()).get('port')
+        saved=json.loads(runtime.read_text(encoding='utf8'))
+        if not isinstance(saved,dict):return None
+        port=saved.get('port')
         if type(port) is not int or not 1<=port<=65535:return False
         con=http.client.HTTPConnection('127.0.0.1',port,timeout=1)
         try:
             con.request('GET','/health');response=con.getresponse();d=json.loads(response.read(4096))
-            return response.status==200 and d.get('ok') is True and d.get('approved_count')==309
+            if response.status!=200 or not isinstance(d,dict) or d.get('ok') is not True or d.get('approved_count')!=309:return None
+            # New instances identify their data root. A different library at a
+            # recycled port must not prevent migration of this one.
+            if 'data_id' in d:
+                if d['data_id']!=data_identity(root):return None
+            # Pre-0.3.8 health has no data identity. A definitely dead saved PID
+            # disproves ownership; unknown PID status never bypasses the guard.
+            elif process_alive(saved.get('pid')) is False:return None
+            return f'http://127.0.0.1:{port}/'
         finally:con.close()
     except (OSError,ValueError,http.client.HTTPException):return False
 
@@ -276,7 +329,8 @@ def prepare_portable_data(root,legacy=None,progress=None):
         root.mkdir(exist_ok=True);Library(root)
         atomic_bytes(root/'portable.json',json.dumps({'schema':'bbolprom-portable-1','migrated_legacy':False}).encode())
         return root
-    if _legacy_running(legacy):raise ValueError('이전 뽈프롬에서 앱 종료 후 다시 실행하세요. 기존 자료는 그대로 있습니다.')
+    running=_legacy_running(legacy)
+    if running:raise LibraryInUseError(running)
     callback('기존 카드·수정 이력을 준비하고 있습니다.',0,0)
     databases=[n for n in ('library.sqlite3','api-safety.sqlite3') if (legacy/n).is_file()]
     fingerprints={name:database_fingerprint(legacy/name) for name in databases}

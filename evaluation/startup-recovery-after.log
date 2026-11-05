@@ -1,0 +1,15 @@
+test_current_failure_shows_reason_and_opens_detected_app_without_killing_it (test_startup_recovery.StartupRecovery.test_current_failure_shows_reason_and_opens_detected_app_without_killing_it) ... ok
+test_health_identity_exposes_no_raw_path_or_session_token (test_startup_recovery.StartupRecovery.test_health_identity_exposes_no_raw_path_or_session_token) ... ok
+test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app (test_startup_recovery.StartupRecovery.test_legacy_health_at_reused_port_with_dead_saved_pid_is_not_old_app) ... ok
+test_reused_port_for_other_library_cannot_block_migration (test_startup_recovery.StartupRecovery.test_reused_port_for_other_library_cannot_block_migration) ... ok
+test_same_library_still_blocks_and_identifies_exact_local_page (test_startup_recovery.StartupRecovery.test_same_library_still_blocks_and_identifies_exact_local_page) ... ok
+test_success_removes_previous_failure_and_runtime_records_identity (test_startup_recovery.StartupRecovery.test_success_removes_previous_failure_and_runtime_records_identity) ... 뽈프롬 시작: http://127.0.0.1:12345/
+ok
+test_unreadable_windows_process_is_unknown_and_missing_pid_is_dead (test_startup_recovery.WindowsProcessProbe.test_unreadable_windows_process_is_unknown_and_missing_pid_is_dead) ... ok
+test_windows_dispatch_never_uses_os_kill (test_startup_recovery.WindowsProcessProbe.test_windows_dispatch_never_uses_os_kill) ... ok
+test_windows_liveness_uses_readonly_wait_and_closes_handles (test_startup_recovery.WindowsProcessProbe.test_windows_liveness_uses_readonly_wait_and_closes_handles) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 7.319s
+
+OK
