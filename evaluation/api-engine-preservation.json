@@ -1,0 +1,129 @@
+{
+  "version": "0.4.0-apiengine",
+  "component_version": "api-engine-1",
+  "base_commit": "834606a5b1c0440fcd298ff716b2dc5ee1fa6a1a",
+  "approved_scope": "API engine separation and six agreed improvements",
+  "protected_files": [
+    {
+      "path": "assets/approved_catalog.json",
+      "sha256": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline.py",
+      "sha256": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/baseline_edits.py",
+      "sha256": "1ef0056375c98db6d102e487f2c87fb3a50992c71090f437088011f23997638e",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/library.py",
+      "sha256": "146c4e33cea08157466fe975196bf24fa1c0345b09f3e886585af38912d1ea2a",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/hwpx.py",
+      "sha256": "972ec4e423b5aedc21d323212bf0afe3e371cd6e0154ec493522c3df7a74dca9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/analysis.py",
+      "sha256": "1164ad68ba862817d8fb84e71dc26119c5fd750d38704141c2257db60a16ee23",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/portable_storage.py",
+      "sha256": "f34f2cd87fd06c4019386967e43112239ea37d9c168a56b32301be84c7461209",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/startup_progress.py",
+      "sha256": "60424763fb23116e23fba1a0761614e41ddaab21ee2db849bc0de033e33f73fe",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/api.py",
+      "sha256": "297970d1e8ba44fc7f7f927b02e17aaae6eee07348ffd414f6a044d9018a8236",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/api_budget.py",
+      "sha256": "a067cd755283ac27ac737c75a45c464c46b69e01c3cb97eb9e89211774544979",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/credentials.py",
+      "sha256": "2179a01140e62b29190da02074a9d5da05ff2b838bf6a37760eee6364ee911b5",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approved_context.py",
+      "sha256": "8e2936eb4689fd9d49d0b6029d4e8e53618f55f886d50e8c79057bc37fbc4df5",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approved_examples.py",
+      "sha256": "0eddd4a578b52e4ab08303bd07394f03317a7a79738eb1850e9cd40478a3dbcd",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/approval_history.py",
+      "sha256": "0b36353608e33d579d19456320b6b4d412bb3949b53d13c1b384760e125103f2",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/method_guidance.py",
+      "sha256": "6058c414d168e607c82ef27f9185a20b6aa677bcfa6b68e69b979920f2b4f2c5",
+      "unchanged": true
+    },
+    {
+      "path": "desktop/launcher.c",
+      "sha256": "82b027f79f524793e0f224dfaed3c81b7704df9accb73abfc7620c4feea2e8f6",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/method_guidance.json",
+      "sha256": "37cdb8b257db9130a54380597b9f570649edbed9b91f001ab4157b27abc8e0d9",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_context.json",
+      "sha256": "3e3be1daa6eb056ca459fdf150085658156c7bc77cfbeea6fd0113fc3b51f308",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/baseline_manifest.json",
+      "sha256": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+      "unchanged": true
+    },
+    {
+      "path": "bbolprom_engine/data/approved_history.json",
+      "sha256": "c290e13f18a328ac5b5f33cb1fd469f3ccaad0c13903ea98f98d8708fde018ef",
+      "unchanged": true
+    }
+  ],
+  "integration_tests_passed": 223,
+  "new_engine_tests_included": 35,
+  "new_engine_targeted_tests_passed": 30,
+  "new_engine_browser_checks_passed": 8,
+  "baseline_manual_browser_checks_passed": 9,
+  "legacy_browser_checks_passed": 16,
+  "direct_SQL_baseline_writes_denied": true,
+  "fixed309_reanalysis_denied_before_provider": true,
+  "baseline309_records_and_image_links_equal_after_mock_UI_operations": true,
+  "definition_drafts_require_confirmation": true,
+  "old_manual_tag_values_preserved_conservatively": true,
+  "old_absent_deletion_history_reconstructed": false,
+  "tag_and_reference_versions_checked_inside_write_transaction": true,
+  "new_automatic_tags_promoted_to_common_approval": false,
+  "tag_history_is_full_media_backup": false,
+  "real_model_quality_tested": false,
+  "actual_PT_tested_this_change": false,
+  "native_Windows_tested_this_version": false,
+  "user_DB_or_key_used": false,
+  "live_API_calls": 0,
+  "Hancom_image_drop_implemented": false
+}

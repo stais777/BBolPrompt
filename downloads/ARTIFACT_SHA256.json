@@ -50,5 +50,13 @@
   "Bbolprom-UI-Patch-v0.3.8-to-v0.3.9.zip": {
     "bytes": 168573,
     "sha256": "986377b617ef0e770661f599fc65394d926486be138ec74ba1fb72513e36e71a"
+  },
+  "Bbolprom-Windows-x64-v0.4.0-apiengine.zip": {
+    "bytes": 15316741,
+    "sha256": "c3575089dad67457748a3878d61236c55bb09f9bbb8b96b910b855fd084efc79"
+  },
+  "Bbolprom-API-Engine-Patch-v0.3.8-v0.3.9-to-v0.4.0.zip": {
+    "bytes": 204566,
+    "sha256": "9a78d315d067a0fd7667f9fdea8de4df59c5a743ecc1f01fac4715cea9155d0e"
   }
 }

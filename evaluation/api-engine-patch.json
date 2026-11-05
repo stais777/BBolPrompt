@@ -1,0 +1,67 @@
+{
+  "version": "0.4.0-apiengine",
+  "patch": "Bbolprom-API-Engine-Patch-v0.3.8-v0.3.9-to-v0.4.0.zip",
+  "bytes": 204566,
+  "sha256": "9a78d315d067a0fd7667f9fdea8de4df59c5a743ecc1f01fac4715cea9155d0e",
+  "changed_files": 20,
+  "bases": [
+    {
+      "base": "Bbolprom-Windows-x64-v0.3.8-startupfix.zip",
+      "all_target_hashes_match": 1359,
+      "data_untouched_by_overlay": true,
+      "old_DB_baseline_manual_tags_images_and_quota_preserved": true,
+      "new_engine_mock_after_upgrade": "passed",
+      "packaged_source_smoke": "passed on Linux/Python3.12"
+    },
+    {
+      "base": "Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip",
+      "all_target_hashes_match": 1359,
+      "data_untouched_by_overlay": true,
+      "old_DB_baseline_manual_tags_images_and_quota_preserved": true,
+      "new_engine_mock_after_upgrade": "passed",
+      "packaged_source_smoke": "passed on Linux/Python3.12"
+    }
+  ],
+  "details": {
+    "base_versions": [
+      "0.3.8-startupfix",
+      "0.3.9-filtertoggle"
+    ],
+    "target_version": "0.4.0-apiengine",
+    "base_zip_sha256": {
+      "Bbolprom-Windows-x64-v0.3.8-startupfix.zip": "c0fafce5aea006e5073c93688cb5d0972e06475605a0aa4a965529de8cc90b68",
+      "Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip": "6e6a757634cbfac2a979bc79cd15363c1ee16f2ba5fa97fb300fcca6ba34583e"
+    },
+    "full_zip_sha256": "c3575089dad67457748a3878d61236c55bb09f9bbb8b96b910b855fd084efc79",
+    "application_source_commit": "154b917a0f96f7a5c6dfd3a70d6fca44724a7e47",
+    "files": {
+      "BUILD_PROVENANCE.json": "75020bad53cc922f31c2f0fae807cc17be9174428a7729bb23be96ecae5d0236",
+      "Bbolprom.exe": "c2302ad42f2d536b4d9a0bf9f9da181dd6ac9ae183c1e7c7512ec1180d39e910",
+      "SHA256.json": "a5fd15b5fa53031a1ef6e01c3ea7763866133000aa7c538b2832ae407311259d",
+      "app/bbolprom_engine/api_engine/__init__.py": "53249f1c5e43be036dbb0be92781295a3754f85252c6c2f2445e321200c20bb0",
+      "app/bbolprom_engine/api_engine/common.py": "241c03fa9024dd9fe098b17ab0dea603f2d08c5c242a13c19d06a581bd7c3759",
+      "app/bbolprom_engine/api_engine/definitions.py": "eae21ea2210b7e2fdc325fb1251428ac682711d629015a03a8ea2e93745064ce",
+      "app/bbolprom_engine/api_engine/diagnostics.py": "90c35d145f4944dff3bba5dc80d47b5213106744effb1312339319830f2f78cb",
+      "app/bbolprom_engine/api_engine/evidence.py": "0b9ece715e1a72b2413a746cd7f74ee4b108108598eba9507f6132c25a60349e",
+      "app/bbolprom_engine/api_engine/reference_reader.py": "862f17e203864ca5bd0b7ba909206b0b0e74ee267279d0eb270f960cfbfe032b",
+      "app/bbolprom_engine/api_engine/repository.py": "54bbcfb7e307acaf31ea069b8ffcbbf7346e8a1cbd27098074ce96663692ed83",
+      "app/bbolprom_engine/api_engine/retrieval.py": "0b1de980a040efb7b11295818982bf20ada420e9de24f9b566f0b5f80dfffdf4",
+      "app/bbolprom_engine/api_engine/service.py": "04c880e0fa57d6084f35125321b74fa75c47f5bf53bbb6f4de84ea125d8ccbc3",
+      "app/bbolprom_engine/app.py": "c8eac8a8ab4a5950c0734ff88efaf3a2e526e1acdafe2b931b7cbacda80a847b",
+      "app/bbolprom_engine/local_diagnostics.py": "872a07f307cb79a05325d1475dd6fb1e37b53bcd73aac065f38e6907d039a415",
+      "app/bbolprom_engine/version.py": "7d11eb96a3b78242f87e98ae144795d1ae6175861f3d9672fbf80f22d483f601",
+      "app/bbolprom_engine/web/app.js": "95dcc7ec922ec8a70f0dd0c78806934693f60f00cc888e1f8a834b45d9233f2f",
+      "app/bbolprom_engine/web/index.html": "a6201cf4a2d1450322823ba184956f048d49e8e43150d6d8d16a96b05fe9b894",
+      "app/bbolprom_engine/web/ui.css": "98720f4a5e88518487c09f4f303fb3ae1878c032f33f54e9fb02231d3e970d75",
+      "windows_smoke.py": "e788cb712ac4b53a5acb2e0d53d53e6992a60e664e57f2fe27775cb51b671108",
+      "사용방법.txt": "0d809d5d9e53baa99631bd7c815ee27bd617adbd6545ef8a1857ae34552cdccb"
+    },
+    "data_included": false,
+    "live_API_called": false,
+    "native_Windows_tested": false
+  },
+  "ZIP_CRC_verified": true,
+  "native_Windows_tested": false,
+  "actual_user_DB_used": false,
+  "live_API_calls": 0
+}

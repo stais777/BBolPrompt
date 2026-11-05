@@ -85,9 +85,19 @@ with tempfile.TemporaryDirectory(prefix='bbolprom-smoke-') as folder:
     assert not list((store.library.root/'backup').glob('*.sqlite3'))
     from bbolprom_engine.portable_storage import prepare_portable_data,verify_data
     cid=store.library.manual('휴대형 원문 😀',[('원본.png',io.BytesIO(b'portable-original-image-bytes'))])
+    from bbolprom_engine.api_engine.service import Engine
+    engine=Engine(store.library.db,records=store.records)
+    engine.repo.manual(cid,[{'tag':'synthetic-manual-engine-test','category_id':'I','category_column':'I','spans':[],'source':'user_edit'}])
+    def provider(request):
+        return {'card_ref':request['card_ref'],'policy_version':'API-POLICY-1.0','tags':[],
+                'unclassified':[],'create_categories':[],'direct_mutations':[]}
+    checked=engine.analyze(cid,[{'id':'I','name':'기타','definition':'자기검사 정의','enabled':True}],transport=provider)
+    assert checked['mode']=='mock' and checked['status']=='ok'
+    assert engine.repo.snapshot(cid)['tags'][0]['tag']=='synthetic-manual-engine-test'
+    assert store.cards()==baseline
     portable=prepare_portable_data(Path(folder)/'프로그램 #1/data',store.library.root)
     assert verify_data(Library(portable))['fixed_cards']==309
     relocated=Path(folder)/'다른 PC #2/data';shutil.copytree(portable,relocated)
     prepare_portable_data(relocated,None)
     assert Library(relocated).cards()[0]['id']==cid
-print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'native_process_probe_tested':native_process_probe_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance','backup temporary SQLite closed before cleanup','baseline manual tags/history/original restore','verified portable data copy and relative path relocation'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))
+print(json.dumps({'runtime':sys.version,'platform':sys.platform,'native_vault_tested':native_vault_tested,'native_process_probe_tested':native_process_probe_tested,'checks':['Unicode path','legacy diagnostic HWPX import','original text preservation','image MD5+SHA1','SQLite Unicode','309 fixed IDs including repeated prompts','531 image refs and 522 paths','109/110 and 188 baseline cases','8471 tags and 10358 spans','approval history and tagging method provenance','backup temporary SQLite closed before cleanup','baseline manual tags/history/original restore','new-card mock API manual tag protection','verified portable data copy and relative path relocation'],'external_api_called':False,'actual_PT_tested':False},ensure_ascii=False))

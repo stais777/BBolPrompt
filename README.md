@@ -2,7 +2,9 @@
 
 인계받은 Alpha v0.2의 결함을 별도 디렉터리에서 수정하고, 실제 사용 가능한 로컬 앱과 Windows x64 배포본을 구현했습니다. **정식 완료판이라는 뜻은 아닙니다.** 실제 PT 전체 재시험·실제 AI 의미 품질·Windows PC 실행은 아직 검증하지 못했습니다.
 
-## 현재 진행 범위 (2026-11-05)
+## 현재 진행 범위 (2026-11-06)
+
+**신규 카드용 API 엔진을 별도 모듈로 구현했습니다.** 베이스화 핵심은 보존하고 분류 정의 검토/확정, 수동 태그·제외 보호, 한영 참고 검색, 반복 근거 검증, 교정 참고/철회와 태그 이력 복원을 제공합니다. 실제 모델 의미 품질은 별도 실측이 필요합니다. [사용·보존·검증 범위](docs/API_ENGINE.md).
 
 **태그 적용과 전체 카드 보기를 같은 버튼으로 전환**하도록 누락을 바로잡았습니다. 적용 후 버튼이 전체 카드 보기로 바뀌고, 전체 보기로 돌아가도 선택 태그를 유지합니다. 태그 초기화는 별도입니다. [요구 출처·변경·검증](docs/FILTER_TOGGLE.md).
 
@@ -14,7 +16,7 @@
 
 Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결 수명과 검토창 내 오류 표시를 수정했습니다. [재현·수정·검증 범위](docs/WINDOWS_REGISTRATION_FIX.md). 309개 기준과 태그/하이라이팅 판단은 유지하며, 실제 베이스파일 저장의 재확정 전 후속 엔진 개선은 보류합니다.
 
-로컬 PT 재분리는 중단했습니다. 승인 기록 대조와 API 방법론 연결에 이어 **고정309카드의 SQLite 베이스화 등록·확정 PT의531이미지 참조 연결**을 구현했습니다. 같은 원문을 가진 역사적 카드도 각각 유지합니다. [등록 경로·시험 범위](docs/BASELINE_REGISTRATION.md), [승인 기록 분석](docs/APPROVAL_HISTORY_AUDIT.md), [추가 누락22항목 대조](docs/GAP_AUDIT_REVIEW.md)를 확인하세요. 원본 마스터/카탈로그는 불변입니다. 이후 사용자 요청으로 **UI인계 v0.8을 분석·적용**했습니다. [UI 반영·인수 범위](docs/UI_IMPLEMENTATION.md)를 확인하세요.0.3.9-filtertoggle 실행 배포본에는 이 변경을 포함합니다.
+로컬 PT 재분리는 중단했습니다. 승인 기록 대조와 API 방법론 연결에 이어 **고정309카드의 SQLite 베이스화 등록·확정 PT의531이미지 참조 연결**을 구현했습니다. 같은 원문을 가진 역사적 카드도 각각 유지합니다. [등록 경로·시험 범위](docs/BASELINE_REGISTRATION.md), [승인 기록 분석](docs/APPROVAL_HISTORY_AUDIT.md), [추가 누락22항목 대조](docs/GAP_AUDIT_REVIEW.md)를 확인하세요. 원본 마스터/카탈로그는 불변입니다. 이후 사용자 요청으로 **UI인계 v0.8을 분석·적용**했습니다. [UI 반영·인수 범위](docs/UI_IMPLEMENTATION.md)를 확인하세요.0.4.0-apiengine 실행 배포본에는 이 변경을 포함합니다.
 
 ## 실제 PT 오류와 이전 Windows 배포판
 
@@ -22,9 +24,9 @@ Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결
 
 ## 다운로드
 
-- [0.3.8용 작은 UI 업데이트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-UI-Patch-v0.3.8-to-v0.3.9.zip) — 앱 종료 후 현재 Bbolprom.exe 폴더에 내용 전체를 덮어씁니다. [적용 방법](downloads/README-0.3.9-filtertoggle.md).
+- [0.3.8/0.3.9용 API 엔진 업데이트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-API-Engine-Patch-v0.3.8-v0.3.9-to-v0.4.0.zip) — 앱 종료 후 현재 Bbolprom.exe 폴더에 내용 전체를 덮어씁니다. [적용 방법](downloads/README-0.4.0-apiengine.md).
 
-- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip)
+- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.4.0-apiengine.zip)
 - [이전0.3.1 소스·테스트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Source-v0.3.1-diagnostic.zip)
 - [검증 결과](docs/VALIDATION.md)
 - [배포 ZIP SHA256](downloads/ARTIFACT_SHA256.json)
@@ -33,7 +35,7 @@ Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결
 
 ## Windows 사용
 
-`dist/Bbolprom-Windows-x64-v0.3.9-filtertoggle.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 **프로그램 폴더의 `data`**에 저장됩니다. 이전 기본 저장소 `%LOCALAPPDATA%\Bbolprom`은 최초 복사 원본으로만 사용하며 그대로 보존합니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
+`dist/Bbolprom-Windows-x64-v0.4.0-apiengine.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 **프로그램 폴더의 `data`**에 저장됩니다. 이전 기본 저장소 `%LOCALAPPDATA%\Bbolprom`은 최초 복사 원본으로만 사용하며 그대로 보존합니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
 
 이 EXE는 실제 PE32+ Windows x64 프로그램으로 교차 빌드했습니다. Windows에서 실행해 확인한 결과는 없습니다. `test_windows.ps1`은 파일 무결성·번들 Python·HWPX/Unicode/SQLite·실제 EXE 시작/HTTP 응답을 점검하는 Windows용 실행 시험입니다. 빌드와 Windows 실행을 구분하십시오. 단일 EXE에 모든 파일을 합친 형식은 아니며 Python을 포함한 폴더형 독립 배포입니다.
 
@@ -80,7 +82,7 @@ python evaluation/structural_regression.py --handoff /path/to/extracted/handoff
 node scripts/browser_smoke.js
 node scripts/baseline_browser_smoke.js
 node scripts/ui_handoff_browser_smoke.js
-python scripts/build_windows.py --version 0.3.9-filtertoggle
+python scripts/build_windows.py --version 0.4.0-apiengine
 python scripts/package_source.py --version 0.3.1-diagnostic
 python scripts/verify_windows_bundle.py
 ```

@@ -35,6 +35,7 @@ class Application:
         self.lock=threading.RLock()
         self.api_config=None
         self.portable_warning=''
+        self._new_card_engine=None
         from .credentials import WindowsCredentialStore
         from .api_budget import APIBudget
         self.credentials=WindowsCredentialStore()
@@ -50,6 +51,13 @@ class Application:
         self.baseline_tag_edits=BaselineTagEdits(self.library,self.baseline.records)
         from .local_diagnostics import ImportAudit
         self.import_audit=ImportAudit(self.library)
+
+    @property
+    def new_card_engine(self):
+        if self._new_card_engine is None:
+            from .api_engine.service import Engine
+            self._new_card_engine=Engine(self.library.db,records=self.baseline.records)
+        return self._new_card_engine
 
     def categories(self):
         return self.library.get_setting('categories',[
@@ -92,7 +100,7 @@ class Application:
         return {'cards':self.all_cards(),'categories':self.categories(),'baseline_category_names':CATEGORIES,'api':config,'baseline':baseline,'storage':storage,'ui':preferences(self.library),
                 'api_key_present':key_present,
                 'api_key_storage':{'supported':self.credentials.supported,'error':key_error,'kind':'windows_credential_manager'},
-                'api_usage':self.api_budget.status(),
+                'api_usage':self.api_budget.status(),'api_engine':{'version':'api-engine-1','initialized':self._new_card_engine is not None},
                 'limitations':['309개는 확정 마스터에서 베이스화한 고정 데이터입니다. 독립 추출 성능이 아닙니다.',
                     '확정 PT 이미지 연결 '+str(baseline['linked_image_references'])+' / 531건. 원본을 선택해 연결할 수 있습니다.',
                     'API 기본 꺼짐. 사용자 확정 분류 정의와 API 설정 필요. 규칙 태그는 의미 판단 대체 불가']}
@@ -143,6 +151,38 @@ class Application:
         if matches:targets[sha]=chosen or matches[0]
 
     def action(self, route, data):
+        if route.startswith('/api/engine/'):
+            fields={'/api/engine/card':{'id'},'/api/engine/tag-history':{'id'},
+                '/api/engine/tag-restore':{'id','version_id','expected_token'},'/api/engine/status':set()}
+            if route=='/api/engine/definitions':
+                allowed=set() if data=={} else {'operation','definitions','expected_token'}
+                valid=data=={} or (isinstance(data,dict) and data.get('operation')=='approve')
+            elif route=='/api/engine/corrections':
+                allowed=set() if data=={} else {'operation','id','active'}
+                valid=data=={} or (isinstance(data,dict) and data.get('operation')=='set_active')
+            else:allowed=fields.get(route,set());valid=route in fields
+            if not isinstance(data,dict) or not valid or set(data)!=allowed:raise ValueError('API 엔진 요청 필드를 확인하세요.')
+            engine=self.new_card_engine
+            if route=='/api/engine/definitions':
+                if data.get('operation')=='approve':
+                    from .api_engine.definitions import approve
+                    approve(engine.repo,self.categories(),data['definitions'],data['expected_token'])
+                return engine.definition_view(self.categories())
+            if route=='/api/engine/card':
+                snapshot=engine.repo.snapshot(data['id'])
+                return {'token':snapshot['token'],'revision':snapshot['revision'],'source_sha256':snapshot['sha'],'tags':snapshot['tags'],'protected_count':len(snapshot['protected']),'excluded_count':len(snapshot['excluded'])}
+            if route=='/api/engine/tag-history':
+                snapshot=engine.repo.snapshot(data['id'])
+                return {'versions':engine.repo.history(data['id']),'token':snapshot['token']}
+            if route=='/api/engine/tag-restore':
+                revision=engine.repo.restore(data['id'],data['version_id'],data['expected_token'])
+                return {'revision':revision,'message':'신규 카드 태그를 복원하고 사용자 확정 이력으로 보존했습니다.'}
+            if route=='/api/engine/corrections':
+                if data.get('operation')=='set_active':engine.repo.correction_active(data['id'],data['active'])
+                return {'corrections':[{'id':x['id'],'card_id':x['card_id'],'revision':x['revision'],'active':bool(x['active']),
+                    'created':x['created'],'tags':[t.get('tag',t.get('name')) for t in x['tags']],'removed':[t.get('tag',t.get('name')) for t in x['removed']]} for x in engine.repo.corrections()]}
+            if route=='/api/engine/status':return {'version':'api-engine-1','counts':engine.repo.summary()}
+            raise ValueError('지원하지 않는 API 엔진 작업')
         if route in ('/api/open-data-folder','/api/open-card-folder'):
             if not isinstance(data,dict) or set(data)!=({'id'} if route.endswith('card-folder') else set()):raise ValueError('폴더 열기 요청을 확인하세요.')
             path=self.library.root
@@ -284,11 +324,12 @@ class Application:
         if route=='/api/settings':
             config=data['api']
             # No credentials in config, DB or backups; the key has its own route.
-            allowed={'enabled','consent','endpoint','model','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples'}
+            allowed={'enabled','consent','endpoint','model','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples','use_user_corrections'}
             if set(config)-allowed: raise ValueError('지원하지 않는 API 설정 필드')
             from .api import APIConfig
             if 'use_approved_examples' in config and type(config['use_approved_examples']) is not bool:raise ValueError('승인 사례 참조 설정은 true/false여야 합니다')
-            APIConfig(**{k:v for k,v in config.items() if k!='use_approved_examples'}) # live calls only on /analyze
+            if 'use_user_corrections' in config and type(config['use_user_corrections']) is not bool:raise ValueError('교정 사례 참조 설정은 true/false여야 합니다')
+            APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','use_user_corrections')}) # live calls only on /analyze
             self.library.set_setting('api',config);self.api_config=None
             return {'message':'API 설정 저장됨. 키 값은 저장하지 않습니다.'}
         if route=='/api/categories':
@@ -330,50 +371,18 @@ class Application:
                 tags.append({'name':name,'tag':name,'category_id':cat,'category_column':cat,
                     'category_status':'classified' if cat else 'unclassified',
                     'spans':raw.get('original_spans',evidence_spans(card['source_text'],[quote])),'source':'user_edit','reason':'사용자 직접 수정'})
-            self.library.backup(include_sources=False)
-            self.library.save_analysis(card['id'],{'source_text':card['source_text'],'tags':tags,'status':'user_edited'})
-            return {'message':'신규 카드 태그를 저장했습니다. 원문은 불변입니다.'}
+            revision=self.new_card_engine.repo.manual(card['id'],tags,data.get('expected_token'))
+            return {'revision':revision,'message':'신규 카드 태그를 저장했습니다. 수동 수정·제외 이력을 보존합니다.'}
         if route=='/api/analyze':
-            from .api import APIConfig,analyze_card
+            from .api import APIConfig
             card=next((c for c in self.library.cards() if c['id']==data['id']),None)
-            if card is None or card.get('sha') in self.approved_hashes: raise ValueError('신규 등록 카드만 분석 가능합니다. 승인 카드 재분석 금지')
+            if card is None or card.get('sha') in self.approved_hashes:raise ValueError('신규 등록 카드만 분석 가능합니다. 승인 카드 재분석 금지')
             config=self.library.get_setting('api',{})
-            if not config.get('enabled') or not config.get('consent'):
-                raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
-            if self.api_config is None:
-                self.api_config=APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','key_env')})
-                self.api_config._credentials=self.credentials
-                self.api_config._budget=self.api_budget
-            from .approved_context import load_approved_context
-            context=load_approved_context()
-            standards={t['id']:t for t in context['standards']}
-            for edition in self.baseline_tag_edits.editions().values():
-                for tag in edition['tags']:
-                    name=tag['tag'];cat=tag.get('category_column')
-                    if cat is None:continue
-                    key='std-'+hashlib.sha256((cat+'\0'+name).encode()).hexdigest()[:16]
-                    standards[key]={'id':key,'name':name,'category_id':cat}
-            for c in self.library.cards():
-                for t in c['tags']:
-                    name=t.get('tag',t.get('name',''));cat=t.get('category_id',t.get('category_column'))
-                    existing=next((x for x in standards.values() if x['name']==name and x.get('category_id')==cat),None)
-                    if existing:continue
-                    key='tag-'+hashlib.sha256((str(cat)+'\0'+name).encode()).hexdigest()[:20]
-                    standards[key]={'id':key,'name':name,'category_id':cat}
-            from .approved_examples import retrieve_approved_examples
-            use_examples=config.get('use_approved_examples',False)
-            # Keep the opt-in contract: no raw-card example preparation when off.
-            catalog=self.baseline_tag_edits.reference_catalog() if use_examples else None
-            examples=retrieve_approved_examples(card['source_text'],enabled=use_examples,catalog=catalog)
-            from .approval_history import load_approval_history
-            history=load_approval_history()
-            from .method_guidance import load_method_guidance
-            method=load_method_guidance()
-            result=analyze_card(card['id'],card['source_text'],self.categories(),list(standards.values()),context,config=self.api_config,examples=examples,approval_history=history,method_guidance=method,edited_card_ids=list(self.baseline_tag_edits.editions()))
-            if result['status'] in ('ok','partial'):
-                self.library.backup(include_sources=False);self.library.save_analysis(card['id'],result)
-            else:self.library.record_analysis_audit(card['id'],result)
-            return result
+            if not config.get('enabled') or not config.get('consent'):raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
+            self.api_config=APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','use_user_corrections','key_env')})
+            self.api_config._credentials=self.credentials;self.api_config._budget=self.api_budget
+            return self.new_card_engine.analyze(card['id'],self.categories(),config=self.api_config,
+                use_examples=config.get('use_approved_examples',False),use_corrections=config.get('use_user_corrections',False))
         raise ValueError('지원하지 않는 작업')
 
 

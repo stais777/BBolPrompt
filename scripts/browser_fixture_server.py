@@ -28,6 +28,18 @@ def main():
         from bbolprom_engine.portable_storage import prepare_portable_data
         prepare_portable_data(folder,None)
     server=make_server(folder)
+    if '--mock-api-engine' in sys.argv[2:]:
+        # A synthetic semantic provider, explicitly marked mock by Engine.
+        # No keys, real provider requests or model quality measurements.
+        engine=server.application.new_card_engine;original_analyze=engine.analyze
+        def mock_provider(request):
+            source=request['prompt_text'];quote='subway station' if 'subway station' in source else 'station'
+            return {'card_ref':request['card_ref'],'policy_version':'API-POLICY-1.0',
+                'tags':[{'name':'지하철역','category_id':'F','category_status':'classified','disposition':'new',
+                         'existing_tag_id':None,'evidence_text':[quote],'reason':'synthetic fixture exact quote'}],
+                'unclassified':[],'create_categories':[],'direct_mutations':[]}
+        def analyze_fixture(*args,**kwargs):return original_analyze(*args,**kwargs,transport=mock_provider)
+        engine.analyze=analyze_fixture
     if '--fail-backup-once' in sys.argv[2:]:
         original_backup=server.application.library.backup
         failed=False

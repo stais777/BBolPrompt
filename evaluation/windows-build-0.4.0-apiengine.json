@@ -1,0 +1,40 @@
+{
+  "version": "0.4.0-apiengine",
+  "artifacts": {
+    "Bbolprom-Windows-x64-v0.4.0-apiengine.zip": {
+      "bytes": 15316741,
+      "sha256": "c3575089dad67457748a3878d61236c55bb09f9bbb8b96b910b855fd084efc79"
+    },
+    "Bbolprom-API-Engine-Patch-v0.3.8-v0.3.9-to-v0.4.0.zip": {
+      "bytes": 204566,
+      "sha256": "9a78d315d067a0fd7667f9fdea8de4df59c5a743ecc1f01fac4715cea9155d0e"
+    }
+  },
+  "application_source_commit": "154b917a0f96f7a5c6dfd3a70d6fca44724a7e47",
+  "application_source_clean_at_build": true,
+  "cross_built": true,
+  "native_windows_executed_this_version": false,
+  "live_API_called": false,
+  "actual_PT_tested_this_change": false,
+  "actual_user_DB_or_key_used": false,
+  "integration_tests_passed": 223,
+  "new_engine_tests_included": 35,
+  "targeted_engine_tests_passed": 30,
+  "new_engine_browser_checks_passed": 8,
+  "baseline_manual_browser_checks_passed": 9,
+  "legacy_browser_checks_passed": 16,
+  "frozen_files_unchanged": 20,
+  "files_hash_verified": 1359,
+  "ZIP_CRC_verified": true,
+  "patch_bases_verified": [
+    "0.3.8-startupfix",
+    "0.3.9-filtertoggle"
+  ],
+  "patch_data_untouched_by_overlay": true,
+  "host_old_DB_upgrade_preserved_baseline_manual_tags_original_media_and_quota": true,
+  "host_new_engine_mock_after_upgrade": "passed on both bases",
+  "packaged_source_smoke": "passed on Linux/Python3.12",
+  "real_model_compatibility_or_semantic_quality_tested": false,
+  "classification_drafts_approved_in_real_user_settings": false,
+  "Hancom_image_drop_implemented": false
+}
