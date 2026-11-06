@@ -1,0 +1,69 @@
+{
+  "target_version": "0.4.1-apifeedback",
+  "source_commit": "d3a5ca0",
+  "source_clean_at_build": true,
+  "full_zip": {
+    "file": "Bbolprom-Windows-x64-v0.4.1-apifeedback.zip",
+    "bytes": 15317500,
+    "sha256": "a5b54740f2e7416589c9d6b5b4ae3944df78c205207793e25ffcdfb681a7ed72",
+    "crc": "passed"
+  },
+  "patch": {
+    "file": "Bbolprom-Definition-Feedback-Patch-v0.4.0-to-v0.4.1.zip",
+    "bytes": 162959,
+    "sha256": "ff2bdb660733dc27d9c5eaeb06dd690492e22269f9bce1fdbafadca33b5ff646",
+    "changed_program_files": [
+      "BUILD_PROVENANCE.json",
+      "Bbolprom.exe",
+      "SHA256.json",
+      "app/bbolprom_engine/version.py",
+      "app/bbolprom_engine/web/app.js",
+      "app/bbolprom_engine/web/index.html",
+      "사용방법.txt"
+    ],
+    "crc": "passed"
+  },
+  "overlay_all_target_package_files_match": 1360,
+  "synthetic_data_sentinels_preserved": true,
+  "protected_files_unchanged": 10,
+  "new_feedback_browser_checks": 6,
+  "existing_mock_API_browser_checks": 8,
+  "real_keys_used": false,
+  "live_API_calls": 0,
+  "native_Windows_executed": false,
+  "underlying_user_initialization_cause_confirmed": false,
+  "static_verification": {
+    "files_hash_verified": 1359,
+    "launcher": "PE32+ AMD64 GUI",
+    "long_path_manifest": true,
+    "runtime_upstream_hash": "verified during build",
+    "runtime_executed": false,
+    "app_python_sources_compiled_on_host": true,
+    "evaluation_baseline_bundled": false
+  },
+  "host_smoke": {
+    "runtime": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "linux",
+    "native_vault_tested": false,
+    "native_process_probe_tested": false,
+    "checks": [
+      "Unicode path",
+      "legacy diagnostic HWPX import",
+      "original text preservation",
+      "image MD5+SHA1",
+      "SQLite Unicode",
+      "309 fixed IDs including repeated prompts",
+      "531 image refs and 522 paths",
+      "109/110 and 188 baseline cases",
+      "8471 tags and 10358 spans",
+      "approval history and tagging method provenance",
+      "backup temporary SQLite closed before cleanup",
+      "baseline manual tags/history/original restore",
+      "new-card mock API manual tag protection",
+      "verified portable data copy and relative path relocation"
+    ],
+    "external_api_called": false,
+    "actual_PT_tested": false
+  },
+  "host_smoke_exit_code": 0
+}

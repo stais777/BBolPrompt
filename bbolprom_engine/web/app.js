@@ -313,24 +313,45 @@ $('dataFolderBtn').onclick=()=>busy(async()=>{const r=await api('/api/open-data-
 $('cardFolderBtn').onclick=()=>busy(async()=>{if(selected&&!selected.approved){const r=await api('/api/open-card-folder',{id:selected.id});msg(r.message)}});
 
 // New-card API subsystem UI; baseline registration and manual baseline editions remain separate.
-let engineDefinitionView=null;
+let engineDefinitionView=null,enginePanelBusy=false;
+function enginePanelStatus(message,error=false){
+ const el=$('engineStatus');el.textContent=message;el.classList.toggle('warning',error);
+ el.setAttribute('role',error?'alert':'status');el.setAttribute('aria-live',error?'assertive':'polite');
+}
+async function enginePanelTask(task,progress,failure){
+ if(enginePanelBusy)return;
+ enginePanelBusy=true;
+ const panel=$('apiEnginePanel'),controls=[...panel.querySelectorAll('button,textarea')].map(el=>[el,el.disabled]);
+ panel.setAttribute('aria-busy','true');for(const [el] of controls)el.disabled=true;
+ enginePanelStatus(progress);
+ try{await task()}
+ catch(error){
+  const detail=String(error?.message||'알 수 없는 오류').replace(/sk-[A-Za-z0-9_-]+/g,'[키 비공개]').slice(0,400);
+  const message=failure+' '+detail+' 기존 표시는 유지됩니다. 다시 [정의 초안 · 교정 이력 열기]를 눌러주세요.';
+  enginePanelStatus(message,true);msg('오류: '+message);
+ }
+ finally{for(const [el,disabled] of controls)el.disabled=disabled;panel.setAttribute('aria-busy','false');enginePanelBusy=false}
+}
 async function loadEnginePanel(){
  const [defs,corr,status]=await Promise.all([api('/api/engine/definitions',{}),api('/api/engine/corrections',{}),api('/api/engine/status',{})]);
- engineDefinitionView=defs;$('engineDefinitions').replaceChildren();
- $('engineStatus').textContent=status.version+' · 정의 확정 '+defs.definitions.filter(x=>x.definition_approved).length+' / '+defs.definitions.length+' · 참고용 교정 '+corr.corrections.filter(x=>x.active).length+'건';
+ if(!Array.isArray(defs?.definitions)||!Array.isArray(corr?.corrections)||typeof status?.version!=='string')throw Error('정의·교정 응답 형식을 확인할 수 없습니다.');
+ const definitionNodes=[],correctionNodes=[];
+ const summary=status.version+' · 정의 확정 '+defs.definitions.filter(x=>x.definition_approved).length+' / '+defs.definitions.length+' · 참고용 교정 '+corr.corrections.filter(x=>x.active).length+'건';
  for(const d of defs.definitions){const box=node('details');box.dataset.categoryId=d.id;box.append(node('summary',d.id+' · '+d.name+' · '+(d.definition_approved?'확정':'초안 · 미승인')));
-  for(const [field,label] of [['definition','정의'],['include','포함 기준'],['exclude','제외·경계']]){const l=node('label',label),input=node('textarea');input.dataset.field=field;input.value=d[field]||'';l.append(input);box.append(l)}$('engineDefinitions').append(box)}
- $('engineCorrections').replaceChildren();
+  for(const [field,label] of [['definition','정의'],['include','포함 기준'],['exclude','제외·경계']]){const l=node('label',label),input=node('textarea');input.dataset.field=field;input.value=d[field]||'';l.append(input);box.append(l)}definitionNodes.push(box)}
  for(const row of corr.corrections){const box=node('div',undefined,'review-card');box.append(node('p',row.card_id.slice(0,8)+' · 버전 '+row.revision+' · '+row.tags.join(', ')+' · 제외: '+row.removed.join(', ')));
-  const b=node('button',row.active?'다음 추천 참고 해제':'다음 추천에 다시 참고');b.onclick=()=>busy(async()=>{await api('/api/engine/corrections',{operation:'set_active',id:row.id,active:!row.active});await loadEnginePanel();msg('교정 참고 상태를 저장했습니다. 현재 카드의 수동 태그는 유지됩니다.')});box.append(b);$('engineCorrections').append(box)}
- if(!corr.corrections.length)$('engineCorrections').append(node('p','아직 신규 카드의 수동 태그 교정이 없습니다.'));
+  const b=node('button',row.active?'다음 추천 참고 해제':'다음 추천에 다시 참고');b.onclick=()=>busy(async()=>{await api('/api/engine/corrections',{operation:'set_active',id:row.id,active:!row.active});await loadEnginePanel();msg('교정 참고 상태를 저장했습니다. 현재 카드의 수동 태그는 유지됩니다.')});box.append(b);correctionNodes.push(box)}
+ if(!corr.corrections.length)correctionNodes.push(node('p','아직 신규 카드의 수동 태그 교정이 없습니다.'));
+ // Replace only after every response and rendered row is ready, keeping prior edits visible on failure.
+ $('engineDefinitions').replaceChildren(...definitionNodes);$('engineCorrections').replaceChildren(...correctionNodes);
+ engineDefinitionView=defs;enginePanelStatus(summary);
 }
-$('loadEngineBtn').onclick=()=>busy(loadEnginePanel);
-$('approveEngineDefinitions').onclick=()=>busy(async()=>{
+$('loadEngineBtn').onclick=()=>busy(()=>enginePanelTask(loadEnginePanel,'정의 초안·교정 이력을 불러오고 있습니다…','정의 초안·교정 이력을 불러오지 못했습니다.'));
+$('approveEngineDefinitions').onclick=()=>busy(()=>enginePanelTask(async()=>{
  if(!engineDefinitionView)throw Error('정의 초안을 먼저 열어 검토하세요.');
  const definitions=[...$('engineDefinitions').children].map(box=>{const row={id:box.dataset.categoryId};for(const field of ['definition','include','exclude'])row[field]=box.querySelector('[data-field="'+field+'"]').value;return row}).filter(x=>x.definition.trim());
  await api('/api/engine/definitions',{operation:'approve',definitions,expected_token:engineDefinitionView.token});await loadEnginePanel();msg('신규 분석용 분류 정의를 확정했습니다. 베이스309개는 유지됩니다.');
-});
+},'정의를 확정하고 결과를 확인하고 있습니다…','정의 확정 상태를 확인하지 못했습니다.'));
 $('engineTagHistoryBtn').onclick=()=>busy(async()=>{
  if(!selected||selected.approved)return;const card=selected,r=await api('/api/engine/tag-history',{id:card.id});$('engineTagVersions').replaceChildren();
  for(const v of r.versions){const box=node('details');box.append(node('summary','버전 '+v.revision+' · '+v.reason+' · '+new Date(v.created).toLocaleString()),node('p',v.tags.map(tagName).join(', ')||'태그 없음'));

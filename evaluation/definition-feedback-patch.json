@@ -1,0 +1,35 @@
+{
+  "target_version": "0.4.1-apifeedback",
+  "source_commit": "d3a5ca0",
+  "source_clean_at_build": true,
+  "full_zip": {
+    "file": "Bbolprom-Windows-x64-v0.4.1-apifeedback.zip",
+    "bytes": 15317500,
+    "sha256": "a5b54740f2e7416589c9d6b5b4ae3944df78c205207793e25ffcdfb681a7ed72",
+    "crc": "passed"
+  },
+  "patch": {
+    "file": "Bbolprom-Definition-Feedback-Patch-v0.4.0-to-v0.4.1.zip",
+    "bytes": 162959,
+    "sha256": "ff2bdb660733dc27d9c5eaeb06dd690492e22269f9bce1fdbafadca33b5ff646",
+    "changed_program_files": [
+      "BUILD_PROVENANCE.json",
+      "Bbolprom.exe",
+      "SHA256.json",
+      "app/bbolprom_engine/version.py",
+      "app/bbolprom_engine/web/app.js",
+      "app/bbolprom_engine/web/index.html",
+      "사용방법.txt"
+    ],
+    "crc": "passed"
+  },
+  "overlay_all_target_package_files_match": 1360,
+  "synthetic_data_sentinels_preserved": true,
+  "protected_files_unchanged": 10,
+  "new_feedback_browser_checks": 6,
+  "existing_mock_API_browser_checks": 8,
+  "real_keys_used": false,
+  "live_API_calls": 0,
+  "native_Windows_executed": false,
+  "underlying_user_initialization_cause_confirmed": false
+}

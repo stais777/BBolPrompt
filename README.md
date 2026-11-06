@@ -24,9 +24,11 @@ Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결
 
 ## 다운로드
 
+- [0.4.0용 정의 설정창 표시 보완 패치](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Definition-Feedback-Patch-v0.4.0-to-v0.4.1.zip) — 진행·오류를 설정창 안에 표시합니다. [적용 방법·미확인 범위](downloads/README-0.4.1-apifeedback.md).
+
 - [0.3.8/0.3.9용 API 엔진 업데이트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-API-Engine-Patch-v0.3.8-v0.3.9-to-v0.4.0.zip) — 앱 종료 후 현재 Bbolprom.exe 폴더에 내용 전체를 덮어씁니다. [적용 방법](downloads/README-0.4.0-apiengine.md).
 
-- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.4.0-apiengine.zip)
+- [Windows 프로그램 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Windows-x64-v0.4.1-apifeedback.zip)
 - [이전0.3.1 소스·테스트 ZIP](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Source-v0.3.1-diagnostic.zip)
 - [검증 결과](docs/VALIDATION.md)
 - [배포 ZIP SHA256](downloads/ARTIFACT_SHA256.json)
@@ -35,7 +37,7 @@ Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결
 
 ## Windows 사용
 
-`dist/Bbolprom-Windows-x64-v0.4.0-apiengine.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 **프로그램 폴더의 `data`**에 저장됩니다. 이전 기본 저장소 `%LOCALAPPDATA%\Bbolprom`은 최초 복사 원본으로만 사용하며 그대로 보존합니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
+`dist/Bbolprom-Windows-x64-v0.4.1-apifeedback.zip` 전체를 짧은 경로(예: `C:\Bbolprom`)에 풀고 **Bbolprom.exe**를 실행합니다. Python 별도 설치가 필요 없습니다. EXE와 `app`, `runtime` 폴더를 함께 유지하세요. 로컬 기본 브라우저가 UI로 열리며 데이터는 **프로그램 폴더의 `data`**에 저장됩니다. 이전 기본 저장소 `%LOCALAPPDATA%\Bbolprom`은 최초 복사 원본으로만 사용하며 그대로 보존합니다. 종료는 화면의 **앱 종료** 버튼을 사용합니다.
 
 이 EXE는 실제 PE32+ Windows x64 프로그램으로 교차 빌드했습니다. Windows에서 실행해 확인한 결과는 없습니다. `test_windows.ps1`은 파일 무결성·번들 Python·HWPX/Unicode/SQLite·실제 EXE 시작/HTTP 응답을 점검하는 Windows용 실행 시험입니다. 빌드와 Windows 실행을 구분하십시오. 단일 EXE에 모든 파일을 합친 형식은 아니며 Python을 포함한 폴더형 독립 배포입니다.
 
@@ -82,7 +84,7 @@ python evaluation/structural_regression.py --handoff /path/to/extracted/handoff
 node scripts/browser_smoke.js
 node scripts/baseline_browser_smoke.js
 node scripts/ui_handoff_browser_smoke.js
-python scripts/build_windows.py --version 0.4.0-apiengine
+python scripts/build_windows.py --version 0.4.1-apifeedback
 python scripts/package_source.py --version 0.3.1-diagnostic
 python scripts/verify_windows_bundle.py
 ```

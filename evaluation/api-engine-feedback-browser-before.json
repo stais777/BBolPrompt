@@ -1,0 +1,15 @@
+{
+  "checks": [],
+  "platform": "linux",
+  "real_key_used": false,
+  "external_API_called": false,
+  "native_windows_tested": false,
+  "baseline_js": "699d8676f097507f6c83a05ee60a3f430f49a3ba",
+  "observed": {
+    "settings_open": true,
+    "inside": "",
+    "outside": "오류: 시험용 정의 불러오기 실패"
+  },
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: definition failure must be visible inside settings modal\n    at /workspace/Bbolprompt/scripts/api_engine_feedback_browser_smoke.js:54:4"
+}
