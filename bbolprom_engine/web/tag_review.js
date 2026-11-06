@@ -21,6 +21,14 @@ function showTagReview(tag,card,target){
  const body=node('div',undefined,'tag-review-body');
  body.append(node('strong',catId(tag)?'분류 판단 사유':'미분류 사유'));
  body.append(node('p',reviewText(tag.reason||(catId(tag)?'별도 판단 사유가 저장돼 있지 않습니다.':'미분류 사유가 저장돼 있지 않습니다. 원문 근거를 확인하세요.'))));
+ if(tag.api_proposals?.length){
+  body.append(node('strong','API 원래 제안 · 보정 전'));
+  for(const proposal of tag.api_proposals.slice(0,8)){
+   body.append(node('p',reviewText(proposal.name)+' · 제안 분류 '+reviewText(proposal.category_id||'미분류')));
+   body.append(node('p',reviewText(proposal.reason||'별도 사유 없음')));
+  }
+ }
+ for(const note of tag.normalization_notes||[])body.append(node('p',reviewText(note),'muted'));
  const chars=Array.from(card.source_text),spans=(tag.spans||[]).filter(s=>Number.isInteger(s.start_cp)&&Number.isInteger(s.end_cp)&&s.start_cp>=0&&s.start_cp<s.end_cp&&s.end_cp<=chars.length&&chars.slice(s.start_cp,s.end_cp).join('')===s.evidence);
  body.append(node('strong','검증된 원문 근거 · '+spans.length+'구간'));
  const quotes=[...new Set(spans.map(s=>s.evidence))];

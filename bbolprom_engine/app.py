@@ -335,12 +335,14 @@ class Application:
         if route=='/api/settings':
             config=data['api']
             # No credentials in config, DB or backups; the key has its own route.
-            allowed={'enabled','consent','endpoint','model','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples','use_user_corrections'}
+            allowed={'enabled','consent','endpoint','model','timeout','max_calls','max_output_tokens','max_cost_usd','input_usd_per_million','output_usd_per_million','use_approved_examples','use_user_corrections','review_focus'}
             if set(config)-allowed: raise ValueError('지원하지 않는 API 설정 필드')
             from .api import APIConfig
             if 'use_approved_examples' in config and type(config['use_approved_examples']) is not bool:raise ValueError('승인 사례 참조 설정은 true/false여야 합니다')
             if 'use_user_corrections' in config and type(config['use_user_corrections']) is not bool:raise ValueError('교정 사례 참조 설정은 true/false여야 합니다')
-            APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','use_user_corrections')}) # live calls only on /analyze
+            from .api_engine.quality import validate_focus
+            if 'review_focus' in config:config['review_focus']=validate_focus(config['review_focus'])
+            APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','use_user_corrections','review_focus')}) # live calls only on /analyze
             self.library.set_setting('api',config);self.api_config=None
             return {'message':'API 설정 저장됨. 키 값은 저장하지 않습니다.'}
         if route=='/api/categories':
@@ -395,13 +397,14 @@ class Application:
                     if card is None or card.get('sha') in self.approved_hashes:raise ValueError('신규 등록 카드만 분석 가능합니다. 승인 카드 재분석 금지')
                     settings=self.library.get_setting('api',{})
                     if not settings.get('enabled') or not settings.get('consent'):raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
-                    config=APIConfig(**{k:v for k,v in settings.items() if k not in ('use_approved_examples','use_user_corrections','key_env')})
+                    config=APIConfig(**{k:v for k,v in settings.items() if k not in ('use_approved_examples','use_user_corrections','key_env','review_focus')})
                     config._credentials=self.credentials;config._budget=self.api_budget;self.api_config=config
                     engine=self.new_card_engine;categories=self.categories()
                     from .library import _now
                     self._analysis_activity={'running':True,'card_id':card['id'],'started_utc':_now()}
                 return engine.analyze(card['id'],categories,config=config,
-                    use_examples=settings.get('use_approved_examples',False),use_corrections=settings.get('use_user_corrections',False))
+                    use_examples=settings.get('use_approved_examples',False),use_corrections=settings.get('use_user_corrections',False),
+                    review_focus=settings.get('review_focus',''))
             finally:
                 self._analysis_activity=None;self.analysis_lock.release()
         raise ValueError('지원하지 않는 작업')

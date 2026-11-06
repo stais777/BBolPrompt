@@ -1,11 +1,19 @@
 {
   "checks": [
     {
+      "name": "review_focus_settings_roundtrip_without_API_calls",
+      "status": "passed"
+    },
+    {
       "name": "partial_result_is_saved_and_explained_as_completed_with_pending_candidates",
       "status": "passed"
     },
     {
       "name": "pending_reason_is_literal_redacted_text_and_reference_does_not_assign_category",
+      "status": "passed"
+    },
+    {
+      "name": "original_API_proposal_is_visible_without_reclassifying_or_calling_provider",
       "status": "passed"
     },
     {

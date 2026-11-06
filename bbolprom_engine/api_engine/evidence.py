@@ -7,7 +7,7 @@ GUIDANCE=('For repeated evidence provide a LONGER EXACT source quote which uniqu
           'User corrections are context examples, not new universal rules. Protected/current-card tags remain user-owned.')
 
 
-def refine(text,result):
+def refine(text,result,excluded_ranges=()):
     tags=result.get('tags',[])+result.get('unclassified',[])
     for tag in tags:
         quotes=tag.get('evidence_text',[]);spans=[];ambiguous=False
@@ -16,8 +16,15 @@ def refine(text,result):
         if any(not quote or quote not in text for quote in quotes):continue
         for quote in quotes:
             found=evidence_spans(text,[quote])
+            if excluded_ranges:
+                found=[s for s in found if not any(s['start_cp']<r['end_cp'] and r['start_cp']<s['end_cp'] for r in excluded_ranges)]
             if len(found)==1:spans+=found
             elif len(found)>1:ambiguous=True
+        if excluded_ranges and not ambiguous:
+            tag['spans']=sorted({(s['start_cp'],s['end_cp']):s for s in spans}.values(),key=lambda s:s['start_cp'])
+            tag.pop('evidence_ambiguous',None)
+            warning='repeated_evidence_requires_context_review:'+tag['name']
+            result['warnings']=[w for w in result.get('warnings',[]) if w!=warning]
         if ambiguous:
             tag['spans']=sorted({(s['start_cp'],s['end_cp']):s for s in spans}.values(),key=lambda s:s['start_cp'])
             tag['evidence_ambiguous']=True

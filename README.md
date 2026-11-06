@@ -4,6 +4,8 @@
 
 ## 현재 진행 범위 (2026-11-06)
 
+**신규 카드 API의 표준 재사용·동의어·negative 구간·검수 정보를 보완했습니다.** 사용자 검수 중점을 선택적으로 지정할 수 있고 XLSX에 원래 API 제안과 판단 사유를 추가합니다. 원본309와 보안·비용 한도는 유지합니다. [구현·검증 범위](docs/API_QUALITY_REVIEW.md).
+
 **저장된 신규 태그의 판단·미분류 사유를 화면에서 검수할 수 있습니다.** 태그 선택 시 원문 근거와 같은 이름의 기존 기준 태그를 표시하며, 추가 API 호출 없이 읽습니다. 분류를 자동 변경하지 않습니다. [검수 화면·시험 범위](docs/TAG_RESULT_REVIEW.md).
 
 **등록·API 분석의 응답 표시와 대기 중 작업 막힘을 수정했습니다.** 진행·실패를 검토창/카드 옆에 표시하고 중복 분석을 차단합니다. [분석 상태 확인]은 기존 로컬 기록만 읽으며 모델을 재호출하지 않습니다. [수정·시험·남은 확인](docs/API_OPERATION_FIX.md).
@@ -27,6 +29,8 @@ Windows 등록 시 접근 거부를 일으킬 수 있는 임시 백업 DB 연결
 사용자 PC에서 실제 PT 반입 검토 결과가 **495개**로 확인됐습니다. 초기 갤러리의 309개는 로컬 승인 자료를 미리 표시한 것이며 추출 성공 결과가 아닙니다. 이전0.3.1 배포판은 오류 카드로 이동하는 안내와 **구조 진단 ZIP 저장**, 선택적 **승인 카드 원문→태그→근거 API 사례 참조**를 보완합니다. **495→309 분리 문제가 해결됐다는 버전은 아닙니다.** [변경 내용과 진단 방법](docs/0.3.1-diagnostic.md)을 확인하세요.
 
 ## 다운로드
+
+- [0.4.3용 API 판단 보완 패치](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-API-Quality-Patch-v0.4.3-to-v0.4.4.zip) — [적용·재시험 방법](downloads/README-0.4.4-quality.md). 개인 검수 중점은 프로그램 기본값에 포함하지 않습니다.
 
 - [0.4.2용 태그 검수 화면 패치](https://github.com/stais777/BBolPrompt/raw/refs/heads/main/downloads/Bbolprom-Tag-Review-Patch-v0.4.2-to-v0.4.3.zip) — [적용·검수 방법](downloads/README-0.4.3-review.md). 저장된 결과를 읽으므로 재분석이 필요 없습니다.
 

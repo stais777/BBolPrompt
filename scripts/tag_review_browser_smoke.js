@@ -24,6 +24,12 @@ async function check(name,fn){await fn();report.checks.push({name,status:'passed
    const d=await api('/api/engine/definitions',{});await api('/api/engine/definitions',{operation:'approve',definitions:d.definitions.map(x=>Object.fromEntries(['id','definition','include','exclude'].map(k=>[k,x[k]]))),expected_token:d.token});
    await api('/api/settings',{api:{enabled:true,consent:true,model:'fixture'}});const r=await api('/api/manual',{text,images:[],origin_filename:'neutral-review'});await refresh();selectCard(state.cards.find(c=>c.id===r.id));return r.id;
   },source);
+  await check('review_focus_settings_roundtrip_without_API_calls',async()=>{
+   await page.click('#settingsBtn');await page.fill('#reviewFocus','얼굴·헤어·시점을 원문 근거로 점검');await page.click('#saveApi');
+   await page.waitForFunction(()=>state.api.review_focus==='얼굴·헤어·시점을 원문 근거로 점검');
+   assert.equal(await page.locator('#reviewFocus').inputValue(),'얼굴·헤어·시점을 원문 근거로 점검');
+   await page.click('#settingsDialog [data-close="settingsDialog"]');assert.equal(analyses,0);
+  });
   await check('partial_result_is_saved_and_explained_as_completed_with_pending_candidates',async()=>{
    await page.click('#analyzeBtn');await page.waitForFunction(()=>selected.analysis_status==='partial'&&document.querySelector('#cardState').textContent.includes('분석 완료 · 분류'));
    assert((await page.locator('#cardState').textContent()).includes('분석 완료 · 분류 1개 · 미분류 1개'));
@@ -35,6 +41,11 @@ async function check(name,fn){await fn();report.checks.push({name,status:'passed
    const text=await panel.textContent();assert(text.includes('분류 검토 필요 <img'));assert(text.includes('[키 비공개]'));assert(!text.includes('sk-synthetic'));
    assert(text.includes('장소·배경 (F)'));assert(text.includes('분류를 변경하지 않습니다'));assert.equal(await panel.locator('img').count(),0);assert.equal(await page.evaluate(()=>window.REVIEW_XSS),undefined);
    assert.equal(await page.evaluate(()=>selected.tags.find(t=>t.tag==='지하철역').category_id),null);assert.equal(tagWrites,0);
+  });
+  await check('original_API_proposal_is_visible_without_reclassifying_or_calling_provider',async()=>{
+   const panel=page.locator('#tagReview');assert((await panel.textContent()).includes('API 원래 제안 · 보정 전'));
+   assert.equal(await page.evaluate(()=>selected.tags.find(t=>t.tag==='지하철역').api_proposals[0].category_id),null);
+   assert.equal(analyses,1);assert.equal(tagWrites,0);
   });
   await check('validated_evidence_and_highlight_preserve_exact_source',async()=>{
    assert((await page.locator('#tagReview').textContent()).includes('subway station'));assert.equal(await page.locator('#source mark').textContent(),'subway station');assert.equal(await page.locator('#source').textContent(),source);
