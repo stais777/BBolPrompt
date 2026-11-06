@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse, base64, hashlib, io, json, os, secrets, sys, tempfile
 import threading, uuid, webbrowser, zipfile, traceback
+from contextlib import nullcontext
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
@@ -33,6 +34,8 @@ class Application:
         self.token=secrets.token_urlsafe(32)
         self.pending={}
         self.lock=threading.RLock()
+        self.analysis_lock=threading.Lock()
+        self._analysis_activity=None
         self.api_config=None
         self.portable_warning=''
         self._new_card_engine=None
@@ -84,9 +87,15 @@ class Application:
             else:cards.append(c)
         return cards
 
+    def analysis_state(self):
+        from .api_engine.operation_status import recent
+        activity=self._analysis_activity
+        return {'activity':dict(activity) if activity else {'running':False},'recent':recent(self.library),'usage':self.api_budget.status()}
+
     def state(self):
         from .ui import preferences
         from .portable_storage import storage_summary
+        activity=self._analysis_activity
         config=self.library.get_setting('api',{})
         baseline=self.baseline.status()
         from .credentials import CredentialError
@@ -101,6 +110,8 @@ class Application:
                 'api_key_present':key_present,
                 'api_key_storage':{'supported':self.credentials.supported,'error':key_error,'kind':'windows_credential_manager'},
                 'api_usage':self.api_budget.status(),'api_engine':{'version':'api-engine-1','initialized':self._new_card_engine is not None},
+                'analysis_activity':dict(activity) if activity else {'running':False},
+                'api_recent_attempts':self.analysis_state()['recent'],
                 'limitations':['309개는 확정 마스터에서 베이스화한 고정 데이터입니다. 독립 추출 성능이 아닙니다.',
                     '확정 PT 이미지 연결 '+str(baseline['linked_image_references'])+' / 531건. 원본을 선택해 연결할 수 있습니다.',
                     'API 기본 꺼짐. 사용자 확정 분류 정의와 API 설정 필요. 규칙 태그는 의미 판단 대체 불가']}
@@ -375,14 +386,24 @@ class Application:
             return {'revision':revision,'message':'신규 카드 태그를 저장했습니다. 수동 수정·제외 이력을 보존합니다.'}
         if route=='/api/analyze':
             from .api import APIConfig
-            card=next((c for c in self.library.cards() if c['id']==data['id']),None)
-            if card is None or card.get('sha') in self.approved_hashes:raise ValueError('신규 등록 카드만 분석 가능합니다. 승인 카드 재분석 금지')
-            config=self.library.get_setting('api',{})
-            if not config.get('enabled') or not config.get('consent'):raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
-            self.api_config=APIConfig(**{k:v for k,v in config.items() if k not in ('use_approved_examples','use_user_corrections','key_env')})
-            self.api_config._credentials=self.credentials;self.api_config._budget=self.api_budget
-            return self.new_card_engine.analyze(card['id'],self.categories(),config=self.api_config,
-                use_examples=config.get('use_approved_examples',False),use_corrections=config.get('use_user_corrections',False))
+            if not self.analysis_lock.acquire(blocking=False):raise ValueError('이미 API 분석이 진행 중입니다. 추가 호출하지 않았습니다.')
+            try:
+                # Snapshot local settings under the short application lock. Never
+                # hold that lock while waiting for a paid provider response.
+                with self.lock:
+                    card=next((c for c in self.library.cards() if c['id']==data['id']),None)
+                    if card is None or card.get('sha') in self.approved_hashes:raise ValueError('신규 등록 카드만 분석 가능합니다. 승인 카드 재분석 금지')
+                    settings=self.library.get_setting('api',{})
+                    if not settings.get('enabled') or not settings.get('consent'):raise ValueError('외부 전송 동의와 API 활성화가 필요합니다')
+                    config=APIConfig(**{k:v for k,v in settings.items() if k not in ('use_approved_examples','use_user_corrections','key_env')})
+                    config._credentials=self.credentials;config._budget=self.api_budget;self.api_config=config
+                    engine=self.new_card_engine;categories=self.categories()
+                    from .library import _now
+                    self._analysis_activity={'running':True,'card_id':card['id'],'started_utc':_now()}
+                return engine.analyze(card['id'],categories,config=config,
+                    use_examples=settings.get('use_approved_examples',False),use_corrections=settings.get('use_user_corrections',False))
+            finally:
+                self._analysis_activity=None;self.analysis_lock.release()
         raise ValueError('지원하지 않는 작업')
 
 
@@ -413,7 +434,7 @@ def make_server(data,port=0):
                 if path=='/':
                     page=(Path(__file__).parent/'web'/'index.html').read_text(encoding='utf8')
                     self.send(200,page.replace('__TOKEN__',app.token).replace('__VERSION__',VERSION).encode(),'text/html; charset=utf-8');return
-                if path in ('/ui.css','/app.js'):
+                if path in ('/ui.css','/app.js','/operations.js'):
                     body=(Path(__file__).parent/'web'/path[1:]).read_bytes()
                     self.send(200,body,'text/css; charset=utf-8' if path.endswith('.css') else 'text/javascript; charset=utf-8');return
                 if path=='/health':
@@ -423,6 +444,9 @@ def make_server(data,port=0):
                 if path=='/api/state':
                     if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
                     self.send(200,app.state());return
+                if path=='/api/analysis-status':
+                    if not self.authorized(): self.send(403,{'error':'세션 인증 실패'});return
+                    self.send(200,app.analysis_state());return
                 if path.startswith('/pending-media/'):
                     parts=path.split('/')
                     if len(parts)!=4 or parts[2] not in app.pending:raise ValueError('검토 이미지 없음')
@@ -453,7 +477,7 @@ def make_server(data,port=0):
                 length=int(self.headers.get('Content-Length','0'))
                 if path=='/api/key' and length>2048:raise ValueError('키 요청 크기 제한')
                 if length<=0 or length>2*1024**3:raise ValueError('파일 크기 제한 2GB')
-                with app.lock:
+                with (nullcontext() if path=='/api/analyze' else app.lock):
                     if path in ('/api/upload','/api/baseline-upload','/api/source-upload'):
                         name=unquote(self.headers.get('X-Filename','import.hwpx'))
                         if not name.lower().endswith('.hwpx'):raise ValueError('HWPX 파일이 필요합니다')

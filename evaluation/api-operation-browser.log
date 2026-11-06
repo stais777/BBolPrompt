@@ -1,0 +1,53 @@
+registration_shows_progress_and_prevents_false_cancellation
+card_selection_reuses_gallery_image_elements
+analysis_progress_prevents_duplicate_clicks_and_hide_stays_usable
+analysis_status_read_does_not_resend_model_request
+analysis_failure_is_visible_next_to_button_and_keeps_tags
+committed_registration_with_failed_refresh_can_recover_without_reposting
+lost_registration_response_recovers_new_card_without_reposting
+existing_same_source_card_does_not_prove_a_failed_registration_succeeded
+baseline_and_quota_are_preserved_and_no_external_provider_is_used
+{
+  "checks": [
+    {
+      "name": "registration_shows_progress_and_prevents_false_cancellation",
+      "status": "passed"
+    },
+    {
+      "name": "card_selection_reuses_gallery_image_elements",
+      "status": "passed"
+    },
+    {
+      "name": "analysis_progress_prevents_duplicate_clicks_and_hide_stays_usable",
+      "status": "passed"
+    },
+    {
+      "name": "analysis_status_read_does_not_resend_model_request",
+      "status": "passed"
+    },
+    {
+      "name": "analysis_failure_is_visible_next_to_button_and_keeps_tags",
+      "status": "passed"
+    },
+    {
+      "name": "committed_registration_with_failed_refresh_can_recover_without_reposting",
+      "status": "passed"
+    },
+    {
+      "name": "lost_registration_response_recovers_new_card_without_reposting",
+      "status": "passed"
+    },
+    {
+      "name": "existing_same_source_card_does_not_prove_a_failed_registration_succeeded",
+      "status": "passed"
+    },
+    {
+      "name": "baseline_and_quota_are_preserved_and_no_external_provider_is_used",
+      "status": "passed"
+    }
+  ],
+  "external_API_called": false,
+  "real_key_used": false,
+  "native_Windows_tested": false,
+  "status": "passed"
+}

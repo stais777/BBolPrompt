@@ -1,0 +1,26 @@
+registered_baseline_allows_manual_tags_and_history_only
+manual_rename_preserves_original_multispan_highlighting
+manual_edition_survives_reload
+category_deactivation_cannot_reclassify_fixed_or_manually_edited_tags
+user_can_add_a_tag_without_fabricated_evidence
+history_restores_prior_edit_original_and_edit_again
+invalid_evidence_error_is_visible_without_saving
+diagnostic_keeps_original_integrity_and_separate_user_revision_counts
+API_reanalysis_stays_blocked_after_user_edit
+{
+  "checks": [
+    "registered_baseline_allows_manual_tags_and_history_only",
+    "manual_rename_preserves_original_multispan_highlighting",
+    "manual_edition_survives_reload",
+    "category_deactivation_cannot_reclassify_fixed_or_manually_edited_tags",
+    "user_can_add_a_tag_without_fabricated_evidence",
+    "history_restores_prior_edit_original_and_edit_again",
+    "invalid_evidence_error_is_visible_without_saving",
+    "diagnostic_keeps_original_integrity_and_separate_user_revision_counts",
+    "API_reanalysis_stays_blocked_after_user_edit"
+  ],
+  "actual_PT_tested": false,
+  "live_API_called": false,
+  "native_Windows_tested": false,
+  "status": "passed"
+}

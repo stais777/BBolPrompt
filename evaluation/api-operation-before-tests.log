@@ -1,0 +1,17 @@
+test_ui_save_finishes_while_provider_is_waiting (test_api_operation_responsiveness.APIOperationResponsiveness.test_ui_save_finishes_while_provider_is_waiting) ... ERROR
+
+======================================================================
+ERROR: test_ui_save_finishes_while_provider_is_waiting (test_api_operation_responsiveness.APIOperationResponsiveness.test_ui_save_finishes_while_provider_is_waiting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/Bbolprompt/tests/test_api_operation_responsiveness.py", line 41, in test_ui_save_finishes_while_provider_is_waiting
+    self.assertEqual(other.result(timeout=1)[0],200)
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 458, in result
+    raise TimeoutError()
+TimeoutError
+
+----------------------------------------------------------------------
+Ran 1 test in 2.981s
+
+FAILED (errors=1)

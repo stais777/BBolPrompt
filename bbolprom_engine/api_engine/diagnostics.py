@@ -1,11 +1,12 @@
 """Aggregate support evidence only: no prompts, tag names, quotes or keys."""
 import hashlib,json
+from .operation_status import recent,daily_usage
 
 
 def collect(library):
     with library.connect() as c:
         exists=c.execute("SELECT 1 FROM sqlite_master WHERE name='api_runs'").fetchone()
-        if not exists:return {'initialized':False,'version':'api-engine-1'}
+        if not exists:return {'initialized':False,'version':'api-engine-1','daily_usage':daily_usage(library)}
         tables=('api_runs','api_tag_editions','api_user_corrections','api_correction_events','api_category_definitions')
         counts={t:c.execute('SELECT count(*) FROM '+t).fetchone()[0] for t in tables}
         sha=hashlib.sha256()
@@ -17,4 +18,5 @@ def collect(library):
         statuses={}
         for status,count in c.execute('SELECT status,count(*) FROM api_runs GROUP BY status'):
             safe=status if status in allowed else 'other';statuses[safe]=statuses.get(safe,0)+count
-    return {'initialized':True,'version':'api-engine-1','counts':counts,'status_counts':statuses,'ledger_sha256':sha.hexdigest()}
+    return {'initialized':True,'version':'api-engine-1','counts':counts,'status_counts':statuses,'ledger_sha256':sha.hexdigest(),
+        'recent':recent(library),'daily_usage':daily_usage(library)}

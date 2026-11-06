@@ -31,6 +31,7 @@ async function refresh(){
  const storage=state.storage||{};$('storageInfo').textContent=(storage.data_path||'자료 폴더')+' · '+(storage.baseline_source_saved?'PT 원본 보관됨':'PT 원본 보관 필요')+(storage.warning?' · '+storage.warning:'');
  $('importBtn').textContent=state.baseline?.complete?'PT.hwpx 원본 보관':'＋ PT.hwpx 등록';applyDisplay();render();
  if(selected){selected=state.cards.find(c=>c.id===selected.id)||null;inspect()}
+ if(typeof reconcileOperationStatus==='function')reconcileOperationStatus();
 }
 function applyDisplay(){
  const root=document.documentElement;root.dataset.theme=ui.theme;$('theme').value=ui.theme;$('tone').value=ui.tone;$('view').value=ui.view;$('sort').value=ui.sort;
@@ -54,7 +55,7 @@ function sidebar(){
  $('categoryTags').replaceChildren();if(categoryFocus){const names=[...new Set(cards.flatMap(c=>c.tags.filter(t=>catId(t)===categoryFocus).map(tagName)))];
   for(const name of names){const b=node('button',name,'tag'+(selectedTags.includes(name)?' picked':''));b.onclick=()=>selectTag(name);$('categoryTags').append(b)}}
 }
-function selectCard(card){selected=card;imageIndex=cardImages.get(card.id)??Math.max(0,card.images.findIndex(i=>i.sha));render();inspect()}
+function selectCard(card){selected=card;imageIndex=cardImages.get(card.id)??Math.max(0,card.images.findIndex(i=>i.sha));for(const el of $('gallery').querySelectorAll('article.card'))el.classList.toggle('selected',el.dataset.cardId===card.id);inspect()}
 function render(){
  const cards=visibleCards(),registered=registeredCards(),hidden=new Set(ui.hidden_cards||[]);
  const tagLayouts=[];
@@ -132,6 +133,7 @@ function inspect(){
  $('source').textContent=selected.source_text;$('origins').textContent=JSON.stringify({source_text_sha256:selected.sha??selected.source_text_sha256,origins:selected.origins,analysis_references:selected.analysis_references},null,2);
  $('cardState').textContent=selected.approved?(selected.user_tag_edited?'사용자 태그 수정본 · 버전 '+selected.tag_revision:'최초 정답 원본 유지'):selected.analysis_status;$('analyzeBtn').disabled=!!selected.approved;$('editTagsBtn').disabled=false;$('cardFolderBtn').disabled=!!selected.approved;$('engineTagHistoryBtn').disabled=!!selected.approved;$('editCardBtn').disabled=!!selected.approved;$('historyBtn').disabled=false;$('historyBtn').textContent=selected.approved?'태그 수정 이력 · 복원':'수정 이력 · 복원';
  $('hideCard').textContent=(ui.hidden_cards||[]).includes(selected.id)?'숨김 해제':'카드 숨기기';
+ if(typeof updateOperationInspector==='function')updateOperationInspector();
 }
 function currentImage(){return selected?.images[imageIndex]}
 function showImage(){
@@ -173,13 +175,10 @@ $('saveManual').onclick=()=>busy(async()=>{
  $('manualReviewSummary').textContent=(matches.length?'기존 동일 원문 '+matches.length+'카드 확인 · 이미지/출처 추가':'신규 카드 1개')+' · 이미지 '+images.length+'개 · 출처: '+manualDraft.origin_filename;
  $('manualReviewText').textContent=text;$('manualReviewImages').replaceChildren();
  for(const im of images){const img=node('img');img.src='data:'+im.mime+';base64,'+im.base64;img.alt=im.name;$('manualReviewImages').append(img)}
- $('manualDialog').close();$('manualReviewDialog').showModal();msg('직접 등록 검토 대기');
+ if(typeof resetManualOperation==='function')resetManualOperation();$('manualDialog').close();$('manualReviewDialog').showModal();msg('직접 등록 검토 대기');
 });
 $('manualReviewBack').onclick=()=>{$('manualReviewDialog').close();$('manualDialog').showModal()};
-$('manualConfirm').onclick=()=>busy(async()=>{
- if(!manualDraft)return;$('manualConfirm').disabled=true;
- try{await api('/api/manual',manualDraft);manualDraft=null;$('manualReviewDialog').close();await refresh();msg('검토한 카드를 등록했습니다.')}finally{$('manualConfirm').disabled=false}
-});
+$('manualConfirm').onclick=()=>runManualConfirmation();
 $('query').oninput=suggest;$('scope').onchange=()=>{render();inspect()};
 $('view').onchange=()=>busy(async()=>{const saving=saveUI({view:$('view').value});applyDisplay();render();await saving});
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{$('view').value=b.dataset.view;$('view').onchange()});
@@ -278,7 +277,7 @@ async function showBaselineTagHistory(){
  }
  $('baselineTagHistoryDialog').showModal();
 }
-$('analyzeBtn').onclick=()=>busy(async()=>{const r=await api('/api/analyze',{id:selected.id});await refresh();msg('API 상태: '+r.status+' · '+(r.warnings||[]).join(' / '))});
+$('analyzeBtn').onclick=()=>runCardAnalysis();
 function settings(){const c=state.api||{};$('apiEnabled').checked=!!c.enabled;$('apiConsent').checked=!!c.consent;$('apiExamples').checked=c.use_approved_examples??false;$('apiCorrections').checked=c.use_user_corrections??false;$('endpoint').value='https://api.openai.com/v1/chat/completions';$('model').value=c.model||'gpt-6.1-sol';$('apiKey').value='';$('saveKey').disabled=!state.api_key_storage?.supported;$('deleteKey').disabled=!state.api_key_storage?.supported;$('maxCalls').value=c.max_calls??10;$('maxTokens').value=c.max_output_tokens||4096;$('timeout').value=c.timeout||30;$('maxCost').value=c.max_cost_usd??'';$('inPrice').value=c.input_usd_per_million??'';$('outPrice').value=c.output_usd_per_million??'';const u=state.api_usage||{};$('apiUsage').textContent='오늘 (UTC '+(u.day_utc||'')+') 호출 '+(u.calls||0)+'회 · 입력 '+(u.total_input_tokens||0)+' / 출력 '+(u.total_output_tokens||0)+' 토큰 · 비용 예약 상한 $'+(u.reserved_cost_usd||0)+' (가격은 사용자가 공급자 기준으로 입력)';$('keyPresent').textContent=state.api_key_storage?.error||(!state.api_key_storage?.supported?'Windows 보안 보관함을 사용할 수 없습니다. 키 저장·API 호출 차단':('Windows 보안 보관함: '+(state.api_key_present?'키 등록됨 (값은 반환하지 않음)':'키 없음')));$('categoryRows').replaceChildren();for(const cat of state.categories){const box=node('details');box.append(node('summary',cat.id+' · '+cat.name+(cat.enabled?'':' · 비활성')));const name=node('input');name.value=cat.name;const def=node('textarea');def.value=cat.definition||'';def.placeholder='사용자가 확정한 분류 정의 · 포함/제외';const rename=node('button','표시명 변경');rename.onclick=()=>category({operation:'rename',id:cat.id,name:name.value});const define=node('button','이후 분석용 정의 확정');define.onclick=()=>category({operation:'define',id:cat.id,definition:def.value});const toggle=node('button',cat.enabled?'비활성화 → 미분류':'재활성화 (태그 자동 복귀 없음)');toggle.onclick=()=>category({operation:cat.enabled?'deactivate':'reactivate',id:cat.id,restore_tags:false});box.append(name,rename,def,define,toggle);$('categoryRows').append(box)}}async function category(data){await busy(async()=>{await api('/api/categories',data);await refresh();settings();msg('분류 설정 저장됨')})}
 $('settingsBtn').onclick=()=>{settings();$('settingsDialog').showModal()};$('saveApi').onclick=()=>busy(async()=>{await api('/api/settings',{api:{enabled:$('apiEnabled').checked,consent:$('apiConsent').checked,use_approved_examples:$('apiExamples').checked,use_user_corrections:$('apiCorrections').checked,endpoint:$('endpoint').value,model:$('model').value,timeout:Number($('timeout').value),max_calls:Number($('maxCalls').value),max_output_tokens:Number($('maxTokens').value),max_cost_usd:$('maxCost').value===''?null:Number($('maxCost').value),input_usd_per_million:$('inPrice').value===''?null:Number($('inPrice').value),output_usd_per_million:$('outPrice').value===''?null:Number($('outPrice').value)}});await refresh();settings();msg('API 설정 저장됨')});$('addCat').onclick=()=>category({operation:'add',id:$('newCatId').value,category:{id:$('newCatId').value,name:$('newCatName').value,definition:$('newCatDef').value}});
 

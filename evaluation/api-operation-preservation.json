@@ -1,0 +1,24 @@
+{
+  "base_commit": "4482f48065e6361fbb7f3970a11ea76abd65167c",
+  "protected_files": {
+    "bbolprom_engine/baseline.py": "8e1544eea69a4cfd44ffe3008928f0c608aa1f8557c004e7a5fe3f39b921f09f",
+    "bbolprom_engine/baseline_edits.py": "1ef0056375c98db6d102e487f2c87fb3a50992c71090f437088011f23997638e",
+    "bbolprom_engine/library.py": "146c4e33cea08157466fe975196bf24fa1c0345b09f3e886585af38912d1ea2a",
+    "bbolprom_engine/credentials.py": "2179a01140e62b29190da02074a9d5da05ff2b838bf6a37760eee6364ee911b5",
+    "bbolprom_engine/api_budget.py": "a067cd755283ac27ac737c75a45c464c46b69e01c3cb97eb9e89211774544979",
+    "bbolprom_engine/portable_storage.py": "f34f2cd87fd06c4019386967e43112239ea37d9c168a56b32301be84c7461209",
+    "bbolprom_engine/api_engine/repository.py": "54bbcfb7e307acaf31ea069b8ffcbbf7346e8a1cbd27098074ce96663692ed83",
+    "bbolprom_engine/api_engine/definitions.py": "eae21ea2210b7e2fdc325fb1251428ac682711d629015a03a8ea2e93745064ce",
+    "bbolprom_engine/data/baseline_manifest.json": "caaf514288846f5faec4ebc69b80f4a83b9c45088cae4d8ccf4dffc3d26b808d",
+    "assets/approved_catalog.json": "b5917dcc54209c02d4cbf6d9514ba2c003a3f0618d0221864264072c1f4754f7"
+  },
+  "protected_files_unchanged": true,
+  "baseline_helpers_policy_schema_unchanged": true,
+  "APIConfig_existing_fields_and_methods_unchanged": true,
+  "provider_request_body_endpoint_auth_TLS_budget_reservation_unchanged": true,
+  "external_API_called": false,
+  "token_cost_optimization_implemented": false,
+  "permanent_delete_implemented": false,
+  "real_provider_failure_cause_confirmed": false,
+  "native_Windows_tested": false
+}

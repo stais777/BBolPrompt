@@ -1,1 +1,1 @@
-VERSION = '0.4.1-apifeedback'
+VERSION = '0.4.2-operations'

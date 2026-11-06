@@ -1,0 +1,40 @@
+loading_is_visible_and_repeat_click_is_disabled
+load_failure_is_visible_in_modal_and_can_be_retried
+retry_cold_repository_displays_seven_drafts_without_paid_call
+failed_reload_preserves_previously_displayed_definitions
+approval_failure_is_visible_and_retry_confirms_definitions
+baseline_keys_budgets_and_provider_are_untouched
+{
+  "checks": [
+    {
+      "name": "loading_is_visible_and_repeat_click_is_disabled",
+      "status": "passed"
+    },
+    {
+      "name": "load_failure_is_visible_in_modal_and_can_be_retried",
+      "status": "passed"
+    },
+    {
+      "name": "retry_cold_repository_displays_seven_drafts_without_paid_call",
+      "status": "passed"
+    },
+    {
+      "name": "failed_reload_preserves_previously_displayed_definitions",
+      "status": "passed"
+    },
+    {
+      "name": "approval_failure_is_visible_and_retry_confirms_definitions",
+      "status": "passed"
+    },
+    {
+      "name": "baseline_keys_budgets_and_provider_are_untouched",
+      "status": "passed"
+    }
+  ],
+  "platform": "linux",
+  "real_key_used": false,
+  "external_API_called": false,
+  "native_windows_tested": false,
+  "baseline_js": null,
+  "status": "passed"
+}

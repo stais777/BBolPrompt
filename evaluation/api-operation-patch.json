@@ -1,0 +1,41 @@
+{
+  "target_version": "0.4.2-operations",
+  "source_commit": "b1f38de53f9b7090d30f2513516b3fd439937d7c",
+  "source_clean_at_build": true,
+  "full_zip": {
+    "file": "Bbolprom-Windows-x64-v0.4.2-operations.zip",
+    "bytes": 15324000,
+    "sha256": "613217e762dfdceea417b564b8f25cca05692b9ee2c1ff31c1543cbdb514ce5b",
+    "crc": "passed"
+  },
+  "patch": {
+    "file": "Bbolprom-Operations-Patch-v0.4.1-to-v0.4.2.zip",
+    "bytes": 191050,
+    "sha256": "f6bed1d7862a00acdd6142945a509ace84d87c785d7e89bb1eb2d1cfa2c751a3",
+    "changed_program_files": [
+      "BUILD_PROVENANCE.json",
+      "Bbolprom.exe",
+      "SHA256.json",
+      "app/bbolprom_engine/api.py",
+      "app/bbolprom_engine/api_engine/diagnostics.py",
+      "app/bbolprom_engine/api_engine/operation_status.py",
+      "app/bbolprom_engine/api_engine/service.py",
+      "app/bbolprom_engine/app.py",
+      "app/bbolprom_engine/version.py",
+      "app/bbolprom_engine/web/app.js",
+      "app/bbolprom_engine/web/index.html",
+      "app/bbolprom_engine/web/operations.js",
+      "사용방법.txt"
+    ],
+    "crc": "passed"
+  },
+  "overlay_all_target_package_files_match": 1362,
+  "synthetic_data_sentinels_preserved": true,
+  "protected_files_unchanged": 10,
+  "Python_tests": 231,
+  "browser_checks": 54,
+  "real_keys_used": false,
+  "live_API_calls": 0,
+  "native_Windows_executed": false,
+  "real_provider_failure_cause_confirmed": false
+}

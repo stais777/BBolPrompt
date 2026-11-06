@@ -1,0 +1,9 @@
+test_duplicate_is_rejected_without_waiting_or_second_provider_call (test_api_operation_responsiveness.APIOperationResponsiveness.test_duplicate_is_rejected_without_waiting_or_second_provider_call) ... ok
+test_status_route_is_authenticated_small_and_reports_activity (test_api_operation_responsiveness.APIOperationResponsiveness.test_status_route_is_authenticated_small_and_reports_activity) ... ok
+test_ui_save_finishes_while_provider_is_waiting (test_api_operation_responsiveness.APIOperationResponsiveness.test_ui_save_finishes_while_provider_is_waiting) ... ok
+test_user_edit_during_provider_wait_is_preserved_and_marks_stale (test_api_operation_responsiveness.APIOperationResponsiveness.test_user_edit_during_provider_wait_is_preserved_and_marks_stale) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 6.472s
+
+OK

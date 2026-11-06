@@ -66,5 +66,13 @@
   "Bbolprom-Windows-x64-v0.4.1-apifeedback.zip": {
     "bytes": 15317500,
     "sha256": "a5b54740f2e7416589c9d6b5b4ae3944df78c205207793e25ffcdfb681a7ed72"
+  },
+  "Bbolprom-Windows-x64-v0.4.2-operations.zip": {
+    "bytes": 15324000,
+    "sha256": "613217e762dfdceea417b564b8f25cca05692b9ee2c1ff31c1543cbdb514ce5b"
+  },
+  "Bbolprom-Operations-Patch-v0.4.1-to-v0.4.2.zip": {
+    "bytes": 191050,
+    "sha256": "f6bed1d7862a00acdd6142945a509ace84d87c785d7e89bb1eb2d1cfa2c751a3"
   }
 }

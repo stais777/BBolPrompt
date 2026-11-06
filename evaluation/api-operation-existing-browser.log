@@ -1,0 +1,25 @@
+baseline_registration_stays_fixed_and_api_reanalysis_disabled
+drafts_require_explicit_confirmation_without_reclassifying_baseline
+new_card_mock_analysis_has_exact_highlight_and_engine_history
+manual_rename_and_exclusion_survive_reanalysis_without_full_archive_per_tag
+correction_can_be_withdrawn_while_current_manual_tags_remain
+repeated_evidence_needs_context_and_never_colors_every_ambiguous_position
+tag_history_restores_user_version_and_survives_reload
+API_engine_audits_are_mock_and_no_external_calls_or_JS_errors
+{
+  "checks": [
+    "baseline_registration_stays_fixed_and_api_reanalysis_disabled",
+    "drafts_require_explicit_confirmation_without_reclassifying_baseline",
+    "new_card_mock_analysis_has_exact_highlight_and_engine_history",
+    "manual_rename_and_exclusion_survive_reanalysis_without_full_archive_per_tag",
+    "correction_can_be_withdrawn_while_current_manual_tags_remain",
+    "repeated_evidence_needs_context_and_never_colors_every_ambiguous_position",
+    "tag_history_restores_user_version_and_survives_reload",
+    "API_engine_audits_are_mock_and_no_external_calls_or_JS_errors"
+  ],
+  "live_API_called": false,
+  "native_Windows_tested": false,
+  "actual_PT_tested": false,
+  "provider": "injected synthetic mock",
+  "status": "passed"
+}

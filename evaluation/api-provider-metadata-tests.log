@@ -1,0 +1,16 @@
+test_atomic_concurrent_reservation_prevents_double_spend (test_api_security.PaidCallBoundary.test_atomic_concurrent_reservation_prevents_double_spend) ... ok
+test_auth_header_only_no_retry_and_tls_redirect_guard (test_api_security.PaidCallBoundary.test_auth_header_only_no_retry_and_tls_redirect_guard) ... ok
+test_budget_io_failure_stops_before_send (test_api_security.PaidCallBoundary.test_budget_io_failure_stops_before_send) ... ok
+test_failed_call_reservation_survives_recreation_and_reconfiguration (test_api_security.PaidCallBoundary.test_failed_call_reservation_survives_recreation_and_reconfiguration) ... ok
+test_failed_cost_reservation_cannot_be_reset_by_restarting_config (test_api_security.PaidCallBoundary.test_failed_cost_reservation_cannot_be_reset_by_restarting_config) ... ok
+test_missing_budget_prices_or_definitions_never_spends (test_api_security.PaidCallBoundary.test_missing_budget_prices_or_definitions_never_spends) ... ok
+test_nonofficial_destinations_rejected_before_credential_read_or_network (test_api_security.PaidCallBoundary.test_nonofficial_destinations_rejected_before_credential_read_or_network) ... ok
+test_output_limit_keeps_specific_reason_usage_and_single_reservation (test_api_provider_metadata.ProviderMetadata.test_output_limit_keeps_specific_reason_usage_and_single_reservation) ... ok
+test_provider_refusal_text_and_synthetic_secret_are_never_reported (test_api_provider_metadata.ProviderMetadata.test_provider_refusal_text_and_synthetic_secret_are_never_reported) ... ok
+test_timeout_is_specific_and_never_retried (test_api_provider_metadata.ProviderMetadata.test_timeout_is_specific_and_never_retried) ... ok
+test_whitelist_excludes_provider_text_keys_and_unknown_fields (test_api_provider_metadata.ProviderMetadata.test_whitelist_excludes_provider_text_keys_and_unknown_fields) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.135s
+
+OK

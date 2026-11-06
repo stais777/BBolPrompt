@@ -106,6 +106,7 @@ class APIConfig:
     estimated_cost_usd: float=field(default=0.0,init=False)
     _credentials: object=field(default=None,init=False,repr=False)
     _budget: object=field(default=None,init=False,repr=False)
+    _response_meta: dict=field(default_factory=dict,init=False,repr=False)
 
     def __post_init__(self):
         self.validate()
@@ -296,6 +297,7 @@ def validate_response(response,request,tags):
 
 
 def _live_transport(request,config):
+    config._response_meta={'phase':'preflight','max_output_tokens':config.max_output_tokens}
     config.validate()
     if not config.enabled or not config.consent:raise APIUnavailable('API disabled or external-transmission consent missing')
     if config.endpoint != OPENAI_ENDPOINT:raise APIUnavailable('OpenAI 공식 API 주소 설정이 필요합니다.')
@@ -331,16 +333,24 @@ def _live_transport(request,config):
         def redirect_request(self,*args,**kwargs):return None
     opener=urllib.request.build_opener(NoRedirect(),urllib.request.HTTPSHandler(context=ssl.create_default_context()))
     try:
+        config._response_meta['phase']='sent'
         with opener.open(req,timeout=config.timeout) as res:
             raw=res.read(4*1024*1024+1)
             if len(raw)>4*1024*1024:raise APIUnavailable('Provider response too large')
         envelope=json.loads(raw)
         if not isinstance(envelope,dict):raise APIUnavailable('Provider response object required')
+        config._response_meta['phase']='received'
         usage=envelope.get('usage',{})
         if not isinstance(usage,dict):usage={}
         for key,fieldname in [('prompt_tokens','total_input_tokens'),('completion_tokens','total_output_tokens')]:
             value=usage.get(key,0)
             if type(value) is int and value>=0:setattr(config,fieldname,getattr(config,fieldname)+value)
+        for key,target in [('prompt_tokens','input_tokens'),('completion_tokens','output_tokens')]:
+            value=usage.get(key)
+            if type(value) is int and 0<=value<=10**10:config._response_meta[target]=value
+        details=usage.get('completion_tokens_details',{})
+        reasoning=details.get('reasoning_tokens') if isinstance(details,dict) else None
+        if type(reasoning) is int and 0<=reasoning<=10**10:config._response_meta['reasoning_tokens']=reasoning
         # Reconcile successful calls with documented provider usage. A failed or
         # incomplete/missing usage response retains its conservative reservation.
         input_tokens=usage.get('prompt_tokens');output_tokens=usage.get('completion_tokens')
@@ -351,12 +361,34 @@ def _live_transport(request,config):
             config.estimated_cost_usd+=float(actual)
             config.reserved_cost_usd=max(0,config.reserved_cost_usd-float(reserve))+float(actual)
         choice=envelope['choices'][0]
-        if choice.get('finish_reason') not in (None,'stop'):raise APIUnavailable('Provider response incomplete or refused')
+        if not isinstance(choice,dict):raise APIUnavailable('Provider response object required')
+        finish=choice.get('finish_reason')
+        if finish is not None:config._response_meta['finish_reason']=finish if finish in ('stop','length','content_filter','tool_calls','function_call') else 'other'
+        message=choice.get('message',{})
+        if not isinstance(message,dict):raise APIUnavailable('Provider message object required')
+        refused=bool(message.get('refusal'));config._response_meta['refusal']=refused
+        if finish=='length':
+            config._response_meta['error_code']='output_limit'
+            raise APIUnavailable('응답이 출력 토큰 한도에 도달해 완성되지 않았습니다. 원문·기존 태그는 유지하며 자동 재시도하지 않습니다.')
+        if refused or finish=='content_filter':
+            config._response_meta['error_code']='refused' if refused else 'filtered'
+            raise APIUnavailable('공급자가 태그 분석 응답을 반환하지 않았습니다. 원문·기존 태그는 유지하며 자동 재시도하지 않습니다.')
+        if finish not in (None,'stop'):
+            config._response_meta['error_code']='incomplete_response'
+            raise APIUnavailable('Provider response incomplete; card retained, retry is manual')
         return choice['message']['content'],usage
+    except APIUnavailable:
+        # Preserve safe, specific transport errors instead of swallowing our
+        # own ValueError subclass into the generic response-error handler.
+        raise
     except urllib.error.HTTPError as exc:
+        config._response_meta.update(http_status=exc.code,error_code='http_error')
         # Never include server bodies/URLs/headers/keys in user-facing messages.
         raise APIUnavailable(f'API HTTP {exc.code}; card retained, retry is manual') from None
-    except (urllib.error.URLError,TimeoutError,ValueError,KeyError,IndexError,OSError,sqlite3.Error,ArithmeticError):
+    except (urllib.error.URLError,TimeoutError,ValueError,KeyError,IndexError,OSError,sqlite3.Error,ArithmeticError) as exc:
+        timed_out=isinstance(exc,TimeoutError) or (isinstance(exc,urllib.error.URLError) and isinstance(exc.reason,TimeoutError))
+        config._response_meta['error_code']='timeout' if timed_out else 'connection_or_response_error'
+        if timed_out:raise APIUnavailable('API 응답 대기시간을 초과했습니다. 공급자 처리는 계속될 수 있으므로 자동 재시도하지 않습니다. 원문·기존 태그는 유지합니다.') from None
         raise APIUnavailable('API connection/timeout/response error; card retained, retry is manual') from None
 
 

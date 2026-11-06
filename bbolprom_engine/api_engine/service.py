@@ -8,6 +8,7 @@ from ..method_guidance import load_method_guidance
 from . import ENGINE_VERSION,definitions,reference_reader,retrieval,evidence
 from .common import digest
 from .repository import Repository
+from .operation_status import safe_summary
 
 
 class Engine:
@@ -56,6 +57,7 @@ class Engine:
                 'warnings':['API 처리 중 오류가 발생했습니다. 이전 태그를 유지하며 재시도는 수동입니다.']}
         result['mode']='mock' if transport else 'live' if config and config.enabled else 'offline'
         result['usage']=usage
+        result['provider_response']=safe_summary({'phase':'mock'} if transport else getattr(config,'_response_meta',{}))
         if result['status'] in ('ok','partial'):result=evidence.refine(s['text'],result)
         def references_current():
             # Called AFTER BEGIN IMMEDIATE: no other writer can change these
@@ -70,7 +72,7 @@ class Engine:
         audit={'engine_version':ENGINE_VERSION,'source_sha256':s['sha'],'card_revision':s['revision'],'reference_fingerprint':refs['fingerprint'],'definition_token':definition_token,
             'standard_ids':[t['id'] for t in related],'correction_ids':[x['correction_id'] for x in correction_examples],
             'bilingual_sources':{t['id']:sorted(self._index[t['id']]['sources']) for t in related},
-            'request_sha256':digest(captured) if captured else None}
+            'request_sha256':digest(captured) if captured else None,'provider_response':result['provider_response']}
         result=self.repo.finish(s,result,audit,guard=references_current)
         result['engine_version']=ENGINE_VERSION
         return result
