@@ -82,5 +82,9 @@
   "Bbolprom-Tag-Review-Patch-v0.4.2-to-v0.4.3.zip": {
     "bytes": 187812,
     "sha256": "558134d5a949899c234082a16eb2cb625e20bfa316e54a72609012228bc51466"
+  },
+  "Bbolprom-API-Quality-Patch-v0.4.3-to-v0.4.4.zip": {
+    "bytes": 187264,
+    "sha256": "aa576d9b40551a5fddb5bcfd77f46d806904668c0776bd86cbc63a87cbe0aa00"
   }
 }

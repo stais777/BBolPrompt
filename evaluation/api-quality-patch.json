@@ -1,0 +1,35 @@
+{
+  "source_commit": "daa8eb5a5a80fa34295c78e3594ef0b4fbb7b6e4",
+  "source_clean_at_build": true,
+  "version": "0.4.4-quality",
+  "patch": {
+    "bytes": 187264,
+    "sha256": "aa576d9b40551a5fddb5bcfd77f46d806904668c0776bd86cbc63a87cbe0aa00",
+    "file": "Bbolprom-API-Quality-Patch-v0.4.3-to-v0.4.4.zip",
+    "program_files": [
+      "BUILD_PROVENANCE.json",
+      "Bbolprom.exe",
+      "SHA256.json",
+      "app/bbolprom_engine/api_engine/evidence.py",
+      "app/bbolprom_engine/api_engine/quality.py",
+      "app/bbolprom_engine/api_engine/service.py",
+      "app/bbolprom_engine/app.py",
+      "app/bbolprom_engine/version.py",
+      "app/bbolprom_engine/web/app.js",
+      "app/bbolprom_engine/web/index.html",
+      "app/bbolprom_engine/web/tag_review.js",
+      "app/bbolprom_engine/xlsx_export.py",
+      "사용방법.txt"
+    ]
+  },
+  "CRC": "passed",
+  "package_hashes_verified": 1363,
+  "overlay_target_files_match": 1364,
+  "tested_program_sources_identical": true,
+  "protected_12_files_unchanged": true,
+  "personal_focus_and_private_trial_files_published": false,
+  "Python_HTTP_tests": 106,
+  "Chromium_checks": 17,
+  "live_API_called": false,
+  "new_native_Windows_executed": false
+}
