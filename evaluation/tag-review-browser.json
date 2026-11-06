@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "name": "partial_result_is_saved_and_explained_as_completed_with_pending_candidates",
+      "status": "passed"
+    },
+    {
+      "name": "pending_reason_is_literal_redacted_text_and_reference_does_not_assign_category",
+      "status": "passed"
+    },
+    {
+      "name": "validated_evidence_and_highlight_preserve_exact_source",
+      "status": "passed"
+    },
+    {
+      "name": "classified_new_label_and_detailed_view_show_their_own_reason",
+      "status": "passed"
+    },
+    {
+      "name": "review_edit_button_opens_existing_editor_without_automatic_save",
+      "status": "passed"
+    },
+    {
+      "name": "card_switch_and_refresh_reset_details_without_API_or_baseline_changes",
+      "status": "passed"
+    }
+  ],
+  "external_API_called": false,
+  "real_key_used": false,
+  "native_Windows_tested": false,
+  "status": "passed"
+}

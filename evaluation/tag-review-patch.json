@@ -1,0 +1,40 @@
+{
+  "target_version": "0.4.3-review",
+  "source_commit": "8eb78287025d1297207a3dbc3ee382bd38b5843a",
+  "source_clean_at_build": true,
+  "full_zip": {
+    "file": "Bbolprom-Windows-x64-v0.4.3-review.zip",
+    "bytes": 15326220,
+    "sha256": "f6a08c0c286d1b2c0315a2d7f5fffa248b65c2cd0d7e1a54a0fdce094a67b127",
+    "crc": "passed"
+  },
+  "patch": {
+    "file": "Bbolprom-Tag-Review-Patch-v0.4.2-to-v0.4.3.zip",
+    "bytes": 187812,
+    "sha256": "558134d5a949899c234082a16eb2cb625e20bfa316e54a72609012228bc51466",
+    "changed_program_files": [
+      "BUILD_PROVENANCE.json",
+      "Bbolprom.exe",
+      "SHA256.json",
+      "app/bbolprom_engine/app.py",
+      "app/bbolprom_engine/version.py",
+      "app/bbolprom_engine/web/app.js",
+      "app/bbolprom_engine/web/index.html",
+      "app/bbolprom_engine/web/operations.js",
+      "app/bbolprom_engine/web/tag_review.js",
+      "app/bbolprom_engine/web/ui.css",
+      "사용방법.txt"
+    ],
+    "crc": "passed"
+  },
+  "overlay_all_target_package_files_match": 1363,
+  "synthetic_data_sentinels_preserved": true,
+  "protected_files_unchanged": 12,
+  "HTTP_tests": 17,
+  "browser_checks": 54,
+  "previous_Python_231_rerun": false,
+  "real_keys_used": false,
+  "extra_API_calls": 0,
+  "native_new_Windows_executed": false,
+  "full_semantic_accuracy_verified": false
+}

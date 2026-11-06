@@ -434,7 +434,7 @@ def make_server(data,port=0):
                 if path=='/':
                     page=(Path(__file__).parent/'web'/'index.html').read_text(encoding='utf8')
                     self.send(200,page.replace('__TOKEN__',app.token).replace('__VERSION__',VERSION).encode(),'text/html; charset=utf-8');return
-                if path in ('/ui.css','/app.js','/operations.js'):
+                if path in ('/ui.css','/app.js','/operations.js','/tag_review.js'):
                     body=(Path(__file__).parent/'web'/path[1:]).read_bytes()
                     self.send(200,body,'text/css; charset=utf-8' if path.endswith('.css') else 'text/javascript; charset=utf-8');return
                 if path=='/health':

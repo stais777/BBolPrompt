@@ -9,8 +9,9 @@ function activeAnalysis(){return localAnalysisJob||((state.analysis_activity||{}
 function operationMessage(id,message,error=false){operationMessages.set(id,{message:operationText(message),error});if(selected?.id===id)updateOperationInspector()}
 function attemptMessage(row){
  const p=row.provider||{};
+ const completion={ok:'분석 완료',partial:'분석 완료 · 미분류 후보 있음'}[row.status];
  const reasons={output_limit:'출력 한도에 도달해 응답이 완성되지 않았습니다.',refused:'공급자가 태그 응답을 반환하지 않았습니다.',filtered:'공급자의 응답 제한으로 결과를 받지 못했습니다.',timeout:'응답 대기시간을 초과했습니다.',incomplete_response:'완성된 응답을 받지 못했습니다.',http_error:'API HTTP '+p.http_status,connection_or_response_error:'연결 또는 응답 처리 오류입니다.'};
- return 'API 상태: '+row.status+(p.error_code?' · '+(reasons[p.error_code]||p.error_code):'')+
+ return 'API 상태: '+row.status+(completion?' · '+completion:'')+(p.error_code?' · '+(reasons[p.error_code]||p.error_code):'')+
   (p.input_tokens!==undefined?' · 입력 '+p.input_tokens+' / 출력 '+(p.output_tokens??0)+' 토큰':'')+
   (!['ok','partial'].includes(row.status)?' · 원문과 기존 태그는 유지됩니다.':'');
 }
@@ -51,7 +52,8 @@ async function runCardAnalysis(){
  operationMessages.delete(card.id);updateOperationInspector();msg('API 분석 중입니다. 추가 클릭은 필요하지 않습니다.');
  try{
   const result=await api('/api/analyze',{id:card.id});
-  const text='API 상태: '+result.status+' · '+(result.warnings||[]).join(' / ');
+  const completion=['ok','partial'].includes(result.status)?' · 분석 완료 · 분류 '+result.tags.length+'개 · 미분류 '+result.unclassified.length+'개':'';
+  const text='API 상태: '+result.status+completion+' · '+(result.warnings||[]).join(' / ');
   operationMessage(card.id,text,!['ok','partial'].includes(result.status));
   // Registration/analysis response and gallery refresh are separate outcomes.
   try{await refresh()}catch(e){operationMessage(card.id,text+' · 결과 저장 후 목록 갱신을 확인하지 못했습니다. 분석 상태 확인을 눌러주세요.',true)}

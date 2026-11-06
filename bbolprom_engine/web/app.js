@@ -122,10 +122,11 @@ function tagGroups(card,container,target){
  for(const tag of card.tags){const name=effectiveCat(tag,card);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(tag)}
  if(!groups.size){container.append(node('p','등록된 태그가 없습니다.','muted'));return}
  for(const [name,tags] of groups){const group=node('section',undefined,'inspector-tag-group');group.append(node('div',name,'cathead'));const list=node('div',undefined,'taglist');
-  for(const tag of tags){const label=tagName(tag),pair=node('span',undefined,'tag-pair'),button=node('button',label,'tag'+(selectedTags.includes(label)?' picked':''));button.dataset.tag=label;button.title='클릭: 원문 형광펜 · 우클릭: 대표 태그';button.onclick=()=>highlight(tag,target,card);button.oncontextmenu=e=>{e.preventDefault();pinTag(card,label)};const add=node('button','+','tag-add');add.title=label+' 필터 선택';add.onclick=()=>selectTag(label);pair.append(button,add);list.append(pair)}group.append(list);container.append(group);
+  for(const tag of tags){const label=tagName(tag),pair=node('span',undefined,'tag-pair'),button=node('button',label,'tag'+(selectedTags.includes(label)?' picked':''));button.dataset.tag=label;button.title='클릭: 원문 형광펜 · 우클릭: 대표 태그';button.onclick=()=>{highlight(tag,target,card);if(typeof showTagReview==='function')showTagReview(tag,card,target)};button.oncontextmenu=e=>{e.preventDefault();pinTag(card,label)};const add=node('button','+','tag-add');add.title=label+' 필터 선택';add.onclick=()=>selectTag(label);pair.append(button,add);list.append(pair)}group.append(list);container.append(group);
  }
 }
 function inspect(){
+ if(typeof resetTagReview==='function')resetTagReview();
  $('inspector').hidden=!selected;$('empty').hidden=!!selected;$('inspectorPanel').classList.toggle('has-selection',!!selected);
  if(!selected){$('cardTitle').textContent='카드 정보';return}
  imageIndex=Math.min(imageIndex,Math.max(0,selected.images.length-1));
